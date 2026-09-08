@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="UnitDefinition" load_steps=51 format=3]
+
+[ext_resource type="Script" path="res://scripts/sim/unit_definition.gd" id="1_unitdef"]
+[ext_resource type="Texture2D" path="res://assets/chibi_marksman_transparent.png" id="2_sprite"]
+[ext_resource type="Texture2D" path="res://assets/marksman_attack_ready.png" id="11_attack_ready"]
+[ext_resource type="Texture2D" path="res://assets/marksman_attack_fire.png" id="12_attack_fire"]
+[ext_resource type="Texture2D" path="res://assets/marksman_attack_recoil.png" id="13_attack_recoil"]
+[ext_resource type="Texture2D" path="res://assets/marksman_attack_settle.png" id="14_attack_settle"]
+[ext_resource type="Texture2D" path="res://assets/marksman_walk_walk1.png" id="15_walk_walk1"]
+[ext_resource type="Texture2D" path="res://assets/marksman_walk_walk2.png" id="16_walk_walk2"]
+[ext_resource type="Texture2D" path="res://assets/marksman_walk_walk3.png" id="17_walk_walk3"]
+[ext_resource type="Texture2D" path="res://assets/marksman_walk_walk4.png" id="18_walk_walk4"]
+[ext_resource type="Texture2D" path="res://assets/marksman_retreat_retreat1.png" id="19_retreat_retreat1"]
+[ext_resource type="Texture2D" path="res://assets/marksman_retreat_retreat2.png" id="20_retreat_retreat2"]
+[ext_resource type="Texture2D" path="res://assets/marksman_retreat_retreat3.png" id="21_retreat_retreat3"]
+[ext_resource type="Texture2D" path="res://assets/marksman_retreat_retreat4.png" id="22_retreat_retreat4"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv2_attack_ready.png" id="30_lv2_attack_ready"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv2_attack_fire.png" id="31_lv2_attack_fire"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv2_attack_recoil.png" id="32_lv2_attack_recoil"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv2_attack_settle.png" id="33_lv2_attack_settle"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv2_walk_walk1.png" id="34_lv2_walk_walk1"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv2_walk_walk2.png" id="35_lv2_walk_walk2"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv2_walk_walk3.png" id="36_lv2_walk_walk3"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv2_walk_walk4.png" id="37_lv2_walk_walk4"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv2_retreat_retreat1.png" id="38_lv2_retreat_retreat1"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv2_retreat_retreat2.png" id="39_lv2_retreat_retreat2"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv2_retreat_retreat3.png" id="40_lv2_retreat_retreat3"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv2_retreat_retreat4.png" id="41_lv2_retreat_retreat4"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv3_attack_ready.png" id="42_lv3_attack_ready"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv3_attack_fire.png" id="43_lv3_attack_fire"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv3_attack_recoil.png" id="44_lv3_attack_recoil"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv3_attack_settle.png" id="45_lv3_attack_settle"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv3_walk_walk1.png" id="46_lv3_walk_walk1"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv3_walk_walk2.png" id="47_lv3_walk_walk2"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv3_walk_walk3.png" id="48_lv3_walk_walk3"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv3_walk_walk4.png" id="49_lv3_walk_walk4"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv3_retreat_retreat1.png" id="50_lv3_retreat_retreat1"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv3_retreat_retreat2.png" id="51_lv3_retreat_retreat2"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv3_retreat_retreat3.png" id="52_lv3_retreat_retreat3"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv3_retreat_retreat4.png" id="53_lv3_retreat_retreat4"]
+
+[ext_resource type="Texture2D" path="res://assets/marksman_idle_breathe1.png" id="54_idle_breathe1"]
+[ext_resource type="Texture2D" path="res://assets/marksman_idle_breathe2.png" id="55_idle_breathe2"]
+[ext_resource type="Texture2D" path="res://assets/marksman_idle_breathe3.png" id="56_idle_breathe3"]
+[ext_resource type="Texture2D" path="res://assets/marksman_idle_breathe4.png" id="57_idle_breathe4"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv2_idle_breathe1.png" id="58_lv2_idle_breathe1"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv2_idle_breathe2.png" id="59_lv2_idle_breathe2"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv2_idle_breathe3.png" id="60_lv2_idle_breathe3"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv2_idle_breathe4.png" id="61_lv2_idle_breathe4"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv3_idle_breathe1.png" id="62_lv3_idle_breathe1"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv3_idle_breathe2.png" id="63_lv3_idle_breathe2"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv3_idle_breathe3.png" id="64_lv3_idle_breathe3"]
+[ext_resource type="Texture2D" path="res://assets/marksman_lv3_idle_breathe4.png" id="65_lv3_idle_breathe4"]
+
+[resource]
+script = ExtResource("1_unitdef")
+display_name = "Marksman"
+type = 2
+description = "Long-range sniper -- slow, fragile, devastating alpha strikes."
+hp = 70.0
+damage_per_hit = 29.0
+attacks_per_second = 0.7407407
+move_speed = 2.8
+preferred_range = 11.0
+retreat_range = 7.0
+sprite = ExtResource("2_sprite")
+idle_frames = Array[Texture2D]([ExtResource("54_idle_breathe1"), ExtResource("55_idle_breathe2"), ExtResource("56_idle_breathe3"), ExtResource("57_idle_breathe4")])
+lv2_idle_frames = Array[Texture2D]([ExtResource("58_lv2_idle_breathe1"), ExtResource("59_lv2_idle_breathe2"), ExtResource("60_lv2_idle_breathe3"), ExtResource("61_lv2_idle_breathe4")])
+lv3_idle_frames = Array[Texture2D]([ExtResource("62_lv3_idle_breathe1"), ExtResource("63_lv3_idle_breathe2"), ExtResource("64_lv3_idle_breathe3"), ExtResource("65_lv3_idle_breathe4")])
+attack_frames = Array[Texture2D]([ExtResource("11_attack_ready"), ExtResource("12_attack_fire"), ExtResource("13_attack_recoil"), ExtResource("14_attack_settle")])
+walk_frames = Array[Texture2D]([ExtResource("15_walk_walk1"), ExtResource("16_walk_walk2"), ExtResource("17_walk_walk3"), ExtResource("18_walk_walk4")])
+retreat_frames = Array[Texture2D]([ExtResource("19_retreat_retreat1"), ExtResource("20_retreat_retreat2"), ExtResource("21_retreat_retreat3"), ExtResource("22_retreat_retreat4")])
+lv2_attack_frames = Array[Texture2D]([ExtResource("30_lv2_attack_ready"), ExtResource("31_lv2_attack_fire"), ExtResource("32_lv2_attack_recoil"), ExtResource("33_lv2_attack_settle")])
+lv2_walk_frames = Array[Texture2D]([ExtResource("34_lv2_walk_walk1"), ExtResource("35_lv2_walk_walk2"), ExtResource("36_lv2_walk_walk3"), ExtResource("37_lv2_walk_walk4")])
+lv2_retreat_frames = Array[Texture2D]([ExtResource("38_lv2_retreat_retreat1"), ExtResource("39_lv2_retreat_retreat2"), ExtResource("40_lv2_retreat_retreat3"), ExtResource("41_lv2_retreat_retreat4")])
+lv3_attack_frames = Array[Texture2D]([ExtResource("42_lv3_attack_ready"), ExtResource("43_lv3_attack_fire"), ExtResource("44_lv3_attack_recoil"), ExtResource("45_lv3_attack_settle")])
+lv3_walk_frames = Array[Texture2D]([ExtResource("46_lv3_walk_walk1"), ExtResource("47_lv3_walk_walk2"), ExtResource("48_lv3_walk_walk3"), ExtResource("49_lv3_walk_walk4")])
+lv3_retreat_frames = Array[Texture2D]([ExtResource("50_lv3_retreat_retreat1"), ExtResource("51_lv3_retreat_retreat2"), ExtResource("52_lv3_retreat_retreat3"), ExtResource("53_lv3_retreat_retreat4")])

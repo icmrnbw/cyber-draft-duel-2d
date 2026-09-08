@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="UnitDefinition" load_steps=50 format=3]
+
+[ext_resource type="Script" path="res://scripts/sim/unit_definition.gd" id="1_unitdef"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_attack_idle.png" id="2_sprite"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_attack_windup.png" id="3_windup"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_attack_strike.png" id="4_strike"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_attack_recover.png" id="5_recover"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_walk_walk1.png" id="11_walk_walk1"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_walk_walk2.png" id="12_walk_walk2"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_walk_walk3.png" id="13_walk_walk3"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_walk_walk4.png" id="14_walk_walk4"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_retreat_retreat1.png" id="15_retreat_retreat1"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_retreat_retreat2.png" id="16_retreat_retreat2"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_retreat_retreat3.png" id="17_retreat_retreat3"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_retreat_retreat4.png" id="18_retreat_retreat4"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv2_attack_idle.png" id="20_lv2_attack_idle"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv2_attack_windup.png" id="21_lv2_attack_windup"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv2_attack_strike.png" id="22_lv2_attack_strike"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv2_attack_recover.png" id="23_lv2_attack_recover"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv2_walk_walk1.png" id="24_lv2_walk_walk1"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv2_walk_walk2.png" id="25_lv2_walk_walk2"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv2_walk_walk3.png" id="26_lv2_walk_walk3"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv2_walk_walk4.png" id="27_lv2_walk_walk4"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv2_retreat_retreat1.png" id="28_lv2_retreat_retreat1"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv2_retreat_retreat2.png" id="29_lv2_retreat_retreat2"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv2_retreat_retreat3.png" id="30_lv2_retreat_retreat3"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv2_retreat_retreat4.png" id="31_lv2_retreat_retreat4"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv3_attack_idle.png" id="32_lv3_attack_idle"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv3_attack_windup.png" id="33_lv3_attack_windup"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv3_attack_strike.png" id="34_lv3_attack_strike"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv3_attack_recover.png" id="35_lv3_attack_recover"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv3_walk_walk1.png" id="36_lv3_walk_walk1"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv3_walk_walk2.png" id="37_lv3_walk_walk2"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv3_walk_walk3.png" id="38_lv3_walk_walk3"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv3_walk_walk4.png" id="39_lv3_walk_walk4"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv3_retreat_retreat1.png" id="40_lv3_retreat_retreat1"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv3_retreat_retreat2.png" id="41_lv3_retreat_retreat2"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv3_retreat_retreat3.png" id="42_lv3_retreat_retreat3"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv3_retreat_retreat4.png" id="43_lv3_retreat_retreat4"]
+
+[ext_resource type="Texture2D" path="res://assets/enforcer_idle_breathe1.png" id="44_idle_breathe1"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_idle_breathe2.png" id="45_idle_breathe2"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_idle_breathe3.png" id="46_idle_breathe3"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_idle_breathe4.png" id="47_idle_breathe4"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv2_idle_breathe1.png" id="48_lv2_idle_breathe1"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv2_idle_breathe2.png" id="49_lv2_idle_breathe2"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv2_idle_breathe3.png" id="50_lv2_idle_breathe3"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv2_idle_breathe4.png" id="51_lv2_idle_breathe4"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv3_idle_breathe1.png" id="52_lv3_idle_breathe1"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv3_idle_breathe2.png" id="53_lv3_idle_breathe2"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv3_idle_breathe3.png" id="54_lv3_idle_breathe3"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_lv3_idle_breathe4.png" id="55_lv3_idle_breathe4"]
+
+[resource]
+script = ExtResource("1_unitdef")
+display_name = "Enforcer"
+type = 0
+description = "Melee bruiser -- closes distance fast, hits hard on contact."
+hp = 200.0
+damage_per_hit = 22.0
+attacks_per_second = 1.8181819
+move_speed = 4.9
+preferred_range = 1.5
+retreat_range = 0.0
+stagger_min_level = 2
+stagger_chance = 0.35
+stagger_duration = 0.6
+berserk_min_level = 3
+berserk_max_speed_mult = 0.6
+sprite = ExtResource("2_sprite")
+idle_frames = Array[Texture2D]([ExtResource("44_idle_breathe1"), ExtResource("45_idle_breathe2"), ExtResource("46_idle_breathe3"), ExtResource("47_idle_breathe4")])
+lv2_idle_frames = Array[Texture2D]([ExtResource("48_lv2_idle_breathe1"), ExtResource("49_lv2_idle_breathe2"), ExtResource("50_lv2_idle_breathe3"), ExtResource("51_lv2_idle_breathe4")])
+lv3_idle_frames = Array[Texture2D]([ExtResource("52_lv3_idle_breathe1"), ExtResource("53_lv3_idle_breathe2"), ExtResource("54_lv3_idle_breathe3"), ExtResource("55_lv3_idle_breathe4")])
+attack_frames = Array[Texture2D]([ExtResource("2_sprite"), ExtResource("3_windup"), ExtResource("4_strike"), ExtResource("5_recover")])
+walk_frames = Array[Texture2D]([ExtResource("11_walk_walk1"), ExtResource("12_walk_walk2"), ExtResource("13_walk_walk3"), ExtResource("14_walk_walk4")])
+retreat_frames = Array[Texture2D]([ExtResource("15_retreat_retreat1"), ExtResource("16_retreat_retreat2"), ExtResource("17_retreat_retreat3"), ExtResource("18_retreat_retreat4")])
+lv2_attack_frames = Array[Texture2D]([ExtResource("20_lv2_attack_idle"), ExtResource("21_lv2_attack_windup"), ExtResource("22_lv2_attack_strike"), ExtResource("23_lv2_attack_recover")])
+lv2_walk_frames = Array[Texture2D]([ExtResource("24_lv2_walk_walk1"), ExtResource("25_lv2_walk_walk2"), ExtResource("26_lv2_walk_walk3"), ExtResource("27_lv2_walk_walk4")])
+lv2_retreat_frames = Array[Texture2D]([ExtResource("28_lv2_retreat_retreat1"), ExtResource("29_lv2_retreat_retreat2"), ExtResource("30_lv2_retreat_retreat3"), ExtResource("31_lv2_retreat_retreat4")])
+lv3_attack_frames = Array[Texture2D]([ExtResource("32_lv3_attack_idle"), ExtResource("33_lv3_attack_windup"), ExtResource("34_lv3_attack_strike"), ExtResource("35_lv3_attack_recover")])
+lv3_walk_frames = Array[Texture2D]([ExtResource("36_lv3_walk_walk1"), ExtResource("37_lv3_walk_walk2"), ExtResource("38_lv3_walk_walk3"), ExtResource("39_lv3_walk_walk4")])
+lv3_retreat_frames = Array[Texture2D]([ExtResource("40_lv3_retreat_retreat1"), ExtResource("41_lv3_retreat_retreat2"), ExtResource("42_lv3_retreat_retreat3"), ExtResource("43_lv3_retreat_retreat4")])

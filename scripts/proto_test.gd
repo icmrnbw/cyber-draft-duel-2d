@@ -1,4 +1,5 @@
 extends Node2D
+const TeamColor := preload("res://scripts/team_color.gd")
 ## First proof-of-concept for the Draft-Showdown-style pivot: portrait viewport,
 ## a vertical lane, and a chibi 2D sprite animated ENTIRELY procedurally (no
 ## Spine/DragonBones, no skeleton, no clip library) -- idle bob via a sine wave,
@@ -17,8 +18,8 @@ var _base_scale := Vector2(0.35, 0.35)
 
 func _ready() -> void:
 	_build_background()
-	_sprite_a = _build_unit(Vector2(VIEW_W * 0.5, VIEW_H * 0.78), Color(0.15, 0.75, 1.0))
-	_sprite_b = _build_unit(Vector2(VIEW_W * 0.5, VIEW_H * 0.22), Color(1.0, 0.42, 0.2))
+	_sprite_a = _build_unit(Vector2(VIEW_W * 0.5, VIEW_H * 0.78), TeamColor.TEAM_A)
+	_sprite_b = _build_unit(Vector2(VIEW_W * 0.5, VIEW_H * 0.22), TeamColor.TEAM_B)
 	# Deliberately NOT flipped -- tried flip_v first, it just reads as upside-down
 	# for a front-facing chibi portrait (this isn't a side-view sprite). Draft
 	# Showdown's own screenshots show both sides facing the camera too, not each
@@ -55,9 +56,13 @@ func _build_background() -> void:
 
 func _build_unit(pos: Vector2, team_color: Color) -> Sprite2D:
 	var sprite := Sprite2D.new()
-	sprite.texture = load("res://assets/trooper_chibi_transparent.png")
+	# Neutral (charcoal/gunmetal + white trim) base art -- NOT pre-baked per
+	# team. TeamColor.apply() recolors the bright trim pixels at draw time so
+	# this one asset serves every team/unit for free (see team_color.gd).
+	sprite.texture = load("res://assets/trooper_chibi_v2_transparent.png")
 	sprite.position = pos
 	sprite.scale = _base_scale
+	TeamColor.apply(sprite, team_color)
 	add_child(sprite)
 
 	# Ground shadow + team-colour accent ring, same visual language as the 3D

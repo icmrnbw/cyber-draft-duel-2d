@@ -11,8 +11,15 @@ config_version=5
 [application]
 
 config/name="cyber-draft-duel-2d"
-run/main_scene="res://scenes/proto_test.tscn"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.7")
+
+[autoload]
+
+GameState="*res://scripts/game_state.gd"
+PlayerProfile="*res://scripts/player_profile.gd"
+GameSettings="*res://scripts/game_settings.gd"
+AdService="*res://scripts/ad_service.gd"
 
 [display]
 
@@ -20,8 +27,9 @@ window/size/viewport_width=720
 window/size/viewport_height=1280
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep"
-window/handheld/orientation="portrait"
+window/handheld/orientation=1
 
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
