@@ -62,10 +62,27 @@ const TYPE_ROW_OFFSET := {
 ## Safety net from the design doc — real matches should end well under 30s.
 const MATCH_TIMEOUT := 90.0
 
+## Support units flee rather than fight (see _move_support()) -- when the
+## last units standing on both sides are support (or otherwise both idle
+## with nothing to heal and nobody willing to close the final gap),
+## genuinely nothing can happen for the rest of the match: no injured ally
+## to heal, no aggressor forcing a retreat, nothing left to change the
+## state. Reported directly: two medics as the last unit each side ran the
+## match to the full 90s MATCH_TIMEOUT before this existed, which reads as
+## "broken," not just "slow." Tracks the last tick ANY action landed (attack,
+## heal, or stagger -- not just a kill) rather than time-since-last-DEATH,
+## deliberately: a slow tanky 1v1 late in a round can easily go 12s between
+## kills while still trading real damage every second, and that's a
+## legitimate grind, not a stalemate -- only "genuinely nothing is
+## happening" should trigger this, which "no landed action at all" captures
+## precisely and "no kill" does not.
+const STALEMATE_TIMEOUT := 12.0
+
 enum Result { IN_PROGRESS, TEAM_A, TEAM_B, DRAW }
 
 var units: Array[SimUnit] = []
 var elapsed: float = 0.0
+var _last_action_elapsed: float = 0.0
 var result: Result = Result.IN_PROGRESS
 var rng := RandomNumberGenerator.new()
 
@@ -88,6 +105,7 @@ func setup(hand_a: Array[UnitDefinition], hand_b: Array[UnitDefinition], seed_va
 	units.clear()
 	events.clear()
 	elapsed = 0.0
+	_last_action_elapsed = 0.0
 	result = Result.IN_PROGRESS
 	rng.seed = seed_value
 
@@ -182,6 +200,8 @@ func tick() -> void:
 	_resolve_separation()
 	_clamp_to_arena()
 	_apply_damage()
+	if not events.is_empty():
+		_last_action_elapsed = elapsed
 	_evaluate_result()
 
 
@@ -413,9 +433,11 @@ func _move_support(u: SimUnit, new_positions: Array[Vector2]) -> void:
 				return
 
 	if u.target_id < 0:
+		_advance_on_threat_if_idle(u, new_positions, step)
 		return
 	var target := units[u.target_id]
 	if not target.alive:
+		_advance_on_threat_if_idle(u, new_positions, step)
 		return
 
 	var to_target := target.pos - u.pos
@@ -424,6 +446,34 @@ func _move_support(u: SimUnit, new_positions: Array[Vector2]) -> void:
 		var dir := to_target / dist if dist > 0.0001 else (Vector2.RIGHT if u.team == 0 else Vector2.LEFT)
 		new_positions[u.id] = u.pos + dir * step
 	# else: hold at heal range
+
+
+## Nothing to heal and the nearest enemy isn't close enough to trigger a
+## retreat -- previously this meant _move_support() just returned and the
+## unit froze in place, permanently, since a support has no other reason to
+## move. Two supports left alone on opposite sides (e.g. the last unit each
+## side, after everything else traded kills) both hit this exact state
+## simultaneously and neither would ever close the distance -- a genuine
+## stalemate that ran to the 90s MATCH_TIMEOUT instead of resolving
+## (reported directly: "if three units are left and one of them is medic on
+## each side, the battle goes on forever"). A cautious HALF-speed advance
+## toward the threat breaks the freeze without turning a medic into an
+## aggressor -- it still retreats immediately once inside retreat_range (the
+## branch above this runs every tick, so that check still fires the moment
+## it gets close), so this only ever closes the gap as far as retreat_range
+## allows, no further.
+func _advance_on_threat_if_idle(u: SimUnit, new_positions: Array[Vector2], step: float) -> void:
+	if u.threat_id < 0:
+		return
+	var threat := units[u.threat_id]
+	if not threat.alive:
+		return
+	var to_threat := threat.pos - u.pos
+	var dist := to_threat.length()
+	if dist <= u.def.retreat_range:
+		return
+	var dir := to_threat / dist if dist > 0.0001 else (Vector2.RIGHT if u.team == 0 else Vector2.LEFT)
+	new_positions[u.id] = u.pos + dir * step * 0.5
 
 
 ## Retreat directions to try, in order: straight away first, then progressively more
@@ -529,6 +579,18 @@ func _apply_damage() -> void:
 				events.append({"type": "death", "unit_id": u.id})
 
 
+## Shared by both the real end-of-match timeout and the stalemate detector
+## below -- same tiebreak either way, just triggered at a different point.
+func _hp_tiebreak() -> Result:
+	var a_hp := total_hp(0)
+	var b_hp := total_hp(1)
+	if a_hp > b_hp:
+		return Result.TEAM_A
+	elif b_hp > a_hp:
+		return Result.TEAM_B
+	return Result.DRAW
+
+
 func _evaluate_result() -> void:
 	var a_alive := alive_count(0)
 	var b_alive := alive_count(1)
@@ -540,15 +602,9 @@ func _evaluate_result() -> void:
 	elif a_alive == 0:
 		result = Result.TEAM_B
 	elif elapsed >= MATCH_TIMEOUT:
-		# Timeout tiebreak: most total remaining HP wins, exact tie is a draw.
-		var a_hp := total_hp(0)
-		var b_hp := total_hp(1)
-		if a_hp > b_hp:
-			result = Result.TEAM_A
-		elif b_hp > a_hp:
-			result = Result.TEAM_B
-		else:
-			result = Result.DRAW
+		result = _hp_tiebreak()
+	elif elapsed - _last_action_elapsed >= STALEMATE_TIMEOUT:
+		result = _hp_tiebreak()
 
 
 func alive_count(team: int) -> int:
