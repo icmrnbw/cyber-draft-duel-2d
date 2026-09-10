@@ -15,29 +15,29 @@ extends Node2D
 ## a maxed-out roster reads as a "collection" worth screenshotting, the same
 ## instinct that drives r/DraftShowdown's build-showcase posts.
 ##
-## Same code-built-Control visual language as draft_screen.gd (reuses its
-## color/style constants rather than re-deriving them) so the two screens
-## read as one app, not two different UIs bolted together.
+## Rebuilt 2026-09-10 in the UITheme neon language (see scripts/ui_theme.gd)
+## -- this screen had only gotten the bottom tab bar in the first redesign
+## pass, everything else (cards, badges, banner, fonts) was still the
+## pre-redesign flat-accent style, which read as an unfinished "lazy" bolt-on
+## next to the fully redesigned Main Menu/Battle HUD. Also drops the
+## "[DEBUG] +1000 BITS" cheat button entirely (its own doc comment already
+## said "remove before any real release build" -- this IS that removal).
 
 const TeamColor := preload("res://scripts/team_color.gd")
 
 const VIEW_W := 720.0
 const VIEW_H := 1280.0
 
-## Brightened 2026-09-06, same values as main_menu.gd/draft_screen.gd -- see
-## main_menu.gd's comment on why.
-const BG_COLOR := Color(0.09, 0.08, 0.17)
-const CARD_BG := Color(0.16, 0.16, 0.27)
-const ACCENT := Color(0.3, 0.92, 1.0)
+const CARD_BG := UITheme.CARD_BG
 const GOLD := Color(1.0, 0.82, 0.3)
-const MUTED_TEXT := Color(0.7, 0.74, 0.82)
+const MUTED_TEXT := UITheme.TEXT_MUTED
 const MAXED_COLOR := Color(0.4, 0.95, 0.55)
 const LOCKED_COLOR := Color(0.5, 0.53, 0.6)
 
 const COLS := 2
 const CARD_SIZE := Vector2(330.0, 300.0)
 const CARD_GAP := 20.0
-const GRID_TOP := 150.0
+const GRID_TOP := 168.0
 const PORTRAIT_SIZE := Vector2(200.0, 150.0)
 
 var _currency_label: Label
@@ -49,6 +49,7 @@ var _level_badges: Array[Label] = []
 var _star_labels: Array[Label] = []
 var _detail_labels: Array[Label] = []
 var _upgrade_buttons: Array[Button] = []
+var _upgrade_containers: Array[Control] = []
 var _breathe_phase: float = 0.0
 
 ## See draft_screen.gd's comment -- 1.8s read as "2fps," halved (2026-09-10).
@@ -87,28 +88,41 @@ func _process(delta: float) -> void:
 
 func _ready() -> void:
 	var bg := ColorRect.new()
-	bg.color = BG_COLOR
+	bg.color = UITheme.BG
 	bg.size = Vector2(VIEW_W, VIEW_H)
 	add_child(bg)
+
+	# Same shared cyberpunk-city backdrop as the Main Menu/Draft screen
+	# (assets/app_background.png, Meshy-generated 2026-09-10) -- one
+	# consistent atmosphere across every menu-family screen, instead of the
+	# old plain flat-color background here.
+	var backdrop := TextureRect.new()
+	backdrop.texture = load("res://assets/app_background.png")
+	backdrop.size = Vector2(VIEW_W, VIEW_H)
+	backdrop.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	backdrop.stretch_mode = TextureRect.STRETCH_SCALE
+	backdrop.modulate = Color(1, 1, 1, 0.5)
+	add_child(backdrop)
 
 	var title := Label.new()
 	title.position = Vector2(0, 26)
 	title.size = Vector2(VIEW_W, 44)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title.add_theme_font_size_override("font_size", 30)
-	title.add_theme_color_override("font_color", Color(0.95, 0.96, 1.0))
+	title.add_theme_font_override("font", UITheme.HEADER_FONT)
+	title.add_theme_font_size_override("font_size", 28)
+	title.add_theme_color_override("font_color", UITheme.CYAN)
 	title.text = "HEROES"
 	add_child(title)
 
 	_currency_label = Label.new()
-	_currency_label.position = Vector2(VIEW_W - 220.0, 34)
+	_currency_label.position = Vector2(VIEW_W - 220.0, 32)
 	_currency_label.size = Vector2(200.0, 30)
 	_currency_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	_currency_label.add_theme_font_size_override("font_size", 18)
+	_currency_label.add_theme_font_override("font", UITheme.BODY_FONT_SEMIBOLD)
+	_currency_label.add_theme_font_size_override("font_size", 17)
 	_currency_label.add_theme_color_override("font_color", GOLD)
 	add_child(_currency_label)
 
-	_build_debug_currency_button()
 	_build_collection_banner()
 	_build_hero_cards()
 	_build_back_button()
@@ -121,20 +135,28 @@ func _ready() -> void:
 ## since every player already has the full 5-unit roster from the start.
 func _build_collection_banner() -> void:
 	var banner_w := VIEW_W - 60.0
-	var banner := Panel.new()
-	banner.position = Vector2(30.0, 82.0)
-	banner.size = Vector2(banner_w, 44.0)
-	banner.add_theme_stylebox_override("panel", _rounded_style(Color(0.2, 0.14, 0.05), GOLD, 2, 22))
-	add_child(banner)
+	var banner_size := Vector2(banner_w, 44.0)
+	var banner_pos := Vector2(30.0, 96.0)
+
+	var bg_panel := Panel.new()
+	bg_panel.position = banner_pos
+	bg_panel.size = banner_size
+	bg_panel.add_theme_stylebox_override("panel", _rounded_style(Color(0.16, 0.12, 0.04), Color.TRANSPARENT, 0, 22))
+	add_child(bg_panel)
+
+	var border := UITheme.build_gradient_panel(banner_size, 22.0, 2.0, false, GOLD, GOLD.lightened(0.3), 0.8)
+	border.position = banner_pos
+	add_child(border)
 
 	_collection_label = Label.new()
-	_collection_label.position = Vector2(0, 0)
-	_collection_label.size = Vector2(banner_w, 44.0)
+	_collection_label.position = banner_pos
+	_collection_label.size = banner_size
 	_collection_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	_collection_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_collection_label.add_theme_font_size_override("font_size", 18)
+	_collection_label.add_theme_font_override("font", UITheme.BODY_FONT_SEMIBOLD)
+	_collection_label.add_theme_font_size_override("font_size", 17)
 	_collection_label.add_theme_color_override("font_color", GOLD)
-	banner.add_child(_collection_label)
+	add_child(_collection_label)
 
 
 func _rounded_style(bg_color: Color, border_color: Color, border_w: int = 0, radius: int = 18) -> StyleBoxFlat:
@@ -149,6 +171,10 @@ func _rounded_style(bg_color: Color, border_color: Color, border_w: int = 0, rad
 	return sb
 
 
+func _type_accent(t: int) -> Color:
+	return UITheme.VIOLET if t == UnitDefinition.UnitType.LONG else UITheme.CYAN
+
+
 func _build_hero_cards() -> void:
 	var grid_w := CARD_SIZE.x * COLS + CARD_GAP * (COLS - 1)
 	var grid_x := (VIEW_W - grid_w) * 0.5
@@ -156,6 +182,7 @@ func _build_hero_cards() -> void:
 
 	for i in roster.size():
 		var unit_def: UnitDefinition = roster[i]
+		var accent := _type_accent(unit_def.type)
 		var row := i / COLS
 		var col := i % COLS
 		# The roster doesn't evenly fill the grid (5 units, 2 columns) -- a
@@ -166,16 +193,25 @@ func _build_hero_cards() -> void:
 		var row_x := (VIEW_W - row_w) * 0.5
 		var pos := Vector2(row_x + col * (CARD_SIZE.x + CARD_GAP), GRID_TOP + row * (CARD_SIZE.y + CARD_GAP))
 
-		var card := Panel.new()
+		var card := Control.new()
 		card.position = pos
 		card.size = CARD_SIZE
-		card.add_theme_stylebox_override("panel", _rounded_style(CARD_BG, ACCENT, 0))
 		add_child(card)
+
+		var bg_panel := Panel.new()
+		bg_panel.size = CARD_SIZE
+		bg_panel.add_theme_stylebox_override("panel", _rounded_style(CARD_BG, Color.TRANSPARENT, 0, 20))
+		bg_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		card.add_child(bg_panel)
+
+		var border := UITheme.build_gradient_panel(CARD_SIZE, 20.0, 2.0, false, accent, accent.lightened(0.3), 0.7)
+		border.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		card.add_child(border)
 
 		var portrait_bg := Panel.new()
 		portrait_bg.position = Vector2((CARD_SIZE.x - PORTRAIT_SIZE.x) * 0.5, 12.0)
 		portrait_bg.size = PORTRAIT_SIZE
-		portrait_bg.add_theme_stylebox_override("panel", _rounded_style(Color(0.05, 0.06, 0.09), Color.TRANSPARENT, 0, 12))
+		portrait_bg.add_theme_stylebox_override("panel", _rounded_style(Color(0.05, 0.06, 0.09), Color.TRANSPARENT, 0, 14))
 		card.add_child(portrait_bg)
 
 		var portrait := TextureRect.new()
@@ -198,29 +234,20 @@ func _build_hero_cards() -> void:
 		card.add_child(portrait_blend)
 		_portrait_blends.append(portrait_blend)
 
-		# Level badge, corner-pinned on the portrait like the reference
-		# collection screen's numbered shield icon.
-		var badge_bg := Panel.new()
-		badge_bg.position = Vector2(10.0, 10.0)
-		badge_bg.size = Vector2(40.0, 40.0)
-		badge_bg.add_theme_stylebox_override("panel", _rounded_style(Color(0.08, 0.09, 0.13), GOLD, 2, 12))
-		card.add_child(badge_bg)
-
-		var badge_label := Label.new()
-		badge_label.position = Vector2(0, 0)
-		badge_label.size = Vector2(40.0, 40.0)
-		badge_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		badge_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		badge_label.add_theme_font_size_override("font_size", 18)
-		badge_bg.add_child(badge_label)
-		_level_badges.append(badge_label)
+		# Level badge, corner-pinned on the portrait -- now a hex badge
+		# (UITheme.build_hex_badge) instead of the old plain rounded square.
+		var badge := UITheme.build_hex_badge("1", 19.0)
+		badge.position = Vector2(6.0, 6.0)
+		card.add_child(badge)
+		_level_badges.append(badge.get_child(3) as Label)
 
 		var name_label := Label.new()
 		name_label.position = Vector2(0, 168.0)
 		name_label.size = Vector2(CARD_SIZE.x, 28)
 		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		name_label.add_theme_font_override("font", UITheme.BODY_FONT_SEMIBOLD)
 		name_label.add_theme_font_size_override("font_size", 19)
-		name_label.add_theme_color_override("font_color", Color(0.95, 0.96, 1.0))
+		name_label.add_theme_color_override("font_color", UITheme.TEXT_BRIGHT)
 		name_label.text = unit_def.display_name
 		card.add_child(name_label)
 
@@ -228,6 +255,7 @@ func _build_hero_cards() -> void:
 		star_label.position = Vector2(0, 196.0)
 		star_label.size = Vector2(CARD_SIZE.x, 22)
 		star_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		star_label.add_theme_font_override("font", UITheme.BODY_FONT)
 		star_label.add_theme_font_size_override("font_size", 15)
 		card.add_child(star_label)
 		_star_labels.append(star_label)
@@ -236,40 +264,26 @@ func _build_hero_cards() -> void:
 		detail_label.position = Vector2(14.0, 220.0)
 		detail_label.size = Vector2(CARD_SIZE.x - 28.0, 20)
 		detail_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		detail_label.add_theme_font_override("font", UITheme.BODY_FONT)
 		detail_label.add_theme_font_size_override("font_size", 12)
 		detail_label.add_theme_color_override("font_color", MUTED_TEXT)
 		card.add_child(detail_label)
 		_detail_labels.append(detail_label)
 
+		var upgrade_container := Control.new()
+		upgrade_container.position = Vector2(25.0, 244.0)
+		upgrade_container.size = Vector2(CARD_SIZE.x - 50.0, 46.0)
+		card.add_child(upgrade_container)
+
 		var upgrade_button := Button.new()
-		upgrade_button.position = Vector2(25.0, 244.0)
-		upgrade_button.size = Vector2(CARD_SIZE.x - 50.0, 46.0)
+		upgrade_button.size = upgrade_container.size
+		upgrade_button.add_theme_font_override("font", UITheme.BODY_FONT_SEMIBOLD)
 		upgrade_button.add_theme_font_size_override("font_size", 13)
 		upgrade_button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		upgrade_button.pressed.connect(_on_upgrade_pressed.bind(unit_def))
-		card.add_child(upgrade_button)
+		upgrade_container.add_child(upgrade_button)
 		_upgrade_buttons.append(upgrade_button)
-
-
-## TEMPORARY dev/testing shortcut, requested explicitly for faster manual
-## testing of the leveling system -- unmistakably marked as debug (red
-## dashed-look border, "[DEBUG]" label) so it doesn't get mistaken for a real
-## feature. Remove before any real release build.
-func _build_debug_currency_button() -> void:
-	var button := Button.new()
-	button.text = "[DEBUG]\n+1000 BITS"
-	button.position = Vector2(20.0, 30.0)
-	button.size = Vector2(140.0, 46.0)
-	button.add_theme_font_size_override("font_size", 12)
-	button.add_theme_stylebox_override("normal", _rounded_style(Color(0.2, 0.08, 0.08), Color(0.9, 0.3, 0.3), 2, 10))
-	button.add_theme_stylebox_override("hover", _rounded_style(Color(0.26, 0.1, 0.1), Color(1.0, 0.4, 0.4), 2, 10))
-	button.pressed.connect(_on_debug_currency_pressed)
-	add_child(button)
-
-
-func _on_debug_currency_pressed() -> void:
-	PlayerProfile.add_currency(1000)
-	_refresh()
+		_upgrade_containers.append(upgrade_container)
 
 
 func _build_back_button() -> void:
@@ -277,6 +291,7 @@ func _build_back_button() -> void:
 	back.text = "BACK"
 	back.position = Vector2(VIEW_W * 0.5 - 100.0, VIEW_H - 190.0)
 	back.size = Vector2(200.0, 60.0)
+	back.add_theme_font_override("font", UITheme.BODY_FONT_SEMIBOLD)
 	back.add_theme_font_size_override("font_size", 18)
 	back.add_theme_stylebox_override("normal", _rounded_style(Color(0.14, 0.16, 0.23), MUTED_TEXT, 2, 14))
 	back.add_theme_stylebox_override("hover", _rounded_style(Color(0.17, 0.19, 0.27), Color(0.8, 0.83, 0.9), 2, 14))
@@ -315,11 +330,13 @@ func _refresh() -> void:
 			_detail_labels[i].text = "Lv.%d level-up available" % max_level
 
 		var button := _upgrade_buttons[i]
+		var container := _upgrade_containers[i]
 		if fully_unlocked:
 			button.text = "FULLY UNLOCKED"
 			button.disabled = true
 			button.add_theme_stylebox_override("normal", _rounded_style(Color(0.1, 0.16, 0.11), MAXED_COLOR, 2, 14))
 			button.add_theme_stylebox_override("disabled", _rounded_style(Color(0.1, 0.16, 0.11), MAXED_COLOR, 2, 14))
+			container.modulate.a = 1.0
 		else:
 			var cost := PlayerProfile.next_tier_cost(unit_def)
 			var affordable := PlayerProfile.currency >= cost
@@ -329,5 +346,6 @@ func _refresh() -> void:
 			button.add_theme_stylebox_override("normal", _rounded_style(Color(0.16, 0.13, 0.06), accent, 2, 14))
 			button.add_theme_stylebox_override("hover", _rounded_style(Color(0.2, 0.16, 0.07), accent, 2, 14))
 			button.add_theme_stylebox_override("disabled", _rounded_style(Color(0.12, 0.12, 0.14), LOCKED_COLOR, 2, 14))
+			container.modulate.a = 1.0 if affordable else 0.7
 
 	_collection_label.text = "TIERS UNLOCKED   %d / %d" % [tiers_unlocked, tiers_total]

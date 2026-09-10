@@ -4,8 +4,6 @@ extends Node2D
 ## mobile UI mockup, matched for visual likeness only; every mechanic here
 ## (casual/ranked split, arena ladder, daily ad) is unchanged from before.
 
-const TeamColor := preload("res://scripts/team_color.gd")
-
 const VIEW_W := 720.0
 const VIEW_H := 1280.0
 const DAILY_REWARD := 75
@@ -23,15 +21,22 @@ func _ready() -> void:
 	bg.size = Vector2(VIEW_W, VIEW_H)
 	add_child(bg)
 
-	# The current arena's own battlefield art as a dimmed backdrop -- ties the
-	# menu to where you actually are on the ladder without needing separate
-	# menu art per arena.
 	var arena: Dictionary = PlayerProfile.current_arena()
+
+	# Shared cyberpunk-city backdrop (assets/app_background.png, Meshy-
+	# generated 2026-09-10), same as Heroes/Settings/Draft -- replaces the
+	# previous misuse of the in-battle arena FLOOR texture (a tileable
+	# top-down pixel-art tile meant to sit under battle sprites) stretched
+	# full-screen as menu wallpaper. That texture's flat retro pixel style
+	# directly clashed with this screen's smooth vector/neon chrome and was
+	# the single biggest "doesn't look like the reference" offender -- a
+	# menu backdrop needed its own art, not a repurposed gameplay asset.
 	var backdrop := TextureRect.new()
-	backdrop.texture = load(arena["floor"])
+	backdrop.texture = load("res://assets/app_background.png")
 	backdrop.size = Vector2(VIEW_W, VIEW_H)
-	backdrop.modulate = Color(1, 1, 1, 0.16)
-	TeamColor.apply_vibrance_only(backdrop)
+	backdrop.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	backdrop.stretch_mode = TextureRect.STRETCH_SCALE
+	backdrop.modulate = Color(1, 1, 1, 0.5)
 	add_child(backdrop)
 
 	_build_header()

@@ -3,14 +3,16 @@ extends Node2D
 ## Deliberately small -- a real settings screen isn't the retention hook, but
 ## having SOMEWHERE to put "turn the sound off" and "wipe my progress" is
 ## table stakes, and the reset is genuinely useful while testing progression.
+##
+## Rebuilt 2026-09-10 in the UITheme neon language -- this screen had only
+## gotten the bottom tab bar in the first redesign pass; everything else was
+## still plain default-theme buttons on a flat dark background, which read as
+## completely unfinished next to the rest of the app.
 
 const VIEW_W := 720.0
 const VIEW_H := 1280.0
 
-const BG_COLOR := Color(0.05, 0.06, 0.09)
-const CARD_BG := Color(0.11, 0.13, 0.19)
-const ACCENT := Color(0.25, 0.85, 0.95)
-const MUTED_TEXT := Color(0.62, 0.66, 0.74)
+const MUTED_TEXT := UITheme.TEXT_MUTED
 
 var _sfx_button: Button
 var _reset_button: Button
@@ -19,26 +21,36 @@ var _reset_armed := false
 
 func _ready() -> void:
 	var bg := ColorRect.new()
-	bg.color = BG_COLOR
+	bg.color = UITheme.BG
 	bg.size = Vector2(VIEW_W, VIEW_H)
 	add_child(bg)
+
+	# Same shared cyberpunk-city backdrop as Main Menu/Heroes/Draft.
+	var backdrop := TextureRect.new()
+	backdrop.texture = load("res://assets/app_background.png")
+	backdrop.size = Vector2(VIEW_W, VIEW_H)
+	backdrop.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	backdrop.stretch_mode = TextureRect.STRETCH_SCALE
+	backdrop.modulate = Color(1, 1, 1, 0.5)
+	add_child(backdrop)
 
 	var title := Label.new()
 	title.position = Vector2(0, 60)
 	title.size = Vector2(VIEW_W, 50)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title.add_theme_font_size_override("font_size", 34)
-	title.add_theme_color_override("font_color", Color(0.95, 0.96, 1.0))
+	title.add_theme_font_override("font", UITheme.HEADER_FONT)
+	title.add_theme_font_size_override("font_size", 30)
+	title.add_theme_color_override("font_color", UITheme.CYAN)
 	title.text = "SETTINGS"
 	add_child(title)
 
-	_sfx_button = _button("", 200.0, Color(0.13, 0.15, 0.2), ACCENT)
+	_sfx_button = _button("", 200.0, UITheme.CYAN)
 	_sfx_button.pressed.connect(_on_sfx_toggled)
 
-	_reset_button = _button("RESET PROGRESS", 300.0, Color(0.2, 0.08, 0.09), Color(0.8, 0.3, 0.3))
+	_reset_button = _button("RESET PROGRESS", 300.0, Color(0.85, 0.35, 0.35))
 	_reset_button.pressed.connect(_on_reset_pressed)
 
-	var back := _button("BACK", VIEW_H - 240.0, Color(0.14, 0.16, 0.23), MUTED_TEXT)
+	var back := _button("BACK", VIEW_H - 240.0, MUTED_TEXT)
 	back.pressed.connect(func() -> void: get_tree().change_scene_to_file("res://scenes/main_menu.tscn"))
 
 	UITheme.build_tab_bar(self, VIEW_W, VIEW_H, UITheme.TAB_SETTINGS)
@@ -56,14 +68,34 @@ func _rounded_style(bg_color: Color, border_color: Color, border_w: int = 2, rad
 	return sb
 
 
-func _button(text: String, y: float, bg: Color, border: Color) -> Button:
+## A dark filled panel + a glowing gradient border overlay (same layered
+## pattern as UITheme cards elsewhere) instead of a plain StyleBoxFlat
+## border, so these buttons actually match the neon language.
+func _button(text: String, y: float, accent: Color) -> Button:
+	var size := Vector2(400.0, 70.0)
+	var pos := Vector2(VIEW_W * 0.5 - size.x * 0.5, y)
+
+	var bg_panel := Panel.new()
+	bg_panel.position = pos
+	bg_panel.size = size
+	bg_panel.add_theme_stylebox_override("panel", _rounded_style(UITheme.CARD_BG, Color.TRANSPARENT, 0, 16))
+	bg_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(bg_panel)
+
+	var border := UITheme.build_gradient_panel(size, 16.0, 2.0, false, accent, accent.lightened(0.3), 0.8)
+	border.position = pos
+	border.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(border)
+
 	var b := Button.new()
 	b.text = text
-	b.position = Vector2(VIEW_W * 0.5 - 200.0, y)
-	b.size = Vector2(400.0, 70.0)
-	b.add_theme_font_size_override("font_size", 20)
-	b.add_theme_stylebox_override("normal", _rounded_style(bg, border))
-	b.add_theme_stylebox_override("hover", _rounded_style(bg.lightened(0.08), border, 3))
+	b.position = pos
+	b.size = size
+	b.flat = true
+	b.add_theme_font_override("font", UITheme.BODY_FONT_SEMIBOLD)
+	b.add_theme_font_size_override("font_size", 18)
+	b.add_theme_color_override("font_color", UITheme.TEXT_BRIGHT)
+	b.add_theme_color_override("font_hover_color", UITheme.TEXT_BRIGHT)
 	add_child(b)
 	return b
 

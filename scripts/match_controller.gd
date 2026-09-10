@@ -60,7 +60,7 @@ var _round_result_title: Label
 var _round_badge_label: Label
 var _squad_hearts: Array[Dictionary] = []
 var _rival_hearts: Array[Dictionary] = []
-var _growth_buttons: Array[Button] = []
+var _growth_buttons: Array[Control] = []
 var _dim_overlay: ColorRect
 var _forfeit_button: Button
 var _forfeit_label: Label
@@ -113,9 +113,13 @@ func _ready() -> void:
 
 const ENERGY_LINE_SHADER := preload("res://shaders/energy_line.gdshader")
 
-## Pixel-art asteroid floor (Meshy, plain crater texture with no baked
-## platforms/lines -- those are drawn here instead so they can carry real
-## team colors and animate) replaces the old flat ColorRect lane. The two
+## Per-arena Meshy-generated battlefield art (2026-09-10: replaced the
+## original flat retro pixel-art crater texture, which clashed badly with
+## the neon-vector UI chrome everywhere else -- same "clashing art style"
+## problem the Main Menu's old arena-floor-as-wallpaper misuse had, see
+## main_menu.gd) as the backdrop; no baked platforms/lines in the art itself
+## -- those are drawn here instead so they can carry real team colors and
+## animate. The two
 ## spawn platforms sit at LANE_TOP_Y (opponent, team B) and LANE_BOTTOM_Y
 ## (player, team A), matching where each side's front line actually forms;
 ## the connecting beam cycles between both teams' colors via
@@ -129,6 +133,8 @@ func _build_background() -> void:
 	var floor_art := TextureRect.new()
 	floor_art.texture = load(PlayerProfile.current_arena()["floor"])
 	floor_art.size = Vector2(VIEW_W, VIEW_H)
+	floor_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	floor_art.stretch_mode = TextureRect.STRETCH_SCALE
 	TeamColor.apply_vibrance_only(floor_art)
 	add_child(floor_art)
 
@@ -812,26 +818,30 @@ func _bottom_plate_style(bg_color: Color, radius: int) -> StyleBoxFlat:
 	return sb
 
 
-## Draft-Showdown-style pick card: a big character portrait floating on the
-## card, a level badge and a count badge in the top corners (their "cost
-## pips," repurposed since our picks have no currency cost), and a bold
-## colored action plate across the bottom holding the title + detail text --
-## replaces an earlier plainer version the user explicitly disliked next to
-## Draft Showdown's own cards. Kept in our existing dark-card identity
-## (brightened 2026-09-06) rather than copying DS's pastel backgrounds
-## outright, which would clash with the rest of the app.
+## Draft-Showdown-style pick card, rebuilt 2026-09-10 in the UITheme neon
+## language (see the growth-pick reference mockup this replaces): a glowing
+## gradient border (UITheme.build_gradient_panel, single-hue per accent so
+## the 3 offers stay readable as distinct colors, not a shared cyan/violet
+## blend), a hex badge (UITheme.build_hex_badge) in place of the old plain
+## square corner badge, big character portrait, and a bold colored action
+## plate across the bottom holding the title + detail text.
 func _build_offer_card(pos: Vector2, size: Vector2, accent: Color, portrait: Texture2D,
-		corner_badge: String, title: String, detail: String, on_press: Callable) -> Button:
-	var card := Button.new()
+		corner_badge: String, title: String, detail: String, on_press: Callable) -> Control:
+	var card := Control.new()
 	card.position = pos
 	card.size = size
 	card.z_index = 5
-	card.flat = true
-	card.add_theme_stylebox_override("normal", _rounded_style(Color(0.16, 0.16, 0.27), accent, 2, 20))
-	card.add_theme_stylebox_override("hover", _rounded_style(Color(0.19, 0.19, 0.31), accent, 3, 20))
-	card.add_theme_stylebox_override("pressed", _rounded_style(Color(0.19, 0.19, 0.31), accent, 3, 20))
-	card.pressed.connect(on_press)
 	add_child(card)
+
+	var bg_panel := Panel.new()
+	bg_panel.size = size
+	bg_panel.add_theme_stylebox_override("panel", _rounded_style(UITheme.CARD_BG, Color.TRANSPARENT, 0, 20))
+	bg_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	card.add_child(bg_panel)
+
+	var border := UITheme.build_gradient_panel(size, 20.0, 3.0, false, accent, accent.lightened(0.35), 1.1)
+	border.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	card.add_child(border)
 
 	var plate_h := 76.0
 
@@ -847,23 +857,10 @@ func _build_offer_card(pos: Vector2, size: Vector2, accent: Color, portrait: Tex
 	card.add_child(portrait_rect)
 
 	if corner_badge != "":
-		var badge_size := Vector2(38.0, 38.0)
-		var badge_bg := Panel.new()
-		badge_bg.position = Vector2(8.0, 8.0)
-		badge_bg.size = badge_size
-		badge_bg.add_theme_stylebox_override("panel", _rounded_style(Color(0.08, 0.09, 0.13), accent, 2, 12))
-		badge_bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		card.add_child(badge_bg)
-
-		var badge_label := Label.new()
-		badge_label.position = Vector2.ZERO
-		badge_label.size = badge_size
-		badge_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		badge_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		badge_label.add_theme_font_size_override("font_size", 15)
-		badge_label.add_theme_color_override("font_color", accent)
-		badge_label.text = corner_badge
-		badge_bg.add_child(badge_label)
+		var badge := UITheme.build_hex_badge(corner_badge, 19.0)
+		badge.position = Vector2(6.0, 6.0)
+		badge.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		card.add_child(badge)
 
 	# Bottom action plate -- the DS-style bright colored strip a title reads
 	# off of, distinct from the rest of the (dark-mode) card.
@@ -879,7 +876,8 @@ func _build_offer_card(pos: Vector2, size: Vector2, accent: Color, portrait: Tex
 	title_label.position = Vector2(6.0, 8.0)
 	title_label.size = Vector2(size.x - 12.0, 28.0)
 	title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title_label.add_theme_font_size_override("font_size", 17)
+	title_label.add_theme_font_override("font", UITheme.HEADER_FONT)
+	title_label.add_theme_font_size_override("font_size", 16)
 	title_label.add_theme_color_override("font_color", dark_text)
 	title_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	title_label.text = title
@@ -890,11 +888,19 @@ func _build_offer_card(pos: Vector2, size: Vector2, accent: Color, portrait: Tex
 	detail_label.size = Vector2(size.x - 12.0, 34.0)
 	detail_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	detail_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	detail_label.add_theme_font_override("font", UITheme.BODY_FONT_SEMIBOLD)
 	detail_label.add_theme_font_size_override("font_size", 13)
 	detail_label.add_theme_color_override("font_color", dark_text.lightened(0.3))
 	detail_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	detail_label.text = detail
 	plate.add_child(detail_label)
+
+	var button := Button.new()
+	button.size = size
+	button.flat = true
+	button.modulate.a = 0.0
+	button.pressed.connect(on_press)
+	card.add_child(button)
 
 	return card
 
@@ -944,15 +950,15 @@ func _show_growth_choice(offers: Array, label_text: String) -> int:
 		if kind == "double":
 			title = "DUPLICATE"
 			detail = "%d → %d units" % [offer_count, offer_count * 2]
-			badge = "Lv.%d" % offer_level
+			badge = str(offer_level)
 		elif kind == "levelup":
 			title = "LEVEL UP"
 			detail = "%d units → Lv.%d" % [offer_count, offer_level + 1]
-			badge = "Lv.%d" % (offer_level + 1)
+			badge = str(offer_level + 1)
 		else:
 			title = "REINFORCE"
 			detail = "New unit: %s" % def.display_name
-			badge = "Lv.1"
+			badge = "1"
 
 		var pos := Vector2(start_x + i * (card_w + gap), VIEW_H * 0.5 - card_h * 0.5)
 		var card := _build_offer_card(pos, Vector2(card_w, card_h), accent, def.sprite, badge, title, detail,

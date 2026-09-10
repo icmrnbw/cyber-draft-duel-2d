@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitDefinition" load_steps=50 format=3]
+[gd_resource type="Resource" script_class="UnitDefinition" load_steps=58 format=3]
 
 [ext_resource type="Script" path="res://scripts/sim/unit_definition.gd" id="1_unitdef"]
 [ext_resource type="Texture2D" path="res://assets/enforcer_attack_idle.png" id="2_sprite"]
@@ -50,6 +50,14 @@
 [ext_resource type="Texture2D" path="res://assets/enforcer_lv3_idle_breathe2.png" id="53_lv3_idle_breathe2"]
 [ext_resource type="Texture2D" path="res://assets/enforcer_lv3_idle_breathe3.png" id="54_lv3_idle_breathe3"]
 [ext_resource type="Texture2D" path="res://assets/enforcer_lv3_idle_breathe4.png" id="55_lv3_idle_breathe4"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_walk_walk1.png" id="11_walk_walk1"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_walk_walk2.png" id="12_walk_walk2"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_walk_walk3.png" id="13_walk_walk3"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_walk_walk4.png" id="14_walk_walk4"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_retreat_retreat1.png" id="15_retreat_retreat1"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_retreat_retreat2.png" id="16_retreat_retreat2"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_retreat_retreat3.png" id="17_retreat_retreat3"]
+[ext_resource type="Texture2D" path="res://assets/enforcer_retreat_retreat4.png" id="18_retreat_retreat4"]
 
 [resource]
 script = ExtResource("1_unitdef")
@@ -80,3 +88,5 @@ lv2_retreat_frames = Array[Texture2D]([ExtResource("28_lv2_retreat_retreat1"), E
 lv3_attack_frames = Array[Texture2D]([ExtResource("32_lv3_attack_idle"), ExtResource("33_lv3_attack_windup"), ExtResource("34_lv3_attack_strike"), ExtResource("35_lv3_attack_recover")])
 lv3_walk_frames = Array[Texture2D]([ExtResource("36_lv3_walk_walk1"), ExtResource("37_lv3_walk_walk2"), ExtResource("38_lv3_walk_walk3"), ExtResource("39_lv3_walk_walk4")])
 lv3_retreat_frames = Array[Texture2D]([ExtResource("40_lv3_retreat_retreat1"), ExtResource("41_lv3_retreat_retreat2"), ExtResource("42_lv3_retreat_retreat3"), ExtResource("43_lv3_retreat_retreat4")])
+walk_frames = Array[Texture2D]([ExtResource("11_walk_walk1"), ExtResource("12_walk_walk2"), ExtResource("13_walk_walk3"), ExtResource("14_walk_walk4")])
+retreat_frames = Array[Texture2D]([ExtResource("15_retreat_retreat1"), ExtResource("16_retreat_retreat2"), ExtResource("17_retreat_retreat3"), ExtResource("18_retreat_retreat4")])
