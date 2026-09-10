@@ -8,11 +8,14 @@ extends Node2D
 func _ready() -> void:
 	var scene_path := "res://scenes/main_menu.tscn"
 	var out_path := "user://screenshot.png"
+	var extra_wait := 0
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--scene="):
 			scene_path = arg.substr(8)
 		elif arg.begins_with("--out="):
 			out_path = arg.substr(6)
+		elif arg.begins_with("--wait="):
+			extra_wait = int(arg.substr(7))
 
 	if scene_path == "res://scenes/unit_detail_screen.tscn" and GameState.detail_unit_path == "":
 		GameState.detail_unit_path = UnitDatabase.roster()[2].resource_path
@@ -40,7 +43,7 @@ func _ready() -> void:
 
 	# Let extra frames pass for match.tscn so the sim/units settle into a
 	# representative mid-setup frame before capture.
-	var settle_frames := 40 if scene_path == "res://scenes/match.tscn" else 10
+	var settle_frames := (40 if scene_path == "res://scenes/match.tscn" else 10) + extra_wait
 	for i in settle_frames:
 		await get_tree().process_frame
 

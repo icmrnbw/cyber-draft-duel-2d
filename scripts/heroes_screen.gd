@@ -80,9 +80,19 @@ func _process(delta: float) -> void:
 		var idx := int(loop_t) % n
 		var next_idx := (idx + 1) % n
 		var frac: float = loop_t - float(int(loop_t))
+		# Ease steeply through the middle instead of a straight linear ramp
+		# (2026-09-10 fix -- a real phone screenshot caught this): a unit's
+		# weapon/limb can sit at a meaningfully different position between
+		# adjacent breathing frames, not just a subtle sway, so a slow
+		# linear crossfade spends a long stretch of the cycle near 50/50
+		# opacity -- reading as two overlapping weapons (reported as the
+		# "sniper's rifle is doubling" bug) rather than a smooth transition.
+		# Holding clean at each end and blending through only a brief
+		# middle window fixes it without touching any art.
+		var blend_alpha := clampf((frac - 0.35) / 0.3, 0.0, 1.0)
 		_portraits[i].texture = frames[idx]
 		blend.texture = frames[next_idx]
-		blend.modulate.a = frac
+		blend.modulate.a = blend_alpha
 		blend.visible = true
 
 

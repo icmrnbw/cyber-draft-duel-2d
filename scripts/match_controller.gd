@@ -1294,10 +1294,14 @@ func _update_view(v: Dictionary) -> void:
 			var idx := int(loop_t) % n
 			var next_idx := (idx + 1) % n
 			var frac: float = loop_t - float(int(loop_t))
+			# See heroes_screen.gd's identical fix -- avoids the doubled-
+			# weapon look a straight linear crossfade produces when a
+			# weapon's position differs between breathing frames.
+			var blend_alpha := clampf((frac - 0.35) / 0.3, 0.0, 1.0)
 			sprite.texture = idle_frames[idx]
 			idle_blend.texture = idle_frames[next_idx]
 			idle_blend.modulate = sprite.modulate
-			idle_blend.modulate.a = frac
+			idle_blend.modulate.a = blend_alpha
 			idle_blend.visible = true
 		else:
 			sprite.texture = u.def.idle_sprite_for_level(u.level)

@@ -114,9 +114,14 @@ func _animate_portrait(portrait: TextureRect, blend: TextureRect, def: UnitDefin
 	var idx := int(loop_t) % n
 	var next_idx := (idx + 1) % n
 	var frac: float = loop_t - float(int(loop_t))
+	# See heroes_screen.gd's identical fix -- a straight linear crossfade
+	# spends too long near 50/50 opacity when a weapon's position differs
+	# between breathing frames, reading as a doubled weapon. Hold clean,
+	# blend only through a brief middle window.
+	var blend_alpha := clampf((frac - 0.35) / 0.3, 0.0, 1.0)
 	portrait.texture = frames[idx]
 	blend.texture = frames[next_idx]
-	blend.modulate.a = frac
+	blend.modulate.a = blend_alpha
 	blend.visible = true
 
 

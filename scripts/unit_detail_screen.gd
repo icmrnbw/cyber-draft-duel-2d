@@ -69,9 +69,13 @@ func _process(delta: float) -> void:
 	var idx := int(loop_t) % n
 	var next_idx := (idx + 1) % n
 	var frac: float = loop_t - float(int(loop_t))
+	# See heroes_screen.gd's identical fix -- avoids the doubled-weapon
+	# look a straight linear crossfade produces when a weapon's position
+	# differs between breathing frames.
+	var blend_alpha := clampf((frac - 0.35) / 0.3, 0.0, 1.0)
 	_portrait.texture = frames[idx]
 	_portrait_blend.texture = frames[next_idx]
-	_portrait_blend.modulate.a = frac
+	_portrait_blend.modulate.a = blend_alpha
 	_portrait_blend.visible = true
 
 
