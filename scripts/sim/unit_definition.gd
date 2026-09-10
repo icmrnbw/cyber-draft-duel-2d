@@ -56,6 +56,16 @@ enum UnitType { MELEE, MID, LONG, SUPPORT }
 ## min_level=0 disables it; max_speed_mult should be < 1.0 (faster attacks).
 @export var berserk_min_level: int = 0
 @export var berserk_max_speed_mult: float = 1.0
+## Firestorm (2026-09-11, Demolitionist's Lv2+): a landed splash attack also
+## leaves a burning ground patch at the impact point for firepatch_duration
+## seconds, dealing firepatch_dps to any enemy standing in firepatch_radius
+## each tick -- on top of the direct splash hit, not instead of it. Only
+## meaningful on a splash_radius > 0 unit (checked in battle_sim.gd's
+## _attack()). min_level=0 disables it.
+@export var firepatch_min_level: int = 0
+@export var firepatch_dps: float = 0.0
+@export var firepatch_duration: float = 0.0
+@export var firepatch_radius: float = 0.0
 
 @export_group("Art")
 @export var sprite: Texture2D

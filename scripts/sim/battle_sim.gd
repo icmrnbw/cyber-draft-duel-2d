@@ -91,6 +91,14 @@ var rng := RandomNumberGenerator.new()
 ## {type="heal", attacker_id, target_id}, {type="death", unit_id}]
 var events: Array = []
 
+## Active Firestorm ground patches (UnitDefinition.firepatch_*, see
+## _maybe_spawn_fire_patch()/_tick_fire_patches()) -- sim-level state, not
+## per-unit, since a patch outlives the attack that created it and has no
+## owning unit once placed. Each entry: {pos, remaining, team, dps, radius}.
+## `team` is the patch OWNER's team; it damages the opposing team only, same
+## rule splash_radius itself already follows.
+var _fire_patches: Array = []
+
 
 ## power_a/power_b are optional per-slot multipliers parallel to hand_a/hand_b (for
 ## the Rounds system's "doubled" units — see rounds-system-design.md). Omitted or
@@ -196,6 +204,7 @@ func tick() -> void:
 	_tick_status_effects()
 	_acquire_targets()
 	_attack()      # decided before movement, so a unit dying this tick still fires
+	_tick_fire_patches()
 	_move()
 	_resolve_separation()
 	_clamp_to_arena()
@@ -302,6 +311,7 @@ func _attack() -> void:
 				if other.pos.distance_to(target.pos) <= u.def.splash_radius:
 					other.pending_damage += power
 					_maybe_stagger(u, other)
+			_maybe_spawn_fire_patch(u, target.pos)
 			events.append({"type": "attack", "attacker_id": u.id, "target_id": target.id})
 		else:
 			target.pending_damage += power
@@ -319,6 +329,41 @@ func _maybe_stagger(u: SimUnit, target: SimUnit) -> void:
 	if rng.randf() < u.def.stagger_chance:
 		target.stagger_timer = maxf(target.stagger_timer, u.def.stagger_duration)
 		events.append({"type": "stagger", "attacker_id": u.id, "target_id": target.id})
+
+
+## Firestorm (UnitDefinition.firepatch_min_level+): a landed splash attack
+## also leaves a burning ground patch at the impact point, independent of
+## the direct splash hit already applied by the caller. Deterministic (no
+## rng) -- unlike stagger, this always fires once the level gate is met, so
+## it doesn't need a chance roll.
+func _maybe_spawn_fire_patch(u: SimUnit, impact_pos: Vector2) -> void:
+	if u.def.firepatch_min_level <= 0 or u.level < u.def.firepatch_min_level:
+		return
+	_fire_patches.append({
+		"pos": impact_pos,
+		"remaining": u.def.firepatch_duration,
+		"team": u.team,
+		"dps": u.def.firepatch_dps * u.power_multiplier,
+		"radius": u.def.firepatch_radius,
+	})
+	events.append({"type": "fire_patch_spawn", "pos": impact_pos, "duration": u.def.firepatch_duration, "radius": u.def.firepatch_radius})
+
+
+## Ticks every active Firestorm patch: damages any enemy standing in it this
+## tick, then ages it out. Filtered in place rather than removed by index
+## during iteration, same reason _apply_damage() et al. snapshot first.
+func _tick_fire_patches() -> void:
+	var still_active: Array = []
+	for patch in _fire_patches:
+		for other in units:
+			if not other.alive or other.team == patch["team"]:
+				continue
+			if other.pos.distance_to(patch["pos"]) <= patch["radius"]:
+				other.pending_damage += patch["dps"] * TICK_DELTA
+		patch["remaining"] -= TICK_DELTA
+		if patch["remaining"] > 0.0:
+			still_active.append(patch)
+	_fire_patches = still_active
 
 
 ## Berserk (UnitDefinition.berserk_min_level+): attack interval shortens as

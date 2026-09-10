@@ -501,7 +501,7 @@ func _on_ready_pressed() -> void:
 	if _hand.size() != UnitDatabase.HAND_SIZE:
 		return
 	_draft_finished = true
-	GameState.start_match(_hand.duplicate())
+	_go_to_deploy()
 
 
 ## Fires when DRAFT_TIME_LIMIT runs out with the hand still incomplete --
@@ -516,7 +516,16 @@ func _auto_finish_draft() -> void:
 	while _hand.size() < UnitDatabase.HAND_SIZE and not pool.is_empty():
 		_hand.append(pool.pop_back())
 	_refresh()
-	GameState.start_match(_hand.duplicate())
+	_go_to_deploy()
+
+
+## Hands the 4 drafted types to deploy_screen.tscn (2026-09-11) rather than
+## starting the match directly -- the player now chooses their own round-1
+## composition (any multiset of the 4, e.g. 2 Enforcers + 2 Troopers) there
+## instead of always getting exactly one of each.
+func _go_to_deploy() -> void:
+	GameState.player_drafted_types = _hand.duplicate()
+	get_tree().change_scene_to_file("res://scenes/deploy_screen.tscn")
 
 
 func _refresh() -> void:

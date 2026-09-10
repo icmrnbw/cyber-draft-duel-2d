@@ -17,7 +17,15 @@ extends Node
 var ranked: bool = true
 var casual_opponent_name: String = ""
 
+## The squad actually deployed round 1 -- since 2026-09-11 this can be any
+## multiset of player_drafted_types (e.g. 2 Enforcers + 2 Troopers), chosen
+## on deploy_screen.tscn, not automatically one of each drafted type.
 var player_hand: Array[UnitDefinition] = []
+## The 4 DISTINCT types drafted on draft_screen.gd -- kept separate from
+## player_hand (what's deployed) since RoundState.type_pool_a (which "add"
+## growth offers draw from all match) is still every drafted type, whether
+## or not it was part of the initial deployment.
+var player_drafted_types: Array[UnitDefinition] = []
 var bot_hand: Array[UnitDefinition] = []
 var match_seed: int = 1
 
@@ -29,8 +37,13 @@ var match_seed: int = 1
 var detail_unit_path: String = ""
 
 
-func start_match(p_player_hand: Array[UnitDefinition]) -> void:
+## `p_drafted_types` defaults to `p_player_hand` itself (falls back to
+## "type pool == whatever's deployed") for any caller that hasn't been
+## updated to pass the real 4 drafted types separately -- degrades safely
+## rather than crashing on a missing argument.
+func start_match(p_player_hand: Array[UnitDefinition], p_drafted_types: Array[UnitDefinition] = []) -> void:
 	player_hand = p_player_hand
+	player_drafted_types = p_drafted_types if not p_drafted_types.is_empty() else p_player_hand
 	var setup_rng := RandomNumberGenerator.new()
 	setup_rng.randomize()
 	match_seed = setup_rng.randi()

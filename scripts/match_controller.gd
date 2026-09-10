@@ -91,6 +91,7 @@ func _ready() -> void:
 	# no source of randomness in combat and simultaneous-eliminate to an exact
 	# draw on every seed forever -- confirmed via tools/round_smoke_test.gd.
 	var hand_a: Array[UnitDefinition] = GameState.player_hand
+	var drafted_types_a: Array[UnitDefinition] = GameState.player_drafted_types
 	var hand_b: Array[UnitDefinition] = GameState.bot_hand
 	var seed_value := GameState.match_seed
 	if hand_a.is_empty() or hand_b.is_empty():
@@ -98,6 +99,8 @@ func _ready() -> void:
 		hand_a = [trooper, trooper, trooper, trooper]
 		hand_b = [trooper, trooper, trooper]
 		seed_value = 1
+	if drafted_types_a.is_empty():
+		drafted_types_a = hand_a
 
 	_build_top_hud(hand_a[0], hand_b[0])
 
@@ -106,12 +109,13 @@ func _ready() -> void:
 	# the match (see _unlocked_levels_by_path()/_resolve_growth_picks()), it
 	# never grants a head start.
 	_round_state = RoundState.new()
-	_round_state.init(hand_a, hand_b, seed_value)
+	_round_state.init_with_deployment(hand_a, drafted_types_a, hand_b, seed_value)
 	UITheme.build_tab_bar(self, VIEW_W, VIEW_H, UITheme.TAB_BATTLE, true)
 	_start_round()
 
 
 const ENERGY_LINE_SHADER := preload("res://shaders/energy_line.gdshader")
+const FIRE_PUDDLE_SHADER := preload("res://shaders/fire_puddle.gdshader")
 
 const ARENA_FLOOR_SHADER := preload("res://shaders/arena_floor.gdshader")
 
@@ -715,7 +719,7 @@ func _build_match_over_buttons() -> void:
 	rematch.add_theme_font_size_override("font_size", 18)
 	rematch.add_theme_stylebox_override("normal", _rounded_style(Color(0.09, 0.24, 0.14), Color(0.3, 0.85, 0.45), 2, 14))
 	rematch.add_theme_stylebox_override("hover", _rounded_style(Color(0.11, 0.3, 0.17), Color(0.4, 0.95, 0.55), 2, 14))
-	rematch.pressed.connect(func() -> void: GameState.start_match(GameState.player_hand))
+	rematch.pressed.connect(func() -> void: GameState.start_match(GameState.player_hand, GameState.player_drafted_types))
 	add_child(rematch)
 
 	var menu := Button.new()
@@ -1137,7 +1141,13 @@ func _consume_events() -> void:
 							continue
 						if other.pos.distance_to(target_v.unit.pos) <= v.unit.def.splash_radius:
 							victims.append(other_v)
-					_fire_projectile(_sim_to_screen(v.unit.pos), target_v.unit.pos, victims, team_color)
+					var patch_def: UnitDefinition = v.unit.def
+					var fire_patch_radius := 0.0
+					var fire_patch_duration := 0.0
+					if patch_def.firepatch_min_level > 0 and v.unit.level >= patch_def.firepatch_min_level:
+						fire_patch_radius = patch_def.firepatch_radius
+						fire_patch_duration = patch_def.firepatch_duration
+					_fire_projectile(_sim_to_screen(v.unit.pos), target_v.unit.pos, victims, team_color, fire_patch_radius, fire_patch_duration)
 					continue
 				_spawn_impact(_sim_to_screen(target_v.unit.pos), team_color)
 				# Heals shouldn't flash white / flinch the healed ally -- that
@@ -1442,7 +1452,8 @@ func _play_attack_frames(v: Dictionary) -> void:
 ## target had its HP bar drop with zero visual feedback at all, which is what
 ## made the explosion look like it had "no impact" in a real multi-unit fight
 ## even after the primary target's own timing was fixed.
-func _fire_projectile(from_pos: Vector2, impact_pos: Vector2, victims: Array[Dictionary], team_color: Color) -> void:
+func _fire_projectile(from_pos: Vector2, impact_pos: Vector2, victims: Array[Dictionary], team_color: Color,
+		fire_patch_radius: float = 0.0, fire_patch_duration: float = 0.0) -> void:
 	var to_pos := _sim_to_screen(impact_pos)
 	var scale_ratio := _unit_scale / REF_SCALE
 	for victim in victims:
@@ -1467,6 +1478,15 @@ func _fire_projectile(from_pos: Vector2, impact_pos: Vector2, victims: Array[Dic
 	proj.queue_free()
 
 	_spawn_explosion(to_pos)
+	if fire_patch_duration > 0.0:
+		# fire_patch_radius is in BattleSim's own sim-space units (compared
+		# directly against SimUnit.pos there), NOT the sprite-render
+		# scale_ratio above -- converted to pixels via the same lane
+		# geometry _sim_to_screen() itself uses (averaging the lane's two
+		# differently-scaled axes since a true sim-space circle maps to a
+		# slight screen ellipse; imperceptible for a flickering fire shape).
+		var px_per_unit := ((LANE_BOTTOM_Y - LANE_TOP_Y) / BattleSim.ARENA_WIDTH + (LANE_WIDTH * 0.98) / BattleSim.ARENA_DEPTH) * 0.5
+		_spawn_fire_puddle(to_pos, fire_patch_radius * px_per_unit, fire_patch_duration)
 	for victim in victims:
 		victim.hp_frozen = false
 		_hit_flash(victim)
@@ -1523,6 +1543,43 @@ func _spawn_explosion(pos: Vector2) -> void:
 
 	_spawn_impact(pos, Color(1.0, 0.55, 0.15), 16, 1.6, 2.2)
 	_spawn_impact(pos, Color(0.5, 0.5, 0.52), 6, 1.1, 1.4)
+
+
+## Demolitionist's Firestorm Lv2+ ability: a lingering ground fire at the
+## blast's impact point (see shaders/fire_puddle.gdshader for the actual
+## animated look -- this just places/sizes/times it). `duration_px` here is
+## already in screen pixels (converted by the caller from BattleSim's
+## sim-space radius); the shader itself does the flicker via TIME, so no
+## per-frame driving is needed here beyond the fade in/out.
+func _spawn_fire_puddle(pos: Vector2, radius_px: float, duration: float) -> void:
+	var puddle := ColorRect.new()
+	var size := radius_px * 2.0
+	puddle.size = Vector2(size, size)
+	puddle.position = pos - puddle.size * 0.5
+	puddle.color = Color.WHITE
+	puddle.modulate.a = 0.0
+	# z_index=0, same tier as both the floor art and every unit sprite --
+	# floor/sprites are separated purely by ADD ORDER (floor built first in
+	# _build_background(), so it's already behind every sprite even at the
+	# same z=0), which a node added dynamically mid-battle can't retroactively
+	# insert itself into the middle of via z_index alone: -1 sits BEHIND the
+	# floor too (confirmed by screenshotting an invisible puddle -- the
+	# floor is fully opaque, so anything behind it never renders), and there
+	# is no integer between two nodes both AT 0. Drawing on top of a unit's
+	# feet is an acceptable tradeoff for guaranteed visibility -- the
+	# shader's own alpha keeps it reading as a translucent glow, not a
+	# solid occluding disc.
+	puddle.z_index = 0
+	var mat := ShaderMaterial.new()
+	mat.shader = FIRE_PUDDLE_SHADER
+	puddle.material = mat
+	add_child(puddle)
+
+	var tw := create_tween()
+	tw.tween_property(puddle, "modulate:a", 1.0, 0.15)
+	tw.tween_interval(maxf(duration - 0.55, 0.0))
+	tw.tween_property(puddle, "modulate:a", 0.0, 0.4)
+	tw.tween_callback(puddle.queue_free)
 
 
 ## Brief white flash on the hit target via the shader's flash_amount uniform

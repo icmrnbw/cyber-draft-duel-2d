@@ -109,19 +109,33 @@ var draw_retry: int = 0
 ## (no meta-progression for the bot).
 func init(hand_a: Array[UnitDefinition], hand_b: Array[UnitDefinition], p_match_seed: int,
 		p_levels_a: Array[int] = [], p_levels_b: Array[int] = []) -> void:
+	init_with_deployment(hand_a, hand_a, hand_b, p_match_seed, p_levels_a, p_levels_b)
+
+
+## Like init(), but the human's deployed round-1 squad can differ from the
+## types drafted -- deploy_screen.gd (2026-09-11) lets the player field any
+## multiset of their 4 drafted types (e.g. 2 Enforcers + 2 Troopers) instead
+## of always exactly one of each. type_pool_a (what "add" growth offers can
+## bring in for the rest of the match) still comes from drafted_types_a, not
+## deployed_a -- a type left undeployed at round 1 can still show up later.
+## The bot side has no deploy-picker UI, so its drafted types and deployed
+## squad are always the same array (init() above just forwards hand_a as
+## both).
+func init_with_deployment(deployed_a: Array[UnitDefinition], drafted_types_a: Array[UnitDefinition], hand_b: Array[UnitDefinition], p_match_seed: int,
+		p_levels_a: Array[int] = [], p_levels_b: Array[int] = []) -> void:
 	match_seed = p_match_seed
 	lives_a = LIVES_PER_SIDE
 	lives_b = LIVES_PER_SIDE
 	round_number = 1
 	last_round_result = BattleSim.Result.IN_PROGRESS
 
-	roster_a = hand_a.duplicate()
+	roster_a = deployed_a.duplicate()
 	roster_b = hand_b.duplicate()
-	levels_a = p_levels_a.duplicate() if p_levels_a.size() == hand_a.size() else _ones(hand_a.size())
+	levels_a = p_levels_a.duplicate() if p_levels_a.size() == deployed_a.size() else _ones(deployed_a.size())
 	levels_b = p_levels_b.duplicate() if p_levels_b.size() == hand_b.size() else _ones(hand_b.size())
 	_rebuild_power(0)
 	_rebuild_power(1)
-	type_pool_a = _distinct_types(hand_a)
+	type_pool_a = _distinct_types(drafted_types_a)
 	type_pool_b = _distinct_types(hand_b)
 
 
@@ -254,10 +268,26 @@ func additions_for(comeback: bool) -> int:
 ## would stay within what's unlocked. Pass {} (the default) to disable
 ## level-up offers entirely -- exactly what auto_grow_side()/the bot want,
 ## since level-up is a Heroes-menu-gated player-only mechanic.
+## Every distinct group unconditionally got a "double" candidate here before
+## 2026-09-11 -- with the shuffle-and-slice below giving each candidate equal
+## odds of landing in the revealed 3, that made "double" appear (and get
+## picked) very often, and doubling a group's count is a flat 2x on its
+## total power (see power_for_level()'s doc comment) -- strictly the
+## strongest thing on offer, no real choice most rounds. Rolling it out
+## PLAYER_DOUBLE_INCLUDE_CHANCE of the time thins the pool it competes in
+## instead of nerfing what it does when it does appear, which felt like the
+## actual complaint ("too OP" as in "always the right pick," not "too
+## strong once picked").
+const PLAYER_DOUBLE_INCLUDE_CHANCE := 0.55
+
+
 func roll_offers(side: int, slot_index: int, max_level_by_path: Dictionary = {}) -> Array:
 	var roster := roster_a if side == 0 else roster_b
 	var levels := levels_a if side == 0 else levels_b
 	var type_pool := type_pool_a if side == 0 else type_pool_b
+
+	var rng := RandomNumberGenerator.new()
+	rng.seed = current_seed() * 2 + side + slot_index * 97
 
 	var groups := {}
 	var group_order: Array = []
@@ -271,9 +301,10 @@ func roll_offers(side: int, slot_index: int, max_level_by_path: Dictionary = {})
 	var candidates: Array = []
 	for key in group_order:
 		var g: Dictionary = groups[key]
-		candidates.append({
-			"kind": "double", "unit_def": g["unit_def"], "level": g["level"], "count": g["count"],
-		})
+		if rng.randf() < PLAYER_DOUBLE_INCLUDE_CHANCE:
+			candidates.append({
+				"kind": "double", "unit_def": g["unit_def"], "level": g["level"], "count": g["count"],
+			})
 		var level_cap: int = int(max_level_by_path.get(g["unit_def"].resource_path, 1))
 		if g["level"] < mini(level_cap, MAX_LEVEL):
 			candidates.append({
@@ -284,8 +315,6 @@ func roll_offers(side: int, slot_index: int, max_level_by_path: Dictionary = {})
 	if candidates.is_empty():
 		return []
 
-	var rng := RandomNumberGenerator.new()
-	rng.seed = current_seed() * 2 + side + slot_index * 97
 	for i in range(candidates.size() - 1, 0, -1):
 		var j := rng.randi_range(0, i)
 		var tmp = candidates[i]
