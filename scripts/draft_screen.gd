@@ -139,7 +139,11 @@ func _ready() -> void:
 	_build_slots()
 	_build_unit_cards()
 	_build_actions()
-	UITheme.build_tab_bar(self, VIEW_W, VIEW_H, UITheme.TAB_BATTLE)
+	# Drafting isn't a persistent tab of its own -- it's reached via the
+	# Home screen's CASUAL/RANKED tiles, so Home stays highlighted here
+	# rather than passing TAB_BATTLE (which, without in_match=true, never
+	# gets added to the bar at all and left nothing highlighted).
+	UITheme.build_tab_bar(self, VIEW_W, VIEW_H, UITheme.TAB_HOME)
 	_refresh()
 
 

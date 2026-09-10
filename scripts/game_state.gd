@@ -21,6 +21,13 @@ var player_hand: Array[UnitDefinition] = []
 var bot_hand: Array[UnitDefinition] = []
 var match_seed: int = 1
 
+## Set by whichever screen opened unit_detail_screen.tscn (Heroes, Draft) so
+## it knows which unit to show -- a resource path rather than the
+## UnitDefinition itself since scene changes are stateless and every .tres
+## is already addressed this way throughout the project (see
+## unit_database.gd/player_profile.gd).
+var detail_unit_path: String = ""
+
 
 func start_match(p_player_hand: Array[UnitDefinition]) -> void:
 	player_hand = p_player_hand

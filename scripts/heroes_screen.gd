@@ -241,6 +241,20 @@ func _build_hero_cards() -> void:
 		card.add_child(badge)
 		_level_badges.append(badge.get_child(3) as Label)
 
+		# Tapping the portrait/name area (everything above the unlock
+		# button, which keeps its own direct action) opens the new Unit
+		# Detail screen -- the reference mockup's "tap a card for a closer
+		# look" flow, which this project had no equivalent of before.
+		var detail_button := Button.new()
+		detail_button.size = Vector2(CARD_SIZE.x, 240.0)
+		detail_button.flat = true
+		detail_button.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
+		detail_button.add_theme_stylebox_override("hover", StyleBoxEmpty.new())
+		detail_button.pressed.connect(func() -> void:
+			GameState.detail_unit_path = unit_def.resource_path
+			get_tree().change_scene_to_file("res://scenes/unit_detail_screen.tscn"))
+		card.add_child(detail_button)
+
 		var name_label := Label.new()
 		name_label.position = Vector2(0, 168.0)
 		name_label.size = Vector2(CARD_SIZE.x, 28)

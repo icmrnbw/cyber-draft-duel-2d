@@ -14,6 +14,9 @@ func _ready() -> void:
 		elif arg.begins_with("--out="):
 			out_path = arg.substr(6)
 
+	if scene_path == "res://scenes/unit_detail_screen.tscn" and GameState.detail_unit_path == "":
+		GameState.detail_unit_path = UnitDatabase.roster()[2].resource_path
+
 	if scene_path == "res://scenes/match.tscn":
 		# Set the fields GameState.start_match() would set WITHOUT calling it --
 		# it calls change_scene_to_file() itself, which frees this very node
