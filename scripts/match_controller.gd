@@ -19,7 +19,9 @@ const SFX_STRIKE := preload("res://assets/sfx/strike.wav")
 const VIEW_W := 720.0
 const VIEW_H := 1280.0
 const LANE_WIDTH := 700.0
-const LANE_TOP_Y := 140.0
+## Pushed down from 140 (2026-09-10) to make room for the taller top HUD
+## (round badge + both squads' avatar/hearts rows) -- see _build_top_hud().
+const LANE_TOP_Y := 195.0
 const LANE_BOTTOM_Y := 1140.0
 const HUMAN_SIDE := 0
 
@@ -27,6 +29,12 @@ const HUMAN_SIDE := 0
 ## draft_screen.gd -- see main_menu.gd's comment on why.
 const GOLD := Color(1.0, 0.82, 0.3)
 const MUTED_TEXT := Color(0.7, 0.74, 0.82)
+## "Rival" HUD framing only (hearts, avatar border, label) -- actual combat
+## identity (rim glow, HP bars) stays TeamColor.TEAM_B orange, unchanged.
+## The reference mockup itself keeps enemy HP bars orange while using a
+## separate magenta accent for the hearts/avatar chrome specifically, so
+## this mirrors that rather than recoloring the whole enemy team.
+const RIVAL_ACCENT := Color(0.85, 0.35, 0.75)
 
 enum Phase { BATTLE, TRANSITION, GROWTH_PICK, MATCH_OVER }
 
@@ -45,18 +53,17 @@ const BREATHE_PERIOD := 0.9
 var _views: Array[Dictionary] = []
 var _phase: Phase = Phase.BATTLE
 
-var _hud_label: Label
 var _result_label: Label
 var _growth_title: Label
 var _round_result_overlay: Control
 var _round_result_title: Label
-var _round_result_top_label: Label
-var _round_result_bottom_label: Label
-var _round_result_hearts_top: Array[Dictionary] = []
-var _round_result_hearts_bottom: Array[Dictionary] = []
+var _round_badge_label: Label
+var _squad_hearts: Array[Dictionary] = []
+var _rival_hearts: Array[Dictionary] = []
 var _growth_buttons: Array[Button] = []
 var _dim_overlay: ColorRect
 var _forfeit_button: Button
+var _forfeit_label: Label
 
 ## Sprite scale is a fixed constant, deliberately NOT roster-size-aware --
 ## an earlier version tapered it down as the roster grew round over round
@@ -71,11 +78,9 @@ var _unit_scale := REF_SCALE
 
 func _ready() -> void:
 	_build_background()
-	_hud_label = _build_hud_label()
 	_result_label = _build_result_label()
 	_growth_title = _build_growth_title()
 	_dim_overlay = _build_dim_overlay()
-	_forfeit_button = _build_forfeit_button()
 	_round_result_overlay = _build_round_result_overlay()
 
 	# Drafted by the player on draft_screen.gd, plus a random canned bot hand --
@@ -94,12 +99,15 @@ func _ready() -> void:
 		hand_b = [trooper, trooper, trooper]
 		seed_value = 1
 
+	_build_top_hud(hand_a[0], hand_b[0])
+
 	# Every unit starts a match at level 1 regardless of Heroes-menu progress
 	# -- PlayerProfile only gates which "level up" offers can appear DURING
 	# the match (see _unlocked_levels_by_path()/_resolve_growth_picks()), it
 	# never grants a head start.
 	_round_state = RoundState.new()
 	_round_state.init(hand_a, hand_b, seed_value)
+	UITheme.build_tab_bar(self, VIEW_W, VIEW_H, UITheme.TAB_BATTLE, true)
 	_start_round()
 
 
@@ -153,14 +161,6 @@ func _build_spawn_ring(pos: Vector2, color: Color) -> void:
 	add_child(ring)
 
 
-func _build_hud_label() -> Label:
-	var label := Label.new()
-	label.position = Vector2(0, 20)
-	label.size = Vector2(VIEW_W, 40)
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.add_theme_font_size_override("font_size", 22)
-	add_child(label)
-	return label
 
 
 func _build_result_label() -> Label:
@@ -225,23 +225,107 @@ func _build_heart(color: Color, size: float) -> Polygon2D:
 
 
 const HEART_SIZE := 26.0
-const HEART_GAP := 12.0
 const LIFE_LOST_COLOR := Color(0.35, 0.37, 0.44, 0.55)
 const LIFE_FULL_COLOR := Color(0.95, 0.25, 0.32)
 
 ## One heart "slot": a dim empty-heart shape always visible underneath, and a
 ## bright filled one on top that gets tweened away when that life is lost --
-## avoids needing to swap the same polygon's color mid-animation.
-func _build_heart_slot(parent: Node2D, pos: Vector2) -> Dictionary:
-	var empty := _build_heart(LIFE_LOST_COLOR, HEART_SIZE)
+## avoids needing to swap the same polygon's color mid-animation. `fill_color`
+## defaults to LIFE_FULL_COLOR (used by nothing anymore, kept as a sane
+## fallback) -- real callers pass the squad's own accent (cyan for you,
+## RIVAL_ACCENT for the opponent), matching the reference's per-side heart
+## color instead of a single universal red.
+func _build_heart_slot(parent: Node2D, pos: Vector2, size: float = HEART_SIZE, fill_color: Color = LIFE_FULL_COLOR, z: int = 0) -> Dictionary:
+	var empty := _build_heart(LIFE_LOST_COLOR, size)
 	empty.position = pos
+	empty.z_index = z
 	parent.add_child(empty)
 
-	var filled := _build_heart(LIFE_FULL_COLOR, HEART_SIZE)
+	var filled := _build_heart(fill_color, size)
 	filled.position = pos
+	filled.z_index = z
 	parent.add_child(filled)
 
 	return {"filled": filled}
+
+
+## Persistent top HUD: round hex badge (center), both squads' hex-framed
+## avatar + label + hearts row (left = you, right = rival), and the LEAVE
+## button. Replaces the old single-line "Round N -- Lives A: X Lives B: Y"
+## text with the reference mockup's layout. Avatars use the actual drafted
+## hand's first unit (free, ties the HUD to real roster content) rather
+## than a generic silhouette icon this project doesn't have art for.
+func _build_top_hud(player_avatar_def: UnitDefinition, rival_avatar_def: UnitDefinition) -> void:
+	var leave_w := 116.0
+	var leave_h := 40.0
+	var leave_panel := UITheme.build_gradient_panel(Vector2(leave_w, leave_h), leave_h * 0.5, 2.0,
+		false, RIVAL_ACCENT, RIVAL_ACCENT.darkened(0.25))
+	leave_panel.position = Vector2(VIEW_W - leave_w - 16.0, 16.0)
+	leave_panel.z_index = 10
+	add_child(leave_panel)
+
+	_forfeit_label = Label.new()
+	_forfeit_label.size = Vector2(leave_w, leave_h)
+	_forfeit_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_forfeit_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	_forfeit_label.add_theme_font_override("font", UITheme.BODY_FONT_SEMIBOLD)
+	_forfeit_label.add_theme_font_size_override("font_size", 15)
+	_forfeit_label.add_theme_color_override("font_color", UITheme.TEXT_BRIGHT)
+	_forfeit_label.text = "LEAVE"
+	_forfeit_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	leave_panel.add_child(_forfeit_label)
+
+	_forfeit_button = Button.new()
+	_forfeit_button.size = Vector2(leave_w, leave_h)
+	_forfeit_button.flat = true
+	_forfeit_button.modulate.a = 0.0
+	_forfeit_button.pressed.connect(_on_forfeit_pressed)
+	leave_panel.add_child(_forfeit_button)
+
+	var round_badge := UITheme.build_hex_badge("1", 30.0)
+	round_badge.position = Vector2(VIEW_W * 0.5 - round_badge.size.x * 0.5, 8.0)
+	round_badge.z_index = 10
+	add_child(round_badge)
+	_round_badge_label = round_badge.get_child(3)  # outer, outer_line, inner_line, label
+
+	_squad_hearts = _build_squad_row(Vector2(16.0, 88.0), "YOUR SQUAD", UITheme.CYAN, player_avatar_def)
+	_rival_hearts = _build_squad_row(Vector2(VIEW_W - 260.0, 88.0), "RIVAL", RIVAL_ACCENT, rival_avatar_def)
+
+
+func _build_squad_row(pos: Vector2, label_text: String, accent: Color, avatar_def: UnitDefinition) -> Array[Dictionary]:
+	var avatar_size := 56.0
+	var avatar_frame := UITheme.build_gradient_panel(Vector2(avatar_size, avatar_size), 14.0, 2.5,
+		false, accent, accent.darkened(0.3))
+	avatar_frame.position = pos
+	avatar_frame.z_index = 10
+	add_child(avatar_frame)
+
+	var portrait := TextureRect.new()
+	portrait.position = Vector2(6, 6)
+	portrait.size = Vector2(avatar_size - 12.0, avatar_size - 12.0)
+	portrait.texture = avatar_def.sprite
+	portrait.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	TeamColor.apply_vibrance_only(portrait)
+	avatar_frame.add_child(portrait)
+
+	var label_x := pos.x + avatar_size + 10.0
+	var label := Label.new()
+	label.position = Vector2(label_x, pos.y - 2.0)
+	label.size = Vector2(180.0, 22.0)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	label.add_theme_font_override("font", UITheme.BODY_FONT_SEMIBOLD)
+	label.add_theme_font_size_override("font_size", 14)
+	label.add_theme_color_override("font_color", accent)
+	label.z_index = 10
+	label.text = label_text
+	add_child(label)
+
+	var hearts: Array[Dictionary] = []
+	for i in RoundState.LIVES_PER_SIDE:
+		var hpos := Vector2(label_x + i * 22.0, pos.y + 26.0)
+		hearts.append(_build_heart_slot(self, hpos, 11.0, accent, 10))
+	return hearts
 
 
 ## The Draft-Showdown-style "who won this round" screen (user reference:
@@ -256,82 +340,49 @@ func _build_round_result_overlay() -> Control:
 	add_child(root)
 
 	var dim := ColorRect.new()
-	dim.color = Color(0.04, 0.03, 0.09, 0.82)
+	dim.color = Color(0.02, 0.02, 0.05, 0.88)
 	dim.size = Vector2(VIEW_W, VIEW_H)
 	root.add_child(dim)
 
+	# A gradient-bordered banner rather than plain text -- the closest
+	# practical match to the reference's hex-cut glowing title card without
+	# a full text-clip-path shader. Hearts/avatars live in the persistent
+	# top HUD now (see _build_top_hud()), not duplicated here -- the break
+	# animation plays on those same nodes directly.
+	var banner_size := Vector2(580.0, 130.0)
+	var banner := UITheme.build_gradient_panel(banner_size, 18.0, 2.5)
+	banner.position = Vector2((VIEW_W - banner_size.x) * 0.5, VIEW_H * 0.5 - banner_size.y * 0.5)
+	root.add_child(banner)
+
 	var title := Label.new()
-	title.position = Vector2(0, VIEW_H * 0.5 - 30.0)
-	title.size = Vector2(VIEW_W, 60.0)
+	title.position = Vector2(0, 0)
+	title.size = banner_size
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	title.add_theme_font_size_override("font_size", 32)
-	title.add_theme_color_override("font_color", Color(0.97, 0.97, 1.0))
-	root.add_child(title)
+	title.add_theme_font_override("font", UITheme.HEADER_FONT)
+	title.add_theme_font_size_override("font_size", 26)
+	title.add_theme_color_override("font_color", UITheme.TEXT_BRIGHT)
+	banner.add_child(title)
 	_round_result_title = title
-
-	var hearts_container := Node2D.new()
-	root.add_child(hearts_container)
-
-	var row_w := float(RoundState.LIVES_PER_SIDE) * HEART_SIZE * 2.0 + float(RoundState.LIVES_PER_SIDE - 1) * HEART_GAP
-	var start_x := VIEW_W * 0.5 - row_w * 0.5 + HEART_SIZE
-
-	var top_label := Label.new()
-	top_label.position = Vector2(0, VIEW_H * 0.5 - 190.0)
-	top_label.size = Vector2(VIEW_W, 30.0)
-	top_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	top_label.add_theme_font_size_override("font_size", 20)
-	top_label.add_theme_color_override("font_color", TeamColor.TEAM_B)
-	root.add_child(top_label)
-	_round_result_top_label = top_label
-
-	for i in RoundState.LIVES_PER_SIDE:
-		var x := start_x + i * (HEART_SIZE * 2.0 + HEART_GAP)
-		_round_result_hearts_top.append(_build_heart_slot(hearts_container, Vector2(x, VIEW_H * 0.5 - 140.0)))
-
-	var bottom_label := Label.new()
-	bottom_label.position = Vector2(0, VIEW_H * 0.5 + 150.0)
-	bottom_label.size = Vector2(VIEW_W, 30.0)
-	bottom_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	bottom_label.add_theme_font_size_override("font_size", 20)
-	bottom_label.add_theme_color_override("font_color", TeamColor.TEAM_A)
-	root.add_child(bottom_label)
-	_round_result_bottom_label = bottom_label
-
-	for i in RoundState.LIVES_PER_SIDE:
-		var x := start_x + i * (HEART_SIZE * 2.0 + HEART_GAP)
-		_round_result_hearts_bottom.append(_build_heart_slot(hearts_container, Vector2(x, VIEW_H * 0.5 + 110.0)))
 
 	return root
 
 
-## Plays the whole round-result beat: fade the overlay in with the
-## PRE-loss heart counts shown, hold a moment, animate the heart that was
-## just lost shrinking/spinning away, hold again on the result, then fade
-## out. lives_*_before are captured by the caller BEFORE
+## Plays the whole round-result beat: fade the overlay in, hold a moment,
+## animate the heart that was just lost shrinking/spinning away (on the
+## PERSISTENT top-HUD heart nodes -- they still show the pre-loss state
+## here, since _update_top_hud() hasn't run for this round yet), hold again
+## on the result, fade out, then refresh the top HUD to the new lives count.
+## lives_*_before are captured by the caller BEFORE
 ## RoundState.record_round_result() decrements them, so there's an actual
-## "before" state to animate away from -- the sim state alone doesn't carry
-## last round's history once lives are decremented.
+## "before" state to animate away from.
 func _show_round_result_screen(lives_a_before: int, lives_b_before: int) -> void:
 	var lives_a_after := _round_state.lives_a
 	var lives_b_after := _round_state.lives_b
 
-	var opponent_name := "OPPONENT" if GameState.ranked else GameState.casual_opponent_name
-	_round_result_top_label.text = opponent_name if HUMAN_SIDE == 0 else "YOU"
-	_round_result_bottom_label.text = "YOU" if HUMAN_SIDE == 0 else opponent_name
-
 	var human_won := _sim.result == (BattleSim.Result.TEAM_A if HUMAN_SIDE == 0 else BattleSim.Result.TEAM_B)
-	_round_result_title.text = "ROUND %d — YOU WIN" % _round_state.round_number if human_won \
-		else "ROUND %d — YOU LOSE" % _round_state.round_number
-	_round_result_title.add_theme_color_override("font_color", LIFE_FULL_COLOR if human_won else Color(0.7, 0.74, 0.82))
-
-	for i in RoundState.LIVES_PER_SIDE:
-		_round_result_hearts_top[i]["filled"].visible = i < lives_b_before
-		_round_result_hearts_top[i]["filled"].scale = Vector2.ONE
-		_round_result_hearts_top[i]["filled"].modulate.a = 1.0
-		_round_result_hearts_bottom[i]["filled"].visible = i < lives_a_before
-		_round_result_hearts_bottom[i]["filled"].scale = Vector2.ONE
-		_round_result_hearts_bottom[i]["filled"].modulate.a = 1.0
+	_round_result_title.text = "ROUND %d\n%s" % [_round_state.round_number, "YOU WIN" if human_won else "YOU LOSE"]
+	_round_result_title.add_theme_color_override("font_color", UITheme.CYAN if human_won else RIVAL_ACCENT)
 
 	_round_result_overlay.modulate.a = 0.0
 	_round_result_overlay.visible = true
@@ -345,9 +396,9 @@ func _show_round_result_screen(lives_a_before: int, lives_b_before: int) -> void
 	# by at most 1 per side per round (record_round_result only ever
 	# decrements the LOSING side by one).
 	if lives_b_before > lives_b_after:
-		await _break_heart(_round_result_hearts_top[lives_b_after]["filled"])
+		await _break_heart(_rival_hearts[lives_b_after]["filled"])
 	if lives_a_before > lives_a_after:
-		await _break_heart(_round_result_hearts_bottom[lives_a_after]["filled"])
+		await _break_heart(_squad_hearts[lives_a_after]["filled"])
 
 	await get_tree().create_timer(0.7).timeout
 
@@ -355,6 +406,7 @@ func _show_round_result_screen(lives_a_before: int, lives_b_before: int) -> void
 	fade_out.tween_property(_round_result_overlay, "modulate:a", 0.0, 0.25)
 	await fade_out.finished
 	_round_result_overlay.visible = false
+	_update_top_hud()
 
 
 ## A little punch-then-shrink-and-spin, not just an instant disappear --
@@ -378,34 +430,23 @@ func _break_heart(heart: Polygon2D) -> void:
 ## on first tap so a stray touch mid-battle can't lose a match by accident.
 var _forfeit_armed := false
 
-func _build_forfeit_button() -> Button:
-	var b := Button.new()
-	b.text = "LEAVE"
-	b.position = Vector2(VIEW_W - 100.0, 20.0)
-	b.size = Vector2(84.0, 34.0)
-	b.add_theme_font_size_override("font_size", 13)
-	var sb := StyleBoxFlat.new()
-	sb.bg_color = Color(0.16, 0.08, 0.08, 0.85)
-	sb.set_corner_radius_all(10)
-	sb.set_border_width_all(1)
-	sb.border_color = Color(0.6, 0.3, 0.3)
-	b.add_theme_stylebox_override("normal", sb)
-	b.pressed.connect(_on_forfeit_pressed)
-	add_child(b)
-	return b
-
-
 func _on_forfeit_pressed() -> void:
 	if not _forfeit_armed:
 		_forfeit_armed = true
-		_forfeit_button.text = "CONFIRM?"
+		_forfeit_label.text = "CONFIRM?"
 		return
 	_show_match_result(true)
 
 
-func _update_hud_label() -> void:
-	_hud_label.text = "Round %d — Lives A: %d  Lives B: %d" % [
-		_round_state.round_number, _round_state.lives_a, _round_state.lives_b]
+## Updates the round hex badge + both squads' persistent heart rows to the
+## CURRENT lives count -- called after a life is actually lost (the
+## round-result screen's own break animation runs off the pre/post snapshot
+## it's given directly, see _show_round_result_screen(), not off this).
+func _update_top_hud() -> void:
+	_round_badge_label.text = str(_round_state.round_number)
+	for i in RoundState.LIVES_PER_SIDE:
+		_squad_hearts[i]["filled"].visible = i < _round_state.lives_a
+		_rival_hearts[i]["filled"].visible = i < _round_state.lives_b
 
 
 # ---------------------------------------------------------------- round loop
@@ -439,7 +480,7 @@ func _spawn_preview_views() -> void:
 
 func _start_round() -> void:
 	_spawn_preview_views()
-	_update_hud_label()
+	_update_top_hud()
 	_result_label.visible = false
 	_phase = Phase.BATTLE
 
@@ -564,7 +605,7 @@ func _show_match_result(forfeited: bool = false) -> void:
 			text = "%s WINS" % opp
 	_result_label.text = text
 	_result_label.visible = true
-	_update_hud_label()
+	_update_top_hud()
 
 	# Only the human side earns meta-progression -- the bot has no
 	# PlayerProfile of its own. A draw (only reachable via the MAX_ROUNDS

@@ -151,8 +151,14 @@ static func build_diamond(size: float, color: Color) -> Polygon2D:
 const TAB_HOME := "home"
 const TAB_HEROES := "heroes"
 const TAB_SETTINGS := "settings"
+const TAB_BATTLE := "battle"
 
-static func build_tab_bar(parent: Node2D, view_w: float, view_h: float, active: String) -> void:
+## `in_match`: adds a 4th BATTLE tab and disables the other three -- you
+## can't casually tab away mid-match (only the dedicated LEAVE button, with
+## its own confirm step, actually exits one), but the reference's battle
+## screen shows the full tab bar with Battle lit up rather than hiding it,
+## so this renders all four and locks navigation instead of removing tabs.
+static func build_tab_bar(parent: Node2D, view_w: float, view_h: float, active: String, in_match: bool = false) -> void:
 	var bar_h := 88.0
 	var bar := Panel.new()
 	bar.position = Vector2(0, view_h - bar_h)
@@ -168,8 +174,10 @@ static func build_tab_bar(parent: Node2D, view_w: float, view_h: float, active: 
 	var tabs := [
 		{"id": TAB_HOME, "label": "HOME", "scene": "res://scenes/main_menu.tscn"},
 		{"id": TAB_HEROES, "label": "HEROES", "scene": "res://scenes/heroes_screen.tscn"},
-		{"id": TAB_SETTINGS, "label": "SETTINGS", "scene": "res://scenes/settings_screen.tscn"},
 	]
+	if in_match:
+		tabs.append({"id": TAB_BATTLE, "label": "BATTLE", "scene": ""})
+	tabs.append({"id": TAB_SETTINGS, "label": "SETTINGS", "scene": "res://scenes/settings_screen.tscn"})
 
 	var tab_w := view_w / float(tabs.size())
 	for i in tabs.size():
@@ -184,7 +192,7 @@ static func build_tab_bar(parent: Node2D, view_w: float, view_h: float, active: 
 		btn.add_theme_stylebox_override("hover", StyleBoxEmpty.new())
 		btn.add_theme_stylebox_override("pressed", StyleBoxEmpty.new())
 		var scene_path: String = t["scene"]
-		if not is_active:
+		if not is_active and not in_match:
 			btn.pressed.connect(func() -> void: parent.get_tree().change_scene_to_file(scene_path))
 		else:
 			btn.disabled = true
