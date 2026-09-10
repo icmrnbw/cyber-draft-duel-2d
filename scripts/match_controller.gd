@@ -134,14 +134,27 @@ func _build_background() -> void:
 	# arena_database.gd) rather than one fixed look -- climbing rating is
 	# what changes the scenery, which is the visible half of the progression.
 	var arena: Dictionary = PlayerProfile.current_arena()
-	var floor_art := ColorRect.new()
-	floor_art.color = Color.WHITE
+	# The painted base (a user-provided reference render, cropped to remove
+	# its splash-screen chrome -- see arena_floor.gdshader's header comment)
+	# is shared across all 3 arenas; each keeps a distinct identity through
+	# the animated pulse's own two colors instead of a separate image.
+	var floor_art := TextureRect.new()
+	floor_art.texture = load("res://assets/arena_floor_hex_reference.png")
 	floor_art.size = Vector2(VIEW_W, VIEW_H)
+	floor_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	floor_art.stretch_mode = TextureRect.STRETCH_SCALE
 	var floor_mat := ShaderMaterial.new()
 	floor_mat.shader = ARENA_FLOOR_SHADER
+	floor_mat.set_shader_parameter("use_texture", true)
 	floor_mat.set_shader_parameter("rect_size", Vector2(VIEW_W, VIEW_H))
 	floor_mat.set_shader_parameter("color_a", arena["glow_a"])
 	floor_mat.set_shader_parameter("color_b", arena["glow_b"])
+	# Toned down from the shader's own default -- at full strength the pulse
+	# blows out to near-white over the painted art's darker areas (fine over
+	# flat bg_color in the pure-procedural mode, too hot layered additively
+	# on top of real image detail).
+	floor_mat.set_shader_parameter("pulse_strength", 0.7)
+	floor_mat.set_shader_parameter("pulse_width", 1.4)
 	floor_art.material = floor_mat
 	add_child(floor_art)
 
