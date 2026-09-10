@@ -139,127 +139,57 @@ static func build_diamond(size: float, color: Color) -> Polygon2D:
 	return diamond
 
 
-## Simple line-icon set (2026-09-10, matching the "Cyber Draft-Duel" mobile
-## mockup's minimalist tab-bar/menu-tile icons) -- procedural Line2D strokes,
-## same "shape built in code, no new art asset" approach as build_diamond()/
-## build_hex_badge() above, so the icon set costs zero art-generation credits
-## and always matches the current accent color exactly. Each returns a
-## Control sized (size, size) with the icon centered and drawn in `color`.
-static func _icon_container(size: float) -> Control:
-	var c := Control.new()
-	c.size = Vector2(size, size)
-	c.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	return c
-
-
-static func _stroke(parent: Control, points: PackedVector2Array, color: Color, width: float, closed: bool = false) -> void:
-	var line := Line2D.new()
-	line.points = points
-	line.default_color = color
-	line.width = width
-	line.closed = closed
-	line.begin_cap_mode = Line2D.LINE_CAP_ROUND
-	line.end_cap_mode = Line2D.LINE_CAP_ROUND
-	line.joint_mode = Line2D.LINE_JOINT_ROUND
-	parent.add_child(line)
+## Icon set (2026-09-10) -- Meshy-generated glowing line-art icons
+## (assets/icons/icon_*.png, sliced from a single 6-icon reference sheet),
+## replacing an earlier procedural Line2D version that read as thin/amateur
+## next to the reference mockup's icon work. Each source PNG is a WHITE
+## shape with the glow's own soft falloff baked into the alpha channel
+## (RGB=255,255,255, alpha=brightness) rather than a fixed baked-in color --
+## `modulate` then recolors it to any accent (cyan, violet, muted grey)
+## cleanly, the same trick TeamColor uses for grayscale rim-light art.
+static func _icon_texture(name: String, size: float, color: Color) -> TextureRect:
+	var t := TextureRect.new()
+	t.texture = load("res://assets/icons/icon_%s.png" % name)
+	# expand_mode/stretch_mode MUST be set before `.size` below: a bare
+	# Control (no Container parent) still clamps size up to its combined
+	# minimum size at assignment time, and with a texture already assigned,
+	# the still-default EXPAND_KEEP_SIZE reports that minimum as the
+	# texture's own native size (256x256 for these icons) -- so setting
+	# `.size` first got silently clamped back up to 256x256 regardless of
+	# what expand_mode was set to afterward (confirmed by printing
+	# t.size post-assignment). EXPAND_IGNORE_SIZE first makes the minimum
+	# (0, 0), so the explicit size below actually sticks.
+	t.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	t.stretch_mode = TextureRect.STRETCH_SCALE
+	t.custom_minimum_size = Vector2(size, size)
+	t.size = Vector2(size, size)
+	t.modulate = color
+	t.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	return t
 
 
 static func build_icon_home(size: float, color: Color) -> Control:
-	var c := _icon_container(size)
-	var s := size
-	_stroke(c, PackedVector2Array([
-		Vector2(s * 0.12, s * 0.5), Vector2(s * 0.5, s * 0.14), Vector2(s * 0.88, s * 0.5),
-	]), color, s * 0.07)
-	_stroke(c, PackedVector2Array([
-		Vector2(s * 0.24, s * 0.42), Vector2(s * 0.24, s * 0.86), Vector2(s * 0.76, s * 0.86), Vector2(s * 0.76, s * 0.42),
-	]), color, s * 0.07)
-	return c
+	return _icon_texture("home", size, color)
 
 
 static func build_icon_cards(size: float, color: Color) -> Control:
-	var c := _icon_container(size)
-	var s := size
-	var back := Line2D.new()
-	back.points = PackedVector2Array([
-		Vector2(s * 0.22, s * 0.18), Vector2(s * 0.78, s * 0.18), Vector2(s * 0.78, s * 0.68), Vector2(s * 0.22, s * 0.68),
-	])
-	back.default_color = Color(color, 0.55)
-	back.width = s * 0.06
-	back.closed = true
-	back.joint_mode = Line2D.LINE_JOINT_ROUND
-	c.add_child(back)
-	_stroke(c, PackedVector2Array([
-		Vector2(s * 0.14, s * 0.34), Vector2(s * 0.7, s * 0.34), Vector2(s * 0.7, s * 0.86), Vector2(s * 0.14, s * 0.86),
-	]), color, s * 0.07, true)
-	return c
+	return _icon_texture("cards", size, color)
 
 
 static func build_icon_gear(size: float, color: Color) -> Control:
-	var c := _icon_container(size)
-	var s := size
-	var center := Vector2(s * 0.5, s * 0.5)
-	var outer_r := s * 0.36
-	var inner_r := s * 0.16
-	var teeth := 8
-	var pts := PackedVector2Array()
-	for i in teeth * 2:
-		var angle := deg_to_rad(360.0 / float(teeth * 2) * i)
-		var r := outer_r if i % 2 == 0 else outer_r * 0.72
-		pts.append(center + Vector2(cos(angle), sin(angle)) * r)
-	_stroke(c, pts, color, s * 0.045, true)
-	var hole := Line2D.new()
-	var hole_pts := PackedVector2Array()
-	for i in 16:
-		var angle := deg_to_rad(360.0 / 16.0 * i)
-		hole_pts.append(center + Vector2(cos(angle), sin(angle)) * inner_r)
-	hole.points = hole_pts
-	hole.default_color = color
-	hole.width = s * 0.045
-	hole.closed = true
-	c.add_child(hole)
-	return c
+	return _icon_texture("gear", size, color)
 
 
 static func build_icon_swords(size: float, color: Color) -> Control:
-	var c := _icon_container(size)
-	var s := size
-	_stroke(c, PackedVector2Array([Vector2(s * 0.16, s * 0.16), Vector2(s * 0.84, s * 0.84)]), color, s * 0.08)
-	_stroke(c, PackedVector2Array([Vector2(s * 0.84, s * 0.16), Vector2(s * 0.16, s * 0.84)]), color, s * 0.08)
-	_stroke(c, PackedVector2Array([Vector2(s * 0.32, s * 0.68), Vector2(s * 0.5, s * 0.5), Vector2(s * 0.68, s * 0.68)]), color, s * 0.055)
-	return c
+	return _icon_texture("swords", size, color)
 
 
 static func build_icon_trophy(size: float, color: Color) -> Control:
-	var c := _icon_container(size)
-	var s := size
-	_stroke(c, PackedVector2Array([
-		Vector2(s * 0.3, s * 0.18), Vector2(s * 0.7, s * 0.18), Vector2(s * 0.64, s * 0.5),
-		Vector2(s * 0.36, s * 0.5),
-	]), color, s * 0.06, true)
-	_stroke(c, PackedVector2Array([Vector2(s * 0.3, s * 0.22), Vector2(s * 0.16, s * 0.24), Vector2(s * 0.2, s * 0.4), Vector2(s * 0.36, s * 0.42)]), color, s * 0.045)
-	_stroke(c, PackedVector2Array([Vector2(s * 0.7, s * 0.22), Vector2(s * 0.84, s * 0.24), Vector2(s * 0.8, s * 0.4), Vector2(s * 0.64, s * 0.42)]), color, s * 0.045)
-	_stroke(c, PackedVector2Array([Vector2(s * 0.5, s * 0.5), Vector2(s * 0.5, s * 0.68)]), color, s * 0.06)
-	_stroke(c, PackedVector2Array([Vector2(s * 0.32, s * 0.82), Vector2(s * 0.68, s * 0.82)]), color, s * 0.06)
-	_stroke(c, PackedVector2Array([Vector2(s * 0.5, s * 0.68), Vector2(s * 0.32, s * 0.82)]), color, s * 0.06)
-	_stroke(c, PackedVector2Array([Vector2(s * 0.5, s * 0.68), Vector2(s * 0.68, s * 0.82)]), color, s * 0.06)
-	return c
+	return _icon_texture("trophy", size, color)
 
 
 static func build_icon_gift(size: float, color: Color) -> Control:
-	var c := _icon_container(size)
-	var s := size
-	_stroke(c, PackedVector2Array([
-		Vector2(s * 0.18, s * 0.38), Vector2(s * 0.82, s * 0.38), Vector2(s * 0.82, s * 0.84), Vector2(s * 0.18, s * 0.84),
-	]), color, s * 0.06, true)
-	_stroke(c, PackedVector2Array([Vector2(s * 0.14, s * 0.24), Vector2(s * 0.86, s * 0.24), Vector2(s * 0.86, s * 0.4), Vector2(s * 0.14, s * 0.4)]), color, s * 0.055, true)
-	_stroke(c, PackedVector2Array([Vector2(s * 0.5, s * 0.24), Vector2(s * 0.5, s * 0.84)]), color, s * 0.05)
-	_stroke(c, PackedVector2Array([
-		Vector2(s * 0.5, s * 0.24), Vector2(s * 0.32, s * 0.14), Vector2(s * 0.24, s * 0.2), Vector2(s * 0.3, s * 0.28), Vector2(s * 0.5, s * 0.24),
-	]), color, s * 0.04, true)
-	_stroke(c, PackedVector2Array([
-		Vector2(s * 0.5, s * 0.24), Vector2(s * 0.68, s * 0.14), Vector2(s * 0.76, s * 0.2), Vector2(s * 0.7, s * 0.28), Vector2(s * 0.5, s * 0.24),
-	]), color, s * 0.04, true)
-	return c
+	return _icon_texture("gift", size, color)
 
 
 ## Persistent bottom tab bar (2026-09-10, explicitly requested after
