@@ -113,29 +113,36 @@ func _ready() -> void:
 
 const ENERGY_LINE_SHADER := preload("res://shaders/energy_line.gdshader")
 
-## Per-arena Meshy-generated battlefield art (2026-09-10: replaced the
-## original flat retro pixel-art crater texture, which clashed badly with
-## the neon-vector UI chrome everywhere else -- same "clashing art style"
-## problem the Main Menu's old arena-floor-as-wallpaper misuse had, see
-## main_menu.gd) as the backdrop; no baked platforms/lines in the art itself
-## -- those are drawn here instead so they can carry real team colors and
-## animate. The two
-## spawn platforms sit at LANE_TOP_Y (opponent, team B) and LANE_BOTTOM_Y
-## (player, team A), matching where each side's front line actually forms;
-## the connecting beam cycles between both teams' colors via
-## shaders/energy_line.gdshader rather than a static print. z_index left at
-## the default (0, below everything else added after it) so units/UI still
-## draw on top untouched.
+const ARENA_FLOOR_SHADER := preload("res://shaders/arena_floor.gdshader")
+
+## Procedural animated hex-grid battlefield floor (2026-09-10, see
+## shaders/arena_floor.gdshader) -- replaced first a flat retro pixel-art
+## crater texture, then a static Meshy-generated floating-rock image, with a
+## fully code-driven, actually ANIMATED floor (a pulse sweeps outward from
+## center continuously via the shader's own TIME uniform). Matches the
+## neon-vector UI chrome exactly since it's built from the same kind of
+## shader math, and costs zero art-generation credits. No baked
+## platforms/lines in it -- those are drawn here instead so they can carry
+## real team colors and animate independently. The two spawn platforms sit
+## at LANE_TOP_Y (opponent, team B) and LANE_BOTTOM_Y (player, team A),
+## matching where each side's front line actually forms; the connecting beam
+## cycles between both teams' colors via shaders/energy_line.gdshader rather
+## than a static print. z_index left at the default (0, below everything
+## else added after it) so units/UI still draw on top untouched.
 func _build_background() -> void:
 	# Which battlefield you fight on is your current ladder arena (see
-	# arena_database.gd) rather than one fixed image -- climbing rating is
+	# arena_database.gd) rather than one fixed look -- climbing rating is
 	# what changes the scenery, which is the visible half of the progression.
-	var floor_art := TextureRect.new()
-	floor_art.texture = load(PlayerProfile.current_arena()["floor"])
+	var arena: Dictionary = PlayerProfile.current_arena()
+	var floor_art := ColorRect.new()
+	floor_art.color = Color.WHITE
 	floor_art.size = Vector2(VIEW_W, VIEW_H)
-	floor_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	floor_art.stretch_mode = TextureRect.STRETCH_SCALE
-	TeamColor.apply_vibrance_only(floor_art)
+	var floor_mat := ShaderMaterial.new()
+	floor_mat.shader = ARENA_FLOOR_SHADER
+	floor_mat.set_shader_parameter("rect_size", Vector2(VIEW_W, VIEW_H))
+	floor_mat.set_shader_parameter("color_a", arena["glow_a"])
+	floor_mat.set_shader_parameter("color_b", arena["glow_b"])
+	floor_art.material = floor_mat
 	add_child(floor_art)
 
 	var line := ColorRect.new()

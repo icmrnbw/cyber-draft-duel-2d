@@ -16,10 +16,16 @@ extends RefCounted
 ## pull the bar exists to create. Anchoring to the real reachable floor makes
 ## that same player start around 57%, and someone who has bottomed out at the
 ## floor start at 0%.
+## `glow_a`/`glow_b` feed the procedural animated hex-grid battle floor
+## (shaders/arena_floor.gdshader, 2026-09-10) -- replaced the earlier static
+## per-arena Meshy image (a floating rock platform) with a code-driven,
+## actually-animated floor matching the neon UI language exactly, at zero
+## art-generation cost. Each arena keeps a distinct color identity through
+## just these two colors rather than a whole new image.
 const ARENAS := [
-	{"name": "Asteroid Belt", "min_rating": 800, "floor": "res://assets/match_floor.png"},
-	{"name": "Frozen Reach", "min_rating": 1150, "floor": "res://assets/arena_ice.png"},
-	{"name": "Molten Core", "min_rating": 1350, "floor": "res://assets/arena_volcanic.png"},
+	{"name": "Asteroid Belt", "min_rating": 800, "glow_a": Color(0.3, 0.85, 1.0), "glow_b": Color(0.65, 0.45, 0.95)},
+	{"name": "Frozen Reach", "min_rating": 1150, "glow_a": Color(0.55, 0.9, 1.0), "glow_b": Color(0.75, 0.55, 1.0)},
+	{"name": "Molten Core", "min_rating": 1350, "glow_a": Color(1.0, 0.55, 0.25), "glow_b": Color(0.75, 0.3, 0.95)},
 ]
 
 
