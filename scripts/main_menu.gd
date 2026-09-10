@@ -120,13 +120,14 @@ func _build_header() -> void:
 
 
 ## The retention surface: which arena you're in, your rating, and how far
-## you are from the next arena. Now a glowing gradient-bordered "season
-## panel," same information as before.
+## you are from the next arena. Painted-glass "season panel" (real Meshy art
+## via UITheme.build_painted_panel, 2026-09-10) instead of the flatter
+## procedural gradient-shader panel, same information as before.
 func _build_arena_panel(arena: Dictionary) -> void:
 	var panel_pos := Vector2(30.0, 150.0)
 	var panel_size := Vector2(VIEW_W - 60.0, 170.0)
 
-	var panel := UITheme.build_gradient_panel(panel_size, 20.0, 2.0)
+	var panel := UITheme.build_painted_panel(panel_size)
 	panel.position = panel_pos
 	add_child(panel)
 
@@ -192,18 +193,8 @@ func _build_tile(pos: Vector2, size: Vector2, icon: Control, title: String, subt
 	tile.size = size
 	add_child(tile)
 
-	var bg_panel := Panel.new()
-	bg_panel.size = size
-	var sb := StyleBoxFlat.new()
-	sb.bg_color = UITheme.CARD_BG
-	sb.set_corner_radius_all(18)
-	bg_panel.add_theme_stylebox_override("panel", sb)
-	bg_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	tile.add_child(bg_panel)
-
-	var border := UITheme.build_gradient_panel(size, 18.0, 2.0)
-	border.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	tile.add_child(border)
+	var panel := UITheme.build_painted_panel(size)
+	tile.add_child(panel)
 
 	icon.position = Vector2((size.x - icon.size.x) * 0.5, 20.0)
 	tile.add_child(icon)

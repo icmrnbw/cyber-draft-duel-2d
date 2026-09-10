@@ -22,6 +22,44 @@ const BODY_FONT := preload("res://assets/fonts/Rajdhani-Regular.ttf")
 const BODY_FONT_SEMIBOLD := preload("res://assets/fonts/Rajdhani-SemiBold.ttf")
 
 const NEON_PANEL_SHADER := preload("res://shaders/neon_panel.gdshader")
+const PANEL_TILE_TEXTURE := preload("res://assets/ui/panel_tile.png")
+## Source is 260x164 (downscaled from the raw 865x547 Meshy generation --
+## NinePatchRect margins are in TEXTURE pixels and render at that exact
+## on-screen size regardless of the destination rect, so the original
+## resolution's ~110px border/corner-bracket region would have overwhelmed
+## anything shorter than ~220px, like the 70px Settings buttons). This
+## margin covers the border + corner brackets so only the flat glass fill
+## in the middle ever stretches.
+const PANEL_TILE_MARGIN := 33
+const PANEL_HUE_SHIFT_SHADER := preload("res://shaders/panel_hue_shift.gdshader")
+
+
+## Real painted panel art (2026-09-10, Meshy-generated) used as a stretchable
+## NinePatchRect instead of the procedural gradient-shader panel -- replaces
+## build_gradient_panel() wherever a screen wants the richer painted-glass
+## look (Home screen tiles/banner, Settings buttons) rather than the flatter
+## vector gradient. build_gradient_panel() is kept for cases that need a
+## specific accent color pair per instance (e.g. per-unit-type borders on
+## Draft/Heroes cards) since this single texture's cyan-violet gradient is
+## baked in and can't be recolored per call the way the shader can.
+##
+## The border gradient also animates -- a slow continuous hue rotation
+## (shaders/panel_hue_shift.gdshader) keeps it "dynamically gradienting"
+## per explicit request, rather than sitting on the single static cyan-
+## violet bake from the source art.
+static func build_painted_panel(size: Vector2) -> NinePatchRect:
+	var panel := NinePatchRect.new()
+	panel.texture = PANEL_TILE_TEXTURE
+	panel.size = size
+	panel.patch_margin_left = PANEL_TILE_MARGIN
+	panel.patch_margin_right = PANEL_TILE_MARGIN
+	panel.patch_margin_top = PANEL_TILE_MARGIN
+	panel.patch_margin_bottom = PANEL_TILE_MARGIN
+	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var mat := ShaderMaterial.new()
+	mat.shader = PANEL_HUE_SHIFT_SHADER
+	panel.material = mat
+	return panel
 
 
 ## A glowing gradient-bordered panel (see neon_panel.gdshader) -- the card

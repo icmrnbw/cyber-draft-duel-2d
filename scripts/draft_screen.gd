@@ -26,7 +26,6 @@ const VIEW_H := 1280.0
 
 const BG_COLOR := UITheme.BG
 const CARD_BG := UITheme.CARD_BG
-const CARD_BG_FILLED := Color(0.1, 0.22, 0.28)
 const ACCENT := UITheme.CYAN
 const GOLD := Color(1.0, 0.82, 0.3)
 const MUTED_TEXT := UITheme.TEXT_MUTED
@@ -38,7 +37,7 @@ const PORTRAIT_SIZE := Vector2(112.0, 112.0)
 const STATS_COL_W := 134.0
 
 var _hand: Array[UnitDefinition] = []
-var _slot_bg_panels: Array[Panel] = []
+var _slot_bg_panels: Array[NinePatchRect] = []
 var _slot_portraits: Array[TextureRect] = []
 var _slot_blends: Array[TextureRect] = []
 var _slot_labels: Array[Label] = []
@@ -216,16 +215,9 @@ func _build_slots() -> void:
 	for i in range(UnitDatabase.HAND_SIZE):
 		var pos := Vector2(start_x + i * (SLOT_SIZE.x + gap), y)
 
-		var bg_panel := Panel.new()
+		var bg_panel := UITheme.build_painted_panel(SLOT_SIZE)
 		bg_panel.position = pos
-		bg_panel.size = SLOT_SIZE
-		bg_panel.add_theme_stylebox_override("panel", _rounded_style(CARD_BG, Color.TRANSPARENT, 0, 16))
 		add_child(bg_panel)
-
-		var border := UITheme.build_gradient_panel(SLOT_SIZE, 16.0, 2.5, false, ACCENT, UITheme.VIOLET, 0.7)
-		border.position = pos
-		border.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		add_child(border)
 
 		var plus := Label.new()
 		plus.position = pos + Vector2(0, -8)
@@ -535,14 +527,17 @@ func _refresh() -> void:
 		var plus := _slot_plus[i]
 		if i < _hand.size():
 			var unit_def := _hand[i]
-			bg_panel.add_theme_stylebox_override("panel", _rounded_style(CARD_BG_FILLED, Color.TRANSPARENT, 0, 16))
+			# A brighter tint instead of a stylebox swap -- the painted
+			# panel (UITheme.build_painted_panel) has no stylebox to
+			# override, so "filled" now reads as a lit-up glass tint.
+			bg_panel.self_modulate = Color(1.25, 1.3, 1.35)
 			portrait.texture = unit_def.sprite
 			portrait.visible = true
 			plus.visible = false
 			label.text = unit_def.display_name.to_upper()
 			label.add_theme_color_override("font_color", UITheme.TEXT_BRIGHT)
 		else:
-			bg_panel.add_theme_stylebox_override("panel", _rounded_style(CARD_BG, Color.TRANSPARENT, 0, 16))
+			bg_panel.self_modulate = Color(1, 1, 1)
 			portrait.visible = false
 			plus.visible = true
 			label.text = "SLOT %d" % (i + 1)
