@@ -38,9 +38,10 @@ func _ready() -> void:
 	_reset_button = _button("RESET PROGRESS", 300.0, Color(0.2, 0.08, 0.09), Color(0.8, 0.3, 0.3))
 	_reset_button.pressed.connect(_on_reset_pressed)
 
-	var back := _button("BACK", VIEW_H - 140.0, Color(0.14, 0.16, 0.23), MUTED_TEXT)
+	var back := _button("BACK", VIEW_H - 240.0, Color(0.14, 0.16, 0.23), MUTED_TEXT)
 	back.pressed.connect(func() -> void: get_tree().change_scene_to_file("res://scenes/main_menu.tscn"))
 
+	UITheme.build_tab_bar(self, VIEW_W, VIEW_H, UITheme.TAB_SETTINGS)
 	_refresh()
 
 

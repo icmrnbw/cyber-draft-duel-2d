@@ -1,12 +1,16 @@
 extends Node2D
-## Draft screen: tap a unit card to fill the next hand slot. Duplicates are
-## allowed (2026-09-07, explicit reversal of a 2026-08-26 restriction that
-## forced 4 distinct types) -- the earlier rule existed because an
-## all-one-type hand was "trivially over-powerable before a single
-## duplicate/level-up growth pick even happened," which is still a real risk
-## re-opened by this change; a heavily duplicate-loaded starting hand is
-## genuinely untested balance territory now, not verified safe. "Ready"
-## unlocks once all HAND_SIZE slots are full, then hands off to
+## Draft screen: tap a unit card to fill the next hand slot. Each of the 5
+## unit types can only be picked ONCE per hand (2026-09-10, re-restored --
+## a 2026-09-07 change briefly allowed duplicates, which the user then
+## clarified was a miscommunication: the intended design is "pick 4
+## DIFFERENT units up front, then in-match offers only ever draw from those
+## 4" -- i.e. the original 2026-08-26 rule, which this restores verbatim).
+## With HAND_SIZE=4 and 5 types total, a hand is always 4 distinct types
+## with exactly one type left undrafted. In-match growth offers are scoped
+## to type_pool (the distinct types in the drafted hand, see round_state.gd)
+## regardless of this rule, so that part of the design was never broken by
+## the duplicates experiment -- only the draft screen's own pick rule was.
+## "Ready" unlocks once all HAND_SIZE slots are full, then hands off to
 ## GameState.start_match() -> scenes/match.tscn.
 ##
 ## Visual language borrows from Draft Showdown's real draft/deck screens
@@ -48,7 +52,10 @@ var _ready_button: Button
 var _clear_button: Button
 var _breathe_phase: float = 0.0
 
-const BREATHE_PERIOD := 1.8
+## 1.8s (4 keyframes -> 0.45s hold = ~2.2 changes/sec) read as "2fps," not
+## breathing -- a slow crossfade between only 2 sparse still images doesn't
+## look like motion, it looks like a slideshow. Halved (2026-09-10).
+const BREATHE_PERIOD := 0.9
 
 ## A generous soft timer, not a punishing one -- there's no real opponent
 ## waiting on you (see game_state.gd's doc comment, every match is vs a bot),
@@ -341,7 +348,7 @@ func _build_actions() -> void:
 
 
 func _on_unit_picked(unit_def: UnitDefinition) -> void:
-	if _hand.size() >= UnitDatabase.HAND_SIZE:
+	if _hand.size() >= UnitDatabase.HAND_SIZE or _hand.has(unit_def):
 		return
 	_hand.append(unit_def)
 	_refresh()
@@ -360,16 +367,16 @@ func _on_ready_pressed() -> void:
 
 
 ## Fires when DRAFT_TIME_LIMIT runs out with the hand still incomplete --
-## fills whatever's left with random types (duplicates allowed, same as a
-## manual pick now can be -- see the 2026-09-07 doc comment at the top of
-## this file) and proceeds exactly like a manual READY press. Not a
-## punishment: the player still gets a legal, playable hand, just not one
-## they chose slot-by-slot.
+## fills whatever's left with random UNDRAFTED types (never a duplicate,
+## same one-of-each-type rule the manual picks follow) and proceeds exactly
+## like a manual READY press. Not a punishment: the player still gets a
+## legal, playable hand, just not one they chose slot-by-slot.
 func _auto_finish_draft() -> void:
 	_draft_finished = true
-	var roster := UnitDatabase.roster()
-	while _hand.size() < UnitDatabase.HAND_SIZE:
-		_hand.append(roster[randi() % roster.size()])
+	var pool := UnitDatabase.roster().filter(func(d: UnitDefinition) -> bool: return not _hand.has(d))
+	pool.shuffle()
+	while _hand.size() < UnitDatabase.HAND_SIZE and not pool.is_empty():
+		_hand.append(pool.pop_back())
 	_refresh()
 	GameState.start_match(_hand.duplicate())
 
@@ -393,18 +400,11 @@ func _refresh() -> void:
 			label.add_theme_color_override("font_color", MUTED_TEXT)
 
 	var roster := UnitDatabase.roster()
-	var hand_full := _hand.size() >= UnitDatabase.HAND_SIZE
 	for i in range(_unit_cards.size()):
-		_unit_cards[i].disabled = hand_full
-		_unit_cards[i].modulate = Color(1, 1, 1, 0.45) if hand_full else Color(1, 1, 1, 1)
-		var count := 0
-		for u in _hand:
-			if u == roster[i]:
-				count += 1
-		var badge := _card_count_badges[i]
-		badge.visible = count > 0
-		if count > 0:
-			badge.text = "x%d" % count
+		var already_picked := _hand.has(roster[i])
+		_unit_cards[i].disabled = already_picked
+		_unit_cards[i].modulate = Color(1, 1, 1, 0.45) if already_picked else Color(1, 1, 1, 1)
+		_card_count_badges[i].visible = false
 
 	var full := _hand.size() == UnitDatabase.HAND_SIZE
 	_ready_button.disabled = not full

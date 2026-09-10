@@ -40,7 +40,8 @@ var _idle_phase := 0.0
 ## stun-star spin) -- a dedicated clock for the 4-frame breathing loop so its
 ## cadence can be tuned independently. See UnitDefinition.idle_frames.
 var _breathe_phase := 0.0
-const BREATHE_PERIOD := 1.8
+## See draft_screen.gd's comment -- 1.8s read as "2fps," halved (2026-09-10).
+const BREATHE_PERIOD := 0.9
 var _views: Array[Dictionary] = []
 var _phase: Phase = Phase.BATTLE
 

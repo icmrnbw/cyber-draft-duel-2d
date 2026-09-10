@@ -51,7 +51,8 @@ var _detail_labels: Array[Label] = []
 var _upgrade_buttons: Array[Button] = []
 var _breathe_phase: float = 0.0
 
-const BREATHE_PERIOD := 1.8
+## See draft_screen.gd's comment -- 1.8s read as "2fps," halved (2026-09-10).
+const BREATHE_PERIOD := 0.9
 
 
 ## Real 4-frame breathing loop, same art and cadence as in-battle idle units
@@ -111,6 +112,7 @@ func _ready() -> void:
 	_build_collection_banner()
 	_build_hero_cards()
 	_build_back_button()
+	UITheme.build_tab_bar(self, VIEW_W, VIEW_H, UITheme.TAB_HEROES)
 	_refresh()
 
 
@@ -273,7 +275,7 @@ func _on_debug_currency_pressed() -> void:
 func _build_back_button() -> void:
 	var back := Button.new()
 	back.text = "BACK"
-	back.position = Vector2(VIEW_W * 0.5 - 100.0, VIEW_H - 90.0)
+	back.position = Vector2(VIEW_W * 0.5 - 100.0, VIEW_H - 190.0)
 	back.size = Vector2(200.0, 60.0)
 	back.add_theme_font_size_override("font_size", 18)
 	back.add_theme_stylebox_override("normal", _rounded_style(Color(0.14, 0.16, 0.23), MUTED_TEXT, 2, 14))
