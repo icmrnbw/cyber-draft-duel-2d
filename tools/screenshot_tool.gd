@@ -20,6 +20,15 @@ func _ready() -> void:
 	if scene_path == "res://scenes/unit_detail_screen.tscn" and GameState.detail_unit_path == "":
 		GameState.detail_unit_path = UnitDatabase.roster()[2].resource_path
 
+	if OS.get_cmdline_user_args().has("--tier_preview"):
+		# In-memory only (never calls PlayerProfile's own unlock_next_tier(),
+		# which would _save() and touch the real save file) -- mutates the
+		# autoload's dict directly so Heroes/Detail screens render at Lv.3
+		# for a visual check, purely for this one throwaway process. tools/
+		# is excluded from the actual APK export, so this hook never ships.
+		for u in UnitDatabase.roster():
+			PlayerProfile._unlocked_tiers[u.resource_path] = PlayerProfile.MAX_TIERS
+
 	if scene_path == "res://scenes/match.tscn":
 		# Set the fields GameState.start_match() would set WITHOUT calling it --
 		# it calls change_scene_to_file() itself, which frees this very node
