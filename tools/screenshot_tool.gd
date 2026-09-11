@@ -26,14 +26,18 @@ func _ready() -> void:
 		# (the running main scene) out from under the still-executing _ready(),
 		# killing get_tree() on the next await. Loading match.tscn ourselves
 		# below (same as every other scene here) avoids that entirely.
-		# Only overwrites player_hand/player_drafted_types if a prior step in
-		# this same run (e.g. --deploy_squad_test below) hasn't already set
-		# them, so a simulated deploy's exact composition survives through
-		# to the actual battle instead of being clobbered by the default.
-		if GameState.player_hand.is_empty():
-			var hand: Array[UnitDefinition] = UnitDatabase.roster().slice(0, 4)
-			GameState.player_hand = hand
-			GameState.player_drafted_types = hand
+		# Only sets player_drafted_types if a prior step in this same run
+		# (e.g. --deploy_squad_test below) hasn't already set it, so that
+		# simulated deployment's exact composition survives through to the
+		# actual battle instead of being clobbered by the default here.
+		# player_hand is deliberately left EMPTY by default (2026-09-11) --
+		# that's the real flow every actual match now goes through
+		# (_resolve_initial_deployment()'s in-match "choose 1 of 3" cards),
+		# not a missing-state fallback anymore. Use --deploy_squad_test or
+		# --auto_deploy to exercise/bypass that instead of hitting the
+		# unattended-cards hang this tool would otherwise sit in forever.
+		if GameState.player_drafted_types.is_empty():
+			GameState.player_drafted_types = UnitDatabase.roster().slice(0, 4)
 		var setup_rng := RandomNumberGenerator.new()
 		setup_rng.randomize()
 		GameState.match_seed = setup_rng.randi()
@@ -51,6 +55,26 @@ func _ready() -> void:
 	get_tree().root.add_child.call_deferred(instance)
 	await get_tree().process_frame
 	await get_tree().process_frame
+
+	if scene_path == "res://scenes/match.tscn" and OS.get_cmdline_user_args().has("--auto_deploy"):
+		# Drives _resolve_initial_deployment()'s 4 "choose 1 of 3" cards by
+		# emitting the same growth_offer_picked signal a real card tap
+		# would -- always index 0, so this also doubles as a check that
+		# repeatedly picking the same slot works (going all-in on one type
+		# is an explicit design goal, not an edge case). Without this an
+		# unattended run would just hang forever awaiting a pick that never
+		# comes.
+		for i in 4:
+			for f in 8:
+				await get_tree().process_frame
+			instance.growth_offer_picked.emit(0)
+		for f in 4:
+			await get_tree().process_frame
+		var roster_names := []
+		for u in instance._round_state.roster_a:
+			roster_names.append(u.display_name)
+		print("AUTO_DEPLOY: final roster_a=", roster_names,
+			" saved_for_rematch=", GameState.player_hand.size() == instance._round_state.roster_a.size())
 
 	# Let extra frames pass for match.tscn so the sim/units settle into a
 	# representative mid-setup frame before capture.
@@ -71,28 +95,6 @@ func _ready() -> void:
 		for u in rs.type_pool_a:
 			pool_names.append(u.display_name)
 		print("DEPLOY_SQUAD_TEST: roster_a=", roster_names, " type_pool_a=", pool_names)
-
-	if scene_path == "res://scenes/deploy_screen.tscn" and OS.get_cmdline_user_args().has("--simulate_deploy"):
-		# Functional check, not just visual: 2 Enforcer + 2 Trooper, then
-		# confirm the cap actually blocks a 5th unit and the button states
-		# reflect it -- exercised via the same _on_step() the +/- buttons
-		# call, not by re-deriving the expected behavior from reading code.
-		instance._on_step(0, 1)
-		instance._on_step(0, 1)
-		instance._on_step(1, 1)
-		instance._on_step(1, 1)
-		var over_cap_blocked: bool = instance._total_deployed() == 4
-		instance._on_step(2, 1)  # should be a no-op, already at the cap
-		var still_at_cap: bool = instance._total_deployed() == 4
-		var squad: Array = instance._build_deployed_squad()
-		var names := []
-		for u in squad:
-			names.append(u.display_name)
-		print("SIMULATE_DEPLOY: total_after_2+2=", instance._total_deployed(),
-			" cap_held_at_4=", over_cap_blocked, " extra_press_blocked=", still_at_cap,
-			" squad=", names, " ready_disabled=", instance._ready_button.disabled)
-		for i in 5:
-			await get_tree().process_frame
 
 	if OS.get_cmdline_user_args().has("--firepatch"):
 		# Direct visual-only preview of shaders/fire_puddle.gdshader -- the

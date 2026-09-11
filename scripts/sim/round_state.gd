@@ -113,14 +113,15 @@ func init(hand_a: Array[UnitDefinition], hand_b: Array[UnitDefinition], p_match_
 
 
 ## Like init(), but the human's deployed round-1 squad can differ from the
-## types drafted -- deploy_screen.gd (2026-09-11) lets the player field any
-## multiset of their 4 drafted types (e.g. 2 Enforcers + 2 Troopers) instead
-## of always exactly one of each. type_pool_a (what "add" growth offers can
-## bring in for the rest of the match) still comes from drafted_types_a, not
-## deployed_a -- a type left undeployed at round 1 can still show up later.
-## The bot side has no deploy-picker UI, so its drafted types and deployed
-## squad are always the same array (init() above just forwards hand_a as
-## both).
+## types drafted -- match_controller.gd's _resolve_initial_deployment()
+## (2026-09-11) lets the player field any multiset of their 4 drafted types
+## (e.g. 2 Enforcers + 2 Troopers, or 4 of one type) via the same "choose 1
+## of 3" upgrade cards mid-match growth picks use, instead of always exactly
+## one of each. type_pool_a (what "add" growth offers can bring in for the
+## rest of the match) still comes from drafted_types_a, not deployed_a -- a
+## type left undeployed at round 1 can still show up later. The bot side has
+## no deploy picker, so its drafted types and deployed squad are always the
+## same array (init() above just forwards hand_a as both).
 func init_with_deployment(deployed_a: Array[UnitDefinition], drafted_types_a: Array[UnitDefinition], hand_b: Array[UnitDefinition], p_match_seed: int,
 		p_levels_a: Array[int] = [], p_levels_b: Array[int] = []) -> void:
 	match_seed = p_match_seed

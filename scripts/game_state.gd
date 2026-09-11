@@ -17,9 +17,14 @@ extends Node
 var ranked: bool = true
 var casual_opponent_name: String = ""
 
-## The squad actually deployed round 1 -- since 2026-09-11 this can be any
-## multiset of player_drafted_types (e.g. 2 Enforcers + 2 Troopers), chosen
-## on deploy_screen.tscn, not automatically one of each drafted type.
+## The squad actually deployed round 1 -- since 2026-09-11 draft_screen.gd
+## hands this over EMPTY, and the player builds any multiset of
+## player_drafted_types they want (e.g. 2 Enforcers + 2 Troopers, or 4 of
+## one type) via match_controller.gd's _resolve_initial_deployment(), the
+## same "choose 1 of 3" cards mid-match growth picks use -- not a separate
+## screen, and not automatically one of each drafted type. Saved back here
+## once chosen so a later REMATCH reuses the exact same composition instead
+## of re-prompting.
 var player_hand: Array[UnitDefinition] = []
 ## The 4 DISTINCT types drafted on draft_screen.gd -- kept separate from
 ## player_hand (what's deployed) since RoundState.type_pool_a (which "add"

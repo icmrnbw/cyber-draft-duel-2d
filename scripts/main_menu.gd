@@ -14,7 +14,20 @@ var _daily_container: Control
 var _daily_sub_label: Label
 var _title_label: Label
 var _title2_label: Label
+var _currency_diamond: Polygon2D
 var _idle_phase: float = 0.0
+
+## Ambient drifting-ember particles (2026-09-11) -- the hue-shift on the
+## painted panels' borders was the only motion on this screen before this,
+## and it's slow/subtle enough that it went unnoticed entirely ("I asked
+## you previously to make it animated, but I didn't notice what you've
+## done"). This is the loud, unmissable version: small glowing motes
+## drifting upward with a gentle side-to-side sway and a twinkle, looping
+## forever -- the same "make a static menu feel alive" trick most mobile
+## games lean on, done procedurally (no art asset) matching this project's
+## established zero-cost-VFX pattern.
+const PARTICLE_COUNT := 20
+var _particles: Array[Dictionary] = []
 
 
 func _ready() -> void:
@@ -44,18 +57,52 @@ func _ready() -> void:
 	_build_header()
 	_build_arena_panel(arena)
 	_build_buttons()
+	_build_ambient_particles()
 	UITheme.build_tab_bar(self, VIEW_W, VIEW_H, UITheme.TAB_HOME)
 	_refresh()
 
 
-## A barely-there title pulse -- the one piece of "the whole menu shouldn't
-## be a still frame" that stays on THIS screen; the hero roster itself lives
-## on the Collection page (heroes_screen.gd) instead.
 func _process(delta: float) -> void:
 	_idle_phase += delta
 	if _title2_label:
 		var glow := 0.85 + sin(_idle_phase * 1.1) * 0.15
 		_title2_label.add_theme_color_override("font_color", UITheme.CYAN * glow + Color(0, 0, 0, 1) * (1.0 - glow))
+	if _currency_diamond:
+		_currency_diamond.rotation = sin(_idle_phase * 1.4) * 0.35
+		var pulse := 0.85 + sin(_idle_phase * 2.2) * 0.15
+		_currency_diamond.scale = Vector2(pulse, pulse)
+
+	for pd in _particles:
+		var node: Polygon2D = pd["node"]
+		node.position.y -= pd["speed"] * delta
+		if node.position.y < -12.0:
+			node.position.y = VIEW_H + 12.0
+			pd["base_x"] = randf_range(20.0, VIEW_W - 20.0)
+		pd["phase"] += delta * pd["sway_speed"]
+		node.position.x = pd["base_x"] + sin(pd["phase"]) * pd["sway_amp"]
+		var twinkle := 0.5 + 0.5 * sin(_idle_phase * pd["twinkle_speed"] + pd["phase"] * 2.0)
+		node.modulate.a = lerpf(0.2, 0.85, twinkle)
+
+
+## See PARTICLE_COUNT's doc comment above. Small diamond motes (reusing the
+## same shape as the currency icon, not a new asset) with per-particle
+## randomized speed/sway/twinkle so they don't all move in obvious lockstep.
+func _build_ambient_particles() -> void:
+	for i in PARTICLE_COUNT:
+		var size := randf_range(2.5, 5.0)
+		var node := UITheme.build_diamond(size, UITheme.CYAN if randf() < 0.55 else UITheme.VIOLET)
+		node.position = Vector2(randf_range(20.0, VIEW_W - 20.0), randf_range(0.0, VIEW_H))
+		node.z_index = 3
+		add_child(node)
+		_particles.append({
+			"node": node,
+			"speed": randf_range(14.0, 34.0),
+			"sway_amp": randf_range(6.0, 18.0),
+			"sway_speed": randf_range(0.4, 1.0),
+			"phase": randf_range(0.0, TAU),
+			"twinkle_speed": randf_range(1.2, 2.8),
+			"base_x": node.position.x,
+		})
 
 
 ## Compact 2-line logo lockup, top-left -- the reference's home screen keeps
@@ -107,6 +154,7 @@ func _build_header() -> void:
 	var diamond := UITheme.build_diamond(6.0, UITheme.CYAN)
 	diamond.position = Vector2(22.0, pill_size.y * 0.5)
 	pill.add_child(diamond)
+	_currency_diamond = diamond
 
 	_currency_label = Label.new()
 	_currency_label.position = Vector2(18.0, 0)

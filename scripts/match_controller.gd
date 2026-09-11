@@ -84,9 +84,15 @@ func _ready() -> void:
 	_round_result_overlay = _build_round_result_overlay()
 
 	# Drafted by the player on draft_screen.gd, plus a random canned bot hand --
-	# see GameState.start_match(). Falls back to a trooper-heavy default hand if
-	# this scene is ever run directly (e.g. from the editor) without drafting
-	# first. A mirror hand (identical composition both sides) is deliberately
+	# see GameState.start_match(). hand_a is now EMPTY on a fresh draft (not a
+	# missing-state signal): the player deploys round 1 in-match via
+	# _resolve_initial_deployment() below, the same "choose 1 of 3" cards
+	# growth picks already use, rather than draft_screen.gd handing over an
+	# already-complete one-of-each hand. Falls back to a trooper-heavy
+	# default hand if this scene is ever run directly (e.g. from the editor)
+	# without drafting first -- checked via drafted_types_a/hand_b instead of
+	# hand_a, since an empty hand_a no longer means "nothing happened here."
+	# A mirror hand (identical composition both sides) is deliberately
 	# avoided even in the fallback: with a single unit type, identical hands have
 	# no source of randomness in combat and simultaneous-eliminate to an exact
 	# draw on every seed forever -- confirmed via tools/round_smoke_test.gd.
@@ -94,15 +100,17 @@ func _ready() -> void:
 	var drafted_types_a: Array[UnitDefinition] = GameState.player_drafted_types
 	var hand_b: Array[UnitDefinition] = GameState.bot_hand
 	var seed_value := GameState.match_seed
-	if hand_a.is_empty() or hand_b.is_empty():
+	if drafted_types_a.is_empty() or hand_b.is_empty():
 		var trooper: UnitDefinition = load("res://resources/trooper.tres")
-		hand_a = [trooper, trooper, trooper, trooper]
+		var marksman: UnitDefinition = load("res://resources/marksman.tres")
+		var medic: UnitDefinition = load("res://resources/field_medic.tres")
+		var enforcer: UnitDefinition = load("res://resources/enforcer.tres")
+		drafted_types_a = [enforcer, trooper, marksman, medic]
+		hand_a = []
 		hand_b = [trooper, trooper, trooper]
 		seed_value = 1
-	if drafted_types_a.is_empty():
-		drafted_types_a = hand_a
 
-	_build_top_hud(hand_a[0], hand_b[0])
+	_build_top_hud(drafted_types_a[0], hand_b[0])
 
 	# Every unit starts a match at level 1 regardless of Heroes-menu progress
 	# -- PlayerProfile only gates which "level up" offers can appear DURING
@@ -111,11 +119,11 @@ func _ready() -> void:
 	_round_state = RoundState.new()
 	_round_state.init_with_deployment(hand_a, drafted_types_a, hand_b, seed_value)
 	UITheme.build_tab_bar(self, VIEW_W, VIEW_H, UITheme.TAB_BATTLE, true)
+	await _resolve_initial_deployment()
 	_start_round()
 
 
 const ENERGY_LINE_SHADER := preload("res://shaders/energy_line.gdshader")
-const FIRE_PUDDLE_SHADER := preload("res://shaders/fire_puddle.gdshader")
 
 const ARENA_FLOOR_SHADER := preload("res://shaders/arena_floor.gdshader")
 
@@ -735,6 +743,44 @@ func _build_match_over_buttons() -> void:
 
 
 # ---------------------------------------------------------------- growth picks
+
+## Round-1 squad deployment (2026-09-11), reusing the exact same "choose 1
+## of 3" upgrade-card UI as mid-match growth picks instead of a bespoke
+## screen -- draft_screen.gd now hands over an EMPTY roster_a plus the 4
+## drafted types as the type pool, and the player builds their actual round-
+## 1 composition here, one HAND_SIZE-slot pick at a time. With no existing
+## roster, roll_offers() naturally has no "double"/"levelup" groups to
+## offer (those only exist for types already present) -- every candidate is
+## already an "add", so this reuses roll_offers()/apply_offer() completely
+## unmodified. Picking the same type across multiple slots is exactly how a
+## player goes all-in on one unit (e.g. 4 Demolitionists), same as always
+## being free to pick "Duplicate" repeatedly mid-match.
+## A rematch (GameState.start_match(GameState.player_hand, ...)) passes the
+## PREVIOUS match's chosen squad back in non-empty, so roster_a is already
+## populated by init_with_deployment() and this is skipped entirely --
+## rematch means "run it back with the same lineup," not "choose again."
+func _resolve_initial_deployment() -> void:
+	if not _round_state.roster_a.is_empty():
+		return
+	_dim_overlay.visible = true
+	_phase = Phase.GROWTH_PICK
+	_spawn_preview_views()
+
+	for slot_i in range(UnitDatabase.HAND_SIZE):
+		var offers := _round_state.roll_offers(HUMAN_SIDE, slot_i, {})
+		if offers.is_empty():
+			continue
+		var label := "Deploy your squad (%d/%d)" % [slot_i + 1, UnitDatabase.HAND_SIZE]
+		var picked_i: int = await _show_growth_choice(offers, label)
+		_round_state.apply_offer(HUMAN_SIDE, offers[picked_i])
+		_spawn_preview_views()
+	_dim_overlay.visible = false
+
+	# So a later "REMATCH" press reuses this exact chosen composition
+	# instead of re-prompting the picks again -- same convention
+	# GameState.player_hand already had before this screen existed.
+	GameState.player_hand = _round_state.roster_a.duplicate()
+
 
 ## Bot side auto-grows (same random logic the 3D game always used); the human
 ## side walks through one show_growth_choice() per growth slot it's owed,
@@ -1546,40 +1592,57 @@ func _spawn_explosion(pos: Vector2) -> void:
 
 
 ## Demolitionist's Firestorm Lv2+ ability: a lingering ground fire at the
-## blast's impact point (see shaders/fire_puddle.gdshader for the actual
-## animated look -- this just places/sizes/times it). `duration_px` here is
+## blast's impact point. First version (2026-09-11) used a procedural
+## flicker shader -- replaced same-day with a real 4-frame Meshy-generated
+## fire sprite sheet (assets/fire_puddle_frame1-4.png) per explicit
+## feedback that the code-only version "doesn't look too good." Cycled as a
+## fast hard-swap flipbook rather than the character portraits' slow
+## crossfade -- real fire flickers quickly and irregularly, a smooth blend
+## between frames reads as a breathing glow, not flame. `radius_px` is
 ## already in screen pixels (converted by the caller from BattleSim's
-## sim-space radius); the shader itself does the flicker via TIME, so no
-## per-frame driving is needed here beyond the fade in/out.
+## sim-space radius).
+const FIRE_PUDDLE_FRAMES := [
+	preload("res://assets/fire_puddle_frame1.png"),
+	preload("res://assets/fire_puddle_frame2.png"),
+	preload("res://assets/fire_puddle_frame3.png"),
+	preload("res://assets/fire_puddle_frame4.png"),
+]
+const FIRE_FRAME_INTERVAL := 0.12
+
 func _spawn_fire_puddle(pos: Vector2, radius_px: float, duration: float) -> void:
-	var puddle := ColorRect.new()
-	var size := radius_px * 2.0
+	var puddle := TextureRect.new()
+	# The art's own smoke/glow halo extends past the flame core, so size it
+	# a bit larger than the bare gameplay radius or the visible fire reads
+	# smaller than the area it's actually damaging.
+	var size := radius_px * 2.4
 	puddle.size = Vector2(size, size)
 	puddle.position = pos - puddle.size * 0.5
-	puddle.color = Color.WHITE
+	puddle.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	puddle.stretch_mode = TextureRect.STRETCH_SCALE
+	puddle.texture = FIRE_PUDDLE_FRAMES[0]
 	puddle.modulate.a = 0.0
-	# z_index=0, same tier as both the floor art and every unit sprite --
-	# floor/sprites are separated purely by ADD ORDER (floor built first in
-	# _build_background(), so it's already behind every sprite even at the
-	# same z=0), which a node added dynamically mid-battle can't retroactively
-	# insert itself into the middle of via z_index alone: -1 sits BEHIND the
-	# floor too (confirmed by screenshotting an invisible puddle -- the
-	# floor is fully opaque, so anything behind it never renders), and there
-	# is no integer between two nodes both AT 0. Drawing on top of a unit's
-	# feet is an acceptable tradeoff for guaranteed visibility -- the
-	# shader's own alpha keeps it reading as a translucent glow, not a
-	# solid occluding disc.
+	# See the shader-version comment this replaced: z_index=0 (same tier as
+	# floor/sprites, drawing on top since it's added last) is the only
+	# reliable way to guarantee visibility against the opaque floor art.
 	puddle.z_index = 0
-	var mat := ShaderMaterial.new()
-	mat.shader = FIRE_PUDDLE_SHADER
-	puddle.material = mat
 	add_child(puddle)
 
-	var tw := create_tween()
-	tw.tween_property(puddle, "modulate:a", 1.0, 0.15)
-	tw.tween_interval(maxf(duration - 0.55, 0.0))
-	tw.tween_property(puddle, "modulate:a", 0.0, 0.4)
-	tw.tween_callback(puddle.queue_free)
+	var tw_in := create_tween()
+	tw_in.tween_property(puddle, "modulate:a", 1.0, 0.15)
+
+	var elapsed := 0.0
+	var frame_idx := 0
+	while elapsed < duration - 0.4 and is_instance_valid(puddle):
+		puddle.texture = FIRE_PUDDLE_FRAMES[frame_idx % FIRE_PUDDLE_FRAMES.size()]
+		frame_idx += 1
+		await get_tree().create_timer(FIRE_FRAME_INTERVAL).timeout
+		elapsed += FIRE_FRAME_INTERVAL
+
+	if not is_instance_valid(puddle):
+		return
+	var tw_out := create_tween()
+	tw_out.tween_property(puddle, "modulate:a", 0.0, 0.4)
+	tw_out.tween_callback(puddle.queue_free)
 
 
 ## Brief white flash on the hit target via the shader's flash_amount uniform
