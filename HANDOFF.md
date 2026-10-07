@@ -116,7 +116,7 @@ A purpose-built multi-round harness (`tools/balance_harness.gd`) simulates all 5
 
 ## 9. Before any real release
 
-1. **Remove the `[DEBUG] +1000 BITS` button** in `scripts/heroes_screen.gd` (its own comment says so).
+1. ~~Remove the `[DEBUG] +1000 BITS` button~~ — already removed (`scripts/heroes_screen.gd:23`, 2026-09-10). The `proto_test` scene is excluded from the Android export preset (preset is gitignored; re-add the filter if recreated).
 2. **Ads are a stub**: `AdService.ADS_AVAILABLE := false` and `show_rewarded()` grants the reward immediately. Wire an AdMob Godot plugin inside `show_rewarded()` only; call sites already pass a callback that must run only on a completed ad.
 3. Create a release keystore and a release export preset; the project has only ever produced debug APKs.
 4. Decide APK size strategy (74.5 MB debug, `assets/` is ~64 MB). Previous downscales to fit delivery limits were rejected by the owner; Play requires AAB anyway.
