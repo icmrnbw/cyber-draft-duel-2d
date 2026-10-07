@@ -77,6 +77,8 @@ var _forfeit_label: Label
 ## size throughout the match.
 const REF_SCALE := 0.20
 var _unit_scale := REF_SCALE
+## Above this many units on the field, full-health HP bars are hidden.
+const CROWDED_VIEW_COUNT := 24
 
 
 func _ready() -> void:
@@ -518,8 +520,7 @@ func _free_views() -> void:
 func _spawn_preview_views() -> void:
 	_free_views()
 	_sim = BattleSim.new()
-	_sim.setup(_round_state.roster_a, _round_state.roster_b, _round_state.current_seed(),
-		_round_state.power_a, _round_state.power_b, _round_state.levels_a, _round_state.levels_b)
+	_round_state.setup_sim(_sim)
 	for u in _sim.units:
 		_views.append(_build_unit_view(u))
 
@@ -1590,6 +1591,13 @@ func _update_view(v: Dictionary) -> void:
 	if not v.hp_frozen:
 		v.hp_display_frac = u.hp_fraction()
 	v.hp_fill.size.x = hp_w * v.hp_display_frac
+	# Crowded rounds (up to RoundState.MAX_FIELD_UNITS per side) turned the
+	# bars into a solid stripe wall; there, a bar only appears once its unit
+	# has taken damage.
+	if u.hp > 0.0:
+		var bar_shown: bool = _views.size() <= CROWDED_VIEW_COUNT or v.hp_display_frac < 0.999
+		v.hp_bg.visible = bar_shown
+		v.hp_fill.visible = bar_shown
 
 	var stun_fx: Node2D = v.stun_fx
 	stun_fx.visible = u.stagger_timer > 0.0

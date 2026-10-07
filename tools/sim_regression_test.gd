@@ -27,6 +27,7 @@ func _initialize() -> void:
 	_test_mixed_shield_caps_and_queue_order()
 	_test_mixed_shields_in_combat()
 	_test_seeded_replay()
+	_test_field_cap_preserves_group_strength()
 	if _failures.is_empty():
 		print("PASS: %d simulation regression checks" % _checks)
 		quit(0)
@@ -555,3 +556,24 @@ func _test_seeded_replay() -> void:
 		_expect(identical, "Seed %d reproduces every tick's state, RNG, hazards and events" % seed_value)
 		_expect(first.result != BattleSim.Result.IN_PROGRESS,
 			"Seed %d terminates within the simulation time limit" % seed_value)
+
+
+func _test_field_cap_preserves_group_strength() -> void:
+	var a := UnitDatabase.ENFORCER
+	var b := UnitDatabase.TROOPER
+	var roster: Array[UnitDefinition] = []
+	var levels: Array[int] = []
+	for i in range(90):
+		roster.append(a if i % 3 else b)
+		levels.append(2 if i % 3 else 1)
+	var small := RoundState.fielded(roster.slice(0, 12), levels.slice(0, 12))
+	_expect(small["defs"].size() == 12, "Field cap leaves small squads untouched")
+	_expect(small["power"][1] == RoundState.power_for_level(2), "Uncapped units keep their level power")
+	var capped := RoundState.fielded(roster, levels)
+	_expect(capped["defs"].size() == RoundState.MAX_FIELD_UNITS, "Field cap limits bodies to MAX_FIELD_UNITS")
+	var strength := {a: 0.0, b: 0.0}
+	for i in range(capped["defs"].size()):
+		strength[capped["defs"][i]] += capped["power"][i]
+	_expect(is_equal_approx(strength[a], 60.0 * RoundState.power_for_level(2)), "Capped group keeps total strength")
+	_expect(is_equal_approx(strength[b], 30.0 * RoundState.power_for_level(1)), "Every capped group keeps total strength")
+	_expect(capped["defs"][0] == b and capped["defs"][1] == a, "Capped squad keeps the original mixed order")

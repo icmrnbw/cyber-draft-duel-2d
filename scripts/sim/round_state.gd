@@ -40,13 +40,15 @@ const MAX_DRAW_RETRIES := 4
 ## Stat multiplier per level, level 1 = baseline (1.0x). Shared by both the
 ## in-match "level up" offer and the out-of-match menu progression
 ## (PlayerProfile) -- a level means the same thing wherever it came from.
-## 2026-10-07: raised 0.5 -> 1.0. At 0.5 a level-up (x1.5, then x1.33) was
-## strictly worse than doubling the same group (x2), so leveling was a trap:
-## a promotion-first player won 5/48 harness matches vs 42/48 for
-## double/add. At 1.0, Lv2 matches a doubled group's raw power and adds its
-## ability, while doubling keeps the extra bodies (32/48 after tuning;
-## builds/balance-20261007-tuned.json, docs/balance-2026-10-07.md).
-const LEVEL_POWER_STEP := 1.0
+## 2026-10-07: stats now multiply by LEVEL_POWER_GROWTH per level (Lv2 2x,
+## Lv3 4x) instead of adding 0.5 per level. With +0.5 a level-up (x1.5, then
+## x1.33) was strictly worse than doubling the same group (x2), so leveling
+## was a trap: a promotion-first player won 5/48 harness matches vs 42/48
+## for double/add. A linear +1.0 fixed Lv1->2 but left Lv2->3 at x1.5.
+## Geometric x2 makes every promotion match a doubling's raw power and add
+## the tier ability, while doubling keeps the extra bodies (see
+## docs/balance-2026-10-07.md).
+const LEVEL_POWER_GROWTH := 2.0
 ## Only 3 levels total (Lv.1 base + 2 unlockable tiers) -- deliberately small
 ## so each level-up can be a substantial, curated jump rather than a long
 ## grindy ladder. See PlayerProfile for the unlock-tier side of this.
@@ -151,8 +153,70 @@ func init_with_deployment(deployed_a: Array[UnitDefinition], drafted_types_a: Ar
 	type_pool_b = _distinct_types(hand_b)
 
 
+## Most bodies one side puts on the field (2026-10-07). Doubling compounds,
+## so late rounds reached 100-200 units per side: unreadable on a phone and
+## ~13 ms/frame on desktop at 100 per side (tools/crowd_perf.tscn). Above the
+## cap each (type, level) group fields proportionally fewer bodies and each
+## fielded body carries the strength of the ones it stands in for, so total
+## HP and damage per group are unchanged; only the body count is capped.
+const MAX_FIELD_UNITS := 40
+
+
+## Starts `sim` with this round's rosters, applying MAX_FIELD_UNITS. Every
+## caller that runs a round battle goes through here so the game, the
+## balance harness and the smoke test field identical squads.
+func setup_sim(sim: BattleSim) -> void:
+	var a := fielded(roster_a, levels_a)
+	var b := fielded(roster_b, levels_b)
+	sim.setup(a["defs"], b["defs"], current_seed(), a["power"], b["power"], a["levels"], b["levels"])
+
+
+## {defs, levels, power} for one side, compressed to at most `cap` bodies.
+static func fielded(roster: Array[UnitDefinition], levels: Array[int], cap: int = MAX_FIELD_UNITS) -> Dictionary:
+	var keys: Array = []
+	var counts := {}
+	for i in range(roster.size()):
+		var key := "%d:%d" % [roster[i].get_instance_id(), levels[i]]
+		if not counts.has(key):
+			keys.append(key)
+			counts[key] = 0
+		counts[key] += 1
+	var shown := {}
+	for key in keys:
+		shown[key] = counts[key]
+	if roster.size() > cap:
+		var total := 0
+		for key in keys:
+			shown[key] = maxi(1, int(floor(float(counts[key]) * cap / roster.size())))
+			total += shown[key]
+		# Hand out leftover slots to the groups most compressed so far.
+		while total < cap:
+			var best := ""
+			for key in keys:
+				if shown[key] < counts[key] and (best == "" or float(counts[key]) / shown[key] > float(counts[best]) / shown[best]):
+					best = key
+			if best == "":
+				break
+			shown[best] += 1
+			total += 1
+	var defs: Array[UnitDefinition] = []
+	var out_levels: Array[int] = []
+	var power: Array[float] = []
+	# Interleave groups so a compressed squad keeps the original mixed order.
+	var placed := {}
+	for i in range(roster.size()):
+		var key := "%d:%d" % [roster[i].get_instance_id(), levels[i]]
+		if placed.get(key, 0) >= shown[key]:
+			continue
+		placed[key] = placed.get(key, 0) + 1
+		defs.append(roster[i])
+		out_levels.append(levels[i])
+		power.append(power_for_level(levels[i]) * float(counts[key]) / shown[key])
+	return {"defs": defs, "levels": out_levels, "power": power}
+
+
 static func power_for_level(level: int) -> float:
-	return 1.0 + float(maxi(level, 1) - 1) * LEVEL_POWER_STEP
+	return pow(LEVEL_POWER_GROWTH, float(maxi(level, 1) - 1))
 
 
 func _ones(count: int) -> Array[int]:

@@ -3,7 +3,10 @@ extends SceneTree
 ## -- --report=res://builds/<fresh-name>.json [--suite=all|duels|squads|rounds]
 ## Reports refuse overwrites. Outcomes are samples, not proof of universal balance.
 
-const SEEDS: Array[int] = [1009, 8929, 16849]
+const DEFAULT_SEEDS: Array[int] = [1009, 8929, 16849]
+## --seeds=N extends the panels to N deterministic seeds (first three are the
+## historical ones) for larger samples; dense/slot panels use a third of them.
+var SEEDS: Array[int] = DEFAULT_SEEDS.duplicate()
 const MAX_MATCH_ATTEMPTS := 40
 var _failures: Array[String] = []
 var _battle_count := 0
@@ -19,6 +22,11 @@ func _initialize() -> void:
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--report="):
 			_report_path = arg.trim_prefix("--report=")
+		elif arg.begins_with("--seeds="):
+			var count := maxi(1, int(arg.trim_prefix("--seeds=")))
+			SEEDS.clear()
+			for i in range(count):
+				SEEDS.append(DEFAULT_SEEDS[i] if i < DEFAULT_SEEDS.size() else 1009 + 7920 * i)
 		elif arg.begins_with("--suite="):
 			_suite = arg.trim_prefix("--suite=")
 	if _report_path.is_empty() or not _report_path.begins_with("res://builds/") or ".." in _report_path or FileAccess.file_exists(_report_path):
@@ -161,7 +169,7 @@ func _run_archetypes(copies: int) -> void:
 	var archetypes := UnitDatabase.archetype_hands()
 	var names: Array = archetypes.keys()
 	var seeds: Array[int] = []
-	seeds.assign(SEEDS if copies == 1 else [SEEDS[0]])
+	seeds.assign(SEEDS if copies == 1 else SEEDS.slice(0, maxi(1, SEEDS.size() / 3)))
 	for level in [1, 2, 3]:
 		for i in range(names.size()):
 			for j in range(i + 1, names.size()):
@@ -184,7 +192,7 @@ func _run_controlled_slots() -> void:
 			hand.append(unit)
 			for level in [1, 2, 3]:
 				for opponent in ["balanced", "control", "mobility", "anti_armor"]:
-					_pair("slot%d" % panel, unit.display_name, opponent, hand, _typed(bench[opponent]), level, [SEEDS[0]])
+					_pair("slot%d" % panel, unit.display_name, opponent, hand, _typed(bench[opponent]), level, SEEDS.slice(0, maxi(1, SEEDS.size() / 3)))
 		print("controlled slot panel=%d complete; battles=%d" % [panel, _battle_count])
 
 
@@ -212,7 +220,7 @@ func _play_match(a: Array[UnitDefinition], b: Array[UnitDefinition], seed_value:
 	while not rs.is_match_over() and attempts < MAX_MATCH_ATTEMPTS:
 		attempts += 1
 		var sim := BattleSim.new()
-		sim.setup(rs.roster_a, rs.roster_b, rs.current_seed(), rs.power_a, rs.power_b, rs.levels_a, rs.levels_b)
+		rs.setup_sim(sim)
 		sim.run_to_completion()
 		_battle_count += 1
 		if sim.result == BattleSim.Result.IN_PROGRESS:

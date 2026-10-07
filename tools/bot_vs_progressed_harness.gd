@@ -8,9 +8,10 @@ extends SceneTree
 ## progressed player exploits: levelup access the bot structurally can't use.
 ##
 ## "Strongest offer" heuristic: double > levelup > add. power_for_level()
-## makes a levelup a flat +50%/+33% per-unit multiplier (L1->2, L2->3), but a
-## double gives a flat 2x on that group's TOTAL power and total effective HP
-## every time, regardless of current level -- strictly bigger in raw terms.
+## makes a levelup a x2 per-unit multiplier (since 2026-10-07; it was
+## +50%/+33%, strictly smaller than a double). A double also gives a flat 2x
+## on that group's TOTAL power and effective HP, plus extra bodies, so it
+## stays first here; levelup now matches it in raw stats and adds the ability.
 ## (An earlier version of this test scored levelup highest, which understated
 ## a good human player's performance -- see the 2026-09-06 tuning session.)
 ## Still greedy/imperfect (ignores tactical concentration-vs-spread effects

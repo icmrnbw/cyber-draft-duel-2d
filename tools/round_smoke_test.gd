@@ -26,7 +26,7 @@ func _initialize() -> void:
 	while not rs.is_match_over() and safety < 40:
 		safety += 1
 		var sim := BattleSim.new()
-		sim.setup(rs.roster_a, rs.roster_b, rs.current_seed(), rs.power_a, rs.power_b, rs.levels_a, rs.levels_b)
+		rs.setup_sim(sim)
 		var ticks := sim.run_to_completion()
 		print("round=%d ticks=%d result=%d roster_a=%d roster_b=%d lives_a=%d lives_b=%d levels_a=%s levels_b=%s" % [
 			rs.round_number, ticks, sim.result, rs.roster_a.size(), rs.roster_b.size(), rs.lives_a, rs.lives_b,
