@@ -14,7 +14,8 @@
       "property": "lv2_walk_frames",
       "background": "alpha",
       "glow_padding": 4,
-      "prompt_file": "art_sources/2026-10-04/nullbreaker_lv2_walk_prompt.txt"
+      "prompt_file": "art_sources/2026-10-04/nullbreaker_lv2_walk_prompt.txt",
+      "scale_lock": "idle"
     }
   ]
 }

@@ -16,7 +16,7 @@ from pathlib import Path
 from PIL import Image
 
 from art_safety import PROJECT_ROOT, checked_path, write_text
-from slice_sheets import entry_outputs, normalize_sheet
+from slice_sheets import entry_options, entry_outputs, normalize_sheet
 
 STATES = ("idle", "attack", "walk", "retreat")
 PROPERTIES = tuple(f"{'' if tier == 1 else f'lv{tier}_'}{state}_frames"
@@ -71,8 +71,10 @@ def read_resource(path: Path) -> tuple[dict[str, list[Path]], list[str]]:
 def inspect_frame(path: Path) -> dict:
     path = checked_path(path, must_exist=True)
     with Image.open(path) as image:
-        if image.size != (512, 512):
-            raise ValueError(f"Frame must be 512x512: {relative(path)} ({image.size})")
+        # 512x512, or larger and even-sized for scale-locked action frames
+        # (the canvas grows symmetrically around the 512 frame's center).
+        if image.width < 512 or image.height < 512 or image.width % 2 or image.height % 2:
+            raise ValueError(f"Frame must be 512x512 or larger and even-sized: {relative(path)} ({image.size})")
         if "A" not in image.getbands():
             raise ValueError(f"Frame has no alpha channel: {relative(path)}")
         alpha = image.getchannel("A")
@@ -139,8 +141,7 @@ def audit() -> dict:
             if arrays_by_resource[resource].get(prop) != outputs:
                 errors.append(f"{relative(manifest_path)}: outputs do not match wired order for {relative(resource)}:{prop}")
             sets_with_manifests.setdefault(owner, set()).add(relative(manifest_path))
-            options = {key: entry[key] for key in ("inset", "background", "foot_y", "boxes",
-                "boundary_alpha_threshold", "geometry_alpha_threshold", "glow_padding") if key in entry}
+            options = entry_options(entry)
             cache_key = (source, json.dumps(options, sort_keys=True))
             if cache_key not in normalized:
                 expected, metadata = normalize_sheet(source, **options)

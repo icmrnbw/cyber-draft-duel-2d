@@ -45,7 +45,8 @@
           1254,
           1254
         ]
-      ]
+      ],
+      "scale_lock": "idle"
     },
     {
       "sheet": "art_sources/2026-10-03/marksman_lv2_walk.png",
@@ -89,7 +90,8 @@
           1254,
           1254
         ]
-      ]
+      ],
+      "scale_lock": "idle"
     },
     {
       "sheet": "art_sources/2026-10-03/marksman_lv2_retreat.png",
@@ -133,7 +135,8 @@
           1254,
           1254
         ]
-      ]
+      ],
+      "scale_lock": "idle"
     },
     {
       "sheet": "art_sources/2026-10-03/marksman_lv3_attack.png",
@@ -177,7 +180,8 @@
           1254,
           1254
         ]
-      ]
+      ],
+      "scale_lock": "idle"
     },
     {
       "sheet": "art_sources/2026-10-03/marksman_lv3_walk.png",
@@ -221,7 +225,8 @@
           1254,
           1254
         ]
-      ]
+      ],
+      "scale_lock": "idle"
     },
     {
       "sheet": "art_sources/2026-10-03/marksman_lv3_retreat.png",
@@ -265,7 +270,8 @@
           1254,
           1254
         ]
-      ]
+      ],
+      "scale_lock": "idle"
     }
   ]
 }

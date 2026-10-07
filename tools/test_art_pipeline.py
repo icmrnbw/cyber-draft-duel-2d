@@ -76,6 +76,20 @@ class ArtPipelineTests(unittest.TestCase):
                 self.assertEqual(frame.getpixel((256, 250)), (255, 255, 255, 128))
         self.assertEqual(hashlib.sha256(source.read_bytes()).hexdigest(), before)
 
+    def test_body_height_lock_keeps_size_and_screen_feet(self):
+        # One wide pose must not shrink the body: median height matches the
+        # requested idle height and the grown canvas keeps the feet where a
+        # centered 512 frame puts them.
+        frames, report = normalize_sheet(self.sheet(alpha=255, sizes=[(30, 60), (90, 60), (30, 60), (30, 60)]),
+                                         body_height=420)
+        size = frames[0].size
+        self.assertTrue(size[0] > 512 and size[0] % 2 == 0 and size[1] >= 512 and size[1] % 2 == 0)
+        self.assertTrue(all(frame.size == size for frame in frames))
+        boxes = [frame.getchannel("A").getbbox() for frame in frames]
+        self.assertTrue(all(abs((b[3]-b[1]) - 420) <= 1 for b in boxes))
+        self.assertEqual({b[3] - (size[1]-512)//2 for b in boxes}, {481})
+        self.assertEqual(report["runtime_size"], list(size))
+
     def test_common_scale_and_foot_alignment(self):
         frames, report = normalize_sheet(self.sheet(alpha=255, sizes=[(20, 40), (40, 40), (20, 40), (30, 40)]))
         boxes = [frame.getchannel("A").getbbox() for frame in frames]

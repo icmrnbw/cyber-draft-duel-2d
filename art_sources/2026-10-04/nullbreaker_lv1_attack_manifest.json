@@ -15,7 +15,8 @@
       "background": "alpha",
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source and normalized contact reviewed: complete lance, compact flash, coat and boots have broad clear margins. Panel 1 alpha 1 at boundary is generator residue, not clipped geometry."
+      "boundary_alpha_reason": "Source and normalized contact reviewed: complete lance, compact flash, coat and boots have broad clear margins. Panel 1 alpha 1 at boundary is generator residue, not clipped geometry.",
+      "scale_lock": "idle"
     }
   ]
 }

@@ -15,7 +15,8 @@
       "background": "alpha",
       "boundary_alpha_threshold": 1,
       "boundary_alpha_reason": "Only alpha-1 generator residue reaches panels 1 and 3; solid armor and tonfas have clear margins in the source and normalized contact sheet.",
-      "glow_padding": 4
+      "glow_padding": 4,
+      "scale_lock": "idle"
     }
   ]
 }

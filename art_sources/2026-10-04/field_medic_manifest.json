@@ -41,7 +41,8 @@
         ]
       ],
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue.",
+      "scale_lock": "idle"
     },
     {
       "sheet": "art_sources/2026-10-04/field_medic_lv2_walk.png",
@@ -57,7 +58,8 @@
       "background": "alpha",
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue.",
+      "scale_lock": "idle"
     },
     {
       "sheet": "art_sources/2026-10-04/field_medic_lv2_retreat.png",
@@ -73,7 +75,8 @@
       "background": "alpha",
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue.",
+      "scale_lock": "idle"
     },
     {
       "sheet": "art_sources/2026-10-04/field_medic_lv3_attack.png",
@@ -115,7 +118,8 @@
         ]
       ],
       "boundary_alpha_threshold": 5,
-      "boundary_alpha_reason": "Custom nonoverlapping crops separate complete drone and syringe silhouettes. Source and contact inspected: main geometry is intact; only a <=5/255 antialias fringe reaches the tight top-row split. Full alpha source retained."
+      "boundary_alpha_reason": "Custom nonoverlapping crops separate complete drone and syringe silhouettes. Source and contact inspected: main geometry is intact; only a <=5/255 antialias fringe reaches the tight top-row split. Full alpha source retained.",
+      "scale_lock": "idle"
     },
     {
       "sheet": "art_sources/2026-10-04/field_medic_lv3_walk.png",
@@ -131,7 +135,8 @@
       "background": "alpha",
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue.",
+      "scale_lock": "idle"
     },
     {
       "sheet": "art_sources/2026-10-04/field_medic_lv3_retreat.png",
@@ -147,7 +152,8 @@
       "background": "alpha",
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue.",
+      "scale_lock": "idle"
     }
   ]
 }

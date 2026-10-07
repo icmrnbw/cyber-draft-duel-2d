@@ -15,7 +15,8 @@
       "background": "alpha",
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source/contact inspection confirms alternate near/far contacts and passing poses, complete rifle/boots and clear crop margins; only alpha-1 generator residue at boundaries."
+      "boundary_alpha_reason": "Source/contact inspection confirms alternate near/far contacts and passing poses, complete rifle/boots and clear crop margins; only alpha-1 generator residue at boundaries.",
+      "scale_lock": "idle"
     }
   ]
 }

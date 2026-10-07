@@ -15,7 +15,8 @@
       "background": "alpha",
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue.",
+      "scale_lock": "idle"
     },
     {
       "sheet": "art_sources/2026-10-04/demolitionist_lv2_walk_attempt2.png",
@@ -31,7 +32,8 @@
       "background": "alpha",
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue.",
+      "scale_lock": "idle"
     },
     {
       "sheet": "art_sources/2026-10-04/demolitionist_lv2_retreat_attempt2.png",
@@ -47,7 +49,8 @@
       "background": "alpha",
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue.",
+      "scale_lock": "idle"
     },
     {
       "sheet": "art_sources/2026-10-04/demolitionist_lv3_attack_attempt1.png",
@@ -63,7 +66,8 @@
       "background": "alpha",
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue.",
+      "scale_lock": "idle"
     },
     {
       "sheet": "art_sources/2026-10-04/demolitionist_lv3_walk_attempt2.png",
@@ -79,7 +83,8 @@
       "background": "alpha",
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue.",
+      "scale_lock": "idle"
     },
     {
       "sheet": "art_sources/2026-10-04/demolitionist_lv3_retreat.png",
@@ -95,7 +100,8 @@
       "background": "alpha",
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue.",
+      "scale_lock": "idle"
     }
   ]
 }

@@ -16,7 +16,8 @@
       "glow_padding": 4,
       "prompt_file": "art_sources/2026-10-04/nullbreaker_lv2_attack_prompt.txt",
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source and normalized contact reviewed: complete lance, compact cyan flash, coat and boots inside clear margins. Panel 1 and 3 boundary alpha 1 is generator residue, not clipped geometry."
+      "boundary_alpha_reason": "Source and normalized contact reviewed: complete lance, compact cyan flash, coat and boots inside clear margins. Panel 1 and 3 boundary alpha 1 is generator residue, not clipped geometry.",
+      "scale_lock": "idle"
     }
   ]
 }

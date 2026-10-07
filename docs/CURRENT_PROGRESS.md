@@ -44,3 +44,15 @@ per-unit progress immediately after each result.
 - Still open: ArcRelay Lv1 walk needs moving-loop approval before wiring, then
   ArcRelay Lv2/Lv3 walk and all retreats; Phaseblade walk/retreat; Cryotek
   actions; Nullbreaker retreats and Lv3 attack; Bulwark action rework.
+
+## 2026-10-07 action-frame scale lock
+
+Per-sheet fitting into 512 px shrank action bodies against idle (Demolitionist
+Lv2 idle 487 px vs attack 321 px; walks/retreats ~10-20% smaller). Manifest
+entries for attack/walk/retreat now carry `"scale_lock": "idle"`: the slicer
+scales the sheet so its median frame height equals the same tier's runtime idle
+median height, and grows the canvas symmetrically past 512 px when a pose needs
+room (feet stay at the same screen point under a centered Sprite2D). All 50
+manifested action sets were re-applied; the audit and Godot captures
+(`builds/qa-scale/`) confirm. Legacy Lv1 actions of the original five units have
+no source manifest and were not touched.

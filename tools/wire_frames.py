@@ -105,8 +105,9 @@ def wired_text(text, frame_sets):
 def validate_frame(path):
     path = checked_path(path, must_exist=True)
     with Image.open(path) as frame:
-        if frame.size != (512, 512) or "A" not in frame.getbands():
-            raise ValueError(f"Runtime frame must be 512x512 with alpha: {path}")
+        if (frame.width < 512 or frame.height < 512 or frame.width % 2 or frame.height % 2
+                or "A" not in frame.getbands()):
+            raise ValueError(f"Runtime frame must be at least 512x512, even-sized, with alpha: {path}")
         if frame.getchannel("A").getbbox() is None:
             raise ValueError(f"Runtime frame is empty: {path}")
 

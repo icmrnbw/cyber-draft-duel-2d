@@ -41,7 +41,8 @@
           1254,
           1254
         ]
-      ]
+      ],
+      "scale_lock": "idle"
     },
     {
       "sheet": "art_sources/2026-10-07/arcrelay/lv2_attack.png",
@@ -59,7 +60,8 @@
       "generator": "built-in image_gen",
       "prompt_file": "art_sources/2026-10-07/arcrelay/lv2_attack_prompt.txt",
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Visual review confirms the staff, relay and limbs are fully inside each crop; only alpha-1 generator residue reaches the boundary."
+      "boundary_alpha_reason": "Visual review confirms the staff, relay and limbs are fully inside each crop; only alpha-1 generator residue reaches the boundary.",
+      "scale_lock": "idle"
     },
     {
       "sheet": "art_sources/2026-10-07/arcrelay/lv3_attack.png",
@@ -77,7 +79,8 @@
       "generator": "built-in image_gen",
       "prompt_file": "art_sources/2026-10-07/arcrelay/lv3_attack_prompt.txt",
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Visual review confirms the staff, relay and limbs are fully inside each crop; only alpha-1 generator residue reaches the boundary."
+      "boundary_alpha_reason": "Visual review confirms the staff, relay and limbs are fully inside each crop; only alpha-1 generator residue reaches the boundary.",
+      "scale_lock": "idle"
     }
   ]
 }

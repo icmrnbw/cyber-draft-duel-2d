@@ -42,9 +42,49 @@ def entry_outputs(entry):
     return [checked_path(ASSETS / f"{prefix}_{name}.png") for name in names]
 
 
+def median_height(heights):
+    ordered = sorted(heights)
+    mid = len(ordered) // 2
+    return ordered[mid] if len(ordered) % 2 else (ordered[mid-1] + ordered[mid]) / 2
+
+
+def idle_body_height(out_prefix):
+    """Median visible height of the runtime idle frames for the same unit tier.
+    Action sheets lock their scale to this so a pose with a wide weapon swing or
+    effect never shrinks the body relative to idle (2026-10-07: Demolitionist Lv2
+    measured 487 px idle vs 321 px attacking under per-sheet fitting)."""
+    idle_prefix = re.sub(r"_(attack|walk|retreat)$", "_idle", out_prefix)
+    if idle_prefix == out_prefix:
+        raise ValueError(f"scale_lock needs an attack/walk/retreat prefix: {out_prefix}")
+    heights = []
+    for name in IDLE_FRAME_NAMES:
+        with Image.open(checked_path(ASSETS / f"{idle_prefix}_{name}.png", must_exist=True)) as idle:
+            bbox = idle.getchannel("A").point(lambda a: 255 if a > 8 else 0).getbbox()
+        if bbox is None:
+            raise ValueError(f"Idle reference frame is empty: {idle_prefix}_{name}")
+        heights.append(bbox[3] - bbox[1])
+    return median_height(heights)
+
+
+def entry_options(entry):
+    """normalize_sheet() keyword options for a manifest entry, shared with the
+    inventory audit so both re-normalize identically."""
+    options = {key: entry[key] for key in ("inset", "background", "foot_y", "boxes",
+        "boundary_alpha_threshold", "geometry_alpha_threshold", "glow_padding") if key in entry}
+    if entry.get("scale_lock") == "idle":
+        options["body_height"] = idle_body_height(entry["out_prefix"])
+    elif "scale_lock" in entry:
+        raise ValueError(f"Unsupported scale_lock: {entry['scale_lock']!r}")
+    return options
+
+
 def normalize_sheet(sheet_path, *, inset=0, background="alpha", foot_y=481, boxes=None,
-                    boundary_alpha_threshold=0, geometry_alpha_threshold=8, glow_padding=0):
-    """Use ONE scale per sheet and a shared foot baseline; never per-pose scaling."""
+                    boundary_alpha_threshold=0, geometry_alpha_threshold=8, glow_padding=0,
+                    body_height=None):
+    """Use ONE scale per sheet and a shared foot baseline; never per-pose scaling.
+    With body_height the scale matches that median body height instead of fitting
+    the widest pose into 512 px; the canvas then grows symmetrically around the
+    512 px frame's center so the feet land on the same screen spot."""
     source = checked_path(sheet_path, must_exist=True)
     if not isinstance(inset, int) or inset < 0:
         raise ValueError("inset must be a nonnegative integer")
@@ -115,23 +155,39 @@ def normalize_sheet(sheet_path, *, inset=0, background="alpha", foot_y=481, boxe
         anchors.append(((bbox[0]+bbox[2])/2-padded[0], bbox[3]-padded[1]))
         frames.append(frame.crop(padded))
     margin = round(TARGET * PAD_FRAC)
-    scale = min((TARGET-2*margin)/max(f.width for f in frames),
-                (foot_y-margin)/max(anchor[1] for anchor in anchors))
-    bottom_padding = max(f.height-anchor[1] for f, anchor in zip(frames, anchors))
-    if bottom_padding:
-        scale = min(scale, (TARGET-foot_y)/bottom_padding)
+    safety_lip = 2 if glow_padding else 0
+    if body_height is None:
+        scale = min((TARGET-2*margin)/max(f.width for f in frames),
+                    (foot_y-margin)/max(anchor[1] for anchor in anchors))
+        bottom_padding = max(f.height-anchor[1] for f, anchor in zip(frames, anchors))
+        if bottom_padding:
+            scale = min(scale, (TARGET-foot_y)/bottom_padding)
+        canvas_w = canvas_h = TARGET
+    else:
+        if not isinstance(body_height, (int, float)) or not 64 <= body_height <= 2*TARGET:
+            raise ValueError("body_height must be between 64 and 1024 runtime pixels")
+        scale = body_height / median_height([b[3]-b[1] for b in boxes])
+        # Grow (never shrink) the canvas symmetrically around the 512 frame's
+        # center, so a centered Sprite2D keeps the feet where idle has them.
+        half_w = max([TARGET/2] + [max(anchor[0], f.width-anchor[0])*scale + margin
+                                   for f, anchor in zip(frames, anchors)])
+        up = max([TARGET/2] + [anchor[1]*scale - (foot_y-TARGET/2) + safety_lip + margin
+                               for anchor in anchors])
+        down = max([TARGET/2] + [(f.height-anchor[1])*scale + (foot_y-TARGET/2) for f, anchor in zip(frames, anchors)])
+        half_h = max(up, down)
+        canvas_w, canvas_h = 2*int(-(-half_w//1)), 2*int(-(-half_h//1))
+        foot_y += (canvas_h - TARGET)//2
     normalized = []
     for frame, anchor in zip(frames, anchors):
         size = (max(1, round(frame.width*scale)), max(1, round(frame.height*scale)))
         resized = frame.resize(size, Image.Resampling.LANCZOS)
-        canvas = Image.new("RGBA", (TARGET, TARGET))
+        canvas = Image.new("RGBA", (canvas_w, canvas_h))
         # No alpha mask here: mask paste would multiply semitransparent alpha twice.
         # LANCZOS can add a two-to-three pixel translucent fringe beyond the
         # mathematically scaled anchor when a glow padding crop is requested.
         # Keep the historical exact baseline for ordinary crops, and leave a
         # tiny safety lip only on padded crops.
-        safety_lip = 2 if glow_padding else 0
-        canvas.paste(resized, (round(TARGET/2-anchor[0]*scale), foot_y-round(anchor[1]*scale)-safety_lip))
+        canvas.paste(resized, (round(canvas_w/2-anchor[0]*scale), foot_y-round(anchor[1]*scale)-safety_lip))
         normalized.append(canvas)
     metadata = {"source": str(source.relative_to(PROJECT_ROOT)).replace("\\", "/"),
                 "source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
@@ -139,7 +195,7 @@ def normalize_sheet(sheet_path, *, inset=0, background="alpha", foot_y=481, boxe
                 "common_scale": scale, "foot_y": foot_y, "source_bboxes": boxes,
                 "geometry_alpha_threshold": geometry_alpha_threshold, "glow_padding": glow_padding,
                 "padded_bboxes": padded_boxes,
-                "runtime_size": [TARGET, TARGET], "boundary_alpha_threshold": boundary_alpha_threshold,
+                "runtime_size": [canvas_w, canvas_h], "body_height": body_height, "boundary_alpha_threshold": boundary_alpha_threshold,
                 "edge_alpha_max": edge_alpha, "warnings": warnings}
     return normalized, metadata
 
@@ -167,17 +223,25 @@ def load_manifest(manifest_path):
 
 
 def contact_sheet(frames, title, names):
-    contact = Image.new("RGB", (TARGET*2, (TARGET+32)*2+36), "#252b37")
+    # Cells match the largest frame so scale-locked (oversized) frames are shown
+    # at true relative size; a dashed box marks the standard 512 px frame.
+    cw = max(TARGET, max(f.width for f in frames))
+    ch = max(TARGET, max(f.height for f in frames))
+    contact = Image.new("RGB", (cw*2, (ch+32)*2+36), "#252b37")
     draw = ImageDraw.Draw(contact)
     draw.text((12, 10), title, fill="white")
     for i, frame in enumerate(frames):
-        x, y = i%2*TARGET, 36+i//2*(TARGET+32)
-        for cy in range(0, TARGET, 32):
-            for cx in range(0, TARGET, 32):
+        x, y = i%2*cw, 36+i//2*(ch+32)
+        for cy in range(0, ch, 32):
+            for cx in range(0, cw, 32):
                 shade = "#626979" if (cx//32+cy//32)%2 else "#7b8190"
-                draw.rectangle((x+cx, y+cy, x+cx+31, y+cy+31), fill=shade)
-        contact.paste(frame, (x, y), frame)
-        draw.text((x+10, y+TARGET+8), names[i], fill="white")
+                draw.rectangle((x+cx, y+cy, x+min(cx+31, cw-1), y+min(cy+31, ch-1)), fill=shade)
+        fx, fy = x+(cw-frame.width)//2, y+(ch-frame.height)//2
+        contact.paste(frame, (fx, fy), frame)
+        if (frame.width, frame.height) != (TARGET, TARGET):
+            ox, oy = x+(cw-TARGET)//2, y+(ch-TARGET)//2
+            draw.rectangle((ox, oy, ox+TARGET-1, oy+TARGET-1), outline="#ffcc44")
+        draw.text((x+10, y+ch+8), f"{names[i]} {frame.width}x{frame.height}", fill="white")
     return contact
 
 
@@ -187,10 +251,7 @@ def import_manifest(manifest_path, *, apply=False, report_dir=None, wire=False):
     # Prepare every image and every resource in memory before any runtime write.
     prepared = []
     for entry in manifest["entries"]:
-        frames, metadata = normalize_sheet(entry["sheet"], inset=entry.get("inset", 0),
-            background=entry.get("background", "alpha"), foot_y=entry.get("foot_y", 481), boxes=entry.get("boxes"),
-            boundary_alpha_threshold=entry.get("boundary_alpha_threshold", 0),
-            geometry_alpha_threshold=entry.get("geometry_alpha_threshold", 8), glow_padding=entry.get("glow_padding", 0))
+        frames, metadata = normalize_sheet(entry["sheet"], **entry_options(entry))
         if entry.get("boundary_alpha_threshold", 0) and not entry.get("boundary_alpha_reason", "").strip():
             raise ValueError("A nonzero boundary alpha threshold requires a documented boundary_alpha_reason")
         if apply and metadata["warnings"] and not entry.get("reviewed_boundary_exception", "").strip():

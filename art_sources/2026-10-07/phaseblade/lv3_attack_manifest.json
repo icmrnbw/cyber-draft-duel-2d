@@ -43,7 +43,8 @@
       "prompt_file": "art_sources/2026-10-07/phaseblade/lv3_attack_compact_prompt.txt",
       "generator": "built-in image_gen",
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source and normalized contact reviewed; separate figures and full blades. Only alpha-1 generator residue allowed on crop borders."
+      "boundary_alpha_reason": "Source and normalized contact reviewed; separate figures and full blades. Only alpha-1 generator residue allowed on crop borders.",
+      "scale_lock": "idle"
     }
   ]
 }

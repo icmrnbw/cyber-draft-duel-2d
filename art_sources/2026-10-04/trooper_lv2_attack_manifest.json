@@ -15,7 +15,8 @@
       "background": "alpha",
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source and normalized contact inspected: complete body, rifle and flash have clear margins. Maximum boundary alpha 1 is generator residue, not clipped geometry."
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete body, rifle and flash have clear margins. Maximum boundary alpha 1 is generator residue, not clipped geometry.",
+      "scale_lock": "idle"
     }
   ]
 }

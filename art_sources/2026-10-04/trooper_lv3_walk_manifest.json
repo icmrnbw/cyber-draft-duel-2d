@@ -15,7 +15,8 @@
       "background": "alpha",
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source and contact reviewed: canonical orange armor, actual opposite leg contacts, complete figures/weapon clear of all cell edges; max alpha1 residue only."
+      "boundary_alpha_reason": "Source and contact reviewed: canonical orange armor, actual opposite leg contacts, complete figures/weapon clear of all cell edges; max alpha1 residue only.",
+      "scale_lock": "idle"
     }
   ]
 }

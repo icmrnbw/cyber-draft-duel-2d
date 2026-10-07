@@ -41,7 +41,8 @@
         ]
       ],
       "boundary_alpha_threshold": 1,
-      "boundary_alpha_reason": "Source and normalized contact inspected: alternating near/far leg contacts and passing poses, complete gear and boots with clear margins. Alpha1 edge residue only. Reverse crop order (TL,BR,BL,TR) produces backward gait."
+      "boundary_alpha_reason": "Source and normalized contact inspected: alternating near/far leg contacts and passing poses, complete gear and boots with clear margins. Alpha1 edge residue only. Reverse crop order (TL,BR,BL,TR) produces backward gait.",
+      "scale_lock": "idle"
     }
   ]
 }
