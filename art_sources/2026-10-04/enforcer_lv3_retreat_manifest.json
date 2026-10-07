@@ -43,7 +43,9 @@
         ]
       ],
       "review_notes": "Canonical rounded tier3 pauldrons, orange cracks, two orange tonfas, guard and alternating feet retained; reversed gait crop order matches level2 retreat.",
-      "scale_lock": "idle"
+      "scale_lock": "idle",
+      "body_scale": 0.876,
+      "body_scale_reason": "Head-width check 2026-10-07: helmet crown width 111% of idle at equal depth below head top (median of 4 frames [1.09, 1.13, 1.12, 1.1]) under median-height lock; corrected to idle head size. Second pass refined to 0.876."
     }
   ]
 }

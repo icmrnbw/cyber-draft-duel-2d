@@ -56,3 +56,11 @@ room (feet stay at the same screen point under a centered Sprite2D). All 50
 manifested action sets were re-applied; the audit and Godot captures
 (`builds/qa-scale/`) confirm. Legacy Lv1 actions of the original five units have
 no source manifest and were not touched.
+
+Follow-up the same day (QA review): action feet now land on the tier's measured
+idle foot line (older idles stand at ~491-512 px, not 481), removing a 20-29 px
+jump on state changes. Median-height matching over-enlarged crouched/braced
+poses, so 18 sets carry a reviewed `body_scale` derived from helmet-crown width
+versus idle (documented per entry). Not applied to Bulwark (actions use a
+different helmet; flagged for rework), ArcRelay (staff above head) or Trooper
+(antenna), where the measurement is not valid.

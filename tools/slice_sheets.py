@@ -48,7 +48,7 @@ def median_height(heights):
     return ordered[mid] if len(ordered) % 2 else (ordered[mid-1] + ordered[mid]) / 2
 
 
-def idle_body_height(out_prefix):
+def idle_reference(out_prefix):
     """Median visible height of the runtime idle frames for the same unit tier.
     Action sheets lock their scale to this so a pose with a wide weapon swing or
     effect never shrinks the body relative to idle (2026-10-07: Demolitionist Lv2
@@ -56,14 +56,19 @@ def idle_body_height(out_prefix):
     idle_prefix = re.sub(r"_(attack|walk|retreat)$", "_idle", out_prefix)
     if idle_prefix == out_prefix:
         raise ValueError(f"scale_lock needs an attack/walk/retreat prefix: {out_prefix}")
-    heights = []
+    heights, feet = [], []
     for name in IDLE_FRAME_NAMES:
         with Image.open(checked_path(ASSETS / f"{idle_prefix}_{name}.png", must_exist=True)) as idle:
+            if idle.size != (TARGET, TARGET):
+                raise ValueError(f"Idle reference frame must be {TARGET}px: {idle_prefix}_{name}")
             bbox = idle.getchannel("A").point(lambda a: 255 if a > 8 else 0).getbbox()
         if bbox is None:
             raise ValueError(f"Idle reference frame is empty: {idle_prefix}_{name}")
         heights.append(bbox[3] - bbox[1])
-    return median_height(heights)
+        feet.append(bbox[3])
+    # Action feet land on the idle's own foot line: older idles stand at
+    # ~491-512 px, not the 481 px default, so switching state made feet jump.
+    return median_height(heights), round(median_height(feet))
 
 
 def entry_options(entry):
@@ -72,7 +77,16 @@ def entry_options(entry):
     options = {key: entry[key] for key in ("inset", "background", "foot_y", "boxes",
         "boundary_alpha_threshold", "geometry_alpha_threshold", "glow_padding") if key in entry}
     if entry.get("scale_lock") == "idle":
-        options["body_height"] = idle_body_height(entry["out_prefix"])
+        body_height, idle_foot = idle_reference(entry["out_prefix"])
+        # Median height over-enlarges crouched/braced poses, so a reviewed
+        # per-sheet body_scale (from head-width comparison) can correct it.
+        body_scale = entry.get("body_scale", 1.0)
+        if not isinstance(body_scale, (int, float)) or not 0.7 <= body_scale <= 1.3:
+            raise ValueError("body_scale must be between 0.7 and 1.3")
+        if body_scale != 1.0 and not entry.get("body_scale_reason", "").strip():
+            raise ValueError("A body_scale correction requires a documented body_scale_reason")
+        options["body_height"] = body_height * body_scale
+        options.setdefault("foot_y", min(511, idle_foot))
     elif "scale_lock" in entry:
         raise ValueError(f"Unsupported scale_lock: {entry['scale_lock']!r}")
     return options

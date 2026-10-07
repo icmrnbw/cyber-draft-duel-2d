@@ -42,7 +42,9 @@
       ],
       "boundary_alpha_threshold": 1,
       "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue.",
-      "scale_lock": "idle"
+      "scale_lock": "idle",
+      "body_scale": 0.873,
+      "body_scale_reason": "Head-width check 2026-10-07: helmet crown width 111% of idle at equal depth below head top (median of 4 frames [1.11, 1.1, 1.11, 1.12]) under median-height lock; corrected to idle head size. Second pass refined to 0.873."
     },
     {
       "sheet": "art_sources/2026-10-04/field_medic_lv2_walk.png",
@@ -76,7 +78,9 @@
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
       "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue.",
-      "scale_lock": "idle"
+      "scale_lock": "idle",
+      "body_scale": 0.904,
+      "body_scale_reason": "Head-width check 2026-10-07: helmet crown width 108% of idle at equal depth below head top (median of 4 frames [1.08, 1.06, 1.09, 1.09]) under median-height lock; corrected to idle head size. Second pass refined to 0.904."
     },
     {
       "sheet": "art_sources/2026-10-04/field_medic_lv3_attack.png",
@@ -119,7 +123,9 @@
       ],
       "boundary_alpha_threshold": 5,
       "boundary_alpha_reason": "Custom nonoverlapping crops separate complete drone and syringe silhouettes. Source and contact inspected: main geometry is intact; only a <=5/255 antialias fringe reaches the tight top-row split. Full alpha source retained.",
-      "scale_lock": "idle"
+      "scale_lock": "idle",
+      "body_scale": 0.899,
+      "body_scale_reason": "Head-width check 2026-10-07: helmet crown width 108% of idle at equal depth below head top (median of 4 frames [1.08, 1.09, 1.09, 1.07]) under median-height lock; corrected to idle head size. Second pass refined to 0.899."
     },
     {
       "sheet": "art_sources/2026-10-04/field_medic_lv3_walk.png",

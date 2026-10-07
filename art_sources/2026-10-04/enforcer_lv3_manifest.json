@@ -16,7 +16,9 @@
       "boundary_alpha_threshold": 1,
       "boundary_alpha_reason": "Only alpha-1 generator residue reaches the cell edges; body, both tonfas and orange glow have transparent clearance, verified in the source and normalized contact sheet.",
       "glow_padding": 4,
-      "scale_lock": "idle"
+      "scale_lock": "idle",
+      "body_scale": 0.889,
+      "body_scale_reason": "Head-width check 2026-10-07: helmet crown width 110% of idle at equal depth below head top (median of 3 frames [1.1, 1.06, 1.11, 0.7]) under median-height lock; corrected to idle head size. Second pass refined to 0.889."
     }
   ]
 }

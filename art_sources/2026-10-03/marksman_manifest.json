@@ -181,7 +181,9 @@
           1254
         ]
       ],
-      "scale_lock": "idle"
+      "scale_lock": "idle",
+      "body_scale": 0.942,
+      "body_scale_reason": "Head-width check 2026-10-07: helmet crown width 104% of idle at equal depth below head top (median of 4 frames [1.04, 1.05, 1.02, 1.06]) under median-height lock; corrected to idle head size. Second pass refined to 0.942."
     },
     {
       "sheet": "art_sources/2026-10-03/marksman_lv3_walk.png",
@@ -271,7 +273,9 @@
           1254
         ]
       ],
-      "scale_lock": "idle"
+      "scale_lock": "idle",
+      "body_scale": 0.904,
+      "body_scale_reason": "Head-width check 2026-10-07: helmet crown width 108% of idle at equal depth below head top (median of 4 frames [1.06, 1.07, 1.13, 1.09]) under median-height lock; corrected to idle head size. Second pass refined to 0.904."
     }
   ]
 }

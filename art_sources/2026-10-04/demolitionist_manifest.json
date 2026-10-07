@@ -16,7 +16,9 @@
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
       "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue.",
-      "scale_lock": "idle"
+      "scale_lock": "idle",
+      "body_scale": 0.947,
+      "body_scale_reason": "Head-width check 2026-10-07: helmet crown width 104% of idle at equal depth below head top (median of 3 frames [1.04, 0.99, 0.42, 1.05]) under median-height lock; corrected to idle head size. Second pass refined to 0.947."
     },
     {
       "sheet": "art_sources/2026-10-04/demolitionist_lv2_walk_attempt2.png",
@@ -33,7 +35,9 @@
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
       "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue.",
-      "scale_lock": "idle"
+      "scale_lock": "idle",
+      "body_scale": 1.096,
+      "body_scale_reason": "Head-width check 2026-10-07: helmet crown width 93% of idle at equal depth below head top (median of 4 frames [0.92, 0.91, 0.94, 0.95]) under median-height lock; corrected to idle head size. Second pass refined to 1.096."
     },
     {
       "sheet": "art_sources/2026-10-04/demolitionist_lv2_retreat_attempt2.png",
@@ -67,7 +71,9 @@
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
       "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue.",
-      "scale_lock": "idle"
+      "scale_lock": "idle",
+      "body_scale": 0.918,
+      "body_scale_reason": "Head-width check 2026-10-07: helmet crown width 107% of idle at equal depth below head top (median of 4 frames [1.06, 1.08, 1.0, 1.07]) under median-height lock; corrected to idle head size. Second pass refined to 0.918."
     },
     {
       "sheet": "art_sources/2026-10-04/demolitionist_lv3_walk_attempt2.png",

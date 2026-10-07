@@ -44,7 +44,9 @@
       "generator": "built-in image_gen",
       "boundary_alpha_threshold": 1,
       "boundary_alpha_reason": "Source and normalized contact reviewed; separate figures and full blades. Only alpha-1 generator residue allowed on crop borders.",
-      "scale_lock": "idle"
+      "scale_lock": "idle",
+      "body_scale": 1.058,
+      "body_scale_reason": "Head-width check 2026-10-07: helmet crown width 96% of idle at equal depth below head top (median of 4 frames [0.94, 0.95, 0.98, 0.96]) under median-height lock; corrected to idle head size. Second pass refined to 1.058."
     }
   ]
 }

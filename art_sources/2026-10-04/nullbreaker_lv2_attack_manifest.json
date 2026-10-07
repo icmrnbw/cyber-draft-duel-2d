@@ -17,7 +17,9 @@
       "prompt_file": "art_sources/2026-10-04/nullbreaker_lv2_attack_prompt.txt",
       "boundary_alpha_threshold": 1,
       "boundary_alpha_reason": "Source and normalized contact reviewed: complete lance, compact cyan flash, coat and boots inside clear margins. Panel 1 and 3 boundary alpha 1 is generator residue, not clipped geometry.",
-      "scale_lock": "idle"
+      "scale_lock": "idle",
+      "body_scale": 0.944,
+      "body_scale_reason": "Head-width check 2026-10-07: helmet crown width 105% of idle at equal depth below head top (median of 3 frames [1.05, 1.04, 0.85, 1.06]) under median-height lock; corrected to idle head size. Second pass refined to 0.944."
     }
   ]
 }

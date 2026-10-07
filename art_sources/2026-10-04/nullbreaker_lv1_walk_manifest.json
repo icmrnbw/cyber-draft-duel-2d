@@ -15,7 +15,9 @@
       "background": "alpha",
       "glow_padding": 4,
       "prompt_file": "art_sources/2026-10-04/nullbreaker_lv1_walk_v4_prompt.txt",
-      "scale_lock": "idle"
+      "scale_lock": "idle",
+      "body_scale": 0.922,
+      "body_scale_reason": "Head-width check 2026-10-07: helmet crown width 107% of idle at equal depth below head top (median of 4 frames [1.06, 1.06, 1.07, 1.07]) under median-height lock; corrected to idle head size. Second pass refined to 0.922."
     }
   ]
 }

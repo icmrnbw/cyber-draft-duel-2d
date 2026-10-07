@@ -43,7 +43,9 @@
         ]
       ],
       "review_notes": "Canonical spiked pauldrons and two short cyan tonfas retained. Defensive guard and alternating supported/lifted legs; crop order reverses the row-major gait for backward travel.",
-      "scale_lock": "idle"
+      "scale_lock": "idle",
+      "body_scale": 0.95,
+      "body_scale_reason": "Head-width check 2026-10-07: helmet crown width 105% of idle at equal depth below head top (median of 4 frames [1.02, 1.07, 1.07, 1.03]) under median-height lock; corrected to idle head size. Second pass refined to 0.950."
     }
   ]
 }
