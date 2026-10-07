@@ -577,3 +577,22 @@ func _test_field_cap_preserves_group_strength() -> void:
 	_expect(is_equal_approx(strength[a], 60.0 * RoundState.power_for_level(2)), "Capped group keeps total strength")
 	_expect(is_equal_approx(strength[b], 30.0 * RoundState.power_for_level(1)), "Every capped group keeps total strength")
 	_expect(capped["defs"][0] == b and capped["defs"][1] == a, "Capped squad keeps the original mixed order")
+	# Many small groups (every type at every level, uneven counts) must still
+	# respect the hard cap and keep each group's total.
+	var mixed: Array[UnitDefinition] = []
+	var mixed_levels: Array[int] = []
+	var types := UnitDatabase.roster()
+	for i in range(types.size() * 3):
+		for c in range(1 + i % 4):
+			mixed.append(types[i % types.size()])
+			mixed_levels.append(1 + i / types.size())
+	var hard := RoundState.fielded(mixed, mixed_levels)
+	_expect(mixed.size() > RoundState.MAX_FIELD_UNITS and hard["defs"].size() == RoundState.MAX_FIELD_UNITS,
+		"Field cap is a hard limit with 30 small groups (%d fielded)" % hard["defs"].size())
+	var total_power := 0.0
+	var expected_power := 0.0
+	for i in range(hard["defs"].size()):
+		total_power += hard["power"][i]
+	for i in range(mixed.size()):
+		expected_power += RoundState.power_for_level(mixed_levels[i])
+	_expect(is_equal_approx(total_power, expected_power), "Hard cap keeps total strength")

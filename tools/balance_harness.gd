@@ -115,6 +115,12 @@ func _battle(a: Array[UnitDefinition], b: Array[UnitDefinition], level: int, see
 	for _unit in b:
 		levels_b.append(level)
 		power_b.append(RoundState.power_for_level(level))
+	# BattleSim's only randomness is the stagger roll, so a seed alone barely
+	# changes a fight. Beyond the historical seeds, vary what really varies in
+	# play: the deployment order, which sets each unit's formation slot.
+	if seed_value not in DEFAULT_SEEDS:
+		a = _formation(a, seed_value)
+		b = _formation(b, seed_value + 1)
 	var sim := BattleSim.new()
 	sim.setup(a, b, seed_value, power_a, power_b, levels_a, levels_b)
 	var ticks := sim.run_to_completion()
@@ -124,6 +130,18 @@ func _battle(a: Array[UnitDefinition], b: Array[UnitDefinition], level: int, see
 	return {"result": sim.result, "seconds": sim.elapsed, "ticks": ticks,
 		"timeout": sim.elapsed >= BattleSim.MATCH_TIMEOUT,
 		"hp_a": sim.total_hp(0), "hp_b": sim.total_hp(1)}
+
+
+func _formation(hand: Array[UnitDefinition], seed_value: int) -> Array[UnitDefinition]:
+	var out := hand.duplicate()
+	var rng := RandomNumberGenerator.new()
+	rng.seed = seed_value
+	for i in range(out.size() - 1, 0, -1):
+		var j := rng.randi_range(0, i)
+		var temporary: UnitDefinition = out[i]
+		out[i] = out[j]
+		out[j] = temporary
+	return out
 
 
 func _pair(suite: String, label_a: String, label_b: String, a: Array[UnitDefinition],

@@ -185,11 +185,12 @@ static func fielded(roster: Array[UnitDefinition], levels: Array[int], cap: int 
 	for key in keys:
 		shown[key] = counts[key]
 	if roster.size() > cap:
-		var total := 0
+		# Hard cap: every group keeps one body (at most 10 types x 3 levels =
+		# 30 groups, under the cap), then the remaining slots go to whichever
+		# group is currently carrying the most units per body.
+		var total := keys.size()
 		for key in keys:
-			shown[key] = maxi(1, int(floor(float(counts[key]) * cap / roster.size())))
-			total += shown[key]
-		# Hand out leftover slots to the groups most compressed so far.
+			shown[key] = 1
 		while total < cap:
 			var best := ""
 			for key in keys:
