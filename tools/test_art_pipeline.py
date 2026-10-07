@@ -90,6 +90,31 @@ class ArtPipelineTests(unittest.TestCase):
         self.assertEqual({b[3] - (size[1]-512)//2 for b in boxes}, {481})
         self.assertEqual(report["runtime_size"], list(size))
 
+    def idle_frames(self, prefix, height=300, foot=500):
+        for name in slice_sheets.IDLE_FRAME_NAMES:
+            image = Image.new("RGBA", (512, 512))
+            ImageDraw.Draw(image).rectangle((200, foot-height, 299, foot-1), fill=(90, 90, 90, 255))
+            image.save(prepare_output(self.directory / f"{prefix}_{name}.png"))
+
+    def test_scale_lock_adopts_idle_foot_line_and_reviewed_body_scale(self):
+        self.idle_frames("probe_lv2_idle")
+        entry = {"out_prefix": "probe_lv2_attack", "scale_lock": "idle"}
+        with patch.object(slice_sheets, "ASSETS", self.directory):
+            options = slice_sheets.entry_options(entry)
+            self.assertEqual((options["body_height"], options["foot_y"]), (300, 500))
+            with self.assertRaisesRegex(ValueError, "body_scale_reason"):
+                slice_sheets.entry_options(dict(entry, body_scale=0.9))
+            with self.assertRaisesRegex(ValueError, "between 0.7 and 1.3"):
+                slice_sheets.entry_options(dict(entry, body_scale=0.5, body_scale_reason="x"))
+            options = slice_sheets.entry_options(dict(entry, body_scale=0.9, body_scale_reason="reviewed"))
+        self.assertEqual(options["body_height"], 270)
+        frames, report = normalize_sheet(self.sheet(alpha=255, sizes=[(30, 60), (60, 50), (30, 60), (30, 60)]), **options)
+        size = frames[0].size
+        boxes = [frame.getchannel("A").getbbox() for frame in frames]
+        # Feet sit on the idle's 500 px line in 512-frame coordinates.
+        self.assertEqual({b[3] - (size[1]-512)//2 for b in boxes}, {500})
+        self.assertTrue(all(abs((b[3]-b[1]) - 270) <= 1 for i, b in enumerate(boxes) if i != 1))
+
     def test_common_scale_and_foot_alignment(self):
         frames, report = normalize_sheet(self.sheet(alpha=255, sizes=[(20, 40), (40, 40), (20, 40), (30, 40)]))
         boxes = [frame.getchannel("A").getbbox() for frame in frames]

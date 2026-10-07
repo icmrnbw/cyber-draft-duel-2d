@@ -40,7 +40,13 @@ const MAX_DRAW_RETRIES := 4
 ## Stat multiplier per level, level 1 = baseline (1.0x). Shared by both the
 ## in-match "level up" offer and the out-of-match menu progression
 ## (PlayerProfile) -- a level means the same thing wherever it came from.
-const LEVEL_POWER_STEP := 0.5
+## 2026-10-07: raised 0.5 -> 1.0. At 0.5 a level-up (x1.5, then x1.33) was
+## strictly worse than doubling the same group (x2), so leveling was a trap:
+## a promotion-first player won 5/48 harness matches vs 42/48 for
+## double/add. At 1.0, Lv2 matches a doubled group's raw power and adds its
+## ability, while doubling keeps the extra bodies (32/48 after tuning;
+## builds/balance-20261007-tuned.json, docs/balance-2026-10-07.md).
+const LEVEL_POWER_STEP := 1.0
 ## Only 3 levels total (Lv.1 base + 2 unlockable tiers) -- deliberately small
 ## so each level-up can be a substantial, curated jump rather than a long
 ## grindy ladder. See PlayerProfile for the unlock-tier side of this.

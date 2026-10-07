@@ -16,7 +16,9 @@
       "glow_padding": 4,
       "boundary_alpha_threshold": 1,
       "boundary_alpha_reason": "Source and normalized contact inspected: complete body, rifle and flash have clear margins. Maximum boundary alpha 1 is generator residue, not clipped geometry.",
-      "scale_lock": "idle"
+      "scale_lock": "idle",
+      "body_scale": 0.943,
+      "body_scale_reason": "Head-width check 2026-10-07: idle height includes the rifle held upright above the helmet, so median-height lock enlarged the body; helmet crown measured with the rifle columns excluded was 106% of idle. Body height without the rifle agrees (+6-9%). Corrected to idle head size."
     }
   ]
 }

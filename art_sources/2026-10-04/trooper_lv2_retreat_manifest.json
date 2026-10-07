@@ -42,7 +42,9 @@
       ],
       "boundary_alpha_threshold": 1,
       "boundary_alpha_reason": "Source and normalized contact inspected: alternating near/far leg contacts and passing poses, complete gear and boots with clear margins. Alpha1 edge residue only. Reverse crop order (TL,BR,BL,TR) produces backward gait.",
-      "scale_lock": "idle"
+      "scale_lock": "idle",
+      "body_scale": 0.951,
+      "body_scale_reason": "Head-width check 2026-10-07: idle height includes the rifle held upright above the helmet, so median-height lock enlarged the body; helmet crown measured with the rifle columns excluded was 105% of idle. Body height without the rifle agrees (+6-9%). Corrected to idle head size."
     }
   ]
 }
