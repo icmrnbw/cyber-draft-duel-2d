@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-04/enforcer_lv2_retreat_v3.png",
+      "out_prefix": "enforcer_lv2_retreat",
+      "frame_names": [
+        "retreat1",
+        "retreat2",
+        "retreat3",
+        "retreat4"
+      ],
+      "resource": "resources/enforcer.tres",
+      "property": "lv2_retreat_frames",
+      "background": "alpha",
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Only alpha-1 generator residue occurs at cell edges; inspected original and backward-ordered contact sheet show clear boots, weapons and armor margins.",
+      "glow_padding": 4,
+      "boxes": [
+        [
+          0,
+          0,
+          627,
+          627
+        ],
+        [
+          627,
+          627,
+          1254,
+          1254
+        ],
+        [
+          0,
+          627,
+          627,
+          1254
+        ],
+        [
+          627,
+          0,
+          1254,
+          627
+        ]
+      ],
+      "review_notes": "Canonical spiked pauldrons and two short cyan tonfas retained. Defensive guard and alternating supported/lifted legs; crop order reverses the row-major gait for backward travel."
+    }
+  ]
+}

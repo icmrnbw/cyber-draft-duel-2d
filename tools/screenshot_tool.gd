@@ -1,21 +1,41 @@
 extends Node2D
+const OutputSafety = preload("res://tools/output_safety.gd")
 ## One-off visual QA tool (throwaway pattern established this project): loads
 ## a target scene headed (needs a real window, not --headless, for viewport
 ## capture) and dumps a PNG so screenshots can be compared directly against
 ## reference mockups without needing a phone/emulator.
-## Usage: Godot --resolution 720x1280 --quit-after N res://tools/screenshot_tool.tscn -- --scene=res://scenes/main_menu.tscn --out=C:/path/out.png
+## Usage: Godot --resolution 720x1280 --quit-after N res://tools/screenshot_tool.tscn -- --scene=res://scenes/main_menu.tscn --seed=20261003 --out=res://builds/screenshots/scene.png
 
 func _ready() -> void:
 	var scene_path := "res://scenes/main_menu.tscn"
-	var out_path := "user://screenshot.png"
+	var out_path := "res://builds/screenshots/screenshot.png"
+	var capture_seed := 20261003
 	var extra_wait := 0
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--scene="):
 			scene_path = arg.substr(8)
 		elif arg.begins_with("--out="):
 			out_path = arg.substr(6)
+		elif arg.begins_with("--seed="):
+			if not arg.substr(7).is_valid_int():
+				push_error("Invalid screenshot seed")
+				get_tree().quit(1)
+				return
+			capture_seed = int(arg.substr(7))
 		elif arg.begins_with("--wait="):
 			extra_wait = int(arg.substr(7))
+
+	out_path = OutputSafety.checked_png_path(out_path)
+	if out_path.is_empty():
+		push_error("Screenshot output must be a project builds/ PNG with no linked ancestors")
+		get_tree().quit(1)
+		return
+	var directory_error := DirAccess.make_dir_recursive_absolute(out_path.get_base_dir())
+	if directory_error != OK:
+		push_error("Screenshot directory creation failed: %s" % directory_error)
+		get_tree().quit(1)
+		return
+	seed(capture_seed)
 
 	if scene_path == "res://scenes/unit_detail_screen.tscn" and GameState.detail_unit_path == "":
 		GameState.detail_unit_path = UnitDatabase.roster()[2].resource_path
@@ -47,9 +67,7 @@ func _ready() -> void:
 		# unattended-cards hang this tool would otherwise sit in forever.
 		if GameState.player_drafted_types.is_empty():
 			GameState.player_drafted_types = UnitDatabase.roster().slice(0, 4)
-		var setup_rng := RandomNumberGenerator.new()
-		setup_rng.randomize()
-		GameState.match_seed = setup_rng.randi()
+		GameState.match_seed = capture_seed
 		var bot_rng := RandomNumberGenerator.new()
 		bot_rng.seed = GameState.match_seed
 		GameState.bot_hand = UnitDatabase.random_bot_hand(bot_rng)
@@ -60,6 +78,10 @@ func _ready() -> void:
 		GameState.player_hand = [roster[0], roster[0], roster[1], roster[1]]  # 2x + 2x
 
 	var scene: PackedScene = load(scene_path)
+	if scene == null:
+		push_error("Could not load screenshot scene: " + scene_path)
+		get_tree().quit(1)
+		return
 	var instance: Node = scene.instantiate()
 	get_tree().root.add_child.call_deferred(instance)
 	await get_tree().process_frame
@@ -131,6 +153,14 @@ func _ready() -> void:
 			await get_tree().process_frame
 
 	var img := get_viewport().get_texture().get_image()
-	img.save_png(out_path)
-	print("SAVED: ", out_path)
+	if img == null or img.is_empty() or OutputSafety.checked_png_path(out_path).is_empty():
+		push_error("Screenshot image/path is invalid")
+		get_tree().quit(1)
+		return
+	var save_error := img.save_png(out_path)
+	if save_error != OK:
+		push_error("Screenshot save failed: %s" % save_error)
+		get_tree().quit(1)
+		return
+	print("SAVED: ", out_path, " seed=", capture_seed)
 	get_tree().quit()

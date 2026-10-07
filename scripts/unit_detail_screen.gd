@@ -6,7 +6,7 @@ extends Node2D
 ## doesn't have and was never going to get (see the visual-language-only
 ## redesign decision) -- but its LAYOUT (big glowing portrait, name +
 ## rarity-equivalent, description, tag pills, bottom CTA) maps cleanly onto
-## something real: a closer look at one of our 5 actual units, opened from
+## something real: a closer look at one of our ten actual units, opened from
 ## Heroes or Draft, showing its real stats/abilities and the same "unlock
 ## next tier" action Heroes already has inline.
 ##
@@ -27,6 +27,9 @@ const BREATHE_PERIOD := 0.9
 
 var _unlock_button: Button
 var _unlock_container: Control
+var _details: VBoxContainer
+var _level_badge: Label
+var _ability_headings: Array[Label] = []
 
 
 func _ready() -> void:
@@ -52,8 +55,10 @@ func _ready() -> void:
 
 	_build_header()
 	_build_card()
+	_build_details()
 	_build_tags()
 	_build_stats()
+	_build_abilities()
 	_build_cta()
 	_refresh()
 
@@ -105,9 +110,9 @@ func _type_accent(t: int) -> Color:
 
 func _type_label(t: int) -> String:
 	match t:
-		UnitDefinition.UnitType.MELEE: return "TANK"
-		UnitDefinition.UnitType.MID: return "TROOPER"
-		UnitDefinition.UnitType.LONG: return "RANGED"
+		UnitDefinition.UnitType.MELEE: return "MELEE"
+		UnitDefinition.UnitType.MID: return "MID-RANGE"
+		UnitDefinition.UnitType.LONG: return "LONG-RANGE"
 		UnitDefinition.UnitType.SUPPORT: return "SUPPORT"
 	return ""
 
@@ -134,6 +139,7 @@ func _build_card() -> void:
 	var badge := UITheme.build_hex_badge(str(PlayerProfile.max_unlocked_level(_unit_def)), 26.0)
 	badge.position = card_pos + Vector2(14.0, 14.0)
 	add_child(badge)
+	_level_badge = badge.get_child(3) as Label
 
 	var portrait_size := Vector2(card_size.x - 60.0, 340.0)
 	_portrait = TextureRect.new()
@@ -173,16 +179,37 @@ func _build_card() -> void:
 	type_label.text = _type_label(_unit_def.type)
 	add_child(type_label)
 
-	var desc_label := Label.new()
-	desc_label.position = Vector2(50.0, 600.0)
-	desc_label.size = Vector2(VIEW_W - 100.0, 60)
+
+func _build_details() -> void:
+	# Tier descriptions vary in length. Keep the unlock action fixed while the
+	# complete description, tags and abilities remain accessible by scrolling.
+	var scroll := ScrollContainer.new()
+	scroll.name = "DetailsScroll"
+	scroll.position = Vector2(50.0, 598.0)
+	scroll.size = Vector2(VIEW_W - 100.0, 510.0)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.scroll_deadzone = 16
+	scroll.follow_focus = true
+	add_child(scroll)
+	_details = VBoxContainer.new()
+	_details.name = "UnitDetails"
+	_details.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_details.add_theme_constant_override("separation", 18)
+	scroll.add_child(_details)
+	var desc_label := _detail_label(_unit_def.description, 15, UITheme.TEXT_MUTED)
 	desc_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	desc_label.add_theme_font_override("font", UITheme.BODY_FONT)
-	desc_label.add_theme_font_size_override("font_size", 15)
-	desc_label.add_theme_color_override("font_color", UITheme.TEXT_MUTED)
-	desc_label.text = _unit_def.description
-	add_child(desc_label)
+	_details.add_child(desc_label)
+
+
+func _detail_label(text: String, font_size: int, color: Color) -> Label:
+	var label := Label.new()
+	label.text = text
+	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.add_theme_font_override("font", UITheme.BODY_FONT)
+	label.add_theme_font_size_override("font_size", font_size)
+	label.add_theme_color_override("font_color", color)
+	return label
 
 
 ## Real ability/role tags instead of the reference's TCG keywords (#Shield,
@@ -200,20 +227,36 @@ func _build_tags() -> void:
 		tags.append("BERSERK")
 	if _unit_def.self_defense_damage > 0.0:
 		tags.append("SELF-DEFENSE")
-
-	var x := 50.0
-	var y := 670.0
+	if _unit_def.heal_shield_min_level > 0 or _unit_def.self_shield_min_level > 0:
+		tags.append("SHIELD")
+	if _unit_def.shield_cleanse_min_level > 0:
+		tags.append("CLEANSE")
+	if _unit_def.on_hit_slow_min_level > 0 or _unit_def.firepatch_slow_min_level > 0:
+		tags.append("SLOW")
+	if _unit_def.suppression_min_level > 0:
+		tags.append("SUPPRESSION")
+	if _unit_def.mark_min_level > 0:
+		tags.append("MARK")
+	if _unit_def.special_chain_targets > 0:
+		tags.append("CHAIN")
+	if _unit_def.special_shield_bypass_fraction > 0.0:
+		tags.append("SHIELD PIERCING")
+	if _unit_def.special_lunge_distance > 0.0:
+		tags.append("LUNGE")
+	if _unit_def.firepatch_min_level > 0:
+		tags.append("BURN")
+	var flow := HFlowContainer.new()
+	flow.add_theme_constant_override("h_separation", 10)
+	flow.add_theme_constant_override("v_separation", 6)
+	_details.add_child(flow)
 	for tag in tags:
 		var w := 24.0 + tag.length() * 8.0
-		if x + w > VIEW_W - 50.0:
-			x = 50.0
-			y += 34.0
 		var pill_size := Vector2(w, 28.0)
 		var pill := UITheme.build_gradient_panel(pill_size, 14.0, 1.5, false, UITheme.CYAN, UITheme.VIOLET, 0.5)
-		pill.position = Vector2(x, y)
-		add_child(pill)
+		pill.custom_minimum_size = pill_size
+		pill.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		flow.add_child(pill)
 		var lbl := Label.new()
-		lbl.position = Vector2(x, y)
 		lbl.size = pill_size
 		lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -221,42 +264,43 @@ func _build_tags() -> void:
 		lbl.add_theme_font_size_override("font_size", 12)
 		lbl.add_theme_color_override("font_color", UITheme.TEXT_BRIGHT)
 		lbl.text = "#" + tag
-		add_child(lbl)
-		x += w + 10.0
+		pill.add_child(lbl)
 
 
 func _build_stats() -> void:
-	var y := 740.0
+	_details.add_child(_detail_label("BASE STATS · Lv.1", 13, UITheme.TEXT_MUTED))
 	var stats := [
 		["HP", str(roundi(_unit_def.hp))],
-		["DPS", str(roundi(_unit_def.dps()))],
+		["HPS" if _unit_def.is_support else "DPS", str(roundi(_unit_def.dps()))],
 		["SPEED", "%.1f m/s" % _unit_def.move_speed],
 		["RANGE", "%.1f m" % _unit_def.preferred_range],
 	]
-	var col_gap := 30.0
-	var col_w := (VIEW_W - 100.0 - col_gap) * 0.5
+	var grid := GridContainer.new()
+	grid.columns = 2
+	grid.add_theme_constant_override("h_separation", 30)
+	grid.add_theme_constant_override("v_separation", 8)
+	_details.add_child(grid)
 	for i in stats.size():
-		var row := i / 2
-		var col := i % 2
-		var pos := Vector2(50.0 + col * (col_w + col_gap), y + row * 46.0)
-		var caption := Label.new()
-		caption.position = pos
-		caption.size = Vector2(col_w * 0.4, 30)
-		caption.add_theme_font_override("font", UITheme.BODY_FONT)
-		caption.add_theme_font_size_override("font_size", 14)
-		caption.add_theme_color_override("font_color", UITheme.TEXT_MUTED)
-		caption.text = stats[i][0]
-		add_child(caption)
-
-		var value := Label.new()
-		value.position = pos + Vector2(col_w * 0.4, 0)
-		value.size = Vector2(col_w * 0.6, 30)
+		var row := HBoxContainer.new()
+		row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		grid.add_child(row)
+		row.add_child(_detail_label(stats[i][0], 14, UITheme.TEXT_MUTED))
+		var value := _detail_label(stats[i][1], 17, UITheme.TEXT_BRIGHT)
 		value.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-		value.add_theme_font_override("font", UITheme.BODY_FONT_SEMIBOLD)
-		value.add_theme_font_size_override("font_size", 17)
-		value.add_theme_color_override("font_color", UITheme.TEXT_BRIGHT)
-		value.text = stats[i][1]
-		add_child(value)
+		row.add_child(value)
+
+
+func _build_abilities() -> void:
+	_details.add_child(_detail_label("TIER ABILITIES", 16, UITheme.TEXT_BRIGHT))
+	for level in [2, 3]:
+		var ability_name := _unit_def.ability_lv2_name if level == 2 else _unit_def.ability_lv3_name
+		var description := _unit_def.ability_lv2_description if level == 2 else _unit_def.ability_lv3_description
+		var heading := _detail_label("Lv.%d · %s" % [level, ability_name], 16, UITheme.CYAN)
+		heading.name = "AbilityLevel%d" % level
+		_ability_headings.append(heading)
+		_details.add_child(heading)
+		_details.add_child(_detail_label(description, 15, UITheme.TEXT_BRIGHT))
+	_details.add_child(_detail_label("Each match starts at Lv.1. Unlocking a tier enables its level-up offers during a match.", 13, UITheme.TEXT_MUTED))
 
 
 func _build_cta() -> void:
@@ -275,6 +319,14 @@ func _on_cta_pressed() -> void:
 
 func _refresh() -> void:
 	var tier := PlayerProfile.unlocked_tier(_unit_def)
+	var level := PlayerProfile.max_unlocked_level(_unit_def)
+	_level_badge.text = str(level)
+	_portrait.texture = _unit_def.idle_sprite_for_level(level)
+	for i in _ability_headings.size():
+		var ability_level := i + 2
+		var ability_name := _unit_def.ability_lv2_name if i == 0 else _unit_def.ability_lv3_name
+		_ability_headings[i].text = "Lv.%d · %s%s" % [ability_level, ability_name, " · LOCKED" if level < ability_level else ""]
+		_ability_headings[i].add_theme_color_override("font_color", UITheme.TEXT_MUTED if level < ability_level else UITheme.CYAN)
 	var label: Label = _unlock_container.get_child(1)
 	if tier >= PlayerProfile.MAX_TIERS:
 		label.text = "FULLY UNLOCKED"

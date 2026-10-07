@@ -9,3 +9,4 @@ builds/
 *.aab
 __pycache__/
 *.pyc
+art_sources/**/*.import

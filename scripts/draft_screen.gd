@@ -1,12 +1,12 @@
 extends Node2D
-## Draft screen: tap a unit card to fill the next hand slot. Each of the 5
+## Draft screen: tap a unit card to fill the next hand slot. Each available
 ## unit types can only be picked ONCE per hand (2026-09-10, re-restored --
 ## a 2026-09-07 change briefly allowed duplicates, which the user then
 ## clarified was a miscommunication: the intended design is "pick 4
 ## DIFFERENT units up front, then in-match offers only ever draw from those
 ## 4" -- i.e. the original 2026-08-26 rule, which this restores verbatim).
-## With HAND_SIZE=4 and 5 types total, a hand is always 4 distinct types
-## with exactly one type left undrafted. In-match growth offers are scoped
+## With HAND_SIZE=4, a hand contains four distinct types from the available
+## roster. In-match growth offers are scoped
 ## to type_pool (the distinct types in the drafted hand, see round_state.gd)
 ## regardless of this rule, so that part of the design was never broken by
 ## the duplicates experiment -- only the draft screen's own pick rule was.
@@ -35,6 +35,8 @@ const SLOT_SIZE := Vector2(140.0, 140.0)
 const CARD_SIZE := Vector2(660.0, 148.0)
 const PORTRAIT_SIZE := Vector2(112.0, 112.0)
 const STATS_COL_W := 134.0
+const ROSTER_TOP := 294.0
+const ACTIONS_Y := VIEW_H - 186.0
 
 var _hand: Array[UnitDefinition] = []
 var _slot_bg_panels: Array[NinePatchRect] = []
@@ -268,9 +270,9 @@ func _build_slots() -> void:
 
 func _type_label(t: int) -> String:
 	match t:
-		UnitDefinition.UnitType.MELEE: return "TANK"
-		UnitDefinition.UnitType.MID: return "TROOPER"
-		UnitDefinition.UnitType.LONG: return "RANGED"
+		UnitDefinition.UnitType.MELEE: return "MELEE"
+		UnitDefinition.UnitType.MID: return "MID-RANGE"
+		UnitDefinition.UnitType.LONG: return "LONG-RANGE"
 		UnitDefinition.UnitType.SUPPORT: return "SUPPORT"
 	return ""
 
@@ -362,16 +364,33 @@ func _build_checkmark(size: float) -> Control:
 
 
 func _build_unit_cards() -> void:
-	var y := 136.0 + SLOT_SIZE.y + 18.0
+	# Only cards scroll; the hand slots and actions remain reachable.
+	var scroll := ScrollContainer.new()
+	scroll.name = "RosterScroll"
+	scroll.position = Vector2(20.0, ROSTER_TOP)
+	scroll.size = Vector2(VIEW_W - 40.0, ACTIONS_Y - ROSTER_TOP - 24.0)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.follow_focus = true
+	scroll.scroll_deadzone = 16
+	add_child(scroll)
+
 	var gap := 10.0
-	var x := (VIEW_W - CARD_SIZE.x) * 0.5
+	var content := Control.new()
+	content.name = "RosterCards"
+	content.custom_minimum_size = Vector2(CARD_SIZE.x, UnitDatabase.roster().size() * (CARD_SIZE.y + gap))
+	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	content.mouse_filter = Control.MOUSE_FILTER_PASS
+	scroll.add_child(content)
+	var y := 0.0
+	var x := 0.0
 	for unit_def in UnitDatabase.roster():
 		var accent := _type_accent(unit_def.type)
 
 		var card := Control.new()
 		card.position = Vector2(x, y)
 		card.size = CARD_SIZE
-		add_child(card)
+		card.mouse_filter = Control.MOUSE_FILTER_PASS
+		content.add_child(card)
 
 		var bg_panel := Panel.new()
 		bg_panel.size = CARD_SIZE
@@ -441,7 +460,7 @@ func _build_unit_cards() -> void:
 
 		var stats_x := CARD_SIZE.x - STATS_COL_W - 10.0
 		_add_stat_row(card, stats_x, 12.0, STATS_COL_W, "HP", str(roundi(unit_def.hp)))
-		_add_stat_row(card, stats_x, 42.0, STATS_COL_W, "DPS", str(roundi(unit_def.dps())))
+		_add_stat_row(card, stats_x, 42.0, STATS_COL_W, "HPS" if unit_def.is_support else "DPS", str(roundi(unit_def.dps())))
 		_add_stat_row(card, stats_x, 72.0, STATS_COL_W, "SPD", "%.1f" % unit_def.move_speed)
 		_add_stat_row(card, stats_x, 102.0, STATS_COL_W, "RNG", "%.1f" % unit_def.preferred_range)
 
@@ -464,7 +483,7 @@ func _build_unit_cards() -> void:
 
 
 func _build_actions() -> void:
-	var y := 136.0 + SLOT_SIZE.y + 18.0 + UnitDatabase.roster().size() * (CARD_SIZE.y + 10.0) + 14.0
+	var y := ACTIONS_Y
 
 	_clear_button = Button.new()
 	_clear_button.text = "CLEAR"

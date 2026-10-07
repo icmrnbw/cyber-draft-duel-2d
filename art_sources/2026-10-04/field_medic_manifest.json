@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-04/field_medic_lv2_attack.png",
+      "out_prefix": "field_medic_lv2_attack",
+      "frame_names": [
+        "ready",
+        "reach",
+        "peak",
+        "pullback"
+      ],
+      "resource": "resources/field_medic.tres",
+      "property": "lv2_attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boxes": [
+        [
+          0,
+          0,
+          634,
+          645
+        ],
+        [
+          634,
+          0,
+          1254,
+          645
+        ],
+        [
+          0,
+          645,
+          696,
+          1254
+        ],
+        [
+          696,
+          645,
+          1254,
+          1254
+        ]
+      ],
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+    },
+    {
+      "sheet": "art_sources/2026-10-04/field_medic_lv2_walk.png",
+      "out_prefix": "field_medic_lv2_walk",
+      "frame_names": [
+        "walk1",
+        "walk2",
+        "walk3",
+        "walk4"
+      ],
+      "resource": "resources/field_medic.tres",
+      "property": "lv2_walk_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+    },
+    {
+      "sheet": "art_sources/2026-10-04/field_medic_lv2_retreat.png",
+      "out_prefix": "field_medic_lv2_retreat",
+      "frame_names": [
+        "retreat1",
+        "retreat2",
+        "retreat3",
+        "retreat4"
+      ],
+      "resource": "resources/field_medic.tres",
+      "property": "lv2_retreat_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+    },
+    {
+      "sheet": "art_sources/2026-10-04/field_medic_lv3_attack.png",
+      "out_prefix": "field_medic_lv3_attack",
+      "frame_names": [
+        "ready",
+        "reach",
+        "peak",
+        "pullback"
+      ],
+      "resource": "resources/field_medic.tres",
+      "property": "lv3_attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boxes": [
+        [
+          0,
+          0,
+          634,
+          645
+        ],
+        [
+          634,
+          0,
+          1254,
+          645
+        ],
+        [
+          0,
+          645,
+          696,
+          1254
+        ],
+        [
+          696,
+          645,
+          1254,
+          1254
+        ]
+      ],
+      "boundary_alpha_threshold": 5,
+      "boundary_alpha_reason": "Custom nonoverlapping crops separate complete drone and syringe silhouettes. Source and contact inspected: main geometry is intact; only a <=5/255 antialias fringe reaches the tight top-row split. Full alpha source retained."
+    },
+    {
+      "sheet": "art_sources/2026-10-04/field_medic_lv3_walk.png",
+      "out_prefix": "field_medic_lv3_walk",
+      "frame_names": [
+        "walk1",
+        "walk2",
+        "walk3",
+        "walk4"
+      ],
+      "resource": "resources/field_medic.tres",
+      "property": "lv3_walk_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+    },
+    {
+      "sheet": "art_sources/2026-10-04/field_medic_lv3_retreat.png",
+      "out_prefix": "field_medic_lv3_retreat",
+      "frame_names": [
+        "retreat1",
+        "retreat2",
+        "retreat3",
+        "retreat4"
+      ],
+      "resource": "resources/field_medic.tres",
+      "property": "lv3_retreat_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+    }
+  ]
+}

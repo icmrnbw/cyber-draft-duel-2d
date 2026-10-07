@@ -32,9 +32,9 @@ const MAX_ROUNDS := 10
 ## sides at a similar rate to incoming damage -- reported 2026-09-07 after
 ## the rank/formation system made ranged-vs-ranged standoffs common) can
 ## draw on seed after seed. match_controller.gd's _on_round_finished()
-## checks draw_retry against this and force-resolves via the last sim's own
-## HP-total tiebreak (the same logic BattleSim already uses for its own
-## MATCH_TIMEOUT) rather than replaying past it.
+## checks draw_retry against this. On the next exact draw after these retries,
+## record_round_result() consumes one life on BOTH sides and marks the round
+## resolved, so even perfect mirror matches terminate without favouring a side.
 const MAX_DRAW_RETRIES := 4
 
 ## Stat multiplier per level, level 1 = baseline (1.0x). Shared by both the
@@ -101,6 +101,9 @@ var match_seed: int = 0
 ## Bumped on a DRAW so the replay of the same round_number uses a fresh seed
 ## instead of reproducing the identical draw forever; reset once a real result lands.
 var draw_retry: int = 0
+## True only when the most recently recorded DRAW exhausted the retry budget.
+## Callers then handle normal round completion/growth instead of replaying it.
+var draw_round_resolved: bool = false
 
 
 ## p_levels_a/p_levels_b let a caller seed starting levels (from
@@ -128,6 +131,8 @@ func init_with_deployment(deployed_a: Array[UnitDefinition], drafted_types_a: Ar
 	lives_a = LIVES_PER_SIDE
 	lives_b = LIVES_PER_SIDE
 	round_number = 1
+	draw_retry = 0
+	draw_round_resolved = false
 	last_round_result = BattleSim.Result.IN_PROGRESS
 
 	roster_a = deployed_a.duplicate()
@@ -187,8 +192,14 @@ func current_seed() -> int:
 
 func record_round_result(result: int) -> void:
 	last_round_result = result
+	draw_round_resolved = false
 	if result == BattleSim.Result.DRAW:
 		draw_retry += 1
+		if draw_retry > MAX_DRAW_RETRIES:
+			lives_a -= 1
+			lives_b -= 1
+			draw_retry = 0
+			draw_round_resolved = true
 		return
 	draw_retry = 0
 	if result == BattleSim.Result.TEAM_A:

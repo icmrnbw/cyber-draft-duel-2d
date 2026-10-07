@@ -1,0 +1,225 @@
+{
+  "date": "2026-10-04",
+  "scope": "18 original-unit Lv2/Lv3 action replacements; 72 runtime frames",
+  "entries": [
+    {
+      "source": "art_sources/2026-10-04/demolitionist_lv2_attack_attempt1.png",
+      "source_sha256": "e2fe20c86170aa6dc7af34283439fb191b990408347296c135e52df81137e55f",
+      "prompt_file": "art_sources/2026-10-04/demolitionist_lv2_attack_prompt.txt",
+      "exact_prompt": "Use case: identity-preserve\nAsset type: four-frame 2D game animation sprite sheet, Demolitionist level 2 ATTACK.\nInput image 1 is the authoritative level-2 idle character identity reference. Animate this exact character; preserve its polished softly painted 3D chibi proportions and material rendering.\nPreserve the round olive enclosed helmet, TWO large circular dark glass goggles in thick round rims, one central round respirator with TWO round side filter pods, no exposed face. Preserve single olive cylindrical backpack canister and its cap and cyan bands. Preserve olive armored suit, cyan narrow illuminated seam lines, dark gloves, armored knees and boots, diagonal gold-capped grenade bandolier. Preserve exactly ONE two-handed revolver grenade launcher with one olive cylindrical ammunition drum and exactly ONE long dark gun barrel; do not make a multi-barrel weapon. Same character, armor, equipment and tier colors in all four cells.\nCreate a clean 2x2 sheet, reading order top-left, top-right, bottom-left, bottom-right: 1 READY: feet braced, launcher aimed right and slightly upward. 2 FIRE: small bright warm orange muzzle burst just beyond the single barrel, both hands firmly gripping, forward knee bent and body braced. 3 RECOIL: visible upper-body lean backward and launcher kick upward, knees absorbing force, no fire. 4 RECOVER: lowering the same launcher and returning body near frame 1 ready posture. These must be visibly different successive animation poses with a clear fire/recoil/recovery.\nAll figures face screen-right at the same slight three-quarter side view as the reference, camera fixed. Identical character body size in all four cells. Keep the full body, helmet, backpack, boots, barrel and muzzle flash wholly within each cell, at least 40 pixels of empty transparent clearance from every cell edge and a broad transparent gap between rows and columns. Position bodies consistently at common foot baseline, reserve flash width so no cropping. Four separate complete characters, no overlapping panels. Actual transparent RGBA background with no opaque background or fake checkerboard, no ground shadows, no text, no labels, no grid lines, no watermark. Preserve the reference identity exactly; no new armor or weapon redesign, no blue-to-orange level-3 armor changes.\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": null,
+      "manifest": "art_sources/2026-10-04/demolitionist_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    },
+    {
+      "source": "art_sources/2026-10-04/demolitionist_lv2_walk_attempt2.png",
+      "source_sha256": "3580bc848fb92560934c2794210dccf2bb0a4232a1554bb5ddaa96364fec23e2",
+      "prompt_file": "art_sources/2026-10-04/demolitionist_lv2_walk_attempt2_prompt.txt",
+      "exact_prompt": "Use case: identity-preserve\nEdit target: Image 1, the four-frame cyan Demolitionist sprite sheet. Image 2 is its authoritative idle identity reference. Make one targeted animation correction: change ONLY the walking legs below the hips to make a complete forward WALK cycle; preserve the exact helmet, face mask, backpack, armor, cyan light pattern, arms, hands, grenade bandolier, launcher, upper body, camera, and 2x2 composition.\nThe existing top-left and bottom-left leg arrangements repeat. FIX THIS. In top-left, keep image-left/near leg reaching back toward screen-left and far leg extending forward toward screen-right. In top-right, make a passing pose: near knee has swung forward toward the right and lifts high; far planted leg stands straight beneath body. In BOTTOM-LEFT the NEAR leg attached to the image-left hip MUST CROSS DIAGONALLY FORWARD TO THE RIGHT: near knee and boot visibly in front toward screen-right. The FAR leg attached to the image-right hip MUST extend BACK toward screen-left behind it. This is the exact opposite contact of top-left. In bottom-right, make the opposite passing pose: NEAR leg planted under the body and FAR knee lifts forward toward screen-right, ready to cycle. Emphasize clearly alternating right-facing strides, bent knees in the passing poses, readable foot clearance. No duplicates. No simply raising one heel of the same pose.\nAll four full bodies remain the same size and fixed three-quarter right-facing camera. Four separate complete figures in an even 2x2 layout. Restore at least 50 pixels transparent clearance at every cell boundary, including under feet and past the barrel. Actual transparent RGBA background, no environment, no shadows, no grid, no lettering. Match exact chibi painted materials and single-barrel drum grenade launcher.\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": null,
+      "manifest": "art_sources/2026-10-04/demolitionist_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    },
+    {
+      "source": "art_sources/2026-10-04/demolitionist_lv2_retreat_attempt2.png",
+      "source_sha256": "bc02d75fc11abe4e2ef2f830596ff74e225b8cacdbc9646f0463be084c8a49c4",
+      "prompt_file": "art_sources/2026-10-04/demolitionist_lv2_retreat_attempt2_prompt.txt",
+      "exact_prompt": "Use case: identity-preserve\nEdit target image 1: Demolitionist cyan level-2 backward retreat four-frame sheet. This sheet has correct identity, but bottom-left needs the opposite footfall. Preserve every helmet, goggles, respirator, hands, launcher, tank, armor, cyan seams, and painted surface. Change only leg poses to complete a clear alternating backward stepping cycle while he faces screen-right and aims right.\nKeep top-left rear-reaching near leg and front planted far foot.\nTop-right must be a passing phase: NEAR leg supports his weight under the hip, and FAR knee bends while the far foot lifts backward toward screen-left.\nBOTTOM-LEFT MUST show the OPPOSITE diagonal leg crossing from top-left: the large foreground NEAR thigh emerges from the LEFT side of his pelvis below his left belt pouch, angles DIAGONALLY RIGHT across the body, and its large foreground knee and boot are on the RIGHT. The smaller FAR leg emerges from the RIGHT side of the pelvis behind that thigh, angles diagonally LEFT, and places its boot far LEFT behind the body. Draw visible crossing thighs. This time the far leg reaches back and near leg reaches forward, anatomically opposite of top-left. Do not repeat top-left. This wide backward contact must show both boots touching an invisible ground line.\nBottom-right: far rear leg supports body while near boot lifts backward through a bent-knee passing step. Feet close together, one lifted.\nFour complete figures in 2x2. Same body scale, fixed three-quarter right-facing camera, common invisible ground baseline, same single-barrel revolver grenade launcher held right. Keep full figures, canister, barrel and boots within each cell; ensure at least 40 pixels empty transparent clearance around all. Actual transparent RGBA background, no environment, shadows, extra props, text or grid.\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": null,
+      "manifest": "art_sources/2026-10-04/demolitionist_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    },
+    {
+      "source": "art_sources/2026-10-04/demolitionist_lv3_attack_attempt1.png",
+      "source_sha256": "4ff5a4f64073eaf211220af216dd96ca6790b58a860d549ed699fb0bde371ead",
+      "prompt_file": "art_sources/2026-10-04/demolitionist_lv3_attack_prompt.txt",
+      "exact_prompt": "Use case: identity-preserve\nAsset type: 2D game animation sprite sheet, Demolitionist level 3.\nInput image 1 is the authoritative level-3 idle character identity reference. Animate this exact character with the same softly painted polished 3D chibi proportions and material rendering. Preserve the olive round enclosed helmet, TWO large circular warm orange glass goggles in thick round rims, central round respirator plus TWO round side filters, no exposed face, one olive cylindrical backpack canister with orange horizontal bands and cap, diagonal gold-capped grenade bandolier, olive armor, bright ORANGE molten crack seam lines, orange-lit goggles, and orange weapon rim accents, gloves, armored knees and boots. Preserve exactly ONE two-handed revolver grenade launcher, one olive cylindrical ammunition drum, and exactly ONE long dark barrel, never several barrels. Both hands keep holding this same weapon across all frames.\nAnimation: ATTACK with the launcher aimed right. Four visibly distinct frames: 1 READY: feet braced and launcher aimed right. 2 FIRE: compact warm orange muzzle burst just outside the single barrel, knees braced, both hands grip weapon. 3 RECOIL: pronounced upper-body lean back and launcher kick upward while knees absorb force; fire extinguished. 4 RECOVER: body settles and launcher lowers toward the ready pose. Keep compact muzzle flash fully inside its own cell with wide clearance.\nCreate exactly four separate complete full-body characters on an evenly divided 2x2 sheet with real transparent RGBA background. Reading order: top-left, top-right, bottom-left, bottom-right. Face screen-right in every pose at the same fixed slight three-quarter side camera as the reference. Keep precisely identical body scale and backpack/helmet/weapon proportions in all cells, common ground baseline. Keep all boots, helmet, barrel, and backpack wholly inside each cell with generous empty transparent margins; leave at least 40 pixels clearance from every cell boundary and a broad empty gap between rows and columns. No environment, no opaque background, no baked checkerboard, no cast shadow, no text, no grid, no labels, no watermark. Avoid equipment redesign, mirrored facing, extra weapons, extra fingers or legs, and changing tier color.\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": null,
+      "manifest": "art_sources/2026-10-04/demolitionist_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    },
+    {
+      "source": "art_sources/2026-10-04/demolitionist_lv3_walk_attempt2.png",
+      "source_sha256": "665618beb8f6c4670d3f827000c38656c80eb41d95680c2a30e2bb0a0b2b1ec5",
+      "prompt_file": "art_sources/2026-10-04/demolitionist_lv3_walk_attempt2_prompt.txt",
+      "exact_prompt": "Use case: identity-preserve\nEdit target image 1 is an existing CYAN Demolitionist WALK sheet with the required four leg poses. Reference image 2 is the exact ORANGE level-3 identity.\nMake ONLY a tier-color and illuminated-pattern edit to image 1. KEEP ALL FOUR BODY POSES AND LEG ANATOMY EXACTLY AS IN IMAGE 1. In particular, bottom-left's foreground near thigh crosses diagonally forward to the screen-right knee/boot while the other leg passes behind to the left. Do not reposition ANY hip, knee, foot, hand, weapon, head, or backpack. Do not regenerate walking poses.\nReplace every cyan illumination with the warm orange molten cracks and orange seams from reference 2. The goggles become amber orange glowing glass; helmet and suit retain their exact olive painted material. Add the reference's orange glowing crack traces over the same armor contours and orange weapon-rim lights on the same single-barrel drum grenade launcher. Match the level-3 reference's respirator orange three-spoke glow and orange side filter rims. Preserve exact equipment count, round mask, tank shape, and grenade bandolier.\nKeep the existing fixed three-quarter right-facing view, 2x2 layout, identical scale across frames, complete bodies. Enlarge empty transparent margins if needed without changing proportions; barrel and boots must remain wholly within each cell. Actual transparent RGBA background, no glow haze filling the cells, no environment, no shadows, no text or grid.\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": null,
+      "manifest": "art_sources/2026-10-04/demolitionist_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    },
+    {
+      "source": "art_sources/2026-10-04/demolitionist_lv3_retreat.png",
+      "source_sha256": "45c81fa5fdaeb1c7e67a37b293508f188fdca5c00e4d12fac5ca1700b74ec0b8",
+      "prompt_file": "art_sources/2026-10-04/demolitionist_lv3_retreat_pose_prompt.txt",
+      "exact_prompt": "Use case: identity-preserve\nEdit target image 1 is the CYAN Demolitionist RETREAT animation sheet. Reference image 2 is the authoritative ORANGE level-3 idle identity.\nProduce this same four-frame backward stepping cycle as an orange level-3 sprite sheet. Keep all four character upper-body poses, body proportions, exact round helmet, round goggles, central circular respirator, two side filters, single cylindrical backpack canister, grenade bandolier, and single-barrel drum grenade launcher held aimed screen-right in both hands. All four continue facing screen-right while withdrawing backward screen-left.\nMatch reference image 2's tier appearance precisely: olive painted suit with branching bright orange molten cracks across helmet, shoulders, gloves cuffs, thighs, knees and boots; orange tank bands and crack pattern; glowing warm orange goggles, orange three-spoke respirator center and filter rims; orange glowing drum rims and muzzle ring on the same launcher. Replace all cyan with orange. No cyan left.\nPreserve the opposing contact leg poses from image 1 (top-left: foreground near leg reaches back/left; bottom-left: foreground near thigh crosses diagonally forward/right in front of the far leg reaching back/left). Strengthen the PASSING poses to be opposite as well: TOP-RIGHT must have the foreground NEAR knee bent just behind the hips toward screen-left, near foot raised behind, while the FAR leg is planted straight beneath the body. BOTTOM-RIGHT must have the foreground NEAR foot planted beneath the body and the FAR knee/foot bent and raised behind. Show visually different knee overlap so these are clearly alternating legs, not duplicated poses. Keep both passing stances narrow.\nSame fixed three-quarter right-facing camera, common body scale and foot baseline, clean even 2x2 grid of four separate complete bodies. Keep boots, backpack, barrel and all glow inside the cells, at least 40 pixels empty clearance at all cell boundaries. Actual transparent RGBA background, no backdrop, no cast shadows, no text, no labels, no grid, no extra weapons, no new costume design.\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": "exec-172e4998-d22f-44a3-9307-053cb372bb5c.png",
+      "manifest": "art_sources/2026-10-04/demolitionist_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    },
+    {
+      "source": "art_sources/2026-10-04/field_medic_lv2_attack.png",
+      "source_sha256": "4cae574a15b1f68a5acb45f2158d436d4e8bcb692b1ed3a436ef7106dd79b645",
+      "prompt_file": "art_sources/2026-10-04/field_medic_lv2_attack_prompt.txt",
+      "exact_prompt": "Use case: identity-preserve. Asset type: finished 2D game animation sprite sheet for Cyber Draft-Duel. Use the attached canonical tier idle as the EXACT character design identity reference, not as a pose to repeat. Preserve rounded teal armored chibi medic, helmet shell shape, broad curved SILVER visor brow surrounding dark horizontal visor, diagonal helmet accent strip, circular ear pod, segmented teal torso armor with luminous medical plus cross, belt pouches, knee pads, heavy boots, one slim syringe-shaped medical tool in the same hand, and exactly ONE small round floating medical drone behind the shoulder. Preserve the canonical tier's proportions, polished painterly highlights and material rendering, not flat vector art. Keep same face and same three-quarter side view facing LEFT in all four frames. The character's gaze and medical tool point left. Single consistent camera and character scale across all poses; whole body and all equipment visible. 2 by 2 grid; exactly four equal square cells in reading order upper-left, upper-right, lower-left, lower-right. Each cell one complete pose centered in its cell; no drawn panel dividers. Large transparent clearance around the helmet, drone, tool, feet, effects and every cell border: minimum 40px in each 512px cell. All four poses have matching grounded foot baseline within their cells. True alpha background, no opaque backdrop, no floor, no cast shadow blobs, no letters, numbers or labels, no watermark. Do not add a gun, backpack, second syringe, second drone, other characters, cape, or new armor details. Preserve existing tier energy color. Generate usable animation with deliberate articulated pose differences, not four near-identical idle poses. Tier: LEVEL 2, cyan-white light accents exactly matching the reference; no orange. Sequence: four-frame heal-cast / syringe attack. Frame 1 READY: feet planted, elbow bent, syringe held at waist pointed diagonally left and up. Frame 2 REACH: torso leans slightly left, syringe arm extends halfway toward left, off-hand lifts toward wrist. Frame 3 PEAK: arm fully extends left at chest height with syringe horizontal, small compact cyan medicine pulse at needle tip, off-hand bracing below the casting wrist; keep effect far inside cell. Frame 4 PULLBACK: pulse gone, elbow retracts to ribs, syringe angled down-left, knees settle. Make the extension and return readable without changing proportions. Drone stays fully visible and near shoulder, subtly bobs, without changing its design. Background truly transparent. One final 1024x1024 sheet.\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": null,
+      "manifest": "art_sources/2026-10-04/field_medic_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    },
+    {
+      "source": "art_sources/2026-10-04/field_medic_lv2_walk.png",
+      "source_sha256": "10456d9e582132879176dbbbc30db22eb27a60aa853d4f55352fdbb012b251e1",
+      "prompt_file": "art_sources/2026-10-04/field_medic_lv2_walk_v4_prompt.txt",
+      "exact_prompt": "Edit only the LOWER-LEFT sprite in this sprite sheet. Swap which leg is in front: bring the far leg forward to the LEFT, and send the near leg backward to the RIGHT. The large foreground thigh and knee MUST angle down-right to a foreground boot planted on the right. The smaller background thigh passes behind it toward a background boot on the left. This is the opposite leg-contact phase from the upper-left sprite. Keep all other sprites and all other details identical. Do not mirror the whole character. Preserve teal/cyan armor, helmet, syringe, drone, camera, proportions, real transparency, margins, and 2x2 grid. Return the full sheet.\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": null,
+      "manifest": "art_sources/2026-10-04/field_medic_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    },
+    {
+      "source": "art_sources/2026-10-04/field_medic_lv2_retreat.png",
+      "source_sha256": "074ecbfa6e93c7152d727ed3ec915d04e3d58fac2b702ffbd25b3f3b0719220a",
+      "prompt_file": "art_sources/2026-10-04/field_medic_lv2_retreat_v2_prompt.txt",
+      "exact_prompt": "Edit ONLY the lower-left character's legs in this 2x2 game animation sheet. All other poses and everything else unchanged. In the lower-left pose, swing the foreground/near thigh across to the LEFT: the large foreground knee must now be on the LEFT of body center, with the large foreground shin and boot planted to the LEFT. Send the far/background thigh behind it toward a smaller foot to the RIGHT. This makes the lower-left contact visibly reverse the upper-left leg configuration. Keep the torso, helmet, hands, syringe and drone untouched. Do not mirror or rotate the character. Preserve polished canonical teal armor, cyan lights, 2x2 layout, original scale, full bodies, transparent gutters and true alpha background. Return full sheet.\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": null,
+      "manifest": "art_sources/2026-10-04/field_medic_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    },
+    {
+      "source": "art_sources/2026-10-04/field_medic_lv3_attack.png",
+      "source_sha256": "6a5edba025dc761edc635bc861596e18f5db42c62e886a73545020c09c342f36",
+      "prompt_file": "art_sources/2026-10-04/field_medic_lv3_attack_prompt.txt",
+      "exact_prompt": "Use case: identity-preserve. FIRST reference is a Field Medic four-frame cast animation. SECOND reference is the authoritative LEVEL 3 character design. Render a new Lv3 heal-cast sheet using the SAME four poses and character identity, with LARGE CLEAR TRANSPARENT GUTTERS so the drone and needle/pulse never invade another cell. Scale each pose INCLUDING effect and drone to 75% of its own cell. Exact SECOND design: desaturated dark teal polished painterly armor, round domed helmet, broad SILVER visor brow, dark visor with ORANGE trim, vivid orange diagonal helmet strip and round ear rim, orange medical plus on chest, orange thin armor light lines, syringe with orange fluid, ONE spherical teal drone with orange eyes. No cyan lights. Keep head shape and all proportions faithful to SECOND. Same three-quarter LEFT-facing angle in every pose. The first sheet's actions in reading order: ready with bent elbow and syringe diagonal up-left; reach with arm half extended left and other hand lifting; peak with arm fully extended left at chest height, other hand supporting wrist and small compact orange medicine pulse at syringe needle; pullback with elbow back to ribs and syringe diagonally down-left. Different articulated arms, stable planted feet. Equal scale across all four poses, whole bodies and all equipment, 2x2 grid, common foot baseline per cell, true alpha transparent, no labels, no floor shadows or backdrop. Keep pulse tight around needle and far from crop border. One final square sheet.\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": "exec-eabbd7c8-3f93-431f-9973-0a9f35943682.png",
+      "manifest": "art_sources/2026-10-04/field_medic_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    },
+    {
+      "source": "art_sources/2026-10-04/field_medic_lv3_walk.png",
+      "source_sha256": "3d1859dc99256ac9f1e16bef8932ffa0a4c20631b036caa722796a2b3968fa6f",
+      "prompt_file": "art_sources/2026-10-04/field_medic_lv3_walk_prompt.txt",
+      "exact_prompt": "Use case: identity-preserve. FIRST reference is the pose layout of the selected four-frame Field Medic walking animation. SECOND reference is the authoritative LEVEL 3 character design. Re-render the FIRST sheet in the EXACT LEVEL 3 identity of SECOND: darker desaturated teal metallic armor, warm ORANGE illuminated diagonal helmet strip, orange rim on circular ear module and visor opening, orange chest plus, orange thin armor trim and orange syringe fluid and orange single spherical drone eyes. Keep the broad silver visor brow and existing teal armor panels. The orange strip over helmet is a vital identity detail from SECOND. Preserve the four distinct walking poses exactly, especially lower-left foreground knee/boot on RIGHT and upper-left foreground knee/boot on LEFT. Preserve near/far leg layering, syringe hand, drone shape, camera and four-phase pose order. No design reinterpretation, no new equipment, no blue/cyan energy. All four complete figures at same scale on 2x2 grid, true transparent alpha, fully clear margins per cell, no labels, no ground/shadow. Keep real polished painterly material and highlights of SECOND. One square sheet.\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": null,
+      "manifest": "art_sources/2026-10-04/field_medic_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    },
+    {
+      "source": "art_sources/2026-10-04/field_medic_lv3_retreat.png",
+      "source_sha256": "0274ffc33c1b9856ff7535a5667dfdf2dd05bdc909b97c444c10af88c78db715",
+      "prompt_file": "art_sources/2026-10-04/field_medic_lv3_retreat_prompt.txt",
+      "exact_prompt": "Use case: identity-preserve. FIRST reference is the selected four-frame Field Medic defensive retreat animation pose layout. SECOND reference is the authoritative LEVEL 3 character design. Re-render FIRST in EXACT LEVEL 3 identity from SECOND: darker desaturated teal armor, orange luminous diagonal helmet strip, orange rim on circular ear module and dark visor opening, broad SILVER visor brow, orange chest plus cross, orange thin armor trim, orange syringe fluid, orange eyes on the ONE round drone. No cyan light. Preserve armor design, polished painted material rendering and proportions of SECOND. The four poses must show a backward guarded stepping loop while facing LEFT, upper body tilts back toward RIGHT, same syringe held at chest aiming left. Keep pose2 with LEFT foot lifted and RIGHT foot supporting; keep pose4 with RIGHT foot lifted backward and LEFT foot supporting, so the feet alternate. Pose1 accepts weight on right boot, pose3 accepts weight on left boot. Keep drone near rear shoulder. True alpha transparent background, no labels, no floor shadows, no background. All four complete figures with one drone and syringe each fit inside a 2x2 equal-cell grid with generous transparent margins, equal scale and common ground line per cell. One final square sheet.\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": null,
+      "manifest": "art_sources/2026-10-04/field_medic_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    },
+    {
+      "source": "art_sources/2026-10-04/trooper_lv2_attack_v2.png",
+      "source_sha256": "c9b55588c3ad323cce8a7dfd46925ea90359a551e0bbc1a7e3077fda2c9f6853",
+      "prompt_file": "art_sources/2026-10-04/trooper_lv2_attack_v2_prompt.txt",
+      "exact_prompt": "Precise-object-edit of the referenced TROOPER LV2 2x2 attack sheet. Preserve all four character designs, rifle geometry, armor and poses exactly. Fix canvas clearance: render all four figures at roughly 80% of their current size within their existing equal quadrants, each centered with equal ample empty alpha margins. The upper-right muzzle flash MUST be fully visible, compact (half its current size), and end at least 60 pixels BEFORE the image right edge. Preserve real transparent alpha. No character, gun, glow or flash may touch any outer boundary or center dividing line. Top-left ready, top-right fire, bottom-left recoil, bottom-right settle, all same body scale. Four separate full bodies. No text/grid/background/shadow. Keep cyan slit visor and seams, silver rounded armor, black closed faceplate, one exact rifle held with two hands. Do not redesign equipment. This is an animation sheet for equal 2x2 cropping.\r\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": "exec-cfbeb004-efdc-473d-9beb-a9e96d0b62b3.png",
+      "manifest": "art_sources/2026-10-04/trooper_lv2_attack_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    },
+    {
+      "source": "art_sources/2026-10-04/trooper_lv2_retreat_v2.png",
+      "source_sha256": "56e912e696151ed0606ff1a73bd75304f953b4c5dc4a112fb628b6647800c846",
+      "prompt_file": "art_sources/2026-10-04/trooper_lv2_retreat_v2_prompt.txt",
+      "exact_prompt": "Precise-object-edit: Image1 is the accepted Trooper Lv2 walking sprite sheet. COPY the four lower-body poses EXACTLY: preserve the pelvis, thighs, knees, calves, boots, leg overlap and foot positions of each corresponding panel without any change. Change ONLY upper-body guard: tilt the rifle down 8 degrees while keeping both hands gripping the same gun, and lean torso very subtly back. Do not alter legs in any panel. In particular bottom-left NEAR thigh runs diagonally forward to the RIGHT over the far leg, unlike top-left near leg which goes back LEFT. Preserve that crossing. This sheet will play in reverse for a guarded backward walk. Keep rounded silver helmet, cyan slit visor, closed faceplate, circular ear, silver plates/cyan seams/black undersuit, exact black assault rifle and polished metal shading unchanged. Four full-body cells square2x2, true transparent alpha background. Same scale; all full helmets, feet, guns clear of every boundary; no flash, grid, text, shadows or floor. Do not redraw the four legs into identical leading legs.\r\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": "exec-e60672fc-0171-4dd4-b2ff-6076a2cbf753.png",
+      "manifest": "art_sources/2026-10-04/trooper_lv2_retreat_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    },
+    {
+      "source": "art_sources/2026-10-04/trooper_lv2_walk.png",
+      "source_sha256": "272f91416aa206c0f6e28bfd59bd3d02ca1b5397f36d63de44520608784ba635",
+      "prompt_file": "art_sources/2026-10-04/trooper_lv2_walk_prompt.txt",
+      "exact_prompt": "Use case: stylized-concept. Four-frame WALK LOOP for a 2D game character. Reference1 is canonical Trooper Lv2 identity and reference2 is accepted aiming pose/equipment rendering. Exactly the same silver rounded armor, oversized rounded helmet with circular ear armor, narrow cyan slit visor, closed metal faceplate, black under-suit, thin cyan seams. One black assault rifle of identical design in both hands, pointing horizontally right without firing. True transparent alpha; square 2x2 sheet with four separate full bodies, generous clear margins, NO floor, shadows, grid or text. Camera fixed three-quarter view facing right. Draw a mechanically valid COMPLETE walking cycle, NOT four poses of the same leg leading. Top-left: NEAR LEG forward toward right, heel touches ground, FAR LEG stretches back left on toe. Top-right: passing phase, NEAR LEG supports body vertically, FAR KNEE lifts and swings forward. Bottom-left: FAR LEG now reaches forward toward right and heel touches ground, NEAR LEG stretches visibly back left on toe; this is OPPOSITE contact from top-left. Bottom-right: reverse passing phase, FAR LEG supports body vertically, NEAR KNEE lifts forward. Near/far armor overlap must switch naturally; use clearly separated knees and boots, two legs only. Both alternating contacts must be visibly different silhouettes. Rifle kept steady in two hands across all frames, small body bob only, same head/body scale. Full head, feet and rifle inside each equal quadrant with 60px transparent clearance from all crop boundaries. Character head-to-foot height about 70 percent of each quadrant. Match polished metallic painterly rendering, no heavy cartoon outlines, no weapon redesign, no orange, no extra props. Four sequential frames TL,TR,BL,BR form a loop.\r\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": "exec-83cc91cc-e093-4d39-9636-bfc8ec0e4b87.png",
+      "manifest": "art_sources/2026-10-04/trooper_lv2_walk_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    },
+    {
+      "source": "art_sources/2026-10-04/trooper_lv3_attack.png",
+      "source_sha256": "5a1d278136a3cda01b2a5e0aa7b511cbbc9437534b9f8b7b4b96f165d6275f41",
+      "prompt_file": "art_sources/2026-10-04/trooper_lv3_attack_prompt.txt",
+      "exact_prompt": "Use case: identity-preserve. Game sprite asset, square 2x2 four-frame attack animation with true transparent alpha. Image1 is the accepted Trooper Lv2 attack sheet and is the EXACT pose/placement/rifle reference. Image2 is the canonical Trooper Lv3 identity/color reference. Convert ONLY the armor tier in all four panels of image1 to image2: rounded silver helmet with thin ORANGE slit visor, orange glowing irregular crack pattern on helmet and shoulder/forearm plates, orange chest seams; black undersuit unchanged, polished silver armor unchanged. Remove all cyan. Preserve ONE identical black assault rifle per pose, both hands holding it, ready/fire/recoil/settle order, full body and weapon silhouettes, camera angle, scale, four equal quadrants and generous clear transparent margins. Do not change the poses or gun geometry. Keep the same compact yellow-orange muzzle flash ONLY top-right. Keep the slanted closed silver faceplate with no mouth holes and circular helmet ear armor. No text, grid, ground shadows, platforms or opaque background. No geometry or glow at sheet/cell boundaries. Match the polished soft metallic character rendering in the tier reference.\r\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": "exec-bbc785d2-7a63-4c67-a172-1eb95b6318b8.png",
+      "manifest": "art_sources/2026-10-04/trooper_lv3_attack_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    },
+    {
+      "source": "art_sources/2026-10-04/trooper_lv3_retreat.png",
+      "source_sha256": "92c7ce9614263b3577c362e300eb446c3925f5168784e7f22bc3be8dd3727650",
+      "prompt_file": "art_sources/2026-10-04/trooper_lv3_retreat_prompt.txt",
+      "exact_prompt": "Use case: identity-preserve. Image1 is the Trooper Lv2 GUARDED RETREAT sheet; Image2 is the canonical Lv3 identity reference. Change only the armor tier of each frame of image1 to Lv3 from image2: thin orange visor, orange glowing cracks in silver helmet/shoulder/forearm armor, orange chest seams, no cyan. Preserve EVERY leg pose and near/far leg overlap exactly, including bottom-left near leg crossing FORWARD toward right and top-left near leg stretched BACK toward left. Preserve the guarded downward rifle angle, both hands, rifle geometry, helmet silhouette, closed faceplate, circular ear armor, body scale, feet and camera. One same black rifle per frame, no firing. Four separated full-body poses in same square2x2 layout with true transparent alpha and ample clear margins at every cell edge. No grid/text/floor/shadows/props. Keep polished painterly metallic finish. Do not change pose or redesign equipment. Animation will be played in reverse, so keep the exact four distinct limb configurations from image1.\r\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": "exec-16e026ea-4c4c-481a-99d7-c03bf40fdc19.png",
+      "manifest": "art_sources/2026-10-04/trooper_lv3_retreat_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    },
+    {
+      "source": "art_sources/2026-10-04/trooper_lv3_walk.png",
+      "source_sha256": "4f6fa937ea637ad174de39af305d1c9105bb6edd2ad9a60d7a2472fd09f662e6",
+      "prompt_file": "art_sources/2026-10-04/trooper_lv3_walk_prompt.txt",
+      "exact_prompt": "Use case: identity-preserve. Image1 is the accepted TROOPER LV2 walking cycle; Image2 is the canonical LV3 armor identity. Change ONLY the armor tier of all four frames in image1 to the silver and ORANGE crack-glow armor from image2. Keep every limb pose, alternating leg overlap and boot placement exactly from image1. Top-left far-leg forward contact/near leg back, top-right near knee up, bottom-left near-leg forward contact/far leg back, bottom-right far knee up. Keep same single black rifle horizontal right held by two hands, SAME weapon geometry in every panel; no firing. Rounded silver helmet with orange slit visor, closed faceplate and round ear armor, irregular orange cracks on helmet and shoulder/forearms, orange chest seams, black undersuit. No cyan remains. Match canonical polished painterly metal shading. Preserve square2x2 layout, four equal cells, generous fully transparent margins, consistent body scale, all helmet/boots/rifle inside cells. Do not add text/grid/background/shadows, do not alter gait or re-use the same lead leg. True transparent alpha.\r\n",
+      "tool": "built-in image_gen; true transparent alpha",
+      "provider_filename": "exec-5a786c23-f376-4cb5-99ee-6a427925c0c1.png",
+      "manifest": "art_sources/2026-10-04/trooper_lv3_walk_manifest.json",
+      "review": "Canonical tier/source and all normalized frames inspected; imported in Godot; four runtime frame positions captured and inspected. Cross-state body scale remains a separate polish item."
+    }
+  ],
+  "source_policy": "Original provider outputs, copied sheets, rejected attempts and project-local backups retained; no deletions.",
+  "preserved_rejections": [
+    {
+      "source": "trooper_lv2_attack_attempt1.png",
+      "reason": "Muzzle flash clipped at right boundary."
+    },
+    {
+      "source": "trooper_lv2_retreat_attempt1.png",
+      "reason": "Repeated leading leg in contact poses."
+    },
+    {
+      "source": "field_medic_lv2_walk_rejected_same_contact.png",
+      "reason": "Repeated contact; agent rejected."
+    },
+    {
+      "source": "field_medic_lv2_walk_rejected_same_contact_v2.png",
+      "reason": "Repeated contact; agent rejected."
+    },
+    {
+      "source": "field_medic_lv2_walk_rejected_no_opposite_contact_v3.png",
+      "reason": "No opposite contact; agent rejected."
+    },
+    {
+      "source": "field_medic_lv2_retreat_rejected_contact.png",
+      "reason": "Retreat contact failed agent review."
+    },
+    {
+      "source": "demolitionist_lv2_walk_attempt1_rejected.png",
+      "reason": "Leg alternation failed agent review."
+    },
+    {
+      "source": "demolitionist_lv3_walk_attempt1_rejected.png",
+      "reason": "Tier transfer lost leg alternation; agent rejected."
+    },
+    {
+      "source": "demolitionist_lv2_retreat_attempt1.png",
+      "reason": "Superseded by corrected contact poses; retained."
+    }
+  ]
+}

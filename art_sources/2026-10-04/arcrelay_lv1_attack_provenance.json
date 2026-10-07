@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-05",
+  "tool": "built-in imagegen",
+  "prompt": "arcrelay_lv1_attack_prompt.txt",
+  "references": [
+    "assets/arcrelay_idle_breathe1.png"
+  ],
+  "original": "C:/Users/rnast/.codex/generated_images/01a10598-92fd-7742-8f4e-c22c9aa1f365/exec-8eeff3ff-5121-4655-84d8-961ab5638ea3.png",
+  "source": "arcrelay_lv1_attack_attempt1.png",
+  "status": "source inspected; preparing dry-run; no runtime approval yet",
+  "review": "Canonical sealed visor, long coat, U fork and triangular relay preserved. Readable forward staff discharge, recoil and recovery. Top-row split adjusted to preserve the full left-directed effect."
+}

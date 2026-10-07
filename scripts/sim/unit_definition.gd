@@ -67,6 +67,84 @@ enum UnitType { MELEE, MID, LONG, SUPPORT }
 @export var firepatch_duration: float = 0.0
 @export var firepatch_radius: float = 0.0
 
+@export_group("Ability Presentation")
+@export var ability_lv2_name: String = ""
+@export_multiline var ability_lv2_description: String = ""
+@export var ability_lv3_name: String = ""
+@export_multiline var ability_lv3_description: String = ""
+
+@export_group("Periodic Special Attack")
+## Count completed attacks, not individual burst hits. A special attack replaces
+## the normal hit with special_attack_hits hits of damage_per_hit * damage_mult.
+@export var special_attack_min_level: int = 0
+@export var special_attack_every: int = 0
+@export var special_attack_hits: int = 1
+@export var special_attack_damage_mult: float = 1.0
+@export var special_attack_effect: String = ""
+## Fraction of special-hit damage applied directly to HP. The remainder can be
+## shielded. Clamped to [0, 1]; shares the periodic special's level/cadence gate.
+## This partitions existing damage, so unshielded targets take no extra damage.
+@export var special_shield_bypass_fraction: float = 0.0
+## Optional deterministic follow-up targets for a special attack. The primary
+## target receives the normal special hit(s); each chain target receives one
+## reduced hit selected from the nearest living enemies around that target.
+@export var special_chain_targets: int = 0
+@export var special_chain_damage_mult: float = 0.0
+## Secondary targets must be within this radius of the primary target.
+## Zero disables chaining; distance ties are resolved by unit id.
+@export var special_chain_radius: float = 0.0
+## Optional movement burst after a special attack. The vector points toward the
+## special target and is clamped by the normal arena bounds.
+@export var special_lunge_distance: float = 0.0
+## Special-hit debuffs: strongest magnitude wins; duration refreshes to the
+## longest remaining/new duration, never sums. Suppression reduces damage,
+## not healing. Marks amplify incoming direct and damage-over-time damage.
+@export var suppression_min_level: int = 0
+@export var suppression_fraction: float = 0.0
+@export var suppression_duration: float = 0.0
+@export var mark_min_level: int = 0
+@export var mark_damage_bonus: float = 0.0
+@export var mark_duration: float = 0.0
+## Generic on-hit control, useful for control specialists. When
+## `on_hit_slow_special_only` is true it applies only to periodic specials.
+@export var on_hit_slow_min_level: int = 0
+@export var on_hit_slow_fraction: float = 0.0
+@export var on_hit_slow_duration: float = 0.0
+@export var on_hit_slow_special_only: bool = false
+## Optional stronger slow on periodic specials, independently tier-gated.
+@export var special_slow_min_level: int = 0
+@export var special_slow_fraction: float = 0.0
+@export var special_slow_duration: float = 0.0
+
+@export_group("Support Protection")
+## Shields add on a successful heal, capped against the recipient's max HP.
+## Their remaining duration refreshes (max), never adds. They absorb damage
+## except the explicit shield-bypassing portion of a periodic special hit.
+@export var heal_shield_min_level: int = 0
+@export var heal_shield_amount: float = 0.0
+@export var heal_shield_cap_fraction: float = 0.0
+@export var heal_shield_duration: float = 0.0
+## Cleanses stagger/slow/suppression and grants immunity to those effects.
+## Marks are not control and remain. Same-tick shields/cleanses apply before
+## hostile statuses and damage, independent of which team attacks first.
+@export var shield_cleanse_min_level: int = 0
+@export var control_immunity_duration: float = 0.0
+## Self shield for frontline units. It is queued on the same deterministic
+## protection path as Medic shields, so same-tick damage ordering stays stable.
+@export var self_shield_min_level: int = 0
+@export var self_shield_amount: float = 0.0
+@export var self_shield_cap_fraction: float = 0.0
+@export var self_shield_duration: float = 0.0
+@export var self_shield_duration_upgrade_min_level: int = 0
+@export var self_shield_upgraded_duration: float = 0.0
+
+@export_group("Hazard Control")
+## A positive-duration slow refreshes while inside a damaging patch. Multiple
+## patches use the strongest slow, not additive movement reduction.
+@export var firepatch_slow_min_level: int = 0
+@export var firepatch_slow_fraction: float = 0.0
+@export var firepatch_slow_duration: float = 0.0
+
 @export_group("Art")
 @export var sprite: Texture2D
 ## Real 4-frame breathing loop (neutral/inhale/neutral/exhale, in play
@@ -147,9 +225,11 @@ func retreat_frames_for_level(level: int) -> Array[Texture2D]:
 	return retreat_frames
 
 
-## The idle/portrait texture for this level -- just that tier's first attack
-## frame, same convention the base `sprite` field already follows (it's
-## literally attack_frames[0]).
+## Prefer the tier's actual idle art. Older resources without idle frames
+## retain the historical first-attack-frame/sprite fallback.
 func idle_sprite_for_level(level: int) -> Texture2D:
-	var frames := attack_frames_for_level(level)
+	var frames := idle_frames_for_level(level)
+	if not frames.is_empty():
+		return frames[0]
+	frames = attack_frames_for_level(level)
 	return frames[0] if not frames.is_empty() else sprite

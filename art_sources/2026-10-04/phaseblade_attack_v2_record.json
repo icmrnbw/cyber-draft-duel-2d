@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-05",
+  "tool": "built-in image_gen",
+  "source": "phaseblade_attack_v2.png",
+  "provider_source": "C:\\Users\\rnast\\.codex\\generated_images\\01a10598-3b9d-7c62-b5b2-7966eafa0556\\exec-5416070d-a254-4e2e-bfee-14a7dcc240e2.png",
+  "prompt_file": "phaseblade_attack_v2_prompt.txt",
+  "reference_images": [
+    "D:\\vapecoder\\cyber-draft-duel-2d\\art_sources\\2026-10-04\\phaseblade_attack_rejected_clearance.png"
+  ],
+  "status": "source saved; visual and slice review pending"
+}

@@ -1,0 +1,271 @@
+{
+  "version": 1,
+  "unit": "marksman",
+  "review_status": "source sheets inspected; runtime frame review pending",
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-03/marksman_lv2_attack_v2.png",
+      "out_prefix": "marksman_lv2_attack",
+      "frame_names": [
+        "ready",
+        "fire",
+        "recoil",
+        "settle"
+      ],
+      "resource": "resources/marksman.tres",
+      "property": "lv2_attack_frames",
+      "background": "alpha",
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Source sheet visually inspected: alpha 1 dither/noise in otherwise transparent margins is not character geometry. All solid artwork must remain clear of crop edges.",
+      "generator": "built-in image_gen",
+      "prompt": "Correct this Marksman four-frame attack sheet while preserving the EXACT character, rifle, four body poses, painterly shading and 2x2 layout. The gunshot effect in top-right is cut off by the canvas, and bottom-left has an unwanted glowing plume behind the shoulder. Remove BOTH oversized cyan clouds and ALL shoulder smoke. Top-right muzzle flash should instead be a TINY white-cyan spark no larger than the rifle scope, fully contained inside the cell with empty space beyond it. Bottom-left recoil should have no smoke or glow cloud at all. Move all four figures 8 percent smaller within their individual equal quadrants to provide safe empty margins; same body scale across all four. Keep single identical scoped black rifle with 3-port muzzle brake, both hands gripping it, purple hood/cape and cyan teal energized armor. Do not change equipment or orientation. Genuine transparent alpha, no background, grid or labels. Complete untouched boots/cape/rifle in each frame.",
+      "source_generated_path": "C:\\Users\\rnast\\.codex\\generated_images\\01a100cd-1f4f-7e30-968d-ae2ef50086cc\\exec-2bc46b45-c2f0-4b90-8b69-c3d447548eb4.png",
+      "boxes": [
+        [
+          0,
+          0,
+          627,
+          627
+        ],
+        [
+          627,
+          0,
+          1254,
+          627
+        ],
+        [
+          0,
+          627,
+          627,
+          1254
+        ],
+        [
+          627,
+          627,
+          1254,
+          1254
+        ]
+      ]
+    },
+    {
+      "sheet": "art_sources/2026-10-03/marksman_lv2_walk.png",
+      "out_prefix": "marksman_lv2_walk",
+      "frame_names": [
+        "walk1",
+        "walk2",
+        "walk3",
+        "walk4"
+      ],
+      "resource": "resources/marksman.tres",
+      "property": "lv2_walk_frames",
+      "background": "alpha",
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Source sheet visually inspected: alpha 1 dither/noise in otherwise transparent margins is not character geometry. All solid artwork must remain clear of crop edges.",
+      "generator": "built-in image_gen",
+      "prompt": "Create a four-frame Marksman Lv2 WALK cycle spritesheet. Canonical reference image defines exact identity: purple hood/cape, smooth teal faceplate, cyan seams over teal armor, purple gloves, one long dark scoped rifle with box magazine and three muzzle-brake ports, held in both hands. Same soft painterly glossy shading. Fixed three-quarter orientation facing screen RIGHT in ALL frames, never mirror torso or rifle. Strict equal 2x2 on square transparent-alpha canvas. Four distinctly alternating foot poses in reading order: 1 character's RIGHT boot (viewer left) steps forward; 2 right planted, LEFT knee (viewer right) raised passing; 3 LEFT boot (viewer right) steps forward; 4 left planted, RIGHT knee (viewer left) raised passing. Rifle carried low diagonally across chest with muzzle still pointed screen right, not firing. Cape follows forward movement with controlled small trailing folds. Same figure scale, same rifle geometry, hood shape and equipment all cells. Make figures occupy only 65 percent of each quadrant INCLUDING entire rifle to ensure large transparent safe margins. Whole boots, cape, hood and muzzle intact. No gunfire, smoke, text, grid, floor or shadow.",
+      "source_generated_path": "C:\\Users\\rnast\\.codex\\generated_images\\01a100cd-1f4f-7e30-968d-ae2ef50086cc\\exec-fe3c9b25-9cb6-48ac-8b48-1c61846fd7f1.png",
+      "boxes": [
+        [
+          0,
+          0,
+          660,
+          627
+        ],
+        [
+          660,
+          0,
+          1254,
+          627
+        ],
+        [
+          0,
+          627,
+          660,
+          1254
+        ],
+        [
+          660,
+          627,
+          1254,
+          1254
+        ]
+      ]
+    },
+    {
+      "sheet": "art_sources/2026-10-03/marksman_lv2_retreat.png",
+      "out_prefix": "marksman_lv2_retreat",
+      "frame_names": [
+        "retreat1",
+        "retreat2",
+        "retreat3",
+        "retreat4"
+      ],
+      "resource": "resources/marksman.tres",
+      "property": "lv2_retreat_frames",
+      "background": "alpha",
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Source sheet visually inspected: alpha 1 dither/noise in otherwise transparent margins is not character geometry. All solid artwork must remain clear of crop edges.",
+      "generator": "built-in image_gen",
+      "prompt": "Production four-frame Marksman Lv2 RETREAT animation sheet, strict square 2x2 on genuine transparent alpha. Character matches canonical image1 exactly: purple hood and cape, smooth teal faceplate, teal armor with cyan seams, purple gloves, one same dark scoped sniper rifle with box magazine and three-port muzzle brake, both hands gripping it. Soft glossy painterly game rendering. Distinct cautious BACKWARD walk while continuing to aim at enemy screen RIGHT: rifle shouldered level, torso leans backward to viewer-left, knees bent, cape sweeps slightly toward screen right from backward travel. Fixed camera facing RIGHT in ALL four frames. Four phases must alternate feet: right boot reaches BACK (viewer-left on ground), left leg supports; right planted, left boot passing back under hips; left boot reaches BACK, right leg supports; left planted, right boot passing back. No marching forward, no firing. Entire figure plus full rifle inside each quadrant with WIDE empty gutters; shrink character enough to keep muzzle at least60pixels from any edge. Same character body scale and same foot baseline per cell. No shadows/background/grid/text/additional gear; don't flip or mirror any panels.",
+      "source_generated_path": "C:\\Users\\rnast\\.codex\\generated_images\\01a100cd-1f4f-7e30-968d-ae2ef50086cc\\exec-25e127cb-22b2-4ead-aa0c-ad209c95c7ae.png",
+      "boxes": [
+        [
+          0,
+          0,
+          640,
+          627
+        ],
+        [
+          640,
+          0,
+          1254,
+          627
+        ],
+        [
+          0,
+          627,
+          640,
+          1254
+        ],
+        [
+          640,
+          627,
+          1254,
+          1254
+        ]
+      ]
+    },
+    {
+      "sheet": "art_sources/2026-10-03/marksman_lv3_attack.png",
+      "out_prefix": "marksman_lv3_attack",
+      "frame_names": [
+        "ready",
+        "fire",
+        "recoil",
+        "settle"
+      ],
+      "resource": "resources/marksman.tres",
+      "property": "lv3_attack_frames",
+      "background": "alpha",
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Source sheet visually inspected: alpha 1 dither/noise in otherwise transparent margins is not character geometry. All solid artwork must remain clear of crop edges.",
+      "generator": "built-in image_gen",
+      "prompt": "EDIT image1's accepted four-frame Marksman ATTACK sheet into Lv3 overcharged appearance. Preserve EVERY pose, exact rifle geometry, faceplate, purple hood/cape, feet positions, complete safe margins and 2x2 layout from image1. Image2 provides tier appearance ONLY: add orange luminous cracks along purple hood/cape seams and teal armor seams; sniper rifle and scope gain orange circuit glow; smooth teal faceplate remains the same. Replace cyan muzzle spark in second frame with a similarly TINY contained orange-white spark. No large smoke or effects, nothing crossing frames. Same one scoped sniper rifle with box magazine and 3-port muzzle brake in ALL FOUR frames, both hands holding it. Never change weapon length/model or add barrel/bipod/gear. Soft glossy painterly shading, exact same body scale per cell. Genuine transparent alpha, no grid/labels/floor/shadows. Four action states remain aim, fire, recoil, recovery, always facing screen RIGHT.",
+      "source_generated_path": "C:\\Users\\rnast\\.codex\\generated_images\\01a100cd-1f4f-7e30-968d-ae2ef50086cc\\exec-1577b498-07d8-4f0e-a82a-3f27ac8dc4f7.png",
+      "boxes": [
+        [
+          0,
+          0,
+          627,
+          627
+        ],
+        [
+          627,
+          0,
+          1254,
+          627
+        ],
+        [
+          0,
+          627,
+          627,
+          1254
+        ],
+        [
+          627,
+          627,
+          1254,
+          1254
+        ]
+      ]
+    },
+    {
+      "sheet": "art_sources/2026-10-03/marksman_lv3_walk.png",
+      "out_prefix": "marksman_lv3_walk",
+      "frame_names": [
+        "walk1",
+        "walk2",
+        "walk3",
+        "walk4"
+      ],
+      "resource": "resources/marksman.tres",
+      "property": "lv3_walk_frames",
+      "background": "alpha",
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Source sheet visually inspected: alpha 1 dither/noise in otherwise transparent margins is not character geometry. All solid artwork must remain clear of crop edges.",
+      "generator": "built-in image_gen",
+      "prompt": "EDIT IMAGE1's four-frame WALK sheet to Marksman Lv3. Preserve every exact alternating LEG pose and foot position in image1, as well as fixed right-facing camera, proportions, body scale, cape outline, rifle geometry and 2x2 placement. Image2 is only canonical appearance reference for overcharge: add orange luminous cracks along purple hood/cape seams, orange energized seams on teal armor, orange glows along scope and rifle, keeping teal faceplate. Exactly one same scoped sniper rifle with box magazine and 3-port muzzle brake, held in both hands, intact in all four cells. Do not replace leg poses with four copies or mirror any torso. No firing or smoke. Give all complete figures and muzzles comfortable empty transparent margins without clipping. Soft glossy painterly shaded style. Square true alpha, no text, grid, ground, shadow, or added gear.",
+      "source_generated_path": "C:\\Users\\rnast\\.codex\\generated_images\\01a100cd-1f4f-7e30-968d-ae2ef50086cc\\exec-0e98824b-cb0e-44bf-b471-d163bf4a949c.png",
+      "boxes": [
+        [
+          0,
+          0,
+          660,
+          627
+        ],
+        [
+          660,
+          0,
+          1254,
+          627
+        ],
+        [
+          0,
+          627,
+          660,
+          1254
+        ],
+        [
+          660,
+          627,
+          1254,
+          1254
+        ]
+      ]
+    },
+    {
+      "sheet": "art_sources/2026-10-03/marksman_lv3_retreat.png",
+      "out_prefix": "marksman_lv3_retreat",
+      "frame_names": [
+        "retreat1",
+        "retreat2",
+        "retreat3",
+        "retreat4"
+      ],
+      "resource": "resources/marksman.tres",
+      "property": "lv3_retreat_frames",
+      "background": "alpha",
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Source sheet visually inspected: alpha 1 dither/noise in otherwise transparent margins is not character geometry. All solid artwork must remain clear of crop edges.",
+      "generator": "built-in image_gen",
+      "prompt": "EDIT image1's four-frame Marksman RETREAT sheet into Lv3 overcharged appearance. Keep the exact four defensive backward-shuffle body/leg poses, right-facing camera, rifle aim, cape folds, full-body proportions, scale and 2x2 layout from image1; no mirroring. Image2 is canonical tier appearance only: purple hood/cape with orange glowing cracks/seams, teal armor with orange energy seams, orange circuit glows on the SAME scoped dark sniper rifle, smooth teal faceplate. Exactly ONE identical long rifle with scope, box magazine and three-port muzzle brake, held in both hands in all four panels. No shots, sparks, smoke, extra equipment or extra limbs. Preserve distinct cautious withdrawal poses and stable foot baseline, ample alpha-transparent margins so no barrel or cape is cut. Match soft glossy painterly shading. Square true alpha sheet, no text, grid, border, ground or shadow.",
+      "source_generated_path": "C:\\Users\\rnast\\.codex\\generated_images\\01a100cd-1f4f-7e30-968d-ae2ef50086cc\\exec-ee964b4a-51a3-46fd-bcfa-a2feeaa1cadf.png",
+      "boxes": [
+        [
+          0,
+          0,
+          640,
+          627
+        ],
+        [
+          640,
+          0,
+          1254,
+          627
+        ],
+        [
+          0,
+          627,
+          640,
+          1254
+        ],
+        [
+          640,
+          627,
+          1254,
+          1254
+        ]
+      ]
+    }
+  ]
+}

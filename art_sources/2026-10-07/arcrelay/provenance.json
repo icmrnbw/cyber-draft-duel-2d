@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-07",
+  "generator": "built-in image_gen",
+  "records": [
+    {
+      "source": "lv1_attack.png",
+      "provider_file": "exec-c98a5927-aaff-418b-8be8-bd942b9ce5f9.png",
+      "prompt": "lv1_attack_prompt.txt",
+      "references": [
+        "assets/arcrelay_idle_breathe1.png"
+      ],
+      "status": "accepted-source-and-contact; applied-and-wired; runtime-pending",
+      "source_sha256": "f6000da75cd687973c28d3e73542c0952cf17ab5eceb0b049b5bc92dc9da1b8d"
+    },
+    {
+      "source": "lv2_attack.png",
+      "provider_file": "exec-a0c89a16-043e-4f3c-a1bb-b01f52973085.png",
+      "prompt": "lv2_attack_prompt.txt",
+      "references": [
+        "art_sources/2026-10-07/arcrelay/lv1_attack.png",
+        "assets/arcrelay_lv2_idle_breathe1.png"
+      ],
+      "status": "accepted-source-and-contact; applied-and-wired; runtime-pending",
+      "source_sha256": "7d15f9a4a78a5d1db70544527c1a025a599900f9df6a3bd203c7ae53e11ef8c6"
+    },
+    {
+      "source": "lv3_attack.png",
+      "provider_file": "exec-479a8aaa-20a6-445d-b141-c955e941773c.png",
+      "prompt": "lv3_attack_prompt.txt",
+      "references": [
+        "art_sources/2026-10-07/arcrelay/lv2_attack.png",
+        "assets/arcrelay_lv3_idle_breathe1.png"
+      ],
+      "status": "accepted-source-and-contact; applied-and-wired; runtime-pending",
+      "source_sha256": "f400ab5538936bbf4174a025109f8cfbb51ef9e0267ec2fc36cee1d485213707"
+    },
+    {
+      "source": "lv1_walk_attempt1.png",
+      "provider_file": "exec-b01e79f2-fcb7-41cb-9b93-bc20955060a1.png",
+      "prompt": "lv1_walk_prompt.txt",
+      "references": [
+        "assets/arcrelay_idle_breathe1.png"
+      ],
+      "status": "rejected repeated contact leg",
+      "source_sha256": "881a325882f6fc1bda814b1402cca95af420cf8fe97be9287ed50b0e1af7ef69"
+    },
+    {
+      "source": "lv1_walk_attempt2.png",
+      "provider_file": "exec-fab87d7d-789b-4017-8bc2-2cbcd582d5e1.png",
+      "prompt": "lv1_walk_v2_prompt.txt",
+      "references": [
+        "art_sources/2026-10-07/arcrelay/lv1_walk_attempt1.png",
+        "assets/arcrelay_idle_breathe1.png"
+      ],
+      "status": "superseded contact leg correction insufficient",
+      "source_sha256": "3af43d1e9b894fae67a36d8a3db125f2f8671fc29a64ff46097b9b523b1f4561"
+    },
+    {
+      "source": "lv1_walk.png",
+      "provider_file": "exec-2f9dc76f-5a8b-4047-b4e2-9a2e8837c2b9.png",
+      "prompt": "lv1_walk_v3_prompt.txt",
+      "references": [
+        "art_sources/2026-10-07/arcrelay/lv1_walk_attempt2.png"
+      ],
+      "status": "source/contact reviewed; final moving-loop gait approval pending; NOT applied",
+      "source_sha256": "c9d91d7c89de976a66b51071fe382bb4e9d887974b09403c70d6e24cdad5a8a1"
+    }
+  ],
+  "provider_directory": "C:/Users/rnast/.codex/generated_images/01a1175b-fb2f-7cd3-9aeb-ff2efce5037e"
+}

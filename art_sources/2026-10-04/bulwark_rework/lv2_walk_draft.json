@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-04/bulwark_rework/lv2_walk.png",
+      "out_prefix": "bulwark_lv2_walk",
+      "frame_names": [
+        "walk1",
+        "walk2",
+        "walk3",
+        "walk4"
+      ],
+      "resource": "resources/bulwark.tres",
+      "property": "lv2_walk_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "generator": "built-in image_gen",
+      "prompt_file": "art_sources/2026-10-04/bulwark_rework/lv2_walk_v2_prompt.txt",
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Only alpha-1 residue on the fully transparent outer edges. Reviewed all poses: ample gutters, full equipment and alternating contact legs."
+    }
+  ]
+}

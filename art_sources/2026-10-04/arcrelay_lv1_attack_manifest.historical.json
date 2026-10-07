@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-04/arcrelay_lv1_attack_attempt1.png",
+      "out_prefix": "arcrelay_attack",
+      "frame_names": [
+        "ready",
+        "fire",
+        "recoil",
+        "settle"
+      ],
+      "resource": "resources/arcrelay.tres",
+      "property": "attack_frames",
+      "background": "alpha",
+      "boxes": [
+        [
+          0,
+          0,
+          680,
+          512
+        ],
+        [
+          680,
+          0,
+          1536,
+          512
+        ],
+        [
+          0,
+          512,
+          768,
+          1024
+        ],
+        [
+          768,
+          512,
+          1536,
+          1024
+        ]
+      ],
+      "glow_padding": 4,
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Only alpha-1 generator residue is permitted on cell boundaries. The top-row split at x680 reserves the complete left-directed discharge within frame2 and excludes it from frame1."
+    }
+  ]
+}

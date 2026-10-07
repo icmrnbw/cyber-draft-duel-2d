@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-07/phaseblade/lv2_attack.png",
+      "out_prefix": "phaseblade_lv2_attack",
+      "frame_names": [
+        "ready",
+        "windup",
+        "strike",
+        "recover"
+      ],
+      "resource": "resources/phaseblade.tres",
+      "property": "lv2_attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact reviewed; all geometry and glow are fully inside each quadrant. Only alpha-1 generator residue occurs on borders.",
+      "prompt_file": "art_sources/2026-10-07/phaseblade/lv2_attack_clearance_prompt.txt",
+      "generator": "built-in image_gen"
+    }
+  ]
+}

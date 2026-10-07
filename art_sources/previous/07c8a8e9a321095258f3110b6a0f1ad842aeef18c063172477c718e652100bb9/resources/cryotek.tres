@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="UnitDefinition" load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://scripts/sim/unit_definition.gd" id="1_unitdef"]
+[ext_resource type="Texture2D" path="res://assets/cryotek_idle_breathe1.png" id="2_sprite"]
+[ext_resource type="Texture2D" path="res://assets/cryotek_idle_breathe2.png" id="3_idle2"]
+[ext_resource type="Texture2D" path="res://assets/cryotek_idle_breathe3.png" id="4_idle3"]
+[ext_resource type="Texture2D" path="res://assets/cryotek_idle_breathe4.png" id="5_idle4"]
+[ext_resource type="Texture2D" path="res://assets/cryotek_lv2_idle_breathe1.png" id="6_lv2_1"]
+[ext_resource type="Texture2D" path="res://assets/cryotek_lv2_idle_breathe2.png" id="7_lv2_2"]
+[ext_resource type="Texture2D" path="res://assets/cryotek_lv2_idle_breathe3.png" id="8_lv2_3"]
+[ext_resource type="Texture2D" path="res://assets/cryotek_lv2_idle_breathe4.png" id="9_lv2_4"]
+[ext_resource type="Texture2D" path="res://assets/cryotek_lv3_idle_breathe1.png" id="10_lv3_1"]
+[ext_resource type="Texture2D" path="res://assets/cryotek_lv3_idle_breathe2.png" id="11_lv3_2"]
+[ext_resource type="Texture2D" path="res://assets/cryotek_lv3_idle_breathe3.png" id="12_lv3_3"]
+[ext_resource type="Texture2D" path="res://assets/cryotek_lv3_idle_breathe4.png" id="13_lv3_4"]
+
+[resource]
+script = ExtResource("1_unitdef")
+display_name = "Cryotek"
+type = 1
+description = "Cryo control specialist that slows enemies with every projector hit."
+hp = 125.0
+damage_per_hit = 16.0
+attacks_per_second = 1.1
+splash_radius = 1.8
+move_speed = 2.6
+preferred_range = 6.0
+retreat_range = 3.0
+ability_lv2_name = "Cryo Lock"
+ability_lv2_description = "Projector hits slow enemies, making the front line easier to hold."
+ability_lv3_name = "Thermal Collapse"
+ability_lv3_description = "Every third projector burst carries a stronger slow and extra impact."
+special_attack_min_level = 2
+special_attack_every = 3
+special_attack_hits = 1
+special_attack_damage_mult = 1.2
+special_attack_effect = "cryo_burst"
+on_hit_slow_min_level = 2
+on_hit_slow_fraction = 0.24
+on_hit_slow_duration = 1.25
+on_hit_slow_special_only = false
+sprite = ExtResource("2_sprite")
+idle_frames = Array[Texture2D]([ExtResource("2_sprite"), ExtResource("3_idle2"), ExtResource("4_idle3"), ExtResource("5_idle4")])
+lv2_idle_frames = Array[Texture2D]([ExtResource("6_lv2_1"), ExtResource("7_lv2_2"), ExtResource("8_lv2_3"), ExtResource("9_lv2_4")])
+lv3_idle_frames = Array[Texture2D]([ExtResource("10_lv3_1"), ExtResource("11_lv3_2"), ExtResource("12_lv3_3"), ExtResource("13_lv3_4")])
+

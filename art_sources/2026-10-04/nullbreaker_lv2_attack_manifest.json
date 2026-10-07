@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-04/nullbreaker_lv2_attack.png",
+      "out_prefix": "nullbreaker_lv2_attack",
+      "frame_names": [
+        "ready",
+        "fire",
+        "recoil",
+        "settle"
+      ],
+      "resource": "resources/nullbreaker.tres",
+      "property": "lv2_attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "prompt_file": "art_sources/2026-10-04/nullbreaker_lv2_attack_prompt.txt",
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact reviewed: complete lance, compact cyan flash, coat and boots inside clear margins. Panel 1 and 3 boundary alpha 1 is generator residue, not clipped geometry."
+    }
+  ]
+}

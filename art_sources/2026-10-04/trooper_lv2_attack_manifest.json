@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-04/trooper_lv2_attack_v2.png",
+      "out_prefix": "trooper_lv2_attack",
+      "frame_names": [
+        "ready",
+        "fire",
+        "recoil",
+        "settle"
+      ],
+      "resource": "resources/trooper.tres",
+      "property": "lv2_attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete body, rifle and flash have clear margins. Maximum boundary alpha 1 is generator residue, not clipped geometry."
+    }
+  ]
+}

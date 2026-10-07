@@ -99,6 +99,15 @@ var events: Array = []
 ## rule splash_radius itself already follows.
 var _fire_patches: Array = []
 
+## Deferred effects keep attack decisions independent of team iteration order.
+## Protective heals resolve before incoming hostile statuses in the same tick.
+var _pending_statuses: Array = []
+var _pending_protection: Array = []
+## Lunge vectors are decided from the same positions as all attacks. Applying
+## them only after regular movement prevents lower-id units changing another
+## unit's attack range or movement decision within the current tick.
+var _pending_lunges: Array = []
+
 
 ## power_a/power_b are optional per-slot multipliers parallel to hand_a/hand_b (for
 ## the Rounds system's "doubled" units — see rounds-system-design.md). Omitted or
@@ -112,6 +121,10 @@ func setup(hand_a: Array[UnitDefinition], hand_b: Array[UnitDefinition], seed_va
 		levels_a: Array[int] = [], levels_b: Array[int] = []) -> void:
 	units.clear()
 	events.clear()
+	_fire_patches.clear()
+	_pending_statuses.clear()
+	_pending_protection.clear()
+	_pending_lunges.clear()
 	elapsed = 0.0
 	_last_action_elapsed = 0.0
 	result = Result.IN_PROGRESS
@@ -205,7 +218,10 @@ func tick() -> void:
 	_acquire_targets()
 	_attack()      # decided before movement, so a unit dying this tick still fires
 	_tick_fire_patches()
+	_apply_pending_protection()
+	_apply_pending_statuses()
 	_move()
+	_apply_pending_lunges()
 	_resolve_separation()
 	_clamp_to_arena()
 	_apply_damage()
@@ -277,58 +293,261 @@ func _nearest_injured_ally(u: SimUnit) -> int:
 
 func _attack() -> void:
 	for u in units:
-		if not u.alive:
-			continue
-		if u.stagger_timer > 0.0:
+		if not u.alive or u.stagger_timer > 0.0:
 			continue
 		u.attack_cooldown = maxf(0.0, u.attack_cooldown - TICK_DELTA)
 		if u.attack_cooldown > 0.0:
 			continue
-
 		if u.def.is_support and _try_self_defense(u):
 			continue
-
 		if u.target_id < 0:
 			continue
 		var target := units[u.target_id]
-		if not target.alive:
-			continue
-		if u.pos.distance_to(target.pos) > u.def.preferred_range:
+		if not target.alive or u.pos.distance_to(target.pos) > u.def.preferred_range:
 			continue
 
 		u.attack_cooldown = _effective_attack_interval(u)
 		var power := u.def.damage_per_hit * u.power_multiplier
-
 		if u.def.is_support:
 			target.pending_heal += power
-			events.append({"type": "heal", "attacker_id": u.id, "target_id": target.id})
-		elif u.def.splash_radius > 0.0:
-			# Everyone within splash_radius of the IMPACT POINT (the target's
-			# position) takes the hit, not just the target — including the target.
+			_queue_heal_protection(u, target)
+			events.append({"type": "heal", "attacker_id": u.id, "target_id": target.id, "amount": power})
+			continue
+
+		u.attacks_fired += 1
+		var special := _is_special_attack(u)
+		var hits := maxi(1, u.def.special_attack_hits) if special else 1
+		var damage_mult := maxf(0.0, u.def.special_attack_damage_mult) if special else 1.0
+		var effect := u.def.special_attack_effect if special else ""
+		var dealt := 0.0
+		if u.def.splash_radius > 0.0:
 			for other in units:
-				if not other.alive or other.team == u.team:
-					continue
-				if other.pos.distance_to(target.pos) <= u.def.splash_radius:
-					other.pending_damage += power
-					_maybe_stagger(u, other)
+				if other.alive and other.team != u.team and other.pos.distance_to(target.pos) <= u.def.splash_radius:
+					for _hit in range(hits):
+						dealt += _queue_attack_hit(u, other, power * damage_mult, special)
+					if special:
+						_queue_special_statuses(u, other)
+					_queue_hit_status(u, other, special)
 			_maybe_spawn_fire_patch(u, target.pos)
-			events.append({"type": "attack", "attacker_id": u.id, "target_id": target.id})
 		else:
-			target.pending_damage += power
-			_maybe_stagger(u, target)
-			events.append({"type": "attack", "attacker_id": u.id, "target_id": target.id})
+			for _hit in range(hits):
+				dealt += _queue_attack_hit(u, target, power * damage_mult, special)
+			if special:
+				_queue_special_statuses(u, target)
+			_queue_hit_status(u, target, special)
+			if special and u.def.special_chain_targets > 0 and u.def.special_chain_damage_mult > 0.0:
+				var chain_targets := _find_chain_targets(u, target, u.def.special_chain_targets)
+				for chained in chain_targets:
+					dealt += _queue_attack_hit(u, chained,
+						power * damage_mult * u.def.special_chain_damage_mult, true)
+					_queue_special_statuses(u, chained)
+					_queue_hit_status(u, chained, true)
+				if not chain_targets.is_empty():
+					var chain_ids: Array[int] = []
+					for chained in chain_targets:
+						chain_ids.append(chained.id)
+					events.append({"type": "chain", "attacker_id": u.id,
+						"target_id": target.id, "targets": chain_ids,
+						"amount": dealt})
+		if special:
+			_queue_lunge(u, target)
+			_queue_self_shield(u)
+		events.append({"type": "attack", "attacker_id": u.id, "target_id": target.id,
+			"effect": effect, "hits": hits, "damage_multiplier": damage_mult})
+		if special:
+			events.append({"type": "ability", "effect": effect, "attacker_id": u.id,
+				"target_id": target.id, "hits": hits, "amount": dealt})
 
 
-## Heavy Strikes (UnitDefinition.stagger_min_level+): rolled per landed hit,
-## independent of splash/direct -- called once per victim either way. Uses
-## maxf rather than overwrite so a second stagger landing while one is
-## already active can't SHORTEN it.
+func _is_special_attack(u: SimUnit) -> bool:
+	return u.def.special_attack_min_level > 0 and u.level >= u.def.special_attack_min_level \
+		and u.def.special_attack_every > 0 and u.attacks_fired % u.def.special_attack_every == 0
+
+
+func _outgoing_damage_multiplier(u: SimUnit) -> float:
+	return 1.0 - clampf(u.suppression_fraction, 0.0, 1.0) if u.suppression_timer > 0.0 else 1.0
+
+
+func _queue_damage(target: SimUnit, amount: float) -> float:
+	var multiplier := 1.0 + maxf(0.0, target.vulnerability_fraction) if target.vulnerability_timer > 0.0 else 1.0
+	var damage := maxf(0.0, amount) * multiplier
+	target.pending_damage += damage
+	if damage > 0.0:
+		_last_action_elapsed = elapsed
+	return damage
+
+
+func _queue_attack_hit(u: SimUnit, target: SimUnit, amount: float, special: bool = false) -> float:
+	var damage := _queue_damage(target, amount * _outgoing_damage_multiplier(u))
+	if special:
+		# Partition after suppression and any already-active mark, exactly once.
+		# Do not inspect current shields: same-tick protection resolves later.
+		target.pending_shield_bypass += damage * clampf(u.def.special_shield_bypass_fraction, 0.0, 1.0)
+	if damage > 0.0:
+		_maybe_stagger(u, target)
+	return damage
+
+
+func _queue_special_statuses(u: SimUnit, target: SimUnit) -> void:
+	if u.def.suppression_min_level > 0 and u.level >= u.def.suppression_min_level:
+		_queue_status("suppression", u.id, target.id, u.def.suppression_fraction, u.def.suppression_duration)
+	if u.def.mark_min_level > 0 and u.level >= u.def.mark_min_level:
+		_queue_status("mark", u.id, target.id, u.def.mark_damage_bonus, u.def.mark_duration)
+	if u.def.special_slow_min_level > 0 and u.level >= u.def.special_slow_min_level:
+		_queue_status("slow", u.id, target.id, u.def.special_slow_fraction, u.def.special_slow_duration)
+
+
+func _queue_hit_status(u: SimUnit, target: SimUnit, special: bool) -> void:
+	if u.def.on_hit_slow_min_level <= 0 or u.level < u.def.on_hit_slow_min_level:
+		return
+	if u.def.on_hit_slow_special_only and not special:
+		return
+	_queue_status("slow", u.id, target.id, u.def.on_hit_slow_fraction, u.def.on_hit_slow_duration)
+
+
+func _find_chain_targets(u: SimUnit, primary: SimUnit, max_targets: int) -> Array[SimUnit]:
+	var candidates: Array[SimUnit] = []
+	if u.def.special_chain_radius <= 0.0:
+		return candidates
+	var radius_squared := u.def.special_chain_radius * u.def.special_chain_radius
+	for other in units:
+		if other.alive and other.team != u.team and other.id != primary.id \
+				and primary.pos.distance_squared_to(other.pos) <= radius_squared:
+			candidates.append(other)
+	candidates.sort_custom(func(a: SimUnit, b: SimUnit) -> bool:
+			var da := primary.pos.distance_squared_to(a.pos)
+			var db := primary.pos.distance_squared_to(b.pos)
+			return da < db if da != db else a.id < b.id)
+	var selected: Array[SimUnit] = []
+	for i in range(mini(max_targets, candidates.size())):
+		selected.append(candidates[i])
+	return selected
+
+
+func _queue_lunge(u: SimUnit, target: SimUnit) -> void:
+	if u.def.special_lunge_distance <= 0.0:
+		return
+	var offset := target.pos - u.pos
+	var distance := offset.length()
+	# Stop at contact instead of overshooting the target or swapping sides.
+	var travel := minf(u.def.special_lunge_distance, maxf(0.0, distance - UNIT_RADIUS * 2.0))
+	if travel > 0.0:
+		_pending_lunges.append({"unit_id": u.id, "delta": offset / distance * travel})
+
+
+func _apply_pending_lunges() -> void:
+	for lunge in _pending_lunges:
+		units[int(lunge["unit_id"])].pos += Vector2(lunge["delta"])
+	_pending_lunges.clear()
+
+
+func _queue_self_shield(u: SimUnit) -> void:
+	if u.def.self_shield_min_level <= 0 or u.level < u.def.self_shield_min_level:
+		return
+	if u.def.self_shield_amount <= 0.0 or u.def.self_shield_duration <= 0.0:
+		return
+	var duration := u.def.self_shield_duration
+	if u.def.self_shield_duration_upgrade_min_level > 0 and u.level >= u.def.self_shield_duration_upgrade_min_level:
+		duration = maxf(duration, u.def.self_shield_upgraded_duration)
+	_pending_protection.append({"attacker_id": u.id, "target_id": u.id,
+		"amount": u.def.self_shield_amount * u.power_multiplier,
+		"cap": u.max_hp() * clampf(u.def.self_shield_cap_fraction, 0.0, 1.0),
+		"duration": duration, "cleanse": false, "immunity": 0.0})
+
+
+func _queue_heal_protection(u: SimUnit, target: SimUnit) -> void:
+	if u.def.heal_shield_min_level <= 0 or u.level < u.def.heal_shield_min_level:
+		return
+	if u.def.heal_shield_amount <= 0.0 or u.def.heal_shield_duration <= 0.0:
+		return
+	var cleanse := u.def.shield_cleanse_min_level > 0 and u.level >= u.def.shield_cleanse_min_level
+	_pending_protection.append({"attacker_id": u.id, "target_id": target.id,
+		"amount": u.def.heal_shield_amount * u.power_multiplier,
+		"cap": target.max_hp() * clampf(u.def.heal_shield_cap_fraction, 0.0, 1.0),
+		"duration": u.def.heal_shield_duration, "cleanse": cleanse,
+		"immunity": u.def.control_immunity_duration})
+
+
+func _apply_pending_protection() -> void:
+	# Resolve each target's lower-cap sources before higher-cap sources. Each
+	# contribution still has its own cap, and no source may shrink protection.
+	# A fixed order prevents a Medic/self-shield combination changing strength
+	# when its sources happen to have different unit ids or enqueue order.
+	_pending_protection.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		if int(a["target_id"]) != int(b["target_id"]):
+			return int(a["target_id"]) < int(b["target_id"])
+		if float(a["cap"]) != float(b["cap"]):
+			return float(a["cap"]) < float(b["cap"])
+		return int(a["attacker_id"]) < int(b["attacker_id"]))
+	for protection in _pending_protection:
+		var target := units[int(protection["target_id"])]
+		# A weaker shield source cannot shrink a stronger existing shield.
+		var before := target.shield
+		target.shield = maxf(before, minf(before + float(protection["amount"]), float(protection["cap"])))
+		target.shield_timer = maxf(target.shield_timer, float(protection["duration"]))
+		events.append({"type": "shield", "attacker_id": protection["attacker_id"],
+			"target_id": target.id, "amount": target.shield - before,
+			"shield": target.shield, "duration": target.shield_timer})
+		if protection["cleanse"]:
+			var cleansed := int(target.stagger_timer > 0.0) + int(target.slow_timer > 0.0) + int(target.suppression_timer > 0.0)
+			target.stagger_timer = 0.0
+			target.slow_timer = 0.0
+			target.slow_fraction = 0.0
+			target.suppression_timer = 0.0
+			target.suppression_fraction = 0.0
+			target.control_immunity_timer = maxf(target.control_immunity_timer, float(protection["immunity"]))
+			events.append({"type": "cleanse", "attacker_id": protection["attacker_id"],
+				"target_id": target.id, "amount": cleansed, "duration": target.control_immunity_timer})
+	_pending_protection.clear()
+
+
+func _queue_status(effect: String, attacker_id: int, target_id: int, amount: float, duration: float) -> void:
+	if amount <= 0.0 or duration <= 0.0:
+		return
+	_pending_statuses.append({"effect": effect, "attacker_id": attacker_id,
+		"target_id": target_id, "amount": amount, "duration": duration})
+
+
+## Hostile effects resolve only after all attack decisions and protective
+## cleanses. Strongest magnitude and longest duration win, without addition.
+func _apply_pending_statuses() -> void:
+	for status in _pending_statuses:
+		var target := units[int(status["target_id"])]
+		var effect: String = status["effect"]
+		if effect != "mark" and target.control_immunity_timer > 0.0:
+			continue
+		var amount: float = status["amount"]
+		var duration: float = status["duration"]
+		var changed := false
+		match effect:
+			"stagger":
+				changed = true
+				target.stagger_timer = maxf(target.stagger_timer, duration)
+			"slow":
+				changed = target.slow_timer <= 0.0 or amount > target.slow_fraction
+				target.slow_fraction = maxf(target.slow_fraction, clampf(amount, 0.0, 1.0))
+				target.slow_timer = maxf(target.slow_timer, duration)
+			"suppression":
+				changed = true
+				target.suppression_fraction = maxf(target.suppression_fraction, clampf(amount, 0.0, 1.0))
+				target.suppression_timer = maxf(target.suppression_timer, duration)
+			"mark":
+				changed = true
+				target.vulnerability_fraction = maxf(target.vulnerability_fraction, amount)
+				target.vulnerability_timer = maxf(target.vulnerability_timer, duration)
+		if changed:
+			events.append({"type": effect, "attacker_id": status["attacker_id"],
+				"target_id": target.id, "amount": amount, "duration": duration})
+	_pending_statuses.clear()
+
+
+## Rolled per landed hit, using only the seeded sim RNG. New stagger cannot
+## suppress another unit's attack decision from this same tick.
 func _maybe_stagger(u: SimUnit, target: SimUnit) -> void:
 	if u.def.stagger_min_level <= 0 or u.level < u.def.stagger_min_level:
 		return
 	if rng.randf() < u.def.stagger_chance:
-		target.stagger_timer = maxf(target.stagger_timer, u.def.stagger_duration)
-		events.append({"type": "stagger", "attacker_id": u.id, "target_id": target.id})
+		_queue_status("stagger", u.id, target.id, 1.0, u.def.stagger_duration)
 
 
 ## Firestorm (UnitDefinition.firepatch_min_level+): a landed splash attack
@@ -343,10 +562,14 @@ func _maybe_spawn_fire_patch(u: SimUnit, impact_pos: Vector2) -> void:
 		"pos": impact_pos,
 		"remaining": u.def.firepatch_duration,
 		"team": u.team,
-		"dps": u.def.firepatch_dps * u.power_multiplier,
+		"dps": u.def.firepatch_dps * u.power_multiplier * _outgoing_damage_multiplier(u),
+		"attacker_id": u.id,
+		"slow_fraction": u.def.firepatch_slow_fraction if u.def.firepatch_slow_min_level > 0 and u.level >= u.def.firepatch_slow_min_level else 0.0,
+		"slow_duration": u.def.firepatch_slow_duration,
 		"radius": u.def.firepatch_radius,
 	})
-	events.append({"type": "fire_patch_spawn", "pos": impact_pos, "duration": u.def.firepatch_duration, "radius": u.def.firepatch_radius})
+	events.append({"type": "fire_patch_spawn", "attacker_id": u.id, "pos": impact_pos,
+		"duration": u.def.firepatch_duration, "radius": u.def.firepatch_radius, "team": u.team})
 
 
 ## Ticks every active Firestorm patch: damages any enemy standing in it this
@@ -355,12 +578,20 @@ func _maybe_spawn_fire_patch(u: SimUnit, impact_pos: Vector2) -> void:
 func _tick_fire_patches() -> void:
 	var still_active: Array = []
 	for patch in _fire_patches:
+		# A partial last tick contributes only its remaining lifetime. A zero
+		# duration patch never deals damage.
+		var active_delta := minf(maxf(float(patch["remaining"]), 0.0), TICK_DELTA)
+		if active_delta <= 0.0:
+			continue
+		var damage: float = patch["dps"] * active_delta
 		for other in units:
 			if not other.alive or other.team == patch["team"]:
 				continue
-			if other.pos.distance_to(patch["pos"]) <= patch["radius"]:
-				other.pending_damage += patch["dps"] * TICK_DELTA
-		patch["remaining"] -= TICK_DELTA
+			if damage > 0.0 and other.pos.distance_to(patch["pos"]) <= patch["radius"]:
+				_queue_damage(other, damage)
+				_queue_status("slow", int(patch.get("attacker_id", -1)), other.id,
+					float(patch.get("slow_fraction", 0.0)), float(patch.get("slow_duration", 0.0)))
+		patch["remaining"] = maxf(0.0, float(patch["remaining"]) - active_delta)
 		if patch["remaining"] > 0.0:
 			still_active.append(patch)
 	_fire_patches = still_active
@@ -382,8 +613,26 @@ func _tick_status_effects() -> void:
 	for u in units:
 		if not u.alive:
 			continue
-		if u.stagger_timer > 0.0:
-			u.stagger_timer = maxf(0.0, u.stagger_timer - TICK_DELTA)
+		u.stagger_timer = maxf(0.0, u.stagger_timer - TICK_DELTA)
+		u.control_immunity_timer = maxf(0.0, u.control_immunity_timer - TICK_DELTA)
+		u.slow_timer = maxf(0.0, u.slow_timer - TICK_DELTA)
+		u.suppression_timer = maxf(0.0, u.suppression_timer - TICK_DELTA)
+		u.vulnerability_timer = maxf(0.0, u.vulnerability_timer - TICK_DELTA)
+		if u.slow_timer <= 0.0:
+			u.slow_fraction = 0.0
+		if u.suppression_timer <= 0.0:
+			u.suppression_fraction = 0.0
+		if u.vulnerability_timer <= 0.0:
+			u.vulnerability_fraction = 0.0
+		if u.shield_timer > 0.0:
+			u.shield_timer = maxf(0.0, u.shield_timer - TICK_DELTA)
+			if u.shield_timer <= 0.0:
+				u.shield = 0.0
+				events.append({"type": "shield_expire", "unit_id": u.id})
+
+
+func _movement_speed(u: SimUnit) -> float:
+	return u.def.move_speed * (1.0 - clampf(u.slow_fraction, 0.0, 1.0)) if u.slow_timer > 0.0 else u.def.move_speed
 
 
 ## Support units only: a Mercy-style token self-defense — fires a weak shot at the
@@ -401,7 +650,7 @@ func _try_self_defense(u: SimUnit) -> bool:
 	var threat := units[u.threat_id]
 	if not threat.alive or u.pos.distance_to(threat.pos) > u.def.self_defense_range:
 		return false
-	threat.pending_damage += u.def.self_defense_damage * u.power_multiplier
+	_queue_attack_hit(u, threat, u.def.self_defense_damage * u.power_multiplier)
 	u.attack_cooldown = _effective_attack_interval(u)
 	events.append({"type": "attack", "attacker_id": u.id, "target_id": threat.id})
 	return true
@@ -444,7 +693,7 @@ func _move() -> void:
 			# Deterministic fallback when exactly coincident.
 			dir = Vector2.RIGHT if u.team == 0 else Vector2.LEFT
 
-		var step := u.def.move_speed * TICK_DELTA
+		var step := _movement_speed(u) * TICK_DELTA
 		if dist > u.def.preferred_range:
 			new_positions[u.id] = u.pos + dir * step
 		elif dist < u.def.retreat_range:
@@ -461,7 +710,7 @@ func _move() -> void:
 ## healing: an already-hurt medic that keeps closing on its patient instead of
 ## backing off is just a free kill.
 func _move_support(u: SimUnit, new_positions: Array[Vector2]) -> void:
-	var step := u.def.move_speed * TICK_DELTA
+	var step := _movement_speed(u) * TICK_DELTA
 
 	if u.threat_id >= 0:
 		var threat := units[u.threat_id]
@@ -615,13 +864,21 @@ func _apply_damage() -> void:
 			u.hp = minf(u.hp + u.pending_heal, u.max_hp())
 			u.pending_heal = 0.0
 		if u.pending_damage > 0.0:
-			u.hp -= u.pending_damage
+			var shieldable := maxf(0.0, u.pending_damage - u.pending_shield_bypass)
+			var absorbed := minf(u.shield, shieldable)
+			u.shield -= absorbed
+			u.hp -= u.pending_damage - absorbed
 			u.pending_damage = 0.0
+			if absorbed > 0.0:
+				events.append({"type": "shield_hit", "target_id": u.id, "amount": absorbed, "shield": u.shield})
+			if u.shield <= 0.0:
+				u.shield_timer = 0.0
 			if u.hp <= 0.0:
 				u.hp = 0.0
 				u.alive = false
 				u.target_id = -1
 				events.append({"type": "death", "unit_id": u.id})
+		u.pending_shield_bypass = 0.0
 
 
 ## Shared by both the real end-of-match timeout and the stalemate detector

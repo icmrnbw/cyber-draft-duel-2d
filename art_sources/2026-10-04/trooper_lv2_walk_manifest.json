@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-04/trooper_lv2_walk.png",
+      "out_prefix": "trooper_lv2_walk",
+      "frame_names": [
+        "walk1",
+        "walk2",
+        "walk3",
+        "walk4"
+      ],
+      "resource": "resources/trooper.tres",
+      "property": "lv2_walk_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source/contact inspection confirms alternate near/far contacts and passing poses, complete rifle/boots and clear crop margins; only alpha-1 generator residue at boundaries."
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-07/arcrelay/lv1_attack.png",
+      "out_prefix": "arcrelay_attack",
+      "frame_names": [
+        "ready",
+        "fire",
+        "recoil",
+        "settle"
+      ],
+      "resource": "resources/arcrelay.tres",
+      "property": "attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "generator": "built-in image_gen",
+      "prompt_file": "art_sources/2026-10-07/arcrelay/lv1_attack_prompt.txt",
+      "boxes": [
+        [
+          0,
+          0,
+          645,
+          634
+        ],
+        [
+          645,
+          0,
+          1254,
+          634
+        ],
+        [
+          0,
+          634,
+          680,
+          1254
+        ],
+        [
+          680,
+          634,
+          1254,
+          1254
+        ]
+      ]
+    },
+    {
+      "sheet": "art_sources/2026-10-07/arcrelay/lv2_attack.png",
+      "out_prefix": "arcrelay_lv2_attack",
+      "frame_names": [
+        "ready",
+        "fire",
+        "recoil",
+        "settle"
+      ],
+      "resource": "resources/arcrelay.tres",
+      "property": "lv2_attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "generator": "built-in image_gen",
+      "prompt_file": "art_sources/2026-10-07/arcrelay/lv2_attack_prompt.txt",
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Visual review confirms the staff, relay and limbs are fully inside each crop; only alpha-1 generator residue reaches the boundary."
+    },
+    {
+      "sheet": "art_sources/2026-10-07/arcrelay/lv3_attack.png",
+      "out_prefix": "arcrelay_lv3_attack",
+      "frame_names": [
+        "ready",
+        "fire",
+        "recoil",
+        "settle"
+      ],
+      "resource": "resources/arcrelay.tres",
+      "property": "lv3_attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "generator": "built-in image_gen",
+      "prompt_file": "art_sources/2026-10-07/arcrelay/lv3_attack_prompt.txt",
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Visual review confirms the staff, relay and limbs are fully inside each crop; only alpha-1 generator residue reaches the boundary."
+    }
+  ]
+}

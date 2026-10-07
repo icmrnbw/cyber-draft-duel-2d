@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-04/nullbreaker_lv2_walk.png",
+      "out_prefix": "nullbreaker_lv2_walk",
+      "frame_names": [
+        "walk1",
+        "walk2",
+        "walk3",
+        "walk4"
+      ],
+      "resource": "resources/nullbreaker.tres",
+      "property": "lv2_walk_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "prompt_file": "art_sources/2026-10-04/nullbreaker_lv2_walk_prompt.txt"
+    }
+  ]
+}

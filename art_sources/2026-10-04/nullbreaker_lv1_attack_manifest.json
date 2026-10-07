@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-04/nullbreaker_lv1_attack_v2.png",
+      "out_prefix": "nullbreaker_attack",
+      "frame_names": [
+        "ready",
+        "fire",
+        "recoil",
+        "settle"
+      ],
+      "resource": "resources/nullbreaker.tres",
+      "property": "attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact reviewed: complete lance, compact flash, coat and boots have broad clear margins. Panel 1 alpha 1 at boundary is generator residue, not clipped geometry."
+    }
+  ]
+}

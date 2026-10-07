@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-04/bulwark_rework/lv2_attack.png",
+      "out_prefix": "bulwark_lv2_attack",
+      "frame_names": [
+        "ready",
+        "windup",
+        "strike",
+        "recover"
+      ],
+      "resource": "resources/bulwark.tres",
+      "property": "lv2_attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boxes": [
+        [
+          0,
+          0,
+          643,
+          634
+        ],
+        [
+          643,
+          0,
+          1254,
+          634
+        ],
+        [
+          0,
+          634,
+          660,
+          1254
+        ],
+        [
+          660,
+          634,
+          1254,
+          1254
+        ]
+      ],
+      "generator": "built-in image_gen",
+      "prompt_file": "art_sources/2026-10-04/bulwark_rework/lv2_attack_prompt.txt",
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Reviewed source and normalized contact: alpha-1 generator residue only at crop edge; all solid body, shield, hammer and arc fit with transparent clearance."
+    }
+  ]
+}

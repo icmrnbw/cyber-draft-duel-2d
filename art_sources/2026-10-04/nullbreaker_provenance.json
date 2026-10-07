@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "generator": "built-in image_gen.imagegen",
+  "canonical_references": [
+    "assets/nullbreaker_idle_breathe1.png",
+    "assets/nullbreaker_lv2_idle_breathe1.png",
+    "assets/nullbreaker_lv3_idle_breathe1.png"
+  ],
+  "attempts": [
+    {
+      "set": "lv1_attack",
+      "source": "art_sources/2026-10-04/nullbreaker_lv1_attack_attempt1.png",
+      "generated_original": "C:/Users/rnast/.codex/generated_images/01a10599-08be-72b0-8a0d-4448cc4f7b26/exec-da26d7f2-efaf-4431-9cce-0c800f8e90e6.png",
+      "prompt_file": "art_sources/2026-10-04/nullbreaker_lv1_attack_prompt.txt",
+      "references": [
+        "assets/nullbreaker_idle_breathe1.png"
+      ],
+      "transparent_background": true,
+      "status": "rejected-retained",
+      "review": "Canonical identity preserved and four coherent action poses; top-right cyan firing flare reaches right canvas boundary. Request a spacing/flare-only correction before slicing."
+    },
+    {
+      "set": "lv1_attack",
+      "source": "art_sources/2026-10-04/nullbreaker_lv1_attack_v2.png",
+      "generated_original": "C:/Users/rnast/.codex/generated_images/01a10599-08be-72b0-8a0d-4448cc4f7b26/exec-e4fb49ef-352a-4dd6-9034-210192728eef.png",
+      "prompt_file": "art_sources/2026-10-04/nullbreaker_lv1_attack_v2_prompt.txt",
+      "references": [
+        "art_sources/2026-10-04/nullbreaker_lv1_attack_attempt1.png"
+      ],
+      "transparent_background": true,
+      "status": "accepted-wired",
+      "review": "Complete compact cyan flash and all character/weapon silhouettes now have wide margins; canonical identity and four action poses preserved. Normalized 512px contact reviewed: identity, coherent recoil/settle and complete silhouettes pass. Alpha preserved; max boundary residue 1/255 documented in manifest. Safe slicer applied and wired attack_frames; sources and original resource backup retained."
+    }
+  ]
+}

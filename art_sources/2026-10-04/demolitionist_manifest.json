@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-04/demolitionist_lv2_attack_attempt1.png",
+      "out_prefix": "demolitionist_lv2_attack",
+      "frame_names": [
+        "ready",
+        "fire",
+        "recoil",
+        "settle"
+      ],
+      "resource": "resources/demolitionist.tres",
+      "property": "lv2_attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+    },
+    {
+      "sheet": "art_sources/2026-10-04/demolitionist_lv2_walk_attempt2.png",
+      "out_prefix": "demolitionist_lv2_walk",
+      "frame_names": [
+        "walk1",
+        "walk2",
+        "walk3",
+        "walk4"
+      ],
+      "resource": "resources/demolitionist.tres",
+      "property": "lv2_walk_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+    },
+    {
+      "sheet": "art_sources/2026-10-04/demolitionist_lv2_retreat_attempt2.png",
+      "out_prefix": "demolitionist_lv2_retreat",
+      "frame_names": [
+        "retreat1",
+        "retreat2",
+        "retreat3",
+        "retreat4"
+      ],
+      "resource": "resources/demolitionist.tres",
+      "property": "lv2_retreat_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+    },
+    {
+      "sheet": "art_sources/2026-10-04/demolitionist_lv3_attack_attempt1.png",
+      "out_prefix": "demolitionist_lv3_attack",
+      "frame_names": [
+        "ready",
+        "fire",
+        "recoil",
+        "settle"
+      ],
+      "resource": "resources/demolitionist.tres",
+      "property": "lv3_attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+    },
+    {
+      "sheet": "art_sources/2026-10-04/demolitionist_lv3_walk_attempt2.png",
+      "out_prefix": "demolitionist_lv3_walk",
+      "frame_names": [
+        "walk1",
+        "walk2",
+        "walk3",
+        "walk4"
+      ],
+      "resource": "resources/demolitionist.tres",
+      "property": "lv3_walk_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+    },
+    {
+      "sheet": "art_sources/2026-10-04/demolitionist_lv3_retreat.png",
+      "out_prefix": "demolitionist_lv3_retreat",
+      "frame_names": [
+        "retreat1",
+        "retreat2",
+        "retreat3",
+        "retreat4"
+      ],
+      "resource": "resources/demolitionist.tres",
+      "property": "lv3_retreat_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact inspected: complete equipment, boots and effects; actual gait/weight-shift changes. Crop edges contain only alpha-1 generator residue."
+    }
+  ]
+}

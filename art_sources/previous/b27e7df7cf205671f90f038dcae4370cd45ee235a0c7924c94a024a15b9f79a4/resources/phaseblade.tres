@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="UnitDefinition" load_steps=22 format=3]
+
+[ext_resource type="Script" path="res://scripts/sim/unit_definition.gd" id="1_unitdef"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_idle_breathe1.png" id="2_sprite"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_idle_breathe2.png" id="3_idle2"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_idle_breathe3.png" id="4_idle3"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_idle_breathe4.png" id="5_idle4"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_lv2_idle_breathe1.png" id="6_lv2_1"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_lv2_idle_breathe2.png" id="7_lv2_2"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_lv2_idle_breathe3.png" id="8_lv2_3"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_lv2_idle_breathe4.png" id="9_lv2_4"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_lv3_idle_breathe1.png" id="10_lv3_1"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_lv3_idle_breathe2.png" id="11_lv3_2"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_lv3_idle_breathe3.png" id="12_lv3_3"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_lv3_idle_breathe4.png" id="13_lv3_4"]
+
+[ext_resource type="Texture2D" path="res://assets/phaseblade_attack_ready.png" id="frame_attack_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_attack_windup.png" id="frame_attack_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_attack_strike.png" id="frame_attack_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_attack_recover.png" id="frame_attack_frames_4"]
+
+[ext_resource type="Texture2D" path="res://assets/phaseblade_lv2_attack_ready.png" id="frame_lv2_attack_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_lv2_attack_windup.png" id="frame_lv2_attack_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_lv2_attack_strike.png" id="frame_lv2_attack_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/phaseblade_lv2_attack_recover.png" id="frame_lv2_attack_frames_4"]
+
+[resource]
+script = ExtResource("1_unitdef")
+display_name = "Phaseblade"
+type = 0
+description = "Mobile infiltrator that lunges through gaps and marks exposed targets."
+hp = 110.0
+damage_per_hit = 24.0
+attacks_per_second = 1.4
+move_speed = 5.0
+preferred_range = 1.5
+retreat_range = 0.0
+ability_lv2_name = "Phase Lunge"
+ability_lv2_description = "Every third blade strike surges toward its target for increased damage."
+ability_lv3_name = "Rift Mark"
+ability_lv3_description = "Surging strikes mark the target, increasing incoming damage for a short time."
+special_attack_min_level = 2
+special_attack_every = 3
+special_attack_hits = 1
+special_attack_damage_mult = 1.45
+special_attack_effect = "lunge"
+special_lunge_distance = 0.7
+mark_min_level = 3
+mark_damage_bonus = 0.15
+mark_duration = 1.8
+sprite = ExtResource("2_sprite")
+idle_frames = Array[Texture2D]([ExtResource("2_sprite"), ExtResource("3_idle2"), ExtResource("4_idle3"), ExtResource("5_idle4")])
+lv2_idle_frames = Array[Texture2D]([ExtResource("6_lv2_1"), ExtResource("7_lv2_2"), ExtResource("8_lv2_3"), ExtResource("9_lv2_4")])
+lv3_idle_frames = Array[Texture2D]([ExtResource("10_lv3_1"), ExtResource("11_lv3_2"), ExtResource("12_lv3_3"), ExtResource("13_lv3_4")])
+attack_frames = Array[Texture2D]([ExtResource("frame_attack_frames_1"), ExtResource("frame_attack_frames_2"), ExtResource("frame_attack_frames_3"), ExtResource("frame_attack_frames_4")])
+lv2_attack_frames = Array[Texture2D]([ExtResource("frame_lv2_attack_frames_1"), ExtResource("frame_lv2_attack_frames_2"), ExtResource("frame_lv2_attack_frames_3"), ExtResource("frame_lv2_attack_frames_4")])

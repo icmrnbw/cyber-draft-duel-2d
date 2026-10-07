@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-05",
+  "tool": "built-in image_gen",
+  "source": "phaseblade_attack_rejected_clearance.png",
+  "provider_source": "C:\\Users\\rnast\\.codex\\generated_images\\01a10598-3b9d-7c62-b5b2-7966eafa0556\\exec-060d5056-ee01-4d8b-ad08-ed1bb5902df2.png",
+  "prompt_file": "phaseblade_attack_prompt.txt",
+  "reference_images": [
+    "assets/phaseblade_idle_breathe1.png"
+  ],
+  "status": "rejected; Lv1 attack blade/cape overlap and cropped lower-right blade; retained"
+}

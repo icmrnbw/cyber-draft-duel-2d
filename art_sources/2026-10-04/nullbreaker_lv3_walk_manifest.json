@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-04/nullbreaker_lv3_walk.png",
+      "out_prefix": "nullbreaker_lv3_walk",
+      "frame_names": [
+        "walk1",
+        "walk2",
+        "walk3",
+        "walk4"
+      ],
+      "resource": "resources/nullbreaker.tres",
+      "property": "lv3_walk_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "prompt_file": "art_sources/2026-10-04/nullbreaker_lv3_walk_prompt.txt",
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact reviewed: complete lance, coat, boots and glow inside broad clear margins. Panel 2 and 3 boundary alpha 1 is generator residue, not clipped geometry."
+    }
+  ]
+}

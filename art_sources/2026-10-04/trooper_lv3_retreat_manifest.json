@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-04/trooper_lv3_retreat.png",
+      "out_prefix": "trooper_lv3_retreat",
+      "frame_names": [
+        "retreat1",
+        "retreat2",
+        "retreat3",
+        "retreat4"
+      ],
+      "resource": "resources/trooper.tres",
+      "property": "lv3_retreat_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boxes": [
+        [
+          0,
+          0,
+          627,
+          627
+        ],
+        [
+          627,
+          627,
+          1254,
+          1254
+        ],
+        [
+          0,
+          627,
+          627,
+          1254
+        ],
+        [
+          627,
+          0,
+          1254,
+          627
+        ]
+      ],
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact inspected: alternating near/far leg contacts and passing poses, complete gear and boots with clear margins. Alpha1 edge residue only. Reverse crop order (TL,BR,BL,TR) produces backward gait."
+    }
+  ]
+}

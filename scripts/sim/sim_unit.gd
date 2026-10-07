@@ -28,9 +28,24 @@ var attack_cooldown: float = 0.0
 ## of what set it, so it works the same no matter which unit's ability
 ## triggered it.
 var stagger_timer: float = 0.0
+## Per-battle attack counter; individual burst hits do not advance it.
+var attacks_fired: int = 0
+var shield: float = 0.0
+var shield_timer: float = 0.0
+var slow_fraction: float = 0.0
+var slow_timer: float = 0.0
+var suppression_fraction: float = 0.0
+var suppression_timer: float = 0.0
+var vulnerability_fraction: float = 0.0
+var vulnerability_timer: float = 0.0
+var control_immunity_timer: float = 0.0
+
 var alive: bool = true
 
 var pending_damage: float = 0.0
+## Subset of pending_damage that shields cannot absorb. Kept separate until
+## resolution so protection and all incoming hits remain simultaneous.
+var pending_shield_bypass: float = 0.0
 var pending_heal: float = 0.0
 
 

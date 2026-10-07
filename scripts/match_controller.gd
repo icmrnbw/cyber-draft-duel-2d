@@ -15,6 +15,9 @@ const TeamColor := preload("res://scripts/team_color.gd")
 const SFX_SHOOT := preload("res://assets/sfx/shoot.wav")
 const SFX_SWING := preload("res://assets/sfx/swing.wav")
 const SFX_STRIKE := preload("res://assets/sfx/strike.wav")
+const UnitStatusFX := preload("res://scripts/unit_status_fx.gd")
+const MAX_ABILITY_FX := 48
+var _ability_fx_layer: Node2D
 
 const VIEW_W := 720.0
 const VIEW_H := 1280.0
@@ -418,8 +421,9 @@ func _show_round_result_screen(lives_a_before: int, lives_b_before: int) -> void
 	var lives_a_after := _round_state.lives_a
 	var lives_b_after := _round_state.lives_b
 
-	var human_won := _sim.result == (BattleSim.Result.TEAM_A if HUMAN_SIDE == 0 else BattleSim.Result.TEAM_B)
-	_round_result_title.text = "ROUND %d\n%s" % [_round_state.round_number, "YOU WIN" if human_won else "YOU LOSE"]
+	var human_won := _round_state.last_round_result == (BattleSim.Result.TEAM_A if HUMAN_SIDE == 0 else BattleSim.Result.TEAM_B)
+	var outcome := "DRAW — BOTH LOSE A LIFE" if _round_state.draw_round_resolved else ("YOU WIN" if human_won else "YOU LOSE")
+	_round_result_title.text = "ROUND %d\n%s" % [_round_state.round_number, outcome]
 	_round_result_title.add_theme_color_override("font_color", UITheme.CYAN if human_won else RIVAL_ACCENT)
 
 	_round_result_overlay.modulate.a = 0.0
@@ -432,7 +436,7 @@ func _show_round_result_screen(lives_a_before: int, lives_b_before: int) -> void
 
 	# Break the heart that was just lost, if any -- lives_before/after differ
 	# by at most 1 per side per round (record_round_result only ever
-	# decrements the LOSING side by one).
+	# decrements the losing side, or both sides after exhausted exact draws).
 	if lives_b_before > lives_b_after:
 		await _break_heart(_rival_hearts[lives_b_after]["filled"])
 	if lives_a_before > lives_a_after:
@@ -497,7 +501,11 @@ func _free_views() -> void:
 		v.hp_bg.queue_free()
 		v.hp_fill.queue_free()
 		v.stun_fx.queue_free()
+		v.status_fx.queue_free()
 	_views.clear()
+	if is_instance_valid(_ability_fx_layer):
+		for effect in _ability_fx_layer.get_children():
+			effect.queue_free()
 
 
 ## Builds a fresh BattleSim from the CURRENT roster and spawns real views for
@@ -579,7 +587,7 @@ func _on_round_finished() -> void:
 	var lives_b_before := _round_state.lives_b
 	_round_state.record_round_result(result)
 
-	if result == BattleSim.Result.DRAW:
+	if result == BattleSim.Result.DRAW and not _round_state.draw_round_resolved:
 		_show_banner("DRAW — replaying round %d" % _round_state.round_number)
 		await get_tree().create_timer(1.5).timeout
 		_start_round()
@@ -793,8 +801,9 @@ func _resolve_growth_picks() -> void:
 		human_lost = _round_state.last_round_result == BattleSim.Result.TEAM_B
 	else:
 		human_lost = _round_state.last_round_result == BattleSim.Result.TEAM_A
+	human_lost = human_lost or _round_state.draw_round_resolved
 
-	_round_state.auto_grow_side(bot_side, not human_lost, _bot_difficulty_scale())
+	_round_state.auto_grow_side(bot_side, not human_lost or _round_state.draw_round_resolved, _bot_difficulty_scale())
 	var slots := _round_state.additions_for(human_lost)
 	_dim_overlay.visible = slots > 0
 	if slots > 0:
@@ -1092,6 +1101,7 @@ func _build_unit_view(u: SimUnit) -> Dictionary:
 
 	var sprite := Sprite2D.new()
 	sprite.texture = u.def.idle_sprite_for_level(u.level)
+	sprite.z_index = 2
 	var base_scale := Vector2(_unit_scale, _unit_scale)
 	sprite.scale = base_scale
 	TeamColor.apply(sprite, team_color)
@@ -1103,6 +1113,7 @@ func _build_unit_view(u: SimUnit) -> Dictionary:
 	# hard frame-to-frame snap every ~0.45s, which is what read as
 	# "robotic/choppy" with a plain texture swap.
 	var idle_blend := Sprite2D.new()
+	idle_blend.z_index = 2
 	idle_blend.visible = false
 	TeamColor.apply(idle_blend, team_color)
 	add_child(idle_blend)
@@ -1111,20 +1122,27 @@ func _build_unit_view(u: SimUnit) -> Dictionary:
 	ring.color = team_color
 	ring.color.a = 0.85
 	ring.size = Vector2(70, 14) * bar_ratio
-	ring.z_index = -1
+	ring.z_index = 1
 	add_child(ring)
 
 	var hp_bg := ColorRect.new()
+	hp_bg.z_index = 5
 	hp_bg.color = Color(0, 0, 0, 0.6)
 	hp_bg.size = Vector2(90, 10) * bar_ratio
 	add_child(hp_bg)
 
 	var hp_fill := ColorRect.new()
+	hp_fill.z_index = 5
 	hp_fill.color = team_color
 	hp_fill.size = hp_bg.size
 	add_child(hp_fill)
 
 	var stun_fx := _build_stun_fx()
+	var status_fx := UnitStatusFX.new()
+	status_fx.unit = u
+	status_fx.radius = 220.0 * _unit_scale
+	status_fx.z_index = 4
+	add_child(status_fx)
 
 	return {
 		"unit": u,
@@ -1134,6 +1152,7 @@ func _build_unit_view(u: SimUnit) -> Dictionary:
 		"hp_bg": hp_bg,
 		"hp_fill": hp_fill,
 		"stun_fx": stun_fx,
+		"status_fx": status_fx,
 		"base_scale": base_scale,
 		"prev_pos": u.pos,
 		"walk_phase": 0.0,
@@ -1157,6 +1176,7 @@ func _sim_to_screen(pos: Vector2) -> Vector2:
 
 func _consume_events() -> void:
 	for e in _sim.events:
+		_visualize_ability_event(e)
 		if e.type == "attack" or e.type == "heal":
 			var v := _view_for(e.attacker_id)
 			if not v.is_empty():
@@ -1188,6 +1208,15 @@ func _consume_events() -> void:
 						if other.pos.distance_to(target_v.unit.pos) <= v.unit.def.splash_radius:
 							victims.append(other_v)
 					var patch_def: UnitDefinition = v.unit.def
+					# Projector splash has an immediate cold impact. It must not
+					# inherit the grenadier's orange lob/explosion presentation.
+					if patch_def.special_attack_effect == "cryo_burst":
+						_ability_tracer(_sim_to_screen(v.unit.pos), _sim_to_screen(target_v.unit.pos), Color("a3f1ff"), 3.0)
+						if str(e.get("effect", "")).is_empty():
+							_ability_pulse(_sim_to_screen(target_v.unit.pos), Color("79ceff"))
+						for victim in victims:
+							_hit_flash(victim)
+						continue
 					var fire_patch_radius := 0.0
 					var fire_patch_duration := 0.0
 					if patch_def.firepatch_min_level > 0 and v.unit.level >= patch_def.firepatch_min_level:
@@ -1205,6 +1234,159 @@ func _consume_events() -> void:
 						_knockback(target_v, away)
 
 
+## Short-lived effects are bounded, presentation-owned, and discarded each round.
+func _new_ability_fx() -> Node2D:
+	if not is_instance_valid(_ability_fx_layer):
+		_ability_fx_layer = Node2D.new()
+		_ability_fx_layer.z_index = 7
+		add_child(_ability_fx_layer)
+	if _ability_fx_layer.get_child_count() >= MAX_ABILITY_FX:
+		return null
+	var effect := Node2D.new()
+	_ability_fx_layer.add_child(effect)
+	return effect
+
+
+func _ability_tracer(from: Vector2, to: Vector2, color: Color, width: float, delay: float = 0.0) -> void:
+	var effect := _new_ability_fx()
+	if effect == null:
+		return
+	var line := Line2D.new()
+	line.points = PackedVector2Array([from, to])
+	line.default_color = color
+	line.width = width
+	line.antialiased = true
+	effect.add_child(line)
+	effect.modulate.a = 0.0
+	var tween := create_tween().bind_node(effect)
+	if delay > 0.0:
+		tween.tween_interval(delay)
+	tween.tween_property(effect, "modulate:a", 1.0, 0.035)
+	tween.tween_property(effect, "modulate:a", 0.0, 0.16)
+	tween.tween_callback(effect.queue_free)
+
+
+func _ability_pulse(at: Vector2, color: Color, caption: String = "") -> void:
+	var effect := _new_ability_fx()
+	if effect == null:
+		return
+	effect.position = at
+	var line := Line2D.new()
+	var points := PackedVector2Array()
+	for i in range(33):
+		points.append(Vector2.from_angle(float(i) * TAU / 32) * 22.0)
+	line.points = points
+	line.default_color = color
+	line.width = 3.0
+	line.antialiased = true
+	effect.add_child(line)
+	if not caption.is_empty():
+		var label := Label.new()
+		label.text = caption
+		label.position = Vector2(-48, -64)
+		label.add_theme_font_size_override("font_size", 14)
+		label.modulate = color
+		effect.add_child(label)
+	var tween := create_tween().bind_node(effect).set_parallel(true)
+	tween.tween_property(line, "scale", Vector2(2.3, 1.1), 0.42)
+	tween.tween_property(effect, "modulate:a", 0.0, 0.48)
+	tween.chain().tween_callback(effect.queue_free)
+
+
+func _ability_shield_flash(at: Vector2) -> void:
+	var effect := _new_ability_fx()
+	if effect == null:
+		return
+	effect.position = at
+	var shield := Sprite2D.new()
+	shield.texture = UnitStatusFX.SHIELD
+	var diameter := 520.0 * _unit_scale
+	shield.scale = Vector2.ONE * diameter / float(shield.texture.get_width())
+	shield.modulate = Color(0.75, 1.0, 1.0, 0.85)
+	effect.add_child(shield)
+	var tween := create_tween().bind_node(effect).set_parallel(true)
+	tween.tween_property(shield, "scale", shield.scale * 1.25, 0.35)
+	tween.tween_property(effect, "modulate:a", 0.0, 0.45)
+	tween.chain().tween_callback(effect.queue_free)
+
+
+func _ability_afterimage(view: Dictionary) -> void:
+	# Copy the rendered frame, never the sim object. A short ghost at the old
+	# position makes the lunge readable while combat movement remains exact.
+	var effect := _new_ability_fx()
+	if effect == null:
+		return
+	effect.position = _sim_to_screen(view.prev_pos)
+	var source: Sprite2D = view.sprite
+	var ghost := Sprite2D.new()
+	ghost.texture = source.texture
+	ghost.scale = source.scale
+	ghost.flip_h = source.flip_h
+	ghost.modulate = Color(0.68, 0.55, 1.0, 0.7)
+	effect.add_child(ghost)
+	var tween := create_tween().bind_node(effect)
+	tween.tween_property(effect, "modulate:a", 0.0, 0.35)
+	tween.tween_callback(effect.queue_free)
+
+
+func _visualize_ability_event(event: Dictionary) -> void:
+	var target := _view_for(int(event.get("target_id", event.get("unit_id", -1))))
+	var attacker := _view_for(int(event.get("attacker_id", -1)))
+	if target.is_empty():
+		return
+	var to := _sim_to_screen(target.unit.pos)
+	var from := _sim_to_screen(attacker.unit.pos) if not attacker.is_empty() else to
+	match event.type:
+		"attack":
+			match event.get("effect", ""):
+				"burst":
+					for i in range(mini(int(event.get("hits", 3)), 4)):
+						_ability_tracer(from + Vector2(i * 2, 0), to, Color("89f7ff"), 3.0, i * 0.065)
+				"charged":
+					_ability_tracer(from, to, Color("fff2c5"), 7.0)
+					_ability_pulse(to, Color("ffae60"), "CHARGED")
+				"aegis":
+					_ability_shield_flash(from)
+					_ability_pulse(to, Color("9af7ff"), "AEGIS RAM")
+				"lunge":
+					if not attacker.is_empty():
+						_ability_afterimage(attacker)
+					_ability_tracer(from, to, Color("c0a4ff"), 8.0)
+					_ability_pulse(to, Color("c0a4ff"), "PHASE")
+				"cryo_burst":
+					_ability_pulse(to, Color("7fdcff"), "CRYO BURST")
+					_ability_tracer(from, to, Color("ddfbff"), 9.0)
+				"chain":
+					_ability_tracer(from, to, Color("c4a7ff"), 5.0)
+					_ability_pulse(to, Color("d5baff"), "ARC CHAIN")
+				"pierce":
+					_ability_tracer(from, to, Color("ffd9a4"), 10.0)
+					_ability_tracer(from, to, Color("fffdf6"), 3.0, 0.04)
+					_ability_pulse(to, Color("ffb477"), "PIERCING")
+		"chain":
+			for target_id in event.get("targets", []):
+				var chained := _view_for(int(target_id))
+				if not chained.is_empty():
+					var chain_to := _sim_to_screen(chained.unit.pos)
+					_ability_tracer(to, chain_to, Color("bd99ff"), 5.0)
+					_hit_flash(chained)
+		"heal":
+			_ability_tracer(from, to, Color(0.35, 1, 0.7, 0.8), 3.0)
+			_ability_pulse(to, Color("6fffc0"))
+		"shield":
+			if float(event.get("amount", 0.0)) > 0.0:
+				_ability_pulse(to, Color("70efff"))
+		"cleanse":
+			if int(event.get("amount", 0)) > 0:
+				_ability_pulse(to, Color("bcffda"), "CLEANSE")
+		"mark":
+			_ability_pulse(to, Color("ff9b66"), "LOCKED")
+		"suppression":
+			_ability_pulse(to, Color("d6a1ff"), "SUPPRESSED")
+		"stagger":
+			_ability_pulse(to, Color("ffe27d"))
+
+
 func _view_for(unit_id: int) -> Dictionary:
 	for v in _views:
 		if v.unit.id == unit_id:
@@ -1215,6 +1397,8 @@ func _view_for(unit_id: int) -> Dictionary:
 func _update_view(v: Dictionary) -> void:
 	var u: SimUnit = v.unit
 	var screen_pos := _sim_to_screen(u.pos)
+	v.status_fx.position = screen_pos
+	v.status_fx.visible = u.alive
 	var sprite: Sprite2D = v.sprite
 	var idle_blend: Sprite2D = v.idle_blend
 
@@ -1429,7 +1613,7 @@ func _update_view(v: Dictionary) -> void:
 ## to match that reference instead of inventing our own exaggerated version.
 func _punch(v: Dictionary) -> void:
 	var u: SimUnit = v.unit
-	if u.def.attack_frames.size() > 0:
+	if not u.def.attack_frames_for_level(u.level).is_empty():
 		_play_attack_frames(v)
 		return
 
@@ -1472,8 +1656,12 @@ func _play_attack_frames(v: Dictionary) -> void:
 	var sprite: Sprite2D = v.sprite
 	var base_tex: Texture2D = v.unit.def.idle_sprite_for_level(v.unit.level)
 	var frame_time := 0.08
+	if def.berserk_min_level > 0 and v.unit.level >= def.berserk_min_level:
+		frame_time *= lerpf(def.berserk_max_speed_mult, 1.0, v.unit.hp_fraction())
 
-	var tw := create_tween()
+	# The sprite owns this animation: freeing views at a round boundary must
+	# cancel queued callbacks before they touch an already-freed sprite.
+	var tw := sprite.create_tween()
 	for i in range(frames.size()):
 		tw.tween_callback(func(idx: int = i) -> void: sprite.texture = frames[idx])
 		tw.tween_interval(frame_time)
@@ -1614,21 +1802,20 @@ func _spawn_fire_puddle(pos: Vector2, radius_px: float, duration: float) -> void
 	# The art's own smoke/glow halo extends past the flame core, so size it
 	# a bit larger than the bare gameplay radius or the visible fire reads
 	# smaller than the area it's actually damaging.
-	var size := radius_px * 2.4
-	puddle.size = Vector2(size, size)
+	var size := Vector2(radius_px * 2.4, radius_px * 1.25)
+	puddle.size = size
 	puddle.position = pos - puddle.size * 0.5
 	puddle.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	puddle.stretch_mode = TextureRect.STRETCH_SCALE
 	puddle.texture = FIRE_PUDDLE_FRAMES[0]
 	puddle.modulate.a = 0.0
-	# See the shader-version comment this replaced: z_index=0 (same tier as
-	# floor/sprites, drawing on top since it's added last) is the only
-	# reliable way to guarantee visibility against the opaque floor art.
+	# Above the floor (same index, later insertion), beneath unit sprites
+	# at z=2. Dense overlapping hazards must never cover fighters or HP bars.
 	puddle.z_index = 0
 	add_child(puddle)
 
 	var tw_in := create_tween()
-	tw_in.tween_property(puddle, "modulate:a", 1.0, 0.15)
+	tw_in.tween_property(puddle, "modulate:a", 0.68, 0.15)
 
 	var elapsed := 0.0
 	var frame_idx := 0
@@ -1683,6 +1870,7 @@ func _play_death(v: Dictionary) -> void:
 	v.hp_bg.visible = false
 	v.hp_fill.visible = false
 	v.stun_fx.visible = false
+	v.status_fx.visible = false
 
 	var team_color := TeamColor.color_for_side(v.unit.team)
 	_spawn_impact(sprite.position, team_color, 6)

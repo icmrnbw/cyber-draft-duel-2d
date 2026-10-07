@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="UnitDefinition" load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://scripts/sim/unit_definition.gd" id="1_unitdef"]
+[ext_resource type="Texture2D" path="res://assets/bulwark_idle_breathe1.png" id="2_sprite"]
+[ext_resource type="Texture2D" path="res://assets/bulwark_idle_breathe2.png" id="3_idle2"]
+[ext_resource type="Texture2D" path="res://assets/bulwark_idle_breathe3.png" id="4_idle3"]
+[ext_resource type="Texture2D" path="res://assets/bulwark_idle_breathe4.png" id="5_idle4"]
+[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_idle_breathe1.png" id="6_lv2_1"]
+[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_idle_breathe2.png" id="7_lv2_2"]
+[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_idle_breathe3.png" id="8_lv2_3"]
+[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_idle_breathe4.png" id="9_lv2_4"]
+[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_idle_breathe1.png" id="10_lv3_1"]
+[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_idle_breathe2.png" id="11_lv3_2"]
+[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_idle_breathe3.png" id="12_lv3_3"]
+[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_idle_breathe4.png" id="13_lv3_4"]
+
+[resource]
+script = ExtResource("1_unitdef")
+display_name = "Bulwark"
+type = 0
+description = "Shield guardian who turns periodic hammer blows into short-lived protection."
+hp = 320.0
+damage_per_hit = 17.0
+attacks_per_second = 1.0
+move_speed = 2.8
+preferred_range = 1.6
+retreat_range = 0.0
+ability_lv2_name = "Aegis Ram"
+ability_lv2_description = "Every fourth hammer attack hits harder and projects a personal shield."
+ability_lv3_name = "Fortress Pulse"
+ability_lv3_description = "The empowered strike also suppresses the target briefly while the shield lasts longer."
+special_attack_min_level = 2
+special_attack_every = 4
+special_attack_hits = 1
+special_attack_damage_mult = 1.35
+special_attack_effect = "aegis"
+suppression_min_level = 3
+suppression_fraction = 0.15
+suppression_duration = 1.5
+self_shield_min_level = 2
+self_shield_amount = 24.0
+self_shield_cap_fraction = 0.3
+self_shield_duration = 2.5
+sprite = ExtResource("2_sprite")
+idle_frames = Array[Texture2D]([ExtResource("2_sprite"), ExtResource("3_idle2"), ExtResource("4_idle3"), ExtResource("5_idle4")])
+lv2_idle_frames = Array[Texture2D]([ExtResource("6_lv2_1"), ExtResource("7_lv2_2"), ExtResource("8_lv2_3"), ExtResource("9_lv2_4")])
+lv3_idle_frames = Array[Texture2D]([ExtResource("10_lv3_1"), ExtResource("11_lv3_2"), ExtResource("12_lv3_3"), ExtResource("13_lv3_4")])
+

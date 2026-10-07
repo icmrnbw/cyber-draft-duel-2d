@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="UnitDefinition" load_steps=34 format=3]
+
+[ext_resource type="Script" path="res://scripts/sim/unit_definition.gd" id="1_unitdef"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_idle_breathe1.png" id="2_sprite"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_idle_breathe2.png" id="3_idle2"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_idle_breathe3.png" id="4_idle3"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_idle_breathe4.png" id="5_idle4"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv2_idle_breathe1.png" id="6_lv2_1"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv2_idle_breathe2.png" id="7_lv2_2"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv2_idle_breathe3.png" id="8_lv2_3"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv2_idle_breathe4.png" id="9_lv2_4"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv3_idle_breathe1.png" id="10_lv3_1"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv3_idle_breathe2.png" id="11_lv3_2"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv3_idle_breathe3.png" id="12_lv3_3"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv3_idle_breathe4.png" id="13_lv3_4"]
+
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_attack_ready.png" id="frame_attack_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_attack_fire.png" id="frame_attack_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_attack_recoil.png" id="frame_attack_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_attack_settle.png" id="frame_attack_frames_4"]
+
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_walk_walk1.png" id="frame_walk_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_walk_walk2.png" id="frame_walk_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_walk_walk3.png" id="frame_walk_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_walk_walk4.png" id="frame_walk_frames_4"]
+
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv2_walk_walk1.png" id="frame_lv2_walk_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv2_walk_walk2.png" id="frame_lv2_walk_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv2_walk_walk3.png" id="frame_lv2_walk_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv2_walk_walk4.png" id="frame_lv2_walk_frames_4"]
+
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv3_walk_walk1.png" id="frame_lv3_walk_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv3_walk_walk2.png" id="frame_lv3_walk_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv3_walk_walk3.png" id="frame_lv3_walk_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv3_walk_walk4.png" id="frame_lv3_walk_frames_4"]
+
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv2_attack_ready.png" id="frame_lv2_attack_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv2_attack_fire.png" id="frame_lv2_attack_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv2_attack_recoil.png" id="frame_lv2_attack_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/nullbreaker_lv2_attack_settle.png" id="frame_lv2_attack_frames_4"]
+
+[resource]
+script = ExtResource("1_unitdef")
+display_name = "Nullbreaker"
+type = 2
+description = "Anti-shield lance hunter whose charged shots pierce protection and expose vulnerable cores."
+hp = 85.0
+damage_per_hit = 37.0
+attacks_per_second = 0.55
+move_speed = 2.1
+preferred_range = 11.0
+retreat_range = 5.5
+ability_lv2_name = "Piercing Charge"
+ability_lv2_description = "Every third shot deals 175% normal damage. 80% of that damage bypasses shields; the rest is absorbed normally."
+ability_lv3_name = "Expose Core"
+ability_lv3_description = "Charged rounds mark the target for 2.5 seconds, increasing incoming damage by 25%. Marks refresh without stacking."
+special_attack_min_level = 2
+special_attack_every = 3
+special_attack_hits = 1
+special_attack_damage_mult = 1.75
+special_attack_effect = "pierce"
+special_shield_bypass_fraction = 0.8
+mark_min_level = 3
+mark_damage_bonus = 0.25
+mark_duration = 2.5
+sprite = ExtResource("2_sprite")
+idle_frames = Array[Texture2D]([ExtResource("2_sprite"), ExtResource("3_idle2"), ExtResource("4_idle3"), ExtResource("5_idle4")])
+lv2_idle_frames = Array[Texture2D]([ExtResource("6_lv2_1"), ExtResource("7_lv2_2"), ExtResource("8_lv2_3"), ExtResource("9_lv2_4")])
+lv3_idle_frames = Array[Texture2D]([ExtResource("10_lv3_1"), ExtResource("11_lv3_2"), ExtResource("12_lv3_3"), ExtResource("13_lv3_4")])
+attack_frames = Array[Texture2D]([ExtResource("frame_attack_frames_1"), ExtResource("frame_attack_frames_2"), ExtResource("frame_attack_frames_3"), ExtResource("frame_attack_frames_4")])
+walk_frames = Array[Texture2D]([ExtResource("frame_walk_frames_1"), ExtResource("frame_walk_frames_2"), ExtResource("frame_walk_frames_3"), ExtResource("frame_walk_frames_4")])
+lv2_walk_frames = Array[Texture2D]([ExtResource("frame_lv2_walk_frames_1"), ExtResource("frame_lv2_walk_frames_2"), ExtResource("frame_lv2_walk_frames_3"), ExtResource("frame_lv2_walk_frames_4")])
+lv3_walk_frames = Array[Texture2D]([ExtResource("frame_lv3_walk_frames_1"), ExtResource("frame_lv3_walk_frames_2"), ExtResource("frame_lv3_walk_frames_3"), ExtResource("frame_lv3_walk_frames_4")])
+lv2_attack_frames = Array[Texture2D]([ExtResource("frame_lv2_attack_frames_1"), ExtResource("frame_lv2_attack_frames_2"), ExtResource("frame_lv2_attack_frames_3"), ExtResource("frame_lv2_attack_frames_4")])

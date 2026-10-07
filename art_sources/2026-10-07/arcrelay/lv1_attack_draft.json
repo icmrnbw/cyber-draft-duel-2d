@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-07/arcrelay/lv1_attack.png",
+      "out_prefix": "arcrelay_attack",
+      "frame_names": [
+        "ready",
+        "fire",
+        "recoil",
+        "settle"
+      ],
+      "resource": "resources/arcrelay.tres",
+      "property": "attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "generator": "built-in image_gen",
+      "prompt_file": "art_sources/2026-10-07/arcrelay/lv1_attack_prompt.txt",
+      "boxes": [
+        [
+          0,
+          0,
+          645,
+          634
+        ],
+        [
+          645,
+          0,
+          1254,
+          634
+        ],
+        [
+          0,
+          634,
+          680,
+          1254
+        ],
+        [
+          680,
+          634,
+          1254,
+          1254
+        ]
+      ]
+    }
+  ]
+}

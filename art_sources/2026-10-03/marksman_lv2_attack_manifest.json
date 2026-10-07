@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-03/marksman_lv2_attack_v2.png",
+      "out_prefix": "marksman_lv2_attack",
+      "frame_names": [
+        "ready",
+        "fire",
+        "recoil",
+        "settle"
+      ],
+      "resource": "resources/marksman.tres",
+      "property": "lv2_attack_frames",
+      "background": "alpha",
+      "generator": "built-in image_gen",
+      "prompt": "Correct this Marksman four-frame attack sheet while preserving the EXACT character, rifle, four body poses, painterly shading and 2x2 layout. The gunshot effect in top-right is cut off by the canvas, and bottom-left has an unwanted glowing plume behind the shoulder. Remove BOTH oversized cyan clouds and ALL shoulder smoke. Top-right muzzle flash should instead be a TINY white-cyan spark no larger than the rifle scope, fully contained inside the cell with empty space beyond it. Bottom-left recoil should have no smoke or glow cloud at all. Move all four figures 8 percent smaller within their individual equal quadrants to provide safe empty margins; same body scale across all four. Keep single identical scoped black rifle with 3-port muzzle brake, both hands gripping it, purple hood/cape and cyan teal energized armor. Do not change equipment or orientation. Genuine transparent alpha, no background, grid or labels. Complete untouched boots/cape/rifle in each frame.",
+      "reference_prompt": "Production Marksman Lv2 ATTACK animation spritesheet for existing mobile 2D game. Image1 is canonical Lv2 appearance: purple hood and long cape, smooth teal faceplate with cyan glints, teal segmented armor with cyan energized seams, purple gloves, exactly ONE long dark scoped sniper rifle with box magazine and three-port muzzle brake, held in BOTH hands. Image2 shows full base rifle outline only. Preserve image1 identity and soft glossy painterly shading. Four frames strict 2x2 equal cells, square actual transparent-alpha canvas. Fixed three-quarter camera facing screen RIGHT, fixed body scale and foot baseline. Frames: 1 aiming steady rifle horizontally; 2 shouldered shot with a small cyan-white muzzle flash entirely inside its cell; 3 recoil lifts barrel slightly and torso leans back, same rifle exactly; 4 settle back to aim. Keep complete hood/cape/boots and ENTIRE long rifle in every frame. Make figures small enough that each figure plus barrel and flash has at least 60px empty alpha margin to every cell boundary. Wide blank center gutters, never overlap cells. No extra rifle/bipod/gear, no equipment vanishing, no text/grid/floor/shadow. Four distinct action poses with controlled realistic recoil.",
+      "review": "Whole sheet inspected: one consistent rifle in all four frames; clipped muzzle cloud and stray shoulder cloud regenerated. Pending sliced-frame and Godot review."
+    }
+  ]
+}

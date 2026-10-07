@@ -1,0 +1,292 @@
+{
+  "version": 1,
+  "unit_group": "new_units",
+  "review_status": "canonical idle sheets reviewed for divider clearance; animation states remain in progress",
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-03/bulwark_lv1_idle_sheet.png",
+      "out_prefix": "bulwark_idle",
+      "frame_names": [
+        "breathe1",
+        "breathe2",
+        "breathe3",
+        "breathe4"
+      ],
+      "resource": "resources/bulwark.tres",
+      "property": "idle_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Generator sheets include faint alpha residue at panel borders; geometry uses an alpha-8 threshold and solid artwork has clear divider margins.",
+      "reviewed_boundary_exception": "Whole-sheet and divider inspection completed; alpha at dividers is residue only, not clipped geometry.",
+      "generator": "built-in image_gen",
+      "prompt": "Use case: stylized-concept. Asset type: production 2D game character idle spritesheet. Create a square 2x2 four-frame transparent-alpha breathing sheet for a new Cyber Draft-Duel 2D unit named BULWARK. Same soft-shaded semi-realistic painterly chibi sci-fi style as the attached existing Enforcer, with substantial body mass and a readable mobile silhouette. Subject: a broad defensive frontline guardian in matte gunmetal and deep navy armor, tower-sized rectangular energy shield mounted on the LEFT forearm with a bright cyan center slit and cyan edge runes, short heavy shock hammer in the RIGHT hand, wide shoulders, squared helmet with a narrow cyan visor, small reactor on the back. Four subtly distinct idle/breathing poses, same three-quarter camera facing screen RIGHT, same exact shield, hammer, helmet, armor and proportions in every panel, stable foot baseline. Layout: true 2x2 equal cells; full figure including shield and hammer occupies about 65 percent of each cell with ample transparent gutters; no panel overlap. Soft glossy painterly materials, cyan controlled-energy seams only, no orange overcharge, no fire, no text, no labels, no grid, no ground, no shadow, no background, no watermark. Genuine transparency."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/bulwark_lv2_idle_sheet.png",
+      "out_prefix": "bulwark_lv2_idle",
+      "frame_names": [
+        "breathe1",
+        "breathe2",
+        "breathe3",
+        "breathe4"
+      ],
+      "resource": "resources/bulwark.tres",
+      "property": "lv2_idle_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Generator sheets include faint alpha residue at panel borders; geometry uses an alpha-8 threshold and solid artwork has clear divider margins.",
+      "reviewed_boundary_exception": "Whole-sheet and divider inspection completed; alpha at dividers is residue only, not clipped geometry.",
+      "generator": "built-in image_gen",
+      "prompt": "EDIT image1's four-frame BULWARK idle sheet into its Lv2 ENERGIZED appearance. Preserve every exact four breathing pose, shield silhouette, hammer shape, helmet, backpack reactor, body proportions, right-facing three-quarter camera, foot baseline, scale and 2x2 placement from image1. Add controlled cyan circuitry and cyan shield edge runes across gunmetal/navy armor; make shield center slit brighter cyan and add a small cyan reactor glow. Keep ONE rectangular forearm shield and ONE short shock hammer in all four panels, no extra gear. Figures must remain fully inside their cells with transparent margins; no panel overlap. Soft glossy painterly shading, true alpha, no orange cracks, no sparks, no smoke, no ground, shadow, grid, labels or text."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/bulwark_lv3_idle_sheet.png",
+      "out_prefix": "bulwark_lv3_idle",
+      "frame_names": [
+        "breathe1",
+        "breathe2",
+        "breathe3",
+        "breathe4"
+      ],
+      "resource": "resources/bulwark.tres",
+      "property": "lv3_idle_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Generator sheets include faint alpha residue at panel borders; geometry uses an alpha-8 threshold and solid artwork has clear divider margins.",
+      "reviewed_boundary_exception": "Whole-sheet and divider inspection completed; alpha at dividers is residue only, not clipped geometry.",
+      "generator": "built-in image_gen",
+      "prompt": "EDIT image1's four-frame BULWARK Lv2 idle sheet into its Lv3 OVERCHARGED appearance. Preserve every exact breathing pose, rectangular shield, hammer, helmet, backpack reactor, body proportions, right-facing camera, foot baseline, scale and 2x2 placement. Keep the same one shield and one hammer in all panels. Add orange glowing cracks and unstable orange energy veins through the gunmetal/navy armor and across the shield edge and hammer head; retain a little cyan core light but make orange dominant. No new equipment, no sparks, no smoke, no clipping, no panel overlap. Soft glossy painterly shading, true transparent alpha, no ground, shadow, grid, labels or text."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/phaseblade_lv1_idle_sheet.png",
+      "out_prefix": "phaseblade_idle",
+      "frame_names": [
+        "breathe1",
+        "breathe2",
+        "breathe3",
+        "breathe4"
+      ],
+      "resource": "resources/phaseblade.tres",
+      "property": "idle_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Generator sheets include faint alpha residue at panel borders; geometry uses an alpha-8 threshold and solid artwork has clear divider margins.",
+      "reviewed_boundary_exception": "Whole-sheet and divider inspection completed; alpha at dividers is residue only, not clipped geometry.",
+      "generator": "built-in image_gen",
+      "prompt": "Use case: stylized-concept. Asset type: production 2D game character idle spritesheet. Create a square 2x2 four-frame transparent-alpha breathing sheet for a new Cyber Draft-Duel 2D unit named PHASEBLADE. Same soft-shaded semi-realistic painterly chibi sci-fi style as the attached existing Marksman and Enforcer. Subject: a lean mobile infiltrator with a distinctive asymmetrical silhouette, dark graphite hooded half-cape, narrow angular mask with one cyan visor slit, light armor at the torso, two compact cyan hover-thrusters on the hips, and ONE long crescent energy blade held in the RIGHT hand. No second weapon. Four subtly distinct idle/breathing poses, same three-quarter camera facing screen RIGHT, same exact crescent blade, hood, mask, cape, thrusters and proportions in every panel, stable foot baseline. Base tier uses graphite, muted violet and restrained cyan edge lights; no orange overcharge. True 2x2 equal cells, figure including blade occupies about 65 percent of each cell with ample transparent gutters, no panel overlap. Soft glossy painterly materials, no text, labels, grid, ground, shadow, background, watermark. Genuine alpha."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/phaseblade_lv2_idle_sheet.png",
+      "out_prefix": "phaseblade_lv2_idle",
+      "frame_names": [
+        "breathe1",
+        "breathe2",
+        "breathe3",
+        "breathe4"
+      ],
+      "resource": "resources/phaseblade.tres",
+      "property": "lv2_idle_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Generator sheets include faint alpha residue at panel borders; geometry uses an alpha-8 threshold and solid artwork has clear divider margins.",
+      "reviewed_boundary_exception": "Whole-sheet and divider inspection completed; alpha at dividers is residue only, not clipped geometry.",
+      "generator": "built-in image_gen",
+      "prompt": "EDIT image1's four-frame PHASEBLADE idle sheet into Lv2 ENERGIZED appearance. Preserve every exact breathing pose, one crescent energy blade, hooded half-cape, narrow visor, hip thrusters, armor proportions, fixed three-quarter camera facing RIGHT, stable foot baseline, scale and 2x2 placement. Keep exactly ONE blade in the RIGHT hand and no other weapon. Add controlled cyan circuitry to graphite/violet armor and make the crescent blade a clean cyan energy edge with restrained glow. No orange cracks, no extra limbs or gear, no large trails, no panel overlap. Soft glossy painterly shading, true transparent alpha, no ground, shadow, grid, labels or text."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/phaseblade_lv3_idle_sheet.png",
+      "out_prefix": "phaseblade_lv3_idle",
+      "frame_names": [
+        "breathe1",
+        "breathe2",
+        "breathe3",
+        "breathe4"
+      ],
+      "resource": "resources/phaseblade.tres",
+      "property": "lv3_idle_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Generator sheets include faint alpha residue at panel borders; geometry uses an alpha-8 threshold and solid artwork has clear divider margins.",
+      "reviewed_boundary_exception": "Whole-sheet and divider inspection completed; alpha at dividers is residue only, not clipped geometry.",
+      "generator": "built-in image_gen",
+      "prompt": "EDIT image1's four-frame PHASEBLADE Lv2 idle sheet into Lv3 OVERCHARGED appearance. Preserve every exact breathing pose, one crescent blade, hooded half-cape, narrow visor, hip thrusters, armor proportions, fixed three-quarter camera facing RIGHT, foot baseline, scale and 2x2 placement. Keep exactly ONE blade in the RIGHT hand and no other weapon. Add unstable orange cracks and orange energy arcs through the graphite/violet armor and along the crescent blade, with a dangerous orange core while retaining a small cyan visor. No extra gear, no large trails, no clipping or panel overlap. Soft glossy painterly shading, genuine alpha, no ground, shadow, grid, labels or text."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/cryotek_lv1_idle_sheet.png",
+      "out_prefix": "cryotek_idle",
+      "frame_names": [
+        "breathe1",
+        "breathe2",
+        "breathe3",
+        "breathe4"
+      ],
+      "resource": "resources/cryotek.tres",
+      "property": "idle_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Generator sheets include faint alpha residue at panel borders; geometry uses an alpha-8 threshold and solid artwork has clear divider margins.",
+      "reviewed_boundary_exception": "Whole-sheet and divider inspection completed; alpha at dividers is residue only, not clipped geometry.",
+      "generator": "built-in image_gen",
+      "prompt": "Use case: stylized-concept. Asset type: production 2D game character idle spritesheet. Create a square 2x2 four-frame transparent-alpha breathing sheet for a new Cyber Draft-Duel 2D unit named CRYOTEK. Same soft-shaded semi-realistic painterly chibi sci-fi style as the attached existing Field Medic and Demolitionist. Subject: medium-control specialist with a compact insulated teal-white suit, angular helmet with a cyan ice visor, two large frosted coolant cylinders mounted vertically on the back, and a distinctive twin-nozzle cryo projector held in both hands at chest height. Broad collar and layered thermal pads create a recognizable silhouette; small snowflake emitter on the shoulder. Four subtly distinct idle/breathing poses, same three-quarter camera facing screen RIGHT, same exact projector, cylinders, helmet and proportions in every panel, stable foot baseline. Base tier palette is white, deep teal and restrained cyan rim light with tiny ice particles close to the nozzle only; no orange overcharge. True 2x2 equal cells; figure and weapon occupy about 65 percent of each cell with ample transparent gutters; no panel overlap. Soft glossy painterly materials, no text, labels, grid, ground, shadow, background, watermark. Genuine alpha."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/cryotek_lv2_idle_sheet.png",
+      "out_prefix": "cryotek_lv2_idle",
+      "frame_names": [
+        "breathe1",
+        "breathe2",
+        "breathe3",
+        "breathe4"
+      ],
+      "resource": "resources/cryotek.tres",
+      "property": "lv2_idle_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Generator sheets include faint alpha residue at panel borders; geometry uses an alpha-8 threshold and solid artwork has clear divider margins.",
+      "reviewed_boundary_exception": "Whole-sheet and divider inspection completed; alpha at dividers is residue only, not clipped geometry.",
+      "generator": "built-in image_gen",
+      "prompt": "EDIT image1's four-frame CRYOTEK idle sheet into Lv2 ENERGIZED appearance. Preserve every exact breathing pose, twin-nozzle cryo projector, two frosted coolant cylinders, helmet visor, thermal suit, shoulder snowflake emitter, body proportions, right-facing three-quarter camera, stable foot baseline, scale and 2x2 placement. Add controlled cyan circuitry and brighter cyan ice glow along the projector and coolant canisters; retain white/deep teal materials. Keep exactly one projector and two back cylinders in all panels, no extra gear. No orange cracks, no large ice cloud, no panel overlap. Soft glossy painterly shading, true transparent alpha, no ground, shadow, grid, labels or text."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/cryotek_lv3_idle_sheet.png",
+      "out_prefix": "cryotek_lv3_idle",
+      "frame_names": [
+        "breathe1",
+        "breathe2",
+        "breathe3",
+        "breathe4"
+      ],
+      "resource": "resources/cryotek.tres",
+      "property": "lv3_idle_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Generator sheets include faint alpha residue at panel borders; geometry uses an alpha-8 threshold and solid artwork has clear divider margins.",
+      "reviewed_boundary_exception": "Whole-sheet and divider inspection completed; alpha at dividers is residue only, not clipped geometry.",
+      "generator": "built-in image_gen",
+      "prompt": "EDIT image1's four-frame CRYOTEK Lv2 idle sheet into Lv3 OVERCHARGED appearance. Preserve every exact breathing pose, twin-nozzle projector, two coolant cylinders, helmet, thermal pads, shoulder emitter, body proportions, right-facing three-quarter camera, stable foot baseline, scale and 2x2 placement. Keep exactly one projector and two cylinders in every panel. Add unstable orange cracks and orange-lit frost vents through the white/deep teal armor, with orange energy rings in the projector and cylinder caps while retaining a cyan visor core. No extra gear, no large ice cloud, no clipping or panel overlap. Soft glossy painterly shading, genuine transparent alpha, no ground, shadow, grid, labels or text."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/arcrelay_lv1_idle_sheet.png",
+      "out_prefix": "arcrelay_idle",
+      "frame_names": [
+        "breathe1",
+        "breathe2",
+        "breathe3",
+        "breathe4"
+      ],
+      "resource": "resources/arcrelay.tres",
+      "property": "idle_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Generator sheets include faint alpha residue at panel borders; geometry uses an alpha-8 threshold and solid artwork has clear divider margins.",
+      "reviewed_boundary_exception": "Whole-sheet and divider inspection completed; alpha at dividers is residue only, not clipped geometry.",
+      "generator": "built-in image_gen",
+      "prompt": "Use case: stylized-concept. Asset type: production 2D game character idle spritesheet. Create a square 2x2 four-frame transparent-alpha breathing sheet for a new Cyber Draft-Duel 2D unit named ARCRELAY. Same soft-shaded semi-realistic painterly chibi sci-fi style as the attached existing Trooper and Field Medic. Subject: a medium-range conductor/support disruptor with a slim armored body, long insulated coat, a triangular coil backpack with three glowing cyan nodes, a bright copper-and-teal conductor staff held in both hands, forked emitter at the top, and a small cable loop around the forearm. Strong triangular shoulder silhouette and visible coil hardware make the unit recognizable. Four subtly distinct idle/breathing poses, same three-quarter camera facing screen RIGHT, exact same staff, coil backpack, coat and proportions in every panel, stable foot baseline. Base tier palette is charcoal, copper and cyan controlled arcs, no orange overcharge. True 2x2 equal cells; full figure and staff occupy about 65 percent of each cell with ample transparent gutters; no panel overlap. Soft glossy painterly materials, no text, labels, grid, ground, shadow, background, watermark. Genuine alpha."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/arcrelay_lv2_idle_sheet.png",
+      "out_prefix": "arcrelay_lv2_idle",
+      "frame_names": [
+        "breathe1",
+        "breathe2",
+        "breathe3",
+        "breathe4"
+      ],
+      "resource": "resources/arcrelay.tres",
+      "property": "lv2_idle_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Generator sheets include faint alpha residue at panel borders; geometry uses an alpha-8 threshold and solid artwork has clear divider margins.",
+      "reviewed_boundary_exception": "Whole-sheet and divider inspection completed; alpha at dividers is residue only, not clipped geometry.",
+      "generator": "built-in image_gen",
+      "prompt": "EDIT image1's four-frame ARCRELAY idle sheet into Lv2 ENERGIZED appearance. Preserve every exact breathing pose, forked conductor staff, triangular three-node coil backpack, long coat, helmet, cable loop, body proportions, right-facing three-quarter camera, stable foot baseline, scale and 2x2 placement. Add brighter controlled cyan circuitry and a few small cyan arcs between the staff fork and coil nodes, while retaining charcoal and copper materials. Keep exactly one staff and one backpack coil in all panels; no extra limbs or equipment. No orange cracks, no large lightning cloud, no panel overlap. Soft glossy painterly shading, true alpha, no ground, shadow, grid, labels or text."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/arcrelay_lv3_idle_sheet.png",
+      "out_prefix": "arcrelay_lv3_idle",
+      "frame_names": [
+        "breathe1",
+        "breathe2",
+        "breathe3",
+        "breathe4"
+      ],
+      "resource": "resources/arcrelay.tres",
+      "property": "lv3_idle_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Generator sheets include faint alpha residue at panel borders; geometry uses an alpha-8 threshold and solid artwork has clear divider margins.",
+      "reviewed_boundary_exception": "Whole-sheet and divider inspection completed; alpha at dividers is residue only, not clipped geometry.",
+      "generator": "built-in image_gen",
+      "prompt": "EDIT image1's four-frame ARCRELAY Lv2 idle sheet into Lv3 OVERCHARGED appearance. Preserve every exact breathing pose, forked conductor staff, triangular three-node coil backpack, long coat, helmet, cable loop, body proportions, right-facing three-quarter camera, stable foot baseline, scale and 2x2 placement. Keep exactly one staff and one coil backpack in all panels. Add unstable orange cracks through the dark armor and coat seams, orange arcs around the staff fork and coil nodes, and orange-lit copper hardware while retaining a cyan visor core. No extra equipment, no huge lightning cloud, no clipping or panel overlap. Soft glossy painterly shading, true alpha, no ground, shadow, grid, labels or text."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/nullbreaker_lv1_idle_sheet.png",
+      "out_prefix": "nullbreaker_idle",
+      "frame_names": [
+        "breathe1",
+        "breathe2",
+        "breathe3",
+        "breathe4"
+      ],
+      "resource": "resources/nullbreaker.tres",
+      "property": "idle_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Generator sheets include faint alpha residue at panel borders; geometry uses an alpha-8 threshold and solid artwork has clear divider margins.",
+      "reviewed_boundary_exception": "Whole-sheet and divider inspection completed; alpha at dividers is residue only, not clipped geometry.",
+      "generator": "built-in image_gen",
+      "prompt": "Use case: stylized-concept. Asset type: production 2D game character idle spritesheet. Create a square 2x2 four-frame transparent-alpha breathing sheet for a new Cyber Draft-Duel 2D unit named NULLBREAKER. Same soft-shaded semi-realistic painterly chibi sci-fi style as the attached existing Marksman and Demolitionist. Subject: a tall anti-tank hunter with a lean armored body, long split coat, oversized one-piece dark lance rifle with a large circular muzzle and a visible glowing reactor chamber along the top, held in both hands. Distinctive angular shoulder plate and a small orange-free cyan targeting monocle on the helmet; compact ammo canister at the hip. Four subtly distinct idle/breathing poses, same three-quarter camera facing screen RIGHT, exact same single lance rifle, helmet, coat, armor and proportions in every panel, stable foot baseline. Base tier palette is black, gunmetal, muted red and restrained cyan targeting lights; no orange overcharge. True 2x2 equal cells; full figure and entire long rifle occupy about 65 percent of each cell with ample transparent gutters; no panel overlap and no clipped muzzle. Soft glossy painterly materials, no text, labels, grid, ground, shadow, background, watermark. Genuine alpha."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/nullbreaker_lv2_idle_sheet.png",
+      "out_prefix": "nullbreaker_lv2_idle",
+      "frame_names": [
+        "breathe1",
+        "breathe2",
+        "breathe3",
+        "breathe4"
+      ],
+      "resource": "resources/nullbreaker.tres",
+      "property": "lv2_idle_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Generator sheets include faint alpha residue at panel borders; geometry uses an alpha-8 threshold and solid artwork has clear divider margins.",
+      "reviewed_boundary_exception": "Whole-sheet and divider inspection completed; alpha at dividers is residue only, not clipped geometry.",
+      "generator": "built-in image_gen",
+      "prompt": "EDIT image1's four-frame NULLBREAKER idle sheet into Lv2 ENERGIZED appearance. Preserve every exact breathing pose, single oversized lance rifle with circular muzzle and reactor chamber, helmet monocle, split coat, shoulder plate, hip canister, body proportions, right-facing three-quarter camera, stable foot baseline, scale and 2x2 placement. Add controlled cyan circuitry along the armor, targeting monocle, reactor chamber and rifle seams while keeping black/gunmetal/muted red materials. Keep exactly one rifle and one hip canister in all panels, full muzzle inside margins. No orange cracks, no extra gear, no panel overlap. Soft glossy painterly shading, genuine alpha, no ground, shadow, grid, labels or text."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/nullbreaker_lv3_idle_sheet.png",
+      "out_prefix": "nullbreaker_lv3_idle",
+      "frame_names": [
+        "breathe1",
+        "breathe2",
+        "breathe3",
+        "breathe4"
+      ],
+      "resource": "resources/nullbreaker.tres",
+      "property": "lv3_idle_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Generator sheets include faint alpha residue at panel borders; geometry uses an alpha-8 threshold and solid artwork has clear divider margins.",
+      "reviewed_boundary_exception": "Whole-sheet and divider inspection completed; alpha at dividers is residue only, not clipped geometry.",
+      "generator": "built-in image_gen",
+      "prompt": "EDIT image1's four-frame NULLBREAKER Lv2 idle sheet into Lv3 OVERCHARGED appearance. Preserve every exact breathing pose, single oversized lance rifle with circular muzzle and reactor chamber, helmet monocle, split coat, shoulder plate, hip canister, body proportions, right-facing three-quarter camera, stable foot baseline, scale and 2x2 placement. Keep exactly one rifle and one hip canister in every panel, full muzzle inside margins. Add unstable orange cracks through black/gunmetal armor and coat seams, orange reactor chamber and orange targeting glow while retaining a cyan visor core. No extra gear, no giant projectile, no clipping or panel overlap. Soft glossy painterly shading, genuine transparent alpha, no ground, shadow, grid, labels or text."
+    }
+  ]
+}

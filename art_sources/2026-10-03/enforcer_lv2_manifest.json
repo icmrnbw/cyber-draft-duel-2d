@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-03/enforcer_lv2_attack_v2.png",
+      "out_prefix": "enforcer_lv2_attack",
+      "frame_names": [
+        "idle",
+        "windup",
+        "strike",
+        "recover"
+      ],
+      "resource": "resources/enforcer.tres",
+      "property": "lv2_attack_frames",
+      "background": "alpha",
+      "boxes": [
+        [
+          0,
+          0,
+          640,
+          640
+        ],
+        [
+          640,
+          0,
+          1254,
+          640
+        ],
+        [
+          0,
+          640,
+          720,
+          1254
+        ],
+        [
+          720,
+          640,
+          1254,
+          1254
+        ]
+      ]
+    },
+    {
+      "sheet": "art_sources/2026-10-03/enforcer_lv2_walk_v2.png",
+      "out_prefix": "enforcer_lv2_walk",
+      "frame_names": [
+        "walk1",
+        "walk2",
+        "walk3",
+        "walk4"
+      ],
+      "resource": "resources/enforcer.tres",
+      "property": "lv2_walk_frames",
+      "background": "alpha",
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "Panels 1, 3 and 4 contain only alpha-1 generator residue at the crop edge; solid boots, armor and weapons have visible transparent clearance.",
+      "reviewed_boundary_exception": "Inspected contact sheet: alpha-1 edge pixels are noise, not clipped Enforcer geometry."
+    }
+  ]
+}

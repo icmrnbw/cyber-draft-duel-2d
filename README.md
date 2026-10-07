@@ -13,15 +13,20 @@ Matches are always against a bot hand (`UnitDatabase.random_bot_hand()`) — the
 
 ## Roster
 
-Five unit types, each with Lv1 (base) → Lv3 art/ability tiers:
+Ten unit types, each with Lv1 (base) → Lv3 art/ability tiers:
 
 | Unit | Role | Lv2+ ability |
 |---|---|---|
-| Enforcer | Heavy melee tank | — |
+| Enforcer | Heavy melee tank | Lv2 Heavy Strikes (chance to stagger on hit); Lv3 Berserk (attacks faster as HP drops) |
 | Trooper | Mid-range rifle | — |
 | Marksman | Long-range sniper | — |
 | Demolitionist | Splash-damage grenadier | Firestorm — splash attacks leave a burning ground patch that deals damage over time |
 | Field Medic | Support healer | — |
+| Bulwark | Shield guardian | Lv2 Aegis Ram; Lv3 Fortress Pulse |
+| Phaseblade | Mobile melee disruptor | Lv2 Phase Lunge; Lv3 Rift Mark |
+| Cryotek | Splash control projector | Lv2 Cryo Lock; Lv3 Thermal Collapse |
+| ArcRelay | Chain control specialist | Lv2 Arc Chain; Lv3 Signal Jam |
+| Nullbreaker | Long-range anti-armour | Lv2 Piercing Charge; Lv3 Expose Core |
 
 Tier art language: **Lv2 = "energized"** (cyan glowing circuitry/seams), **Lv3 = "overcharged"** (orange glowing cracks/veins), applied consistently across idle/attack/walk/retreat animation states.
 
@@ -46,4 +51,14 @@ godot --resolution 720x1280 --quit-after 60 res://tools/screenshot_tool.tscn -- 
 
 ## Status
 
-Actively in development. Full 5-unit roster, main menu, draft/deploy/battle flow, and rounds/lives system are implemented and balanced (see `stage6-balance-report.md` in the parent directory for the last full balance pass). Lv2/Lv3 art is mid-upgrade from an older flat-shaded style to match the soft-shaded painterly look already shipped for Lv1 — idle frames are done for all 5 units; attack/walk/retreat frames are in progress.
+See [HANDOFF.md](HANDOFF.md) for the full project handoff (state, build steps, art pipeline, open work, pre-release checklist).
+
+Actively in development. The ten-unit roster, main menu, draft/deploy/battle flow,
+and rounds/lives system are implemented in the working tree. The original five
+have the verified combat baseline; the five new units have authored data and
+reviewed Lv1/Lv2/Lv3 idle sheets; Bulwark also has reviewed attack, walk, and
+retreat loops for all three tiers. The other new units' action-state art, Godot
+import verification for the new PNGs, ten-unit balance, and Android export remain
+in progress. See
+`docs/roster-design.md` and `docs/continuation-2026-10-03.md` for the current
+coverage and validation record.

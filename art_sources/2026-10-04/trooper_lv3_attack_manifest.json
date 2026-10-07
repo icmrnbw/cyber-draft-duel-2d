@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-04/trooper_lv3_attack.png",
+      "out_prefix": "trooper_lv3_attack",
+      "frame_names": [
+        "ready",
+        "fire",
+        "recoil",
+        "settle"
+      ],
+      "resource": "resources/trooper.tres",
+      "property": "lv3_attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source/contact inspection confirms complete figures, rifle and flash with generous clearance; alpha-1 cell-edge residue only."
+    }
+  ]
+}

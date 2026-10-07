@@ -1,0 +1,1 @@
+{"status":"rejected","reason":"Panels touched/crossed crop boundaries; lower panels had opaque alpha at the divider and outer edge. The guarded slicer was not run with --apply.","replacement":"../bulwark_lv1_attack_sheet_v2.png"}

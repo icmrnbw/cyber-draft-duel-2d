@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-04/phaseblade_attack_v2.png",
+      "out_prefix": "phaseblade_attack",
+      "frame_names": [
+        "ready",
+        "windup",
+        "strike",
+        "recover"
+      ],
+      "resource": "resources/phaseblade.tres",
+      "property": "attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boxes": [
+        [
+          0,
+          0,
+          627,
+          627
+        ],
+        [
+          627,
+          0,
+          1254,
+          627
+        ],
+        [
+          0,
+          627,
+          700,
+          1254
+        ],
+        [
+          700,
+          627,
+          1254,
+          1254
+        ]
+      ],
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source inspected; nonoverlapping lower-row split at x700 preserves the entire compact blade arc and adjacent cape. At most alpha-1 generator residue is permitted at crop edges; no visible geometry is clipped."
+    }
+  ]
+}

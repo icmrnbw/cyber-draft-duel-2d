@@ -1,0 +1,251 @@
+{
+  "version": 1,
+  "unit_group": "new_units",
+  "review_status": "Checkpoint: Lv1/Lv2/Lv3 attack and Lv1/Lv2 walk source/contact approved and applied. Lv3 walk and all three retreats retain historical placeholder art pending canonical replacement.",
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-04/bulwark_rework/lv1_attack.png",
+      "out_prefix": "bulwark_attack",
+      "frame_names": [
+        "ready",
+        "windup",
+        "strike",
+        "recover"
+      ],
+      "resource": "resources/bulwark.tres",
+      "property": "attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boxes": [
+        [
+          0,
+          0,
+          643,
+          634
+        ],
+        [
+          643,
+          0,
+          1254,
+          634
+        ],
+        [
+          0,
+          634,
+          660,
+          1254
+        ],
+        [
+          660,
+          634,
+          1254,
+          1254
+        ]
+      ],
+      "generator": "built-in image_gen",
+      "prompt_file": "art_sources/2026-10-04/bulwark_rework/lv1_attack_prompt.txt",
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Reviewed source and normalized contact: alpha-1 generator residue only at crop edge; all solid body, shield, hammer and arc fit with transparent clearance."
+    },
+    {
+      "sheet": "art_sources/2026-10-04/bulwark_rework/lv2_attack.png",
+      "out_prefix": "bulwark_lv2_attack",
+      "frame_names": [
+        "ready",
+        "windup",
+        "strike",
+        "recover"
+      ],
+      "resource": "resources/bulwark.tres",
+      "property": "lv2_attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boxes": [
+        [
+          0,
+          0,
+          643,
+          634
+        ],
+        [
+          643,
+          0,
+          1254,
+          634
+        ],
+        [
+          0,
+          634,
+          660,
+          1254
+        ],
+        [
+          660,
+          634,
+          1254,
+          1254
+        ]
+      ],
+      "generator": "built-in image_gen",
+      "prompt_file": "art_sources/2026-10-04/bulwark_rework/lv2_attack_prompt.txt",
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Reviewed source and normalized contact: alpha-1 generator residue only at crop edge; all solid body, shield, hammer and arc fit with transparent clearance."
+    },
+    {
+      "sheet": "art_sources/2026-10-04/bulwark_rework/lv3_attack.png",
+      "out_prefix": "bulwark_lv3_attack",
+      "frame_names": [
+        "ready",
+        "windup",
+        "strike",
+        "recover"
+      ],
+      "resource": "resources/bulwark.tres",
+      "property": "lv3_attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boxes": [
+        [
+          0,
+          0,
+          643,
+          634
+        ],
+        [
+          643,
+          0,
+          1254,
+          634
+        ],
+        [
+          0,
+          634,
+          660,
+          1254
+        ],
+        [
+          660,
+          634,
+          1254,
+          1254
+        ]
+      ],
+      "generator": "built-in image_gen",
+      "prompt_file": "art_sources/2026-10-04/bulwark_rework/lv3_attack_prompt.txt",
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Reviewed source and normalized contact: alpha-1 generator residue only at crop edge; all solid body, shield, hammer and arc fit with transparent clearance."
+    },
+    {
+      "sheet": "art_sources/2026-10-04/bulwark_rework/lv1_walk.png",
+      "out_prefix": "bulwark_walk",
+      "frame_names": [
+        "walk1",
+        "walk2",
+        "walk3",
+        "walk4"
+      ],
+      "resource": "resources/bulwark.tres",
+      "property": "walk_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "generator": "built-in image_gen",
+      "prompt_file": "art_sources/2026-10-04/bulwark_rework/lv1_walk_v4_prompt.txt",
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Only alpha-1 residue on the fully transparent outer edges. Reviewed all poses: ample gutters, full equipment and alternating contact legs."
+    },
+    {
+      "sheet": "art_sources/2026-10-04/bulwark_rework/lv2_walk.png",
+      "out_prefix": "bulwark_lv2_walk",
+      "frame_names": [
+        "walk1",
+        "walk2",
+        "walk3",
+        "walk4"
+      ],
+      "resource": "resources/bulwark.tres",
+      "property": "lv2_walk_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "generator": "built-in image_gen",
+      "prompt_file": "art_sources/2026-10-04/bulwark_rework/lv2_walk_v2_prompt.txt",
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Only alpha-1 residue on the fully transparent outer edges. Reviewed all poses: ample gutters, full equipment and alternating contact legs."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/bulwark_lv3_walk_sheet.png",
+      "out_prefix": "bulwark_lv3_walk",
+      "frame_names": [
+        "walk1",
+        "walk2",
+        "walk3",
+        "walk4"
+      ],
+      "resource": "resources/bulwark.tres",
+      "property": "lv3_walk_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "The overcharged running sheet retains only low-alpha edge residue and leaves a clear transparent gutter around every panel.",
+      "reviewed_boundary_exception": "All four running poses were inspected at full resolution; overcharged figure, alternating feet, shield and hammer stay inside their cells.",
+      "generator": "built-in image_gen",
+      "prompt": "Edit the exact Bulwark running sheet into Lv3 overcharged tier: preserve four running poses, alternating feet, one shield, one hammer, camera, proportions, foot baseline and gutters; add orange cracks and energy while retaining a cyan core, with every figure inside its cell and no text, grid, ground, shadow or extra equipment."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/bulwark_lv1_retreat_sheet.png",
+      "out_prefix": "bulwark_retreat",
+      "frame_names": [
+        "retreat1",
+        "retreat2",
+        "retreat3",
+        "retreat4"
+      ],
+      "resource": "resources/bulwark.tres",
+      "property": "retreat_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "The backward-step sheet retains only low-alpha edge residue and leaves a clear transparent gutter around every panel.",
+      "reviewed_boundary_exception": "All four retreat poses were inspected at full resolution; shield, hammer and backward foot progression stay inside their cells.",
+      "generator": "built-in image_gen",
+      "prompt": "Use the exact Bulwark attack identity reference to create four backward retreat poses with the shield braced and hammer low. Preserve camera, proportions, foot baseline and transparent gutters; no pixels touch dividers or edges and no extra equipment or text."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/bulwark_lv2_retreat_sheet_v2.png",
+      "out_prefix": "bulwark_lv2_retreat",
+      "frame_names": [
+        "retreat1",
+        "retreat2",
+        "retreat3",
+        "retreat4"
+      ],
+      "resource": "resources/bulwark.tres",
+      "property": "lv2_retreat_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "The reframed energized backward-step sheet retains only low-alpha edge residue and leaves a clear transparent gutter around every panel.",
+      "reviewed_boundary_exception": "All four energized retreat poses were inspected at full resolution; shield, hammer and backward foot progression stay inside their cells.",
+      "generator": "built-in image_gen",
+      "prompt": "Reframe and energize the exact Bulwark backward retreat sheet: preserve four poses, one shield, one hammer, camera, proportions, foot baseline and safe gutters; add controlled cyan circuitry and keep every figure inside its cell with no text, grid, ground, shadow or extra equipment."
+    },
+    {
+      "sheet": "art_sources/2026-10-03/bulwark_lv3_retreat_sheet.png",
+      "out_prefix": "bulwark_lv3_retreat",
+      "frame_names": [
+        "retreat1",
+        "retreat2",
+        "retreat3",
+        "retreat4"
+      ],
+      "resource": "resources/bulwark.tres",
+      "property": "lv3_retreat_frames",
+      "background": "alpha",
+      "geometry_alpha_threshold": 8,
+      "boundary_alpha_threshold": 8,
+      "boundary_alpha_reason": "The overcharged backward-step sheet retains only low-alpha edge residue and leaves a clear transparent gutter around every panel.",
+      "reviewed_boundary_exception": "All four overcharged retreat poses were inspected at full resolution; shield, hammer and backward foot progression stay inside their cells.",
+      "generator": "built-in image_gen",
+      "prompt": "Edit the exact reframed Bulwark retreat sheet into Lv3 overcharged tier: preserve four poses, one shield, one hammer, camera, proportions, foot baseline and safe gutters; add orange cracks and energy while retaining a cyan core, with every figure inside its cell and no text, grid, ground, shadow or extra equipment."
+    }
+  ]
+}

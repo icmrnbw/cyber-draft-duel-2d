@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sheet": "art_sources/2026-10-07/phaseblade/lv2_attack_compact.png",
+      "out_prefix": "phaseblade_lv2_attack",
+      "frame_names": [
+        "ready",
+        "windup",
+        "strike",
+        "recover"
+      ],
+      "resource": "resources/phaseblade.tres",
+      "property": "lv2_attack_frames",
+      "background": "alpha",
+      "glow_padding": 4,
+      "boxes": [
+        [
+          0,
+          0,
+          627,
+          642
+        ],
+        [
+          627,
+          0,
+          1254,
+          642
+        ],
+        [
+          0,
+          642,
+          661,
+          1254
+        ],
+        [
+          661,
+          642,
+          1254,
+          1254
+        ]
+      ],
+      "prompt_file": "art_sources/2026-10-07/phaseblade/lv2_attack_compact_prompt.txt",
+      "generator": "built-in image_gen",
+      "boundary_alpha_threshold": 1,
+      "boundary_alpha_reason": "Source and normalized contact reviewed; custom nonoverlapping boxes preserve entire blade and cape. Only alpha-1 residue at borders. Compact poses keep ready body about 443px, comparable to 430px canonical idle."
+    }
+  ]
+}

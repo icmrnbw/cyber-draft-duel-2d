@@ -142,7 +142,7 @@ func _ready() -> void:
 
 ## The "20/25"-style banner from the reference collection screen -- here it's
 ## "tiers unlocked" (each unit has 2 buyable tiers) rather than units owned,
-## since every player already has the full 5-unit roster from the start.
+## since every player already has the full available roster from the start.
 func _build_collection_banner() -> void:
 	var banner_w := VIEW_W - 60.0
 	var banner_size := Vector2(banner_w, 44.0)
@@ -186,27 +186,41 @@ func _type_accent(t: int) -> Color:
 
 
 func _build_hero_cards() -> void:
-	var grid_w := CARD_SIZE.x * COLS + CARD_GAP * (COLS - 1)
-	var grid_x := (VIEW_W - grid_w) * 0.5
 	var roster := UnitDatabase.roster()
+	var grid_w := CARD_SIZE.x * COLS + CARD_GAP * (COLS - 1)
+	var scroll := ScrollContainer.new()
+	scroll.name = "HeroesScroll"
+	scroll.position = Vector2(10.0, GRID_TOP)
+	scroll.size = Vector2(VIEW_W - 20.0, VIEW_H - 220.0 - GRID_TOP)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.follow_focus = true
+	scroll.scroll_deadzone = 16
+	add_child(scroll)
+
+	var rows := ceili(float(roster.size()) / COLS)
+	var content := Control.new()
+	content.name = "HeroCards"
+	content.custom_minimum_size = Vector2(grid_w, rows * (CARD_SIZE.y + CARD_GAP))
+	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	content.mouse_filter = Control.MOUSE_FILTER_PASS
+	scroll.add_child(content)
 
 	for i in roster.size():
 		var unit_def: UnitDefinition = roster[i]
 		var accent := _type_accent(unit_def.type)
 		var row := i / COLS
 		var col := i % COLS
-		# The roster doesn't evenly fill the grid (5 units, 2 columns) -- a
-		# lone last-row card is centered instead of hugging the left column,
-		# so the page doesn't end lopsided.
+		# Center an incomplete final row for any roster size.
 		var items_in_row: int = mini(COLS, roster.size() - row * COLS)
 		var row_w := CARD_SIZE.x * items_in_row + CARD_GAP * (items_in_row - 1)
-		var row_x := (VIEW_W - row_w) * 0.5
-		var pos := Vector2(row_x + col * (CARD_SIZE.x + CARD_GAP), GRID_TOP + row * (CARD_SIZE.y + CARD_GAP))
+		var row_x := (grid_w - row_w) * 0.5
+		var pos := Vector2(row_x + col * (CARD_SIZE.x + CARD_GAP), row * (CARD_SIZE.y + CARD_GAP))
 
 		var card := Control.new()
 		card.position = pos
 		card.size = CARD_SIZE
-		add_child(card)
+		card.mouse_filter = Control.MOUSE_FILTER_PASS
+		content.add_child(card)
 
 		var bg_panel := Panel.new()
 		bg_panel.size = CARD_SIZE

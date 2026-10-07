@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="UnitDefinition" load_steps=26 format=3]
+
+[ext_resource type="Script" path="res://scripts/sim/unit_definition.gd" id="1_unitdef"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_idle_breathe1.png" id="2_sprite"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_idle_breathe2.png" id="3_idle2"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_idle_breathe3.png" id="4_idle3"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_idle_breathe4.png" id="5_idle4"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv2_idle_breathe1.png" id="6_lv2_1"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv2_idle_breathe2.png" id="7_lv2_2"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv2_idle_breathe3.png" id="8_lv2_3"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv2_idle_breathe4.png" id="9_lv2_4"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_idle_breathe1.png" id="10_lv3_1"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_idle_breathe2.png" id="11_lv3_2"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_idle_breathe3.png" id="12_lv3_3"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_idle_breathe4.png" id="13_lv3_4"]
+
+[ext_resource type="Texture2D" path="res://assets/arcrelay_attack_ready.png" id="frame_attack_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_attack_fire.png" id="frame_attack_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_attack_recoil.png" id="frame_attack_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_attack_settle.png" id="frame_attack_frames_4"]
+
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv2_attack_ready.png" id="frame_lv2_attack_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv2_attack_fire.png" id="frame_lv2_attack_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv2_attack_recoil.png" id="frame_lv2_attack_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv2_attack_settle.png" id="frame_lv2_attack_frames_4"]
+
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_attack_ready.png" id="frame_lv3_attack_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_attack_fire.png" id="frame_lv3_attack_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_attack_recoil.png" id="frame_lv3_attack_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_attack_settle.png" id="frame_lv3_attack_frames_4"]
+
+[resource]
+script = ExtResource("1_unitdef")
+display_name = "ArcRelay"
+type = 1
+description = "Conductive mid-range disruptor whose attacks jump between nearby enemies."
+hp = 105.0
+damage_per_hit = 15.0
+attacks_per_second = 1.25
+move_speed = 3.0
+preferred_range = 6.5
+retreat_range = 3.5
+ability_lv2_name = "Arc Chain"
+ability_lv2_description = "Every fourth staff strike jumps to two nearby enemies for reduced damage."
+ability_lv3_name = "Signal Jam"
+ability_lv3_description = "Chained strikes briefly suppress the targets' outgoing damage."
+special_attack_min_level = 2
+special_attack_every = 4
+special_attack_hits = 1
+special_attack_damage_mult = 1.2
+special_attack_effect = "chain"
+special_chain_targets = 2
+special_chain_damage_mult = 0.55
+special_chain_radius = 3.5
+suppression_min_level = 3
+suppression_fraction = 0.2
+suppression_duration = 1.4
+sprite = ExtResource("2_sprite")
+idle_frames = Array[Texture2D]([ExtResource("2_sprite"), ExtResource("3_idle2"), ExtResource("4_idle3"), ExtResource("5_idle4")])
+lv2_idle_frames = Array[Texture2D]([ExtResource("6_lv2_1"), ExtResource("7_lv2_2"), ExtResource("8_lv2_3"), ExtResource("9_lv2_4")])
+lv3_idle_frames = Array[Texture2D]([ExtResource("10_lv3_1"), ExtResource("11_lv3_2"), ExtResource("12_lv3_3"), ExtResource("13_lv3_4")])
+attack_frames = Array[Texture2D]([ExtResource("frame_attack_frames_1"), ExtResource("frame_attack_frames_2"), ExtResource("frame_attack_frames_3"), ExtResource("frame_attack_frames_4")])
+lv2_attack_frames = Array[Texture2D]([ExtResource("frame_lv2_attack_frames_1"), ExtResource("frame_lv2_attack_frames_2"), ExtResource("frame_lv2_attack_frames_3"), ExtResource("frame_lv2_attack_frames_4")])
+lv3_attack_frames = Array[Texture2D]([ExtResource("frame_lv3_attack_frames_1"), ExtResource("frame_lv3_attack_frames_2"), ExtResource("frame_lv3_attack_frames_3"), ExtResource("frame_lv3_attack_frames_4")])
