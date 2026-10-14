@@ -10,6 +10,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import ORANGE, C, E, G, P, S, accent, bones, build, standard_limbs  # noqa: E402
 
 NAME = "arcrelay"
+HEIGHT = 445
+GAIT = {"stride": 0.9, "bounce": 6, "lean": 4, "swing": 6, "knee": 54}
 STYLE = "chain"
 BONES = bones(torso_h=150)
 MUZZLE = {1: (20, -130), 2: (20, -130), 3: (20, -140)}
@@ -57,6 +59,14 @@ def parts_for(tier):
     prongs = (-14, 14) if tier < 3 else (-18, 0, 18)
     p += [C("weapon", 20 + dx * 0.4, -108, 20 + dx, -138, 4, COPPER, 35) for dx in prongs]
     p += [C("weapon", 20 + min(prongs), -108, 20 + max(prongs), -108, 4, COPPER, 35)]
+    if tier >= 2:   # shoulder coil rings and a high collar
+        p += [E("uarm_f", 0, 0, 22, 22, COPPER, 38), E("uarm_f", 0, 0, 12, 12, GRAPHITE_D, 39), E("uarm_f", 0, 0, 6, 6, a, 40, glow=True),
+              P("torso", ((-40, -150), (40, -156), (34, -120), (-34, -116)), COPPER, 6, tint=0.9),
+              C("pack", -20, -40, -50, -170, 4, COPPER, -33), G("pack", ((-56, -170), (-44, -194), (-46, -172), (-34, -190), (-42, -168)), a, -32)]
+    if tier == 3:   # signal halo behind the head
+        import math
+        p += [E("head", -20 + 78 * math.cos(math.radians(a_)), -10 + 78 * math.sin(math.radians(a_)), 6, 6, ORANGE, 30, glow=True)
+              for a_ in range(0, 360, 30)]
     return p
 
 

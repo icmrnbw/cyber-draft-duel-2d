@@ -8,6 +8,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import CYAN, ORANGE, C, E, G, P, S, accent, bones, build, standard_limbs  # noqa: E402
 
 NAME = "trooper"
+HEIGHT = 445
+GAIT = {"stride": 1.0, "bounce": 8, "lean": 6, "swing": 12}
 STYLE = "burst"
 BONES = bones()
 MUZZLE = {1: (128, -6), 2: (140, -6), 3: (156, -4)}
@@ -78,6 +80,12 @@ def parts_for(tier):
               S("pack", ((-30, -132), (10, -140), (30, -124), (8, -110), (-26, -112)), STEEL, -2),
               E("pack", 0, -124, 8, 8, ORANGE, -1, glow=True),
               G("pack", ((-26, -104), (26, -104), (20, -98), (-20, -98)), ORANGE, -1)]
+    if tier >= 2:   # shoulder armour and a knee guard
+        p += [P("uarm_f", ((-24, -12), (22, -16), (30, 12), (-20, 14)), SILVER, 38, tint=1.1),
+              P("shin_f", ((-26, -36), (16, -40), (26, -10), (-24, -6)), STEEL, 14)]
+    if tier == 3:   # heavy back plate and helmet crest
+        p += [P("torso", ((-56, -140), (-30, -150), (-26, -40), (-58, -30)), STEEL, -33),
+              P("head", ((-30, -70), (-10, -100), (20, -96), (0, -66)), STEEL, 44)]
     return p
 
 

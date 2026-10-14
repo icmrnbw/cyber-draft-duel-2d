@@ -90,3 +90,13 @@ audit reports them as `vector` (hashes in art_sources/vector-2026-10-14/).
 Painted frames remain on disk but are unreferenced and excluded from export.
 The game times 8-frame sets by the unit's attack rhythm and walk distance.
 The team shader's saturation boost was lowered for the vivid vector palette.
+
+QA follow-up (same day): tiers grow x1.07/x1.14 and add new parts per unit
+(Lv1->Lv2 silhouette change 21-33%, Lv1->Lv3 37-50%, measured by
+tools/vector_units/silhouette.py); per-unit height (tanks ~485-490 px,
+skirmishers ~425-430) and gait (stride, bounce, stomp, sway, lean, knee);
+ranged attacks brace, recoil, slide the back foot and kick the weapon, with
+style moves (spray sweep, lob heave, staff raise-and-thrust, heal step-in) and
+ejected casings. The 483 unreferenced painted runtime frames moved to
+art_sources/legacy-runtime/ (under .gdignore), so a fresh clone never imports
+or exports them regardless of export preset.

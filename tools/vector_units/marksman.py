@@ -10,6 +10,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import CYAN, ORANGE, C, E, G, P, S, accent, bones, build, standard_limbs  # noqa: E402
 
 NAME = "marksman"
+HEIGHT = 430
+GAIT = {"stride": 0.9, "bounce": 5, "lean": 3, "swing": 6, "knee": 50}
 STYLE = "snipe"
 BONES = bones(torso_h=150)
 MUZZLE = {1: (176, -6), 2: (184, -6), 3: (196, -6)}
@@ -71,6 +73,13 @@ def parts_for(tier):
         p += [E("weapon", x, -6, 3, 5, a, 32, glow=True) for x in (100, 122, 144)]
     if tier == 3:
         p += [G("weapon", ((80, -9), (barrel - 6, -8), (barrel - 6, -4), (80, -3)), ORANGE, 33)]
+    if tier >= 2:   # high mantle collar, long antenna, hood fin
+        p += [S("torso", ((-50, -150), (30, -156), (44, -120), (-10, -110), (-60, -116)), VIOLET_D, 5, gloss=0.3),
+              C("pack", -10, -60, -24, -190, 3, GUN, -32), E("pack", -24, -192, 6, 6, a, -31, glow=True),
+              P("head", ((-40, -70), (-70, -110), (-20, -84)), VIOLET, 39)]
+    if tier == 3:   # shoulder spikes and a second, longer coat layer
+        p += [P("uarm_f", ((-10, -20), (6, -54), (18, -18)), GUN, 38), P("uarm_b", ((-10, -20), (6, -54), (18, -18)), GUN, -10),
+              P("torso", ((-20, -60), (-80, 90), (-40, 70), (-10, 100), (10, -40)), VIOLET_D, -45, tint=0.85)]
     return p
 
 

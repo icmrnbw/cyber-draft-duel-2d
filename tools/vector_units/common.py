@@ -119,15 +119,24 @@ def idle_poses(base):
                              "head": (1.5, 0, 0), "pack": (0, 0, 1)})], 8)
 
 
-def walk_poses(base, lean=5, stride=1.0, backward=False):
-    k = stride
+# Per-unit gait (mod.GAIT overrides): stride scales leg swing, bounce is the
+# hip lift on passing frames, lean is the forward tilt, swing the back-arm
+# swing, stomp adds a contact squash (heavy units), sway rocks the torso.
+GAIT = {"stride": 1.0, "bounce": 8, "lean": 5, "swing": 10, "stomp": 0, "sway": 0.0, "knee": 60}
+
+
+def walk_poses(base, gait=None, backward=False):
+    g = {**GAIT, **(gait or {})}
+    k, lean = g["stride"], (-g["lean"] if backward else g["lean"])
+    up = -g["bounce"]
+    contact_dy = g["stomp"]
     keys = [
-        (0.0, {**base, "torso": lean, "hip": (0, 0, 0), "thigh_f": -26 * k, "shin_f": 12, "thigh_b": 24 * k, "shin_b": 18,
-               "uarm_b": base["uarm_b"] - 10}),
-        (0.25, {**base, "torso": lean, "hip": (0, 0, -8), "thigh_f": -4, "shin_f": 6, "thigh_b": -14 * k, "shin_b": 60}),
-        (0.5, {**base, "torso": lean, "hip": (0, 0, 0), "thigh_f": 24 * k, "shin_f": 18, "thigh_b": -26 * k, "shin_b": 12,
-               "uarm_b": base["uarm_b"] + 10}),
-        (0.75, {**base, "torso": lean, "hip": (0, 0, -8), "thigh_f": -14 * k, "shin_f": 60, "thigh_b": -4, "shin_b": 6}),
+        (0.0, {**base, "torso": lean - g["sway"], "hip": (0, 0, contact_dy), "thigh_f": -26 * k, "shin_f": 12,
+               "thigh_b": 24 * k, "shin_b": 18, "uarm_b": base["uarm_b"] - g["swing"], "head": (-g["sway"] * 0.5, 0, 0)}),
+        (0.25, {**base, "torso": lean, "hip": (0, 0, up), "thigh_f": -4, "shin_f": 6, "thigh_b": -14 * k, "shin_b": g["knee"]}),
+        (0.5, {**base, "torso": lean + g["sway"], "hip": (0, 0, contact_dy), "thigh_f": 24 * k, "shin_f": 18,
+               "thigh_b": -26 * k, "shin_b": 12, "uarm_b": base["uarm_b"] + g["swing"], "head": (g["sway"] * 0.5, 0, 0)}),
+        (0.75, {**base, "torso": lean, "hip": (0, 0, up), "thigh_f": -14 * k, "shin_f": g["knee"], "thigh_b": -4, "shin_b": 6}),
     ]
     if backward:
         keys = [(t, p) for t, p in zip([0.0, 0.25, 0.5, 0.75], [k_[1] for k_ in keys[::-1]])]
@@ -136,22 +145,70 @@ def walk_poses(base, lean=5, stride=1.0, backward=False):
 
 
 def attack_poses(style, base):
-    """Eight-frame attack keyed by style. Frame 0 is ready, the hit/fire frame
-    is where VFX go (see FIRE_FRAMES)."""
+    """Eight-frame attack keyed by style. Frame 0 is ready; FIRE_FRAMES are
+    where VFX go. Ranged styles move the whole body: brace, recoil shove,
+    back-foot slide and weapon kick, plus a style-specific action."""
     b = dict(base)
-    if style in ("shoot", "burst", "spray", "rail", "snipe", "chain", "heal", "lob"):
-        aim_tilt = {"lob": -28, "chain": -10, "heal": -6}.get(style, 0)
-        charge = style in ("rail", "snipe")
+    def k(**kw):
+        return {**b, **kw}
+    if style in ("shoot", "burst", "rail", "snipe"):
+        heavy = style in ("rail", "snipe")
+        brace = dict(thigh_f=-30, shin_f=26, thigh_b=26, shin_b=20)
         keys = [
-            (0.0, {**b, "hip": (0, 0, 2), "weapon_tilt": 0}),
-            (1 / 7, {**b, "hip": (0, -4, 4), "torso": -3, "weapon_tilt": aim_tilt}),
-            (2 / 7, {**b, "hip": (0, -6, 6 if charge else 4), "torso": -5, "weapon_tilt": aim_tilt}),
-            (3 / 7, {**b, "hip": (0, -16, 2), "torso": -9, "weapon_tilt": aim_tilt - 8, "uarm_f": b["uarm_f"] + 8}),
-            (4 / 7, {**b, "hip": (0, -10, 3), "torso": -6, "weapon_tilt": aim_tilt - 4}),
-            (5 / 7, {**b, "hip": (0, -12, 2) if style == "burst" else (0, -6, 3), "torso": -7 if style == "burst" else -4,
-                     "weapon_tilt": aim_tilt - (7 if style == "burst" else 2)}),
-            (6 / 7, {**b, "hip": (0, -2, 2), "torso": -1, "weapon_tilt": 0}),
-            (1.0, {**b, "hip": (0, 1, 1), "torso": 1, "weapon_tilt": 0}),
+            (0.0, k(hip=(0, 0, 2))),
+            (1 / 7, k(hip=(0, -2, 8 if heavy else 4), torso=4, weapon_tilt=-2, **brace)),
+            (2 / 7, k(hip=(0, -4, 12 if heavy else 6), torso=6, weapon_tilt=0, **brace)),
+            (3 / 7, k(hip=(0, -26 if heavy else -16, 4), torso=-12 if heavy else -8, weapon_tilt=-14 if heavy else -9,
+                      uarm_f=b["uarm_f"] + 14, thigh_f=-14, shin_f=8, thigh_b=40, shin_b=6)),
+            (4 / 7, k(hip=(0, -18 if heavy else -8, 5), torso=-6, weapon_tilt=-6, thigh_b=34, shin_b=10)),
+            (5 / 7, k(hip=(0, -14, 3), torso=-9, weapon_tilt=-10, uarm_f=b["uarm_f"] + 10, thigh_b=36)
+                if style == "burst" else k(hip=(0, -8, 4), torso=-3, weapon_tilt=-3, thigh_b=26)),
+            (6 / 7, k(hip=(0, -2, 2), torso=1, weapon_tilt=1)),
+            (1.0, k(hip=(0, 1, 1), torso=0, weapon_tilt=0)),
+        ]
+    elif style == "spray":   # plant, then sweep the cone across the target
+        keys = [
+            (0.0, k(hip=(0, 0, 2))),
+            (1 / 7, k(hip=(0, -4, 6), torso=-4, weapon_tilt=-14, thigh_f=-26, shin_f=20, thigh_b=26)),
+            (2 / 7, k(hip=(0, -6, 8), torso=-2, weapon_tilt=-12, thigh_f=-28, shin_f=22, thigh_b=28)),
+            (3 / 7, k(hip=(0, -12, 6), torso=-6, weapon_tilt=-10, thigh_f=-28, shin_f=22, thigh_b=30)),
+            (4 / 7, k(hip=(0, -14, 6), torso=-5, weapon_tilt=0, thigh_f=-28, shin_f=22, thigh_b=30)),
+            (5 / 7, k(hip=(0, -12, 6), torso=-3, weapon_tilt=10, thigh_f=-28, shin_f=22, thigh_b=30)),
+            (6 / 7, k(hip=(0, -4, 3), torso=0, weapon_tilt=4)),
+            (1.0, k(hip=(0, 0, 1), weapon_tilt=0)),
+        ]
+    elif style == "lob":     # crouch, heave the launcher up, big kick
+        keys = [
+            (0.0, k(hip=(0, 0, 2))),
+            (1 / 7, k(hip=(0, -4, 14), torso=8, weapon_tilt=-10, thigh_f=-36, shin_f=40, thigh_b=30, shin_b=30)),
+            (2 / 7, k(hip=(0, -2, 18), torso=10, weapon_tilt=-34, thigh_f=-40, shin_f=46, thigh_b=32, shin_b=34)),
+            (3 / 7, k(hip=(0, -20, -6), torso=-14, weapon_tilt=-46, thigh_f=-16, shin_f=8, thigh_b=36, shin_b=8)),
+            (4 / 7, k(hip=(0, -16, 0), torso=-10, weapon_tilt=-38, thigh_b=32)),
+            (5 / 7, k(hip=(0, -8, 3), torso=-4, weapon_tilt=-18)),
+            (6 / 7, k(hip=(0, -2, 2), torso=0, weapon_tilt=-4)),
+            (1.0, k(hip=(0, 0, 1), weapon_tilt=0)),
+        ]
+    elif style == "chain":   # raise the staff overhead, thrust it forward
+        keys = [
+            (0.0, k(hip=(0, 0, 2))),
+            (1 / 7, k(hip=(0, -6, 4), torso=-8, uarm_f=-120, farm_f=-30, weapon_tilt=0)),
+            (2 / 7, k(hip=(0, -8, 2), torso=-10, uarm_f=-150, farm_f=-20, weapon_tilt=0, thigh_f=-20, shin_f=14)),
+            (3 / 7, k(hip=(0, 16, 6), torso=10, uarm_f=-70, farm_f=-30, thigh_f=-34, shin_f=18, thigh_b=30)),
+            (4 / 7, k(hip=(0, 18, 6), torso=12, uarm_f=-60, farm_f=-30, thigh_f=-34, shin_f=18, thigh_b=30)),
+            (5 / 7, k(hip=(0, 10, 4), torso=6, uarm_f=-40, farm_f=-40)),
+            (6 / 7, k(hip=(0, 2, 2), torso=1)),
+            (1.0, k(hip=(0, 0, 1))),
+        ]
+    elif style == "heal":    # step in, lift the injector, pulse, settle
+        keys = [
+            (0.0, k(hip=(0, 0, 2))),
+            (1 / 7, k(hip=(0, 6, 0), torso=4, weapon_tilt=-6, thigh_f=-28, shin_f=14, thigh_b=22)),
+            (2 / 7, k(hip=(0, 10, -4), torso=2, weapon_tilt=-18, uarm_f=b["uarm_f"] - 30, thigh_f=-30, shin_f=14, thigh_b=24)),
+            (3 / 7, k(hip=(0, 12, -6), torso=0, weapon_tilt=-22, uarm_f=b["uarm_f"] - 40)),
+            (4 / 7, k(hip=(0, 10, -4), torso=-2, weapon_tilt=-16, uarm_f=b["uarm_f"] - 34)),
+            (5 / 7, k(hip=(0, 8, -2), torso=-1, weapon_tilt=-10, uarm_f=b["uarm_f"] - 20)),
+            (6 / 7, k(hip=(0, 3, 1), torso=0, weapon_tilt=-2)),
+            (1.0, k(hip=(0, 0, 1), weapon_tilt=0)),
         ]
     elif style in ("slash", "ram"):
         keys = [
@@ -193,10 +250,15 @@ def muzzle_vfx(style, tier, frame, muzzle):
     a = VFX_COLOR.get(style, accent(tier)) if style in VFX_COLOR else accent(tier)
     soft = a[:3] + (150,)
     if style in ("shoot", "burst", "snipe", "rail"):
+        casings = []
+        if style in ("shoot", "burst"):   # brass ejecting up and back
+            for n in range(2):
+                cx, cy = 10 - 18 * n - 10 * (frame - FIRE_FRAMES[style][0]), -26 - 16 * n
+                casings.append(Part("weapon", "capsule", (cx, cy, cx + 6, cy - 3, 3), (214, 176, 80, 255), 72))
         length = {"shoot": 70, "burst": 60, "snipe": 110, "rail": 140}[style]
         width = {"shoot": 18, "burst": 14, "snipe": 14, "rail": 22}[style]
         fade = 1.0 if frame == FIRE_FRAMES[style][0] else 0.6
-        return [P("weapon", ((mx, my - width), (mx + length * 0.55, my - width * 0.5), (mx + length, my),
+        return casings + [P("weapon", ((mx, my - width), (mx + length * 0.55, my - width * 0.5), (mx + length, my),
                              (mx + length * 0.55, my + width * 0.5), (mx, my + width)), soft, 70, glow=True),
                 E("weapon", mx + 6, my, width * fade, width * 0.75 * fade, WHITE, 71, glow=True)]
     if style == "spray":
@@ -244,8 +306,8 @@ def _job(args):
             extra += mod.attack_extra(tier, i)
     # Render roomy, then crop to the smallest centred even square >= 512 that
     # holds everything (the oversized-frame contract the game uses).
-    size = 768 if state == "idle" else 896
-    img = ground(render(rig, pose, extra=extra, canvas_px=size, scale=scale))
+    size = 768 if state == "idle" else (960 if state == "attack" else 896)
+    img = ground(render(rig, pose, extra=extra, canvas_px=size, scale=scale * TIER_GROWTH[tier]))
     return (tier, state, i), img
 
 
@@ -282,8 +344,9 @@ def solve_back_arm(rig_bones, pose, grip, uarm=BACK_UARM, farm=BACK_FARM):
 
 def animations(mod, tier):
     base = {**BASE, **getattr(mod, "HOLD", {})}
-    sets = {"idle": idle_poses(base), "walk": walk_poses(base, stride=getattr(mod, "STRIDE", 1.0)),
-            "retreat": walk_poses({**base, **getattr(mod, "RETREAT_HOLD", {})}, lean=-5, backward=True),
+    gait = {**getattr(mod, "GAIT", {}), "stride": getattr(mod, "GAIT", {}).get("stride", getattr(mod, "STRIDE", 1.0))}
+    sets = {"idle": idle_poses(base), "walk": walk_poses(base, gait),
+            "retreat": walk_poses({**base, **getattr(mod, "RETREAT_HOLD", {})}, {**gait, "lean": 5}, backward=True),
             "attack": attack_poses(mod.STYLE, base)}
     level = mod.STYLE not in ("slash", "ram")
     out = {k: finish(v, hold_level=level or k != "attack") for k, v in sets.items()}
@@ -296,7 +359,12 @@ def animations(mod, tier):
     return out
 
 
-def auto_scale(mod, target_height=440):
+# Higher tiers are physically bigger as well as re-equipped.
+TIER_GROWTH = {1: 1.0, 2: 1.07, 3: 1.14}
+
+
+def auto_scale(mod, target_height=None):
+    target_height = target_height or getattr(mod, "HEIGHT", 440)
     """Scale that makes the Lv1 idle figure about target_height px tall."""
     rig = Rig(mod.BONES, mod.parts_for(1))
     pose = animations(mod, 1)["idle"][0]

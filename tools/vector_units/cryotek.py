@@ -10,6 +10,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import ORANGE, C, E, G, P, S, accent, bones, build, standard_limbs  # noqa: E402
 
 NAME = "cryotek"
+HEIGHT = 450
+GAIT = {"stride": 0.9, "bounce": 6, "stomp": 3, "lean": 4, "knee": 54}
 STYLE = "spray"
 BONES = bones(torso_h=150)
 MUZZLE = {1: (132, -2), 2: (136, -2), 3: (176, 0)}
@@ -70,6 +72,13 @@ def parts_for(tier):
               P("weapon", ((150, -6), (178, 1), (150, 8)), ICE, 29),
               G("weapon", ((60, -3), (146, -1), (146, 4), (60, 6)), ORANGE, 31),
               shard("weapon", 20, -24, 30, 10, 32)]
+    if tier >= 2:   # crystal growths on both shoulders and the helmet
+        big = 1.8 if tier == 3 else 1.0
+        p += [shard("uarm_f", -10, -14, 40 * big, -10, 38), shard("uarm_f", 12, -10, 28 * big, 20, 38),
+              shard("uarm_b", -6, -14, 36 * big, -14, -10), shard("head", -20, -70, 30 * big, -16, 44)]
+    if tier == 3:   # crystal crown and frost mantle
+        p += [shard("head", 10, -80, 46, 8, 44), shard("torso", 30, -130, 40, 20, 6),
+              S("torso", ((-60, -140), (50, -146), (62, -110), (-66, -108)), ICE, 4, gloss=0.9)]
     return p
 
 

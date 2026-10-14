@@ -10,6 +10,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import ORANGE, C, E, G, P, S, accent, bones, build, standard_limbs  # noqa: E402
 
 NAME = "demolitionist"
+HEIGHT = 450
+GAIT = {"stride": 0.8, "bounce": 5, "stomp": 4, "sway": 3, "lean": 4, "knee": 50}
 STYLE = "lob"
 BONES = bones(torso_h=146)
 MUZZLE = {1: (118, -8), 2: (124, -8), 3: (132, -8)}
@@ -73,6 +75,13 @@ def parts_for(tier):
         p += [P("weapon", ((60, -26), (74, -26), (74, 14), (60, 14)), MASK, 31), G("weapon", ((80, -10), (118, -10), (118, -6), (80, -6)), ORANGE, 32)]
     if tier >= 2:   # underslung igniter
         p += [C("weapon", 40, 20, 92, 20, 6, (110, 100, 80, 255), 29), E("weapon", 94, 20, 5, 5, ORANGE if tier == 3 else FIRE, 30, glow=True)]
+    if tier >= 2:   # bandolier pouches and a welding-shield visor plate
+        p += [P("head", ((30, -40), (70, -36), (68, -24), (30, -26)), MASK, 44, tint=1.1),
+              *[P("torso", ((x, -30), (x + 18, -30), (x + 18, -6), (x, -6)), OLIVE_D, 7) for x in (-40, -18)]]
+    if tier == 3:   # furnace grille on the chest and shoulder plates
+        p += [P("torso", ((-14, -120), (34, -120), (34, -80), (-14, -80)), MASK, 8),
+              *[G("torso", ((-10, y), (30, y), (30, y + 4), (-10, y + 4)), ORANGE, 9) for y in (-114, -104, -94)],
+              P("uarm_f", ((-26, -16), (24, -20), (30, 14), (-22, 16)), OLIVE, 38, tint=1.1)]
     return p
 
 

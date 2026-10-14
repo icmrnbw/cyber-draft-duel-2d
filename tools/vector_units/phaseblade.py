@@ -11,6 +11,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import ORANGE, C, E, G, P, S, accent, bones, build, standard_limbs  # noqa: E402
 
 NAME = "phaseblade"
+HEIGHT = 425
+GAIT = {"stride": 1.25, "bounce": 10, "lean": 10, "swing": 16, "knee": 70}
 STYLE = "slash"
 BONES = bones(torso_h=150)
 MUZZLE = {1: (0, 0)}
@@ -66,6 +68,12 @@ def parts_for(tier):
         p += [G("head", ((20, -24), (28, -10), (24, -10), (34, 6), (18, -8)), ORANGE, 43),
               *[G("torso", ((x, y), (x + 20, y - 6), (x + 6, y + 6)), ORANGE, 44) for x, y in ((60, -200), (-70, -180), (90, -120))]]
     p += blade(tier)
+    if tier >= 2:   # second blade in the back hand and blade-fin shoulders
+        curve = [(16 + 13 * q, -6 - q * 2.2) for q in range(9)]
+        p += [G("shield", [(x, y) for x, y in curve] + [(x, y + 9) for x, y in reversed(curve)], a, -9),
+              C("shield", -8, 0, 10, 0, 5, DARK, -10),
+              P("uarm_f", ((-12, -14), (40, -40), (20, 4)), SILVER, 38, tint=1.1),
+              P("uarm_b", ((-12, -14), (40, -40), (20, 4)), SILVER, -10, tint=0.9)]
     return p
 
 

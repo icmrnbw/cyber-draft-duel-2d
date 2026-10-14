@@ -9,6 +9,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import ORANGE, C, E, G, P, S, accent, bones, build, standard_limbs  # noqa: E402
 
 NAME = "bulwark"
+HEIGHT = 485
+GAIT = {"stride": 0.7, "bounce": 3, "stomp": 8, "sway": 2.5, "lean": 2, "knee": 40, "swing": 4}
 STYLE = "ram"
 BONES = bones(torso_h=170, shoulder=(34, -122), back_shoulder=(-4, -126))
 MUZZLE = {1: (0, 0)}
@@ -61,6 +63,15 @@ def parts_for(tier):
           G("weapon", ((66, -4), (98, -4), (98, 2), (66, 2)), a, -10)]
     if tier >= 2:
         p += [C("weapon", 30, -14, 60, -14, 5, STEEL_D, -11)]
+    if tier >= 2:   # ram-head tower shield and a piston-driven hammer
+        p += [P("shield", ((w, -60), (w + 46, -40), (w + 54, 0), (w + 46, 40), (w, 60)), STEEL_D, 46, tint=1.05,
+                lines=(((w + 10, -30), (w + 40, 0)), ((w + 10, 30), (w + 40, 0)))),
+              E("shield", w + 30, 0, 9, 9, a, 47, glow=True),
+              P("weapon", ((54, -40), (110, -40), (116, 34), (54, 34)), STEEL, -10, tint=1.05),
+              C("weapon", 20, -26, 60, -26, 8, STEEL_D, -9), C("weapon", 20, 18, 60, 18, 8, STEEL_D, -9),
+              G("weapon", ((24, -28), (56, -28), (56, -24), (24, -24)), a, -8)]
+    if tier == 3:   # heavier helm crest
+        p += [P("head", ((-40, -70), (-10, -110), (30, -104), (10, -66)), STEEL_D, 44)]
     return p
 
 

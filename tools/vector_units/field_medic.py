@@ -9,6 +9,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import ORANGE, C, E, G, P, S, accent, bones, build, standard_limbs  # noqa: E402
 
 NAME = "field_medic"
+HEIGHT = 440
+GAIT = {"stride": 1.05, "bounce": 10, "lean": 6, "swing": 12, "knee": 66}
 STYLE = "heal"
 BONES = bones(torso_h=150)
 MUZZLE = {1: (76, -8), 2: (80, -8), 3: (120, -8)}
@@ -73,6 +75,8 @@ def parts_for(tier):
         p += [C("weapon", -60, -6, 118, -6, 6, WHITE, 31, bevel=0.9),
               C("weapon", 20, -6, 70, -6, 10, HEAL[:3] + (255,), 32, gloss=0.8),
               E("weapon", 118, -6, 10, 10, ORANGE, 33, glow=True)]
+    if tier >= 2:   # medic halo antenna and shoulder caps
+        p += [E("uarm_f", 0, -4, 24, 22, WHITE, 38), P("head", ((-10, -78), (0, -110), (10, -78)), WHITE, 44)]
     return p
 
 

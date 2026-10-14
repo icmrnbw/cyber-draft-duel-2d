@@ -13,6 +13,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import ORANGE, C, E, G, P, S, accent, bones, build, standard_limbs  # noqa: E402
 
 NAME = "enforcer"
+HEIGHT = 490
+GAIT = {"stride": 0.8, "bounce": 4, "stomp": 6, "sway": 2.5, "lean": 3, "knee": 44, "swing": 8}
 STYLE = "slash"
 BONES = bones(torso_h=196, shoulder=(40, -132), back_shoulder=(-18, -136))
 MUZZLE = {1: (0, 0)}
@@ -55,7 +57,7 @@ def gauntlet(side, tier, z):
 
 def parts_for(tier):
     a = accent(tier)
-    big = {1: 1.18, 2: 1.26, 3: 1.36}[tier]
+    big = {1: 1.3, 2: 1.4, 3: 1.5}[tier]
     p = standard_limbs(RED, RED_DD, RED_D, bulk=big, z_arm_b=-14, z_arm_f=36)
     if tier == 3:
         p.insert(0, P("torso", ((-40, -150), (-6, -156), (-30, -20), (-60, 6), (-74, -30), (-96, 0), (-84, -70)),
@@ -104,6 +106,9 @@ def parts_for(tier):
     p += tonfa("weapon", tier, 40) + tonfa("shield", tier, -10)
     if tier >= 2:
         p += gauntlet("f", tier, 38) + gauntlet("b", tier, -11)
+    if tier >= 2:   # riot slab on the back and a raised collar
+        p += [P("torso", ((-70, -170), (-40, -196), (-30, -60), (-66, -40)), RED_D, -35, tint=0.9),
+              P("torso", ((-30, -200), (40, -206), (34, -180), (-26, -176)), RED, 6, tint=1.1)]
     return p
 
 

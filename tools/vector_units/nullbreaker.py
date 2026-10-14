@@ -10,6 +10,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import ORANGE, C, E, G, P, S, accent, bones, build, standard_limbs  # noqa: E402
 
 NAME = "nullbreaker"
+HEIGHT = 455
+GAIT = {"stride": 0.85, "bounce": 5, "stomp": 2, "lean": 4, "knee": 52}
 STYLE = "rail"
 BONES = bones(torso_h=150)
 MUZZLE = {1: (190, -4), 2: (210, -4), 3: (214, -4)}
@@ -56,6 +58,14 @@ def parts_for(tier):
     p += [E("weapon", x, -6, 3, 8, a, 34, glow=True) for x in (104, 130, 156)]
     if tier >= 2:   # stabiliser fins
         p += [P("weapon", ((170, -10), (186, -30), (192, -10)), METAL, 33), P("weapon", ((170, 0), (186, 20), (192, 0)), METAL, 33)]
+    if tier >= 2:   # twin back capacitors and a heavy shoulder plate
+        p += [C("pack", -10, -90, -10, 10, 16, METAL, -32), C("pack", 26, -96, 26, 4, 16, METAL, -33),
+              G("pack", ((-14, -80), (-6, -80), (-6, 0), (-14, 0)), a, -31), G("pack", ((22, -86), (30, -86), (30, -6), (22, -6)), a, -31),
+              P("uarm_f", ((-28, -16), (26, -22), (34, 14), (-24, 18)), CRIMSON, 38, tint=1.05)]
+    if tier == 3:   # spiked cowl, long split cape, core spikes
+        p += [P("head", ((-60, -20), (-90, -90), (-40, -60), (-20, -100), (0, -70)), BLACK, 39),
+              P("torso", ((-30, -100), (-120, 120), (-70, 90), (-60, 140), (-20, 60)), CRIMSON, -46, tint=0.8),
+              P("uarm_f", ((-10, -20), (6, -60), (20, -18)), METAL, 39), P("uarm_b", ((-10, -20), (6, -60), (20, -18)), METAL, -10)]
     return p
 
 
