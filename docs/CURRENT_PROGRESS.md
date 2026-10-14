@@ -64,3 +64,14 @@ poses, so 18 sets carry a reviewed `body_scale` derived from helmet-crown width
 versus idle (documented per entry). Not applied to Bulwark (actions use a
 different helmet; flagged for rework), ArcRelay (staff above head) or Trooper
 (antenna), where the measurement is not valid.
+
+## 2026-10-14 code-derived stand-ins and prompts
+
+All 25 missing sets now have code-derived stand-ins (`tools/derive_frames.py`,
+record in `art_sources/derived-2026-10-14/derived_record.json`): Cryotek all
+actions and ArcRelay/Phaseblade walk/retreat from idle (leg scissor, bob, lean,
+recoil, muzzle flash); Nullbreaker retreat from its own walk reversed with a
+backward lean; Nullbreaker Lv3 attack from Lv2 attack with cyan->orange and the
+Lv2->Lv3 idle colour shift. They are not generated art. 120/120 slots wired.
+Ready-to-paste prompts per sheet: `art_sources/prompts-2026-10-14/`; drop
+results in `art_sources/incoming/` and run `tools/import_incoming.py`.

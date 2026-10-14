@@ -1,0 +1,18 @@
+Use case: identity-preserve
+Asset type: cryotek Level 3 RETREAT four-frame sprite sheet for a mobile auto-battler.
+
+ATTACH: assets/cryotek_lv3_idle_breathe1.png (canonical cryotek Level 3 idle). Draw the SAME character from that image; it is the identity reference.
+
+Character (must match the attached image exactly): Cryotek: bulky white-and-dark-teal armored soldier, rounded helmet with a large wraparound cyan visor, two tall frosted cryo tanks on the back, snowflake emblem on the shoulder, holding ONE twin-barrel cryo cannon at hip height with both hands.
+Tier: Level 3 (overcharged): exactly the palette of the attached Level 3 idle image: orange glowing cracks through the armor, weapon crackling with small orange arcs. Keep any cyan visor exactly as in that image.
+
+Animation: RETREAT: backing away while still facing screen-right toward the enemy. four distinct backward-stepping phases in reading order: (1) rear foot reaching back, weight on front foot; (2) passing pose, body slightly raised; (3) the opposite foot reaching back, legs swapped from frame 1; (4) passing pose with the other knee lifted. Torso leans back slightly, weapon still aimed toward screen-right.
+
+Rules:
+- Same character, same proportions, same helmet size and same body scale in all four panels; the body should be the same size as in the attached idle image.
+- Exactly the same single weapon in all four panels, in the same hands. Do not add, remove or redesign any gear.
+- Same camera angle and facing as the attached image (weapon side toward screen-right).
+- Soft-shaded, polished painterly render, glossy highlights, bulky chibi proportions, matching the attached image.
+- SQUARE image, true transparent RGBA background, 2x2 grid of four complete figures, reading order top-left, top-right, bottom-left, bottom-right.
+- Every figure fully inside its quadrant with at least 40 px of empty space to the cell edges; nothing cut off, no figures overlapping.
+- No background, floor, shadows, fog, labels, frame numbers, watermark or fake checkerboard.

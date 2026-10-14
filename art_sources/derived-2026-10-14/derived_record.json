@@ -1,0 +1,447 @@
+{
+  "version": 1,
+  "note": "Code-derived stand-ins, not generated art.",
+  "sets": [
+    {
+      "unit": "cryotek",
+      "tier": 1,
+      "property": "attack_frames",
+      "method": "attack_from_idle",
+      "sources": [
+        "assets/cryotek_idle_breathe1.png"
+      ],
+      "outputs": [
+        "assets/cryotek_attack_ready.png",
+        "assets/cryotek_attack_windup.png",
+        "assets/cryotek_attack_strike.png",
+        "assets/cryotek_attack_recover.png"
+      ]
+    },
+    {
+      "unit": "cryotek",
+      "tier": 2,
+      "property": "lv2_attack_frames",
+      "method": "attack_from_idle",
+      "sources": [
+        "assets/cryotek_lv2_idle_breathe1.png"
+      ],
+      "outputs": [
+        "assets/cryotek_lv2_attack_ready.png",
+        "assets/cryotek_lv2_attack_windup.png",
+        "assets/cryotek_lv2_attack_strike.png",
+        "assets/cryotek_lv2_attack_recover.png"
+      ]
+    },
+    {
+      "unit": "cryotek",
+      "tier": 3,
+      "property": "lv3_attack_frames",
+      "method": "attack_from_idle",
+      "sources": [
+        "assets/cryotek_lv3_idle_breathe1.png"
+      ],
+      "outputs": [
+        "assets/cryotek_lv3_attack_ready.png",
+        "assets/cryotek_lv3_attack_windup.png",
+        "assets/cryotek_lv3_attack_strike.png",
+        "assets/cryotek_lv3_attack_recover.png"
+      ]
+    },
+    {
+      "unit": "cryotek",
+      "tier": 1,
+      "property": "walk_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/cryotek_idle_breathe1.png",
+        "assets/cryotek_idle_breathe2.png",
+        "assets/cryotek_idle_breathe3.png",
+        "assets/cryotek_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/cryotek_walk_walk1.png",
+        "assets/cryotek_walk_walk2.png",
+        "assets/cryotek_walk_walk3.png",
+        "assets/cryotek_walk_walk4.png"
+      ]
+    },
+    {
+      "unit": "cryotek",
+      "tier": 2,
+      "property": "lv2_walk_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/cryotek_lv2_idle_breathe1.png",
+        "assets/cryotek_lv2_idle_breathe2.png",
+        "assets/cryotek_lv2_idle_breathe3.png",
+        "assets/cryotek_lv2_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/cryotek_lv2_walk_walk1.png",
+        "assets/cryotek_lv2_walk_walk2.png",
+        "assets/cryotek_lv2_walk_walk3.png",
+        "assets/cryotek_lv2_walk_walk4.png"
+      ]
+    },
+    {
+      "unit": "cryotek",
+      "tier": 3,
+      "property": "lv3_walk_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/cryotek_lv3_idle_breathe1.png",
+        "assets/cryotek_lv3_idle_breathe2.png",
+        "assets/cryotek_lv3_idle_breathe3.png",
+        "assets/cryotek_lv3_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/cryotek_lv3_walk_walk1.png",
+        "assets/cryotek_lv3_walk_walk2.png",
+        "assets/cryotek_lv3_walk_walk3.png",
+        "assets/cryotek_lv3_walk_walk4.png"
+      ]
+    },
+    {
+      "unit": "cryotek",
+      "tier": 1,
+      "property": "retreat_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/cryotek_idle_breathe1.png",
+        "assets/cryotek_idle_breathe2.png",
+        "assets/cryotek_idle_breathe3.png",
+        "assets/cryotek_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/cryotek_retreat_retreat1.png",
+        "assets/cryotek_retreat_retreat2.png",
+        "assets/cryotek_retreat_retreat3.png",
+        "assets/cryotek_retreat_retreat4.png"
+      ]
+    },
+    {
+      "unit": "cryotek",
+      "tier": 2,
+      "property": "lv2_retreat_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/cryotek_lv2_idle_breathe1.png",
+        "assets/cryotek_lv2_idle_breathe2.png",
+        "assets/cryotek_lv2_idle_breathe3.png",
+        "assets/cryotek_lv2_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/cryotek_lv2_retreat_retreat1.png",
+        "assets/cryotek_lv2_retreat_retreat2.png",
+        "assets/cryotek_lv2_retreat_retreat3.png",
+        "assets/cryotek_lv2_retreat_retreat4.png"
+      ]
+    },
+    {
+      "unit": "cryotek",
+      "tier": 3,
+      "property": "lv3_retreat_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/cryotek_lv3_idle_breathe1.png",
+        "assets/cryotek_lv3_idle_breathe2.png",
+        "assets/cryotek_lv3_idle_breathe3.png",
+        "assets/cryotek_lv3_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/cryotek_lv3_retreat_retreat1.png",
+        "assets/cryotek_lv3_retreat_retreat2.png",
+        "assets/cryotek_lv3_retreat_retreat3.png",
+        "assets/cryotek_lv3_retreat_retreat4.png"
+      ]
+    },
+    {
+      "unit": "arcrelay",
+      "tier": 1,
+      "property": "walk_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/arcrelay_idle_breathe1.png",
+        "assets/arcrelay_idle_breathe2.png",
+        "assets/arcrelay_idle_breathe3.png",
+        "assets/arcrelay_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/arcrelay_walk_walk1.png",
+        "assets/arcrelay_walk_walk2.png",
+        "assets/arcrelay_walk_walk3.png",
+        "assets/arcrelay_walk_walk4.png"
+      ]
+    },
+    {
+      "unit": "arcrelay",
+      "tier": 2,
+      "property": "lv2_walk_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/arcrelay_lv2_idle_breathe1.png",
+        "assets/arcrelay_lv2_idle_breathe2.png",
+        "assets/arcrelay_lv2_idle_breathe3.png",
+        "assets/arcrelay_lv2_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/arcrelay_lv2_walk_walk1.png",
+        "assets/arcrelay_lv2_walk_walk2.png",
+        "assets/arcrelay_lv2_walk_walk3.png",
+        "assets/arcrelay_lv2_walk_walk4.png"
+      ]
+    },
+    {
+      "unit": "arcrelay",
+      "tier": 3,
+      "property": "lv3_walk_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/arcrelay_lv3_idle_breathe1.png",
+        "assets/arcrelay_lv3_idle_breathe2.png",
+        "assets/arcrelay_lv3_idle_breathe3.png",
+        "assets/arcrelay_lv3_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/arcrelay_lv3_walk_walk1.png",
+        "assets/arcrelay_lv3_walk_walk2.png",
+        "assets/arcrelay_lv3_walk_walk3.png",
+        "assets/arcrelay_lv3_walk_walk4.png"
+      ]
+    },
+    {
+      "unit": "phaseblade",
+      "tier": 1,
+      "property": "walk_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/phaseblade_idle_breathe1.png",
+        "assets/phaseblade_idle_breathe2.png",
+        "assets/phaseblade_idle_breathe3.png",
+        "assets/phaseblade_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/phaseblade_walk_walk1.png",
+        "assets/phaseblade_walk_walk2.png",
+        "assets/phaseblade_walk_walk3.png",
+        "assets/phaseblade_walk_walk4.png"
+      ]
+    },
+    {
+      "unit": "phaseblade",
+      "tier": 2,
+      "property": "lv2_walk_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/phaseblade_lv2_idle_breathe1.png",
+        "assets/phaseblade_lv2_idle_breathe2.png",
+        "assets/phaseblade_lv2_idle_breathe3.png",
+        "assets/phaseblade_lv2_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/phaseblade_lv2_walk_walk1.png",
+        "assets/phaseblade_lv2_walk_walk2.png",
+        "assets/phaseblade_lv2_walk_walk3.png",
+        "assets/phaseblade_lv2_walk_walk4.png"
+      ]
+    },
+    {
+      "unit": "phaseblade",
+      "tier": 3,
+      "property": "lv3_walk_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/phaseblade_lv3_idle_breathe1.png",
+        "assets/phaseblade_lv3_idle_breathe2.png",
+        "assets/phaseblade_lv3_idle_breathe3.png",
+        "assets/phaseblade_lv3_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/phaseblade_lv3_walk_walk1.png",
+        "assets/phaseblade_lv3_walk_walk2.png",
+        "assets/phaseblade_lv3_walk_walk3.png",
+        "assets/phaseblade_lv3_walk_walk4.png"
+      ]
+    },
+    {
+      "unit": "arcrelay",
+      "tier": 1,
+      "property": "retreat_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/arcrelay_idle_breathe1.png",
+        "assets/arcrelay_idle_breathe2.png",
+        "assets/arcrelay_idle_breathe3.png",
+        "assets/arcrelay_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/arcrelay_retreat_retreat1.png",
+        "assets/arcrelay_retreat_retreat2.png",
+        "assets/arcrelay_retreat_retreat3.png",
+        "assets/arcrelay_retreat_retreat4.png"
+      ]
+    },
+    {
+      "unit": "arcrelay",
+      "tier": 2,
+      "property": "lv2_retreat_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/arcrelay_lv2_idle_breathe1.png",
+        "assets/arcrelay_lv2_idle_breathe2.png",
+        "assets/arcrelay_lv2_idle_breathe3.png",
+        "assets/arcrelay_lv2_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/arcrelay_lv2_retreat_retreat1.png",
+        "assets/arcrelay_lv2_retreat_retreat2.png",
+        "assets/arcrelay_lv2_retreat_retreat3.png",
+        "assets/arcrelay_lv2_retreat_retreat4.png"
+      ]
+    },
+    {
+      "unit": "arcrelay",
+      "tier": 3,
+      "property": "lv3_retreat_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/arcrelay_lv3_idle_breathe1.png",
+        "assets/arcrelay_lv3_idle_breathe2.png",
+        "assets/arcrelay_lv3_idle_breathe3.png",
+        "assets/arcrelay_lv3_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/arcrelay_lv3_retreat_retreat1.png",
+        "assets/arcrelay_lv3_retreat_retreat2.png",
+        "assets/arcrelay_lv3_retreat_retreat3.png",
+        "assets/arcrelay_lv3_retreat_retreat4.png"
+      ]
+    },
+    {
+      "unit": "phaseblade",
+      "tier": 1,
+      "property": "retreat_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/phaseblade_idle_breathe1.png",
+        "assets/phaseblade_idle_breathe2.png",
+        "assets/phaseblade_idle_breathe3.png",
+        "assets/phaseblade_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/phaseblade_retreat_retreat1.png",
+        "assets/phaseblade_retreat_retreat2.png",
+        "assets/phaseblade_retreat_retreat3.png",
+        "assets/phaseblade_retreat_retreat4.png"
+      ]
+    },
+    {
+      "unit": "phaseblade",
+      "tier": 2,
+      "property": "lv2_retreat_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/phaseblade_lv2_idle_breathe1.png",
+        "assets/phaseblade_lv2_idle_breathe2.png",
+        "assets/phaseblade_lv2_idle_breathe3.png",
+        "assets/phaseblade_lv2_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/phaseblade_lv2_retreat_retreat1.png",
+        "assets/phaseblade_lv2_retreat_retreat2.png",
+        "assets/phaseblade_lv2_retreat_retreat3.png",
+        "assets/phaseblade_lv2_retreat_retreat4.png"
+      ]
+    },
+    {
+      "unit": "phaseblade",
+      "tier": 3,
+      "property": "lv3_retreat_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/phaseblade_lv3_idle_breathe1.png",
+        "assets/phaseblade_lv3_idle_breathe2.png",
+        "assets/phaseblade_lv3_idle_breathe3.png",
+        "assets/phaseblade_lv3_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/phaseblade_lv3_retreat_retreat1.png",
+        "assets/phaseblade_lv3_retreat_retreat2.png",
+        "assets/phaseblade_lv3_retreat_retreat3.png",
+        "assets/phaseblade_lv3_retreat_retreat4.png"
+      ]
+    },
+    {
+      "unit": "nullbreaker",
+      "tier": 1,
+      "property": "retreat_frames",
+      "method": "retreat_from_walk",
+      "sources": [
+        "assets/nullbreaker_walk_walk1.png",
+        "assets/nullbreaker_walk_walk2.png",
+        "assets/nullbreaker_walk_walk3.png",
+        "assets/nullbreaker_walk_walk4.png"
+      ],
+      "outputs": [
+        "assets/nullbreaker_retreat_retreat1.png",
+        "assets/nullbreaker_retreat_retreat2.png",
+        "assets/nullbreaker_retreat_retreat3.png",
+        "assets/nullbreaker_retreat_retreat4.png"
+      ]
+    },
+    {
+      "unit": "nullbreaker",
+      "tier": 2,
+      "property": "lv2_retreat_frames",
+      "method": "retreat_from_walk",
+      "sources": [
+        "assets/nullbreaker_lv2_walk_walk1.png",
+        "assets/nullbreaker_lv2_walk_walk2.png",
+        "assets/nullbreaker_lv2_walk_walk3.png",
+        "assets/nullbreaker_lv2_walk_walk4.png"
+      ],
+      "outputs": [
+        "assets/nullbreaker_lv2_retreat_retreat1.png",
+        "assets/nullbreaker_lv2_retreat_retreat2.png",
+        "assets/nullbreaker_lv2_retreat_retreat3.png",
+        "assets/nullbreaker_lv2_retreat_retreat4.png"
+      ]
+    },
+    {
+      "unit": "nullbreaker",
+      "tier": 3,
+      "property": "lv3_retreat_frames",
+      "method": "retreat_from_walk",
+      "sources": [
+        "assets/nullbreaker_lv3_walk_walk1.png",
+        "assets/nullbreaker_lv3_walk_walk2.png",
+        "assets/nullbreaker_lv3_walk_walk3.png",
+        "assets/nullbreaker_lv3_walk_walk4.png"
+      ],
+      "outputs": [
+        "assets/nullbreaker_lv3_retreat_retreat1.png",
+        "assets/nullbreaker_lv3_retreat_retreat2.png",
+        "assets/nullbreaker_lv3_retreat_retreat3.png",
+        "assets/nullbreaker_lv3_retreat_retreat4.png"
+      ]
+    },
+    {
+      "unit": "nullbreaker",
+      "tier": 3,
+      "property": "lv3_attack_frames",
+      "method": "tier_recolor",
+      "sources": [
+        "assets/nullbreaker_lv2_attack_ready.png",
+        "assets/nullbreaker_lv2_attack_fire.png",
+        "assets/nullbreaker_lv2_attack_recoil.png",
+        "assets/nullbreaker_lv2_attack_settle.png"
+      ],
+      "outputs": [
+        "assets/nullbreaker_lv3_attack_ready.png",
+        "assets/nullbreaker_lv3_attack_fire.png",
+        "assets/nullbreaker_lv3_attack_recoil.png",
+        "assets/nullbreaker_lv3_attack_settle.png"
+      ]
+    }
+  ]
+}

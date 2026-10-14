@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitDefinition" load_steps=26 format=3]
+[gd_resource type="Resource" script_class="UnitDefinition" load_steps=50 format=3]
 
 [ext_resource type="Script" path="res://scripts/sim/unit_definition.gd" id="1_unitdef"]
 [ext_resource type="Texture2D" path="res://assets/arcrelay_idle_breathe1.png" id="2_sprite"]
@@ -28,6 +28,31 @@
 [ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_attack_fire.png" id="frame_lv3_attack_frames_2"]
 [ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_attack_recoil.png" id="frame_lv3_attack_frames_3"]
 [ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_attack_settle.png" id="frame_lv3_attack_frames_4"]
+
+[ext_resource type="Texture2D" path="res://assets/arcrelay_walk_walk1.png" id="frame_walk_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_walk_walk2.png" id="frame_walk_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_walk_walk3.png" id="frame_walk_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_walk_walk4.png" id="frame_walk_frames_4"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv2_walk_walk1.png" id="frame_lv2_walk_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv2_walk_walk2.png" id="frame_lv2_walk_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv2_walk_walk3.png" id="frame_lv2_walk_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv2_walk_walk4.png" id="frame_lv2_walk_frames_4"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_walk_walk1.png" id="frame_lv3_walk_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_walk_walk2.png" id="frame_lv3_walk_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_walk_walk3.png" id="frame_lv3_walk_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_walk_walk4.png" id="frame_lv3_walk_frames_4"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_retreat_retreat1.png" id="frame_retreat_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_retreat_retreat2.png" id="frame_retreat_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_retreat_retreat3.png" id="frame_retreat_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_retreat_retreat4.png" id="frame_retreat_frames_4"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv2_retreat_retreat1.png" id="frame_lv2_retreat_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv2_retreat_retreat2.png" id="frame_lv2_retreat_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv2_retreat_retreat3.png" id="frame_lv2_retreat_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv2_retreat_retreat4.png" id="frame_lv2_retreat_frames_4"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_retreat_retreat1.png" id="frame_lv3_retreat_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_retreat_retreat2.png" id="frame_lv3_retreat_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_retreat_retreat3.png" id="frame_lv3_retreat_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/arcrelay_lv3_retreat_retreat4.png" id="frame_lv3_retreat_frames_4"]
 
 [resource]
 script = ExtResource("1_unitdef")
@@ -62,3 +87,9 @@ lv3_idle_frames = Array[Texture2D]([ExtResource("10_lv3_1"), ExtResource("11_lv3
 attack_frames = Array[Texture2D]([ExtResource("frame_attack_frames_1"), ExtResource("frame_attack_frames_2"), ExtResource("frame_attack_frames_3"), ExtResource("frame_attack_frames_4")])
 lv2_attack_frames = Array[Texture2D]([ExtResource("frame_lv2_attack_frames_1"), ExtResource("frame_lv2_attack_frames_2"), ExtResource("frame_lv2_attack_frames_3"), ExtResource("frame_lv2_attack_frames_4")])
 lv3_attack_frames = Array[Texture2D]([ExtResource("frame_lv3_attack_frames_1"), ExtResource("frame_lv3_attack_frames_2"), ExtResource("frame_lv3_attack_frames_3"), ExtResource("frame_lv3_attack_frames_4")])
+walk_frames = Array[Texture2D]([ExtResource("frame_walk_frames_1"), ExtResource("frame_walk_frames_2"), ExtResource("frame_walk_frames_3"), ExtResource("frame_walk_frames_4")])
+lv2_walk_frames = Array[Texture2D]([ExtResource("frame_lv2_walk_frames_1"), ExtResource("frame_lv2_walk_frames_2"), ExtResource("frame_lv2_walk_frames_3"), ExtResource("frame_lv2_walk_frames_4")])
+lv3_walk_frames = Array[Texture2D]([ExtResource("frame_lv3_walk_frames_1"), ExtResource("frame_lv3_walk_frames_2"), ExtResource("frame_lv3_walk_frames_3"), ExtResource("frame_lv3_walk_frames_4")])
+retreat_frames = Array[Texture2D]([ExtResource("frame_retreat_frames_1"), ExtResource("frame_retreat_frames_2"), ExtResource("frame_retreat_frames_3"), ExtResource("frame_retreat_frames_4")])
+lv2_retreat_frames = Array[Texture2D]([ExtResource("frame_lv2_retreat_frames_1"), ExtResource("frame_lv2_retreat_frames_2"), ExtResource("frame_lv2_retreat_frames_3"), ExtResource("frame_lv2_retreat_frames_4")])
+lv3_retreat_frames = Array[Texture2D]([ExtResource("frame_lv3_retreat_frames_1"), ExtResource("frame_lv3_retreat_frames_2"), ExtResource("frame_lv3_retreat_frames_3"), ExtResource("frame_lv3_retreat_frames_4")])

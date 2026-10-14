@@ -1,0 +1,18 @@
+Use case: identity-preserve
+Asset type: cryotek Level 2 WALK four-frame sprite sheet for a mobile auto-battler.
+
+ATTACH: assets/cryotek_lv2_idle_breathe1.png (canonical cryotek Level 2 idle). Draw the SAME character from that image; it is the identity reference.
+
+Character (must match the attached image exactly): Cryotek: bulky white-and-dark-teal armored soldier, rounded helmet with a large wraparound cyan visor, two tall frosted cryo tanks on the back, snowflake emblem on the shoulder, holding ONE twin-barrel cryo cannon at hip height with both hands.
+Tier: Level 2 (energized): exactly the palette of the attached Level 2 idle image: brighter cyan glowing seams and edges, cyan-edged weapon. No orange.
+
+Animation: WALK cycle toward screen-right. four distinct gait phases in reading order: (1) front leg forward with heel contact, back leg extended behind; (2) passing pose, one knee lifted, body slightly higher; (3) the OPPOSITE contact pose: the other leg forward, legs swapped from frame 1; (4) passing pose with the other knee lifted. Arms and weapon move only slightly; weapon stays in the same hands.
+
+Rules:
+- Same character, same proportions, same helmet size and same body scale in all four panels; the body should be the same size as in the attached idle image.
+- Exactly the same single weapon in all four panels, in the same hands. Do not add, remove or redesign any gear.
+- Same camera angle and facing as the attached image (weapon side toward screen-right).
+- Soft-shaded, polished painterly render, glossy highlights, bulky chibi proportions, matching the attached image.
+- SQUARE image, true transparent RGBA background, 2x2 grid of four complete figures, reading order top-left, top-right, bottom-left, bottom-right.
+- Every figure fully inside its quadrant with at least 40 px of empty space to the cell edges; nothing cut off, no figures overlapping.
+- No background, floor, shadows, fog, labels, frame numbers, watermark or fake checkerboard.
