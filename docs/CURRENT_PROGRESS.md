@@ -75,3 +75,18 @@ backward lean; Nullbreaker Lv3 attack from Lv2 attack with cyan->orange and the
 Lv2->Lv3 idle colour shift. They are not generated art: the audit reports them as placeholders (95 real + 25 placeholder). The generator only rewrites frames whose bytes still match the hash it recorded, so imported art is never overwritten. Phaseblade/ArcRelay stand-ins use bob/lean/sway without the leg scissor (it tore the blade and doubled the staff).
 Ready-to-paste prompts per sheet: `art_sources/prompts-2026-10-14/`; drop
 results in `art_sources/incoming/` and run `tools/import_incoming.py`.
+
+## 2026-10-14 vector roster (owner decision)
+
+The owner chose code-drawn vector art for consistency and no generator
+artifacts. `tools/vector_art.py` renders rigged parts with gradient shading,
+bevels, gloss, panel lines and glow; `tools/vector_units/<unit>.py` defines each
+unit's parts for three distinct tier designs (docs/tier-designs.md) on a shared
+side-view rig (`common.py`) with 8-frame eased animations: idle, walk, retreat
+and a per-unit attack (smash, burst, snipe, lob, heal, ram, slash, cryo spray,
+chain lightning, rail). `tools/vector_units/export.py` copies frames to
+`assets/vector/` and wires all 120 sets plus each unit's portrait sprite; the
+audit reports them as `vector` (hashes in art_sources/vector-2026-10-14/).
+Painted frames remain on disk but are unreferenced and excluded from export.
+The game times 8-frame sets by the unit's attack rhythm and walk distance.
+The team shader's saturation boost was lowered for the vivid vector palette.

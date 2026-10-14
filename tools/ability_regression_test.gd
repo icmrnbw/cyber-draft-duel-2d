@@ -106,9 +106,9 @@ func _test_expanded_roster_resources() -> void:
 	for i in range(expanded.size()):
 		var def := expanded[i]
 		_expect(def.display_name == expected_names[i], "Expanded resource %d has its authored name" % i)
-		_expect(not def.idle_frames.is_empty() and def.idle_frames.size() == 4,
+		_expect(not def.idle_frames.is_empty() and def.idle_frames.size() in [4, 8],
 			"%s loads four Lv1 idle frames" % def.display_name)
-		_expect(def.lv2_idle_frames.size() == 4 and def.lv3_idle_frames.size() == 4,
+		_expect(def.lv2_idle_frames.size() in [4, 8] and def.lv3_idle_frames.size() in [4, 8],
 			"%s loads four idle frames for each tier" % def.display_name)
 		_expect(not def.ability_lv2_name.is_empty() and not def.ability_lv3_name.is_empty(),
 			"%s loads both tier ability names" % def.display_name)
@@ -126,14 +126,14 @@ func _test_expanded_roster_resources() -> void:
 		"Nullbreaker loads its 80 percent shield bypass")
 	_near(UnitDatabase.MARKSMAN.special_shield_bypass_fraction, 0.0,
 		"Marksman charged rounds retain ordinary shield interaction")
-	_expect(UnitDatabase.BULWARK.attack_frames.size() == 4 and UnitDatabase.BULWARK.lv2_attack_frames.size() == 4
-		and UnitDatabase.BULWARK.lv3_attack_frames.size() == 4,
+	_expect(UnitDatabase.BULWARK.attack_frames.size() in [4, 8] and UnitDatabase.BULWARK.lv2_attack_frames.size() in [4, 8]
+		and UnitDatabase.BULWARK.lv3_attack_frames.size() in [4, 8],
 		"Bulwark loads reviewed attack frames for all tiers")
-	_expect(UnitDatabase.BULWARK.walk_frames.size() == 4 and UnitDatabase.BULWARK.lv2_walk_frames.size() == 4
-		and UnitDatabase.BULWARK.lv3_walk_frames.size() == 4,
+	_expect(UnitDatabase.BULWARK.walk_frames.size() in [4, 8] and UnitDatabase.BULWARK.lv2_walk_frames.size() in [4, 8]
+		and UnitDatabase.BULWARK.lv3_walk_frames.size() in [4, 8],
 		"Bulwark loads reviewed walk frames for all tiers")
-	_expect(UnitDatabase.BULWARK.retreat_frames.size() == 4 and UnitDatabase.BULWARK.lv2_retreat_frames.size() == 4
-		and UnitDatabase.BULWARK.lv3_retreat_frames.size() == 4,
+	_expect(UnitDatabase.BULWARK.retreat_frames.size() in [4, 8] and UnitDatabase.BULWARK.lv2_retreat_frames.size() in [4, 8]
+		and UnitDatabase.BULWARK.lv3_retreat_frames.size() in [4, 8],
 		"Bulwark loads reviewed retreat frames for all tiers")
 
 	_expect(UnitDatabase.PHASEBLADE.retreat_range < UnitDatabase.PHASEBLADE.preferred_range,

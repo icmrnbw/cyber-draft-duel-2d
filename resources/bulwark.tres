@@ -1,58 +1,108 @@
-[gd_resource type="Resource" script_class="UnitDefinition" load_steps=50 format=3]
+[gd_resource type="Resource" script_class="UnitDefinition" load_steps=99 format=3]
 
 [ext_resource type="Script" path="res://scripts/sim/unit_definition.gd" id="1_unitdef"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_idle_breathe1.png" id="2_sprite"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_idle_breathe2.png" id="3_idle2"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_idle_breathe3.png" id="4_idle3"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_idle_breathe4.png" id="5_idle4"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_idle_breathe1.png" id="6_lv2_1"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_idle_breathe2.png" id="7_lv2_2"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_idle_breathe3.png" id="8_lv2_3"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_idle_breathe4.png" id="9_lv2_4"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_idle_breathe1.png" id="10_lv3_1"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_idle_breathe2.png" id="11_lv3_2"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_idle_breathe3.png" id="12_lv3_3"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_idle_breathe4.png" id="13_lv3_4"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_idle_1.png" id="2_sprite"]
 
-[ext_resource type="Texture2D" path="res://assets/bulwark_attack_ready.png" id="frame_attack_frames_1"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_attack_windup.png" id="frame_attack_frames_2"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_attack_strike.png" id="frame_attack_frames_3"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_attack_recover.png" id="frame_attack_frames_4"]
 
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_attack_ready.png" id="frame_lv2_attack_frames_1"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_attack_windup.png" id="frame_lv2_attack_frames_2"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_attack_strike.png" id="frame_lv2_attack_frames_3"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_attack_recover.png" id="frame_lv2_attack_frames_4"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_attack_ready.png" id="frame_lv3_attack_frames_1"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_attack_windup.png" id="frame_lv3_attack_frames_2"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_attack_strike.png" id="frame_lv3_attack_frames_3"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_attack_recover.png" id="frame_lv3_attack_frames_4"]
 
-[ext_resource type="Texture2D" path="res://assets/bulwark_walk_walk1.png" id="frame_walk_frames_1"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_walk_walk2.png" id="frame_walk_frames_2"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_walk_walk3.png" id="frame_walk_frames_3"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_walk_walk4.png" id="frame_walk_frames_4"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_walk_walk1.png" id="frame_lv2_walk_frames_1"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_walk_walk2.png" id="frame_lv2_walk_frames_2"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_walk_walk3.png" id="frame_lv2_walk_frames_3"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_walk_walk4.png" id="frame_lv2_walk_frames_4"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_walk_walk1.png" id="frame_lv3_walk_frames_1"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_walk_walk2.png" id="frame_lv3_walk_frames_2"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_walk_walk3.png" id="frame_lv3_walk_frames_3"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_walk_walk4.png" id="frame_lv3_walk_frames_4"]
 
-[ext_resource type="Texture2D" path="res://assets/bulwark_retreat_retreat1.png" id="frame_retreat_frames_1"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_retreat_retreat2.png" id="frame_retreat_frames_2"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_retreat_retreat3.png" id="frame_retreat_frames_3"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_retreat_retreat4.png" id="frame_retreat_frames_4"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_retreat_retreat1.png" id="frame_lv2_retreat_frames_1"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_retreat_retreat2.png" id="frame_lv2_retreat_frames_2"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_retreat_retreat3.png" id="frame_lv2_retreat_frames_3"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv2_retreat_retreat4.png" id="frame_lv2_retreat_frames_4"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_retreat_retreat1.png" id="frame_lv3_retreat_frames_1"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_retreat_retreat2.png" id="frame_lv3_retreat_frames_2"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_retreat_retreat3.png" id="frame_lv3_retreat_frames_3"]
-[ext_resource type="Texture2D" path="res://assets/bulwark_lv3_retreat_retreat4.png" id="frame_lv3_retreat_frames_4"]
+
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_idle_1.png" id="frame_idle_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_idle_2.png" id="frame_idle_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_idle_3.png" id="frame_idle_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_idle_4.png" id="frame_idle_frames_4"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_idle_5.png" id="frame_idle_frames_5"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_idle_6.png" id="frame_idle_frames_6"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_idle_7.png" id="frame_idle_frames_7"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_idle_8.png" id="frame_idle_frames_8"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_walk_1.png" id="frame_walk_frames_1_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_walk_2.png" id="frame_walk_frames_2_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_walk_3.png" id="frame_walk_frames_3_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_walk_4.png" id="frame_walk_frames_4_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_walk_5.png" id="frame_walk_frames_5"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_walk_6.png" id="frame_walk_frames_6"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_walk_7.png" id="frame_walk_frames_7"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_walk_8.png" id="frame_walk_frames_8"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_attack_1.png" id="frame_attack_frames_1_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_attack_2.png" id="frame_attack_frames_2_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_attack_3.png" id="frame_attack_frames_3_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_attack_4.png" id="frame_attack_frames_4_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_attack_5.png" id="frame_attack_frames_5"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_attack_6.png" id="frame_attack_frames_6"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_attack_7.png" id="frame_attack_frames_7"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_attack_8.png" id="frame_attack_frames_8"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_retreat_1.png" id="frame_retreat_frames_1_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_retreat_2.png" id="frame_retreat_frames_2_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_retreat_3.png" id="frame_retreat_frames_3_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_retreat_4.png" id="frame_retreat_frames_4_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_retreat_5.png" id="frame_retreat_frames_5"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_retreat_6.png" id="frame_retreat_frames_6"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_retreat_7.png" id="frame_retreat_frames_7"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv1_retreat_8.png" id="frame_retreat_frames_8"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_idle_1.png" id="frame_lv2_idle_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_idle_2.png" id="frame_lv2_idle_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_idle_3.png" id="frame_lv2_idle_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_idle_4.png" id="frame_lv2_idle_frames_4"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_idle_5.png" id="frame_lv2_idle_frames_5"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_idle_6.png" id="frame_lv2_idle_frames_6"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_idle_7.png" id="frame_lv2_idle_frames_7"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_idle_8.png" id="frame_lv2_idle_frames_8"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_walk_1.png" id="frame_lv2_walk_frames_1_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_walk_2.png" id="frame_lv2_walk_frames_2_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_walk_3.png" id="frame_lv2_walk_frames_3_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_walk_4.png" id="frame_lv2_walk_frames_4_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_walk_5.png" id="frame_lv2_walk_frames_5"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_walk_6.png" id="frame_lv2_walk_frames_6"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_walk_7.png" id="frame_lv2_walk_frames_7"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_walk_8.png" id="frame_lv2_walk_frames_8"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_attack_1.png" id="frame_lv2_attack_frames_1_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_attack_2.png" id="frame_lv2_attack_frames_2_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_attack_3.png" id="frame_lv2_attack_frames_3_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_attack_4.png" id="frame_lv2_attack_frames_4_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_attack_5.png" id="frame_lv2_attack_frames_5"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_attack_6.png" id="frame_lv2_attack_frames_6"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_attack_7.png" id="frame_lv2_attack_frames_7"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_attack_8.png" id="frame_lv2_attack_frames_8"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_retreat_1.png" id="frame_lv2_retreat_frames_1_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_retreat_2.png" id="frame_lv2_retreat_frames_2_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_retreat_3.png" id="frame_lv2_retreat_frames_3_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_retreat_4.png" id="frame_lv2_retreat_frames_4_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_retreat_5.png" id="frame_lv2_retreat_frames_5"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_retreat_6.png" id="frame_lv2_retreat_frames_6"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_retreat_7.png" id="frame_lv2_retreat_frames_7"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv2_retreat_8.png" id="frame_lv2_retreat_frames_8"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_idle_1.png" id="frame_lv3_idle_frames_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_idle_2.png" id="frame_lv3_idle_frames_2"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_idle_3.png" id="frame_lv3_idle_frames_3"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_idle_4.png" id="frame_lv3_idle_frames_4"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_idle_5.png" id="frame_lv3_idle_frames_5"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_idle_6.png" id="frame_lv3_idle_frames_6"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_idle_7.png" id="frame_lv3_idle_frames_7"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_idle_8.png" id="frame_lv3_idle_frames_8"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_walk_1.png" id="frame_lv3_walk_frames_1_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_walk_2.png" id="frame_lv3_walk_frames_2_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_walk_3.png" id="frame_lv3_walk_frames_3_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_walk_4.png" id="frame_lv3_walk_frames_4_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_walk_5.png" id="frame_lv3_walk_frames_5"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_walk_6.png" id="frame_lv3_walk_frames_6"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_walk_7.png" id="frame_lv3_walk_frames_7"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_walk_8.png" id="frame_lv3_walk_frames_8"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_attack_1.png" id="frame_lv3_attack_frames_1_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_attack_2.png" id="frame_lv3_attack_frames_2_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_attack_3.png" id="frame_lv3_attack_frames_3_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_attack_4.png" id="frame_lv3_attack_frames_4_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_attack_5.png" id="frame_lv3_attack_frames_5"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_attack_6.png" id="frame_lv3_attack_frames_6"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_attack_7.png" id="frame_lv3_attack_frames_7"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_attack_8.png" id="frame_lv3_attack_frames_8"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_retreat_1.png" id="frame_lv3_retreat_frames_1_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_retreat_2.png" id="frame_lv3_retreat_frames_2_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_retreat_3.png" id="frame_lv3_retreat_frames_3_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_retreat_4.png" id="frame_lv3_retreat_frames_4_1"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_retreat_5.png" id="frame_lv3_retreat_frames_5"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_retreat_6.png" id="frame_lv3_retreat_frames_6"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_retreat_7.png" id="frame_lv3_retreat_frames_7"]
+[ext_resource type="Texture2D" path="res://assets/vector/bulwark_lv3_retreat_8.png" id="frame_lv3_retreat_frames_8"]
 
 [resource]
 script = ExtResource("1_unitdef")
@@ -84,15 +134,15 @@ self_shield_duration = 2.5
 self_shield_duration_upgrade_min_level = 3
 self_shield_upgraded_duration = 3.5
 sprite = ExtResource("2_sprite")
-idle_frames = Array[Texture2D]([ExtResource("2_sprite"), ExtResource("3_idle2"), ExtResource("4_idle3"), ExtResource("5_idle4")])
-lv2_idle_frames = Array[Texture2D]([ExtResource("6_lv2_1"), ExtResource("7_lv2_2"), ExtResource("8_lv2_3"), ExtResource("9_lv2_4")])
-lv3_idle_frames = Array[Texture2D]([ExtResource("10_lv3_1"), ExtResource("11_lv3_2"), ExtResource("12_lv3_3"), ExtResource("13_lv3_4")])
-attack_frames = Array[Texture2D]([ExtResource("frame_attack_frames_1"), ExtResource("frame_attack_frames_2"), ExtResource("frame_attack_frames_3"), ExtResource("frame_attack_frames_4")])
-lv2_attack_frames = Array[Texture2D]([ExtResource("frame_lv2_attack_frames_1"), ExtResource("frame_lv2_attack_frames_2"), ExtResource("frame_lv2_attack_frames_3"), ExtResource("frame_lv2_attack_frames_4")])
-lv3_attack_frames = Array[Texture2D]([ExtResource("frame_lv3_attack_frames_1"), ExtResource("frame_lv3_attack_frames_2"), ExtResource("frame_lv3_attack_frames_3"), ExtResource("frame_lv3_attack_frames_4")])
-walk_frames = Array[Texture2D]([ExtResource("frame_walk_frames_1"), ExtResource("frame_walk_frames_2"), ExtResource("frame_walk_frames_3"), ExtResource("frame_walk_frames_4")])
-lv2_walk_frames = Array[Texture2D]([ExtResource("frame_lv2_walk_frames_1"), ExtResource("frame_lv2_walk_frames_2"), ExtResource("frame_lv2_walk_frames_3"), ExtResource("frame_lv2_walk_frames_4")])
-lv3_walk_frames = Array[Texture2D]([ExtResource("frame_lv3_walk_frames_1"), ExtResource("frame_lv3_walk_frames_2"), ExtResource("frame_lv3_walk_frames_3"), ExtResource("frame_lv3_walk_frames_4")])
-retreat_frames = Array[Texture2D]([ExtResource("frame_retreat_frames_1"), ExtResource("frame_retreat_frames_2"), ExtResource("frame_retreat_frames_3"), ExtResource("frame_retreat_frames_4")])
-lv2_retreat_frames = Array[Texture2D]([ExtResource("frame_lv2_retreat_frames_1"), ExtResource("frame_lv2_retreat_frames_2"), ExtResource("frame_lv2_retreat_frames_3"), ExtResource("frame_lv2_retreat_frames_4")])
-lv3_retreat_frames = Array[Texture2D]([ExtResource("frame_lv3_retreat_frames_1"), ExtResource("frame_lv3_retreat_frames_2"), ExtResource("frame_lv3_retreat_frames_3"), ExtResource("frame_lv3_retreat_frames_4")])
+idle_frames = Array[Texture2D]([ExtResource("frame_idle_frames_1"), ExtResource("frame_idle_frames_2"), ExtResource("frame_idle_frames_3"), ExtResource("frame_idle_frames_4"), ExtResource("frame_idle_frames_5"), ExtResource("frame_idle_frames_6"), ExtResource("frame_idle_frames_7"), ExtResource("frame_idle_frames_8")])
+lv2_idle_frames = Array[Texture2D]([ExtResource("frame_lv2_idle_frames_1"), ExtResource("frame_lv2_idle_frames_2"), ExtResource("frame_lv2_idle_frames_3"), ExtResource("frame_lv2_idle_frames_4"), ExtResource("frame_lv2_idle_frames_5"), ExtResource("frame_lv2_idle_frames_6"), ExtResource("frame_lv2_idle_frames_7"), ExtResource("frame_lv2_idle_frames_8")])
+lv3_idle_frames = Array[Texture2D]([ExtResource("frame_lv3_idle_frames_1"), ExtResource("frame_lv3_idle_frames_2"), ExtResource("frame_lv3_idle_frames_3"), ExtResource("frame_lv3_idle_frames_4"), ExtResource("frame_lv3_idle_frames_5"), ExtResource("frame_lv3_idle_frames_6"), ExtResource("frame_lv3_idle_frames_7"), ExtResource("frame_lv3_idle_frames_8")])
+attack_frames = Array[Texture2D]([ExtResource("frame_attack_frames_1_1"), ExtResource("frame_attack_frames_2_1"), ExtResource("frame_attack_frames_3_1"), ExtResource("frame_attack_frames_4_1"), ExtResource("frame_attack_frames_5"), ExtResource("frame_attack_frames_6"), ExtResource("frame_attack_frames_7"), ExtResource("frame_attack_frames_8")])
+lv2_attack_frames = Array[Texture2D]([ExtResource("frame_lv2_attack_frames_1_1"), ExtResource("frame_lv2_attack_frames_2_1"), ExtResource("frame_lv2_attack_frames_3_1"), ExtResource("frame_lv2_attack_frames_4_1"), ExtResource("frame_lv2_attack_frames_5"), ExtResource("frame_lv2_attack_frames_6"), ExtResource("frame_lv2_attack_frames_7"), ExtResource("frame_lv2_attack_frames_8")])
+lv3_attack_frames = Array[Texture2D]([ExtResource("frame_lv3_attack_frames_1_1"), ExtResource("frame_lv3_attack_frames_2_1"), ExtResource("frame_lv3_attack_frames_3_1"), ExtResource("frame_lv3_attack_frames_4_1"), ExtResource("frame_lv3_attack_frames_5"), ExtResource("frame_lv3_attack_frames_6"), ExtResource("frame_lv3_attack_frames_7"), ExtResource("frame_lv3_attack_frames_8")])
+walk_frames = Array[Texture2D]([ExtResource("frame_walk_frames_1_1"), ExtResource("frame_walk_frames_2_1"), ExtResource("frame_walk_frames_3_1"), ExtResource("frame_walk_frames_4_1"), ExtResource("frame_walk_frames_5"), ExtResource("frame_walk_frames_6"), ExtResource("frame_walk_frames_7"), ExtResource("frame_walk_frames_8")])
+lv2_walk_frames = Array[Texture2D]([ExtResource("frame_lv2_walk_frames_1_1"), ExtResource("frame_lv2_walk_frames_2_1"), ExtResource("frame_lv2_walk_frames_3_1"), ExtResource("frame_lv2_walk_frames_4_1"), ExtResource("frame_lv2_walk_frames_5"), ExtResource("frame_lv2_walk_frames_6"), ExtResource("frame_lv2_walk_frames_7"), ExtResource("frame_lv2_walk_frames_8")])
+lv3_walk_frames = Array[Texture2D]([ExtResource("frame_lv3_walk_frames_1_1"), ExtResource("frame_lv3_walk_frames_2_1"), ExtResource("frame_lv3_walk_frames_3_1"), ExtResource("frame_lv3_walk_frames_4_1"), ExtResource("frame_lv3_walk_frames_5"), ExtResource("frame_lv3_walk_frames_6"), ExtResource("frame_lv3_walk_frames_7"), ExtResource("frame_lv3_walk_frames_8")])
+retreat_frames = Array[Texture2D]([ExtResource("frame_retreat_frames_1_1"), ExtResource("frame_retreat_frames_2_1"), ExtResource("frame_retreat_frames_3_1"), ExtResource("frame_retreat_frames_4_1"), ExtResource("frame_retreat_frames_5"), ExtResource("frame_retreat_frames_6"), ExtResource("frame_retreat_frames_7"), ExtResource("frame_retreat_frames_8")])
+lv2_retreat_frames = Array[Texture2D]([ExtResource("frame_lv2_retreat_frames_1_1"), ExtResource("frame_lv2_retreat_frames_2_1"), ExtResource("frame_lv2_retreat_frames_3_1"), ExtResource("frame_lv2_retreat_frames_4_1"), ExtResource("frame_lv2_retreat_frames_5"), ExtResource("frame_lv2_retreat_frames_6"), ExtResource("frame_lv2_retreat_frames_7"), ExtResource("frame_lv2_retreat_frames_8")])
+lv3_retreat_frames = Array[Texture2D]([ExtResource("frame_lv3_retreat_frames_1_1"), ExtResource("frame_lv3_retreat_frames_2_1"), ExtResource("frame_lv3_retreat_frames_3_1"), ExtResource("frame_lv3_retreat_frames_4_1"), ExtResource("frame_lv3_retreat_frames_5"), ExtResource("frame_lv3_retreat_frames_6"), ExtResource("frame_lv3_retreat_frames_7"), ExtResource("frame_lv3_retreat_frames_8")])

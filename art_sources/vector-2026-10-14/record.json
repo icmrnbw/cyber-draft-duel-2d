@@ -1,0 +1,2886 @@
+{
+ "version": 1,
+ "note": "Vector rig renders (tools/vector_units).",
+ "sets": [
+  {
+   "unit": "enforcer",
+   "property": "idle_frames",
+   "outputs": [
+    "assets/vector/enforcer_lv1_idle_1.png",
+    "assets/vector/enforcer_lv1_idle_2.png",
+    "assets/vector/enforcer_lv1_idle_3.png",
+    "assets/vector/enforcer_lv1_idle_4.png",
+    "assets/vector/enforcer_lv1_idle_5.png",
+    "assets/vector/enforcer_lv1_idle_6.png",
+    "assets/vector/enforcer_lv1_idle_7.png",
+    "assets/vector/enforcer_lv1_idle_8.png"
+   ],
+   "sha256": [
+    "fec3007f887df169f3e97d2c5da07205be2a144256c254ad1557c4c235d54060",
+    "423e05f527b8d89d1a7e0ce2ad6b216a0b59a67d1441ba2349cc28480b05d42f",
+    "39ca46975bd7f1e07f6c95477f2abe3be8fb191056de069b8d8144ec22c703ea",
+    "d07c83bc00e03ff0cd922f8c85ede088be51267b798db1c92840200228362a05",
+    "9afb73be1c98f2c92492fa11a867d6cfe80caf3d13031f13de8a33e99838c467",
+    "d07c83bc00e03ff0cd922f8c85ede088be51267b798db1c92840200228362a05",
+    "39ca46975bd7f1e07f6c95477f2abe3be8fb191056de069b8d8144ec22c703ea",
+    "423e05f527b8d89d1a7e0ce2ad6b216a0b59a67d1441ba2349cc28480b05d42f"
+   ]
+  },
+  {
+   "unit": "enforcer",
+   "property": "walk_frames",
+   "outputs": [
+    "assets/vector/enforcer_lv1_walk_1.png",
+    "assets/vector/enforcer_lv1_walk_2.png",
+    "assets/vector/enforcer_lv1_walk_3.png",
+    "assets/vector/enforcer_lv1_walk_4.png",
+    "assets/vector/enforcer_lv1_walk_5.png",
+    "assets/vector/enforcer_lv1_walk_6.png",
+    "assets/vector/enforcer_lv1_walk_7.png",
+    "assets/vector/enforcer_lv1_walk_8.png"
+   ],
+   "sha256": [
+    "6b88128aafa2f83ccb9ec470cbc5a91a2c885609b794934c22cd471bb7b42d73",
+    "4dc708f66b65c6ffc9c9afbcdc85ac7abee4ea57f4bebb5e62444e87cb29d6d1",
+    "c50412daea04c9ae1bbf478aabb68cf245d86037d27e12ccbc9406128efa11a8",
+    "72e346508c9820564a8f9a7d1da73d31b6a77ff1325a298f04bfcc70cfa89f76",
+    "efa15e7e834cb8a99e77187db3bf6416f684a2d83080c25555a6cc07788dd4aa",
+    "cf6a506b7932ea2260d1673ecc2e2f0fe25f4fb7e6379830e2141affdc5aa89b",
+    "1403dbcee342f64cda3f47e2a9849f02fd06cf9b8d9e51097b9a03b37007c053",
+    "8253183ccfdb7d086de7bcfbb7c8e220f4f6ad8c9ef1a353471c03d76513e051"
+   ]
+  },
+  {
+   "unit": "enforcer",
+   "property": "attack_frames",
+   "outputs": [
+    "assets/vector/enforcer_lv1_attack_1.png",
+    "assets/vector/enforcer_lv1_attack_2.png",
+    "assets/vector/enforcer_lv1_attack_3.png",
+    "assets/vector/enforcer_lv1_attack_4.png",
+    "assets/vector/enforcer_lv1_attack_5.png",
+    "assets/vector/enforcer_lv1_attack_6.png",
+    "assets/vector/enforcer_lv1_attack_7.png",
+    "assets/vector/enforcer_lv1_attack_8.png"
+   ],
+   "sha256": [
+    "fd35d439af8d2efa33e931d6abbfb1709647c563a8dee911b39cbae688029b74",
+    "a6e9034732c4c272fd38692b630acadaabf9bc6b131bbcc260d1d4ddf45584e9",
+    "3cd9430c61188f0c7363be145842e6710219490cf7bca46cc5f3f132b7134706",
+    "d6eebc02364a695d060fa88316c305f94f7071bc6f07cc1bc405fe0c912cbc6c",
+    "d3755691f5911b005c3c34f759ae0af58e37cc8e604f57ea081fdf9aae00301c",
+    "8469ca30ccf89d924f38624d81589f726f01e75a6382f046cba62c28980aa1db",
+    "5c27f9d64cc98158dcb51710d1f3fa08f25b102db106aac8d57c95fe660435d6",
+    "e66fb47d61d8a16bfd3623180244e688a6b08a96567a5504746f0b2d31b78375"
+   ]
+  },
+  {
+   "unit": "enforcer",
+   "property": "retreat_frames",
+   "outputs": [
+    "assets/vector/enforcer_lv1_retreat_1.png",
+    "assets/vector/enforcer_lv1_retreat_2.png",
+    "assets/vector/enforcer_lv1_retreat_3.png",
+    "assets/vector/enforcer_lv1_retreat_4.png",
+    "assets/vector/enforcer_lv1_retreat_5.png",
+    "assets/vector/enforcer_lv1_retreat_6.png",
+    "assets/vector/enforcer_lv1_retreat_7.png",
+    "assets/vector/enforcer_lv1_retreat_8.png"
+   ],
+   "sha256": [
+    "dae0f07ee08309d359ba2b692e5c91b3abaa3f30f679bdc2f222d2f53f6fa32b",
+    "775d870714d527180c97ca1bbe6c40d1080f9b168d02e90e173e9fd99b4a97c7",
+    "703e636ad8ebf9dbb88fb34597fd6d919e185ec40481f34cf375635d3a5e32e4",
+    "601886fb19cc608322727c7e09cde2d3395c2d9412a3a885f568be776ab6845a",
+    "95e673f351ab28ebc33d399d60d4ac958bea1f15064ad4b6736f02583e57465a",
+    "8bf1a8bd3ca24bbb0549de0590255caa436074657ebcd63a6a2753708b4fc412",
+    "f16660170b71a76731c43c1810e05c27e92ed4c3d9eb3c9bef6f8cda0b9b56ad",
+    "6d9446086c0ef31b39d070e27a93c9034f720f0e0ead0dcb559d3af77c7473bd"
+   ]
+  },
+  {
+   "unit": "enforcer",
+   "property": "lv2_idle_frames",
+   "outputs": [
+    "assets/vector/enforcer_lv2_idle_1.png",
+    "assets/vector/enforcer_lv2_idle_2.png",
+    "assets/vector/enforcer_lv2_idle_3.png",
+    "assets/vector/enforcer_lv2_idle_4.png",
+    "assets/vector/enforcer_lv2_idle_5.png",
+    "assets/vector/enforcer_lv2_idle_6.png",
+    "assets/vector/enforcer_lv2_idle_7.png",
+    "assets/vector/enforcer_lv2_idle_8.png"
+   ],
+   "sha256": [
+    "8940de0d7443280f94373b5bdfc4a27590aedb12ae15ae7ce0427643f71299cf",
+    "1c02f9c6c970a1b7a8caff273fbde9bfeeb0457814597ddbb6da29d89f0bd2e0",
+    "25b2920703657b4638ab7637bab890fc0cba615a81ab5442cb2e1435bc970933",
+    "d790ab9fb10cfa2d08b7caecfe27c1b143e4ac507607ec9b179ad9a2d7756ff8",
+    "34e7c6b98dbdf4554a7ab2d31b4c8c42918058a2021c14d147b9942eb08b3289",
+    "d790ab9fb10cfa2d08b7caecfe27c1b143e4ac507607ec9b179ad9a2d7756ff8",
+    "25b2920703657b4638ab7637bab890fc0cba615a81ab5442cb2e1435bc970933",
+    "1c02f9c6c970a1b7a8caff273fbde9bfeeb0457814597ddbb6da29d89f0bd2e0"
+   ]
+  },
+  {
+   "unit": "enforcer",
+   "property": "lv2_walk_frames",
+   "outputs": [
+    "assets/vector/enforcer_lv2_walk_1.png",
+    "assets/vector/enforcer_lv2_walk_2.png",
+    "assets/vector/enforcer_lv2_walk_3.png",
+    "assets/vector/enforcer_lv2_walk_4.png",
+    "assets/vector/enforcer_lv2_walk_5.png",
+    "assets/vector/enforcer_lv2_walk_6.png",
+    "assets/vector/enforcer_lv2_walk_7.png",
+    "assets/vector/enforcer_lv2_walk_8.png"
+   ],
+   "sha256": [
+    "ec20e4fc7ad57acfc8062469f07161bb20b1bb4e16681fa88abf381c091270fb",
+    "112c774d31960417b3c9abc26f48be8f40ef535174bf6c6f7f7aabea9224f8fa",
+    "79e69a9545f28a89c92658dc1d9a7fc98f10ac81f84bf81fc8c8034582197d79",
+    "ff74210d57e6593d983e306ab88df51a957e364d51a982d514ea8c6e593d1b95",
+    "48109955f2ef56996bbae629aed312e42a98a04f691c5db74ba54d3473381a65",
+    "47e4cad3db9174269453fe492c5a2a52da40a6a5be997095d14f23e30db7655f",
+    "e1a848b1c7f4b35159666b60b949f130d5c8e687eb784e9716639a4f4a9badda",
+    "398a97e2e1511e3b4769d013ec11e1c8ef996a4b2c83fb80856393f833593f10"
+   ]
+  },
+  {
+   "unit": "enforcer",
+   "property": "lv2_attack_frames",
+   "outputs": [
+    "assets/vector/enforcer_lv2_attack_1.png",
+    "assets/vector/enforcer_lv2_attack_2.png",
+    "assets/vector/enforcer_lv2_attack_3.png",
+    "assets/vector/enforcer_lv2_attack_4.png",
+    "assets/vector/enforcer_lv2_attack_5.png",
+    "assets/vector/enforcer_lv2_attack_6.png",
+    "assets/vector/enforcer_lv2_attack_7.png",
+    "assets/vector/enforcer_lv2_attack_8.png"
+   ],
+   "sha256": [
+    "b6ab54b972d9c5543077d02d2c256a764f13fa72318a373b178d4893963b6168",
+    "40427252be0f5ae2ff17301ab61d5841de482b53dbafafa28c29daca0e48f183",
+    "78a7894c68c5c9be735409039fdfe20ca90a44bad15d2617f182fa39a090bedc",
+    "9613bab87deb5af1977a8dfa6e0ab833a0954030b784531c03f3846e5c88c8bb",
+    "31eb7e7b0aa53c60b4104e915ff418309b7a8330eb0cbf6ee150d8bec6dd6b94",
+    "b5d5863cc36ff55f5dec5956d4d183e30f9645b29bdba38f009b1e9a0b3d891f",
+    "caab9229ea2562f6a5f3c9710eb90d6e5d2cf0e30e331285b73b38cc8b03bb02",
+    "49aacbe46fc094d687b8af1f3488e0f8c89f9e7e7694842742d9fbdc7147bdd6"
+   ]
+  },
+  {
+   "unit": "enforcer",
+   "property": "lv2_retreat_frames",
+   "outputs": [
+    "assets/vector/enforcer_lv2_retreat_1.png",
+    "assets/vector/enforcer_lv2_retreat_2.png",
+    "assets/vector/enforcer_lv2_retreat_3.png",
+    "assets/vector/enforcer_lv2_retreat_4.png",
+    "assets/vector/enforcer_lv2_retreat_5.png",
+    "assets/vector/enforcer_lv2_retreat_6.png",
+    "assets/vector/enforcer_lv2_retreat_7.png",
+    "assets/vector/enforcer_lv2_retreat_8.png"
+   ],
+   "sha256": [
+    "5224215f664010cf3dde5cf9cf04f5a8b323b5b5481e638cdc7f4c6b127de8c0",
+    "38fc500e32f209e6d82575b8bb4c3d286ab08172344d2672f171023a2411da0b",
+    "97224a4e22fec158401c00e46037c370beefd8821d8968d703d28ef58551696b",
+    "0e0f0ed084748069345efbf0b736a2f4950d24c47b656e17a680d157b49c960c",
+    "6dc961154270fb31143916da29ef88c39fadc2e3cf25658ff264af41e7c486e4",
+    "25b2e78f7ecb84bf468cbf1a905f677e2b35a817d0d2c9ca8b3c380e09a99ecd",
+    "84da2489e8e6b670d8cb27508da82b10dd463ec7521534ebb3850d831e681cca",
+    "8d9fbd6ce304a5a6cf52ba089710e387cf7a5806a94da9eb76f02690f46d43aa"
+   ]
+  },
+  {
+   "unit": "enforcer",
+   "property": "lv3_idle_frames",
+   "outputs": [
+    "assets/vector/enforcer_lv3_idle_1.png",
+    "assets/vector/enforcer_lv3_idle_2.png",
+    "assets/vector/enforcer_lv3_idle_3.png",
+    "assets/vector/enforcer_lv3_idle_4.png",
+    "assets/vector/enforcer_lv3_idle_5.png",
+    "assets/vector/enforcer_lv3_idle_6.png",
+    "assets/vector/enforcer_lv3_idle_7.png",
+    "assets/vector/enforcer_lv3_idle_8.png"
+   ],
+   "sha256": [
+    "53f87fc8cfc15b37ff6dbd5aec45754b6d7d57ea6e4dd3625e191a416f127b21",
+    "98a0a3322532b249b395c06b464fde394fe8fb0b6d99942041868b85e43baab1",
+    "db4fbdd739d4a45dbd6abfc08246a50aafe9510f6de7b2e88ae0e7b1fc03d621",
+    "7800af9aaa6f270235b11db6b8812c348a9609b79dd987799ca32b321863a682",
+    "49b1ee1a51592afb52ddecbe796aeb950baa5a0119ddaa87fb0570661775bf79",
+    "7800af9aaa6f270235b11db6b8812c348a9609b79dd987799ca32b321863a682",
+    "db4fbdd739d4a45dbd6abfc08246a50aafe9510f6de7b2e88ae0e7b1fc03d621",
+    "98a0a3322532b249b395c06b464fde394fe8fb0b6d99942041868b85e43baab1"
+   ]
+  },
+  {
+   "unit": "enforcer",
+   "property": "lv3_walk_frames",
+   "outputs": [
+    "assets/vector/enforcer_lv3_walk_1.png",
+    "assets/vector/enforcer_lv3_walk_2.png",
+    "assets/vector/enforcer_lv3_walk_3.png",
+    "assets/vector/enforcer_lv3_walk_4.png",
+    "assets/vector/enforcer_lv3_walk_5.png",
+    "assets/vector/enforcer_lv3_walk_6.png",
+    "assets/vector/enforcer_lv3_walk_7.png",
+    "assets/vector/enforcer_lv3_walk_8.png"
+   ],
+   "sha256": [
+    "eea572804de390fa780ceb14b6c277906894817b505ab80420654848eeaf16e1",
+    "91fc8259fad5505aeb921a35236ae11234698f612bb1ae0dc27d8881896b4a52",
+    "2d697bbc0478ff07d59974ce2139b659d6eabcb21fd9a967e34ef9d4f1786e41",
+    "325587e196e223af330969dd303d1d0974c2d07783904a392c008a127d708771",
+    "e5aacb9ce5d891e88f939c174a6dab16df9d49ff5eb86e6635cab742a12fbd37",
+    "483203c94d9e6a0af97301668f3ec3b792cd32e4c221f31c4afc2677fcf7ed82",
+    "b3a7ee22502bb17f34a5b35ca443dcfcc8055cf9edabd542da0d56ece78e6ff3",
+    "f33ad74461d356a20d0f5791d89b49790fef93bfc83be875a8c26e5781ea071e"
+   ]
+  },
+  {
+   "unit": "enforcer",
+   "property": "lv3_attack_frames",
+   "outputs": [
+    "assets/vector/enforcer_lv3_attack_1.png",
+    "assets/vector/enforcer_lv3_attack_2.png",
+    "assets/vector/enforcer_lv3_attack_3.png",
+    "assets/vector/enforcer_lv3_attack_4.png",
+    "assets/vector/enforcer_lv3_attack_5.png",
+    "assets/vector/enforcer_lv3_attack_6.png",
+    "assets/vector/enforcer_lv3_attack_7.png",
+    "assets/vector/enforcer_lv3_attack_8.png"
+   ],
+   "sha256": [
+    "5c9601502bb7cb72a84e95adad3273fafa8da2bda24aa9300e486dd423bc1d6b",
+    "910d887d6856e28b147556f0fe88b94e4c1fff6883e0e861411189eb15aa0033",
+    "b72b322264e68ae355962527155c6353fc335e47939941c6a4c31b3c6a6ad115",
+    "9b01791503608e95653a1191816e6f67fc5c09c1acf5ff83b226b1f56e8c7055",
+    "3e18b89f399618aafd415b6ee7287972b5f9d004d2650afbacac1c0a46b3c537",
+    "c808296275da1b5a20b9fe010cd22545d0cb54a11c6b76f0ef46deba741b4110",
+    "5a621a76d1273a6954efd307c4ff3e799a78b0b90704e1036d450e3c24dbf89f",
+    "7905ec564029c005b01b1e1c55fd82f1609fc7c6419d6e8b3d0bc1b213c5734c"
+   ]
+  },
+  {
+   "unit": "enforcer",
+   "property": "lv3_retreat_frames",
+   "outputs": [
+    "assets/vector/enforcer_lv3_retreat_1.png",
+    "assets/vector/enforcer_lv3_retreat_2.png",
+    "assets/vector/enforcer_lv3_retreat_3.png",
+    "assets/vector/enforcer_lv3_retreat_4.png",
+    "assets/vector/enforcer_lv3_retreat_5.png",
+    "assets/vector/enforcer_lv3_retreat_6.png",
+    "assets/vector/enforcer_lv3_retreat_7.png",
+    "assets/vector/enforcer_lv3_retreat_8.png"
+   ],
+   "sha256": [
+    "4df3035aeaf8232a6f88fb624e072e7c29f69a8331e53ee082a3a1ddfb44c147",
+    "80a244664f1be09145905268ed2055c4e8060be31cf3db1d86c0b6e94ea2f552",
+    "b28c1d8c7b3f155ef8931174d3fdd3c15938ff6aec704c197d825230045da154",
+    "e4ee166b317079c54ca1a18f864c9fd95149063bfad1a4501e80b504293f097f",
+    "9eed426a32cb54970b99d540b1d77e59813a49ff61c74fa7a969673cd538a082",
+    "a6cd2b2a80862d5ca61c32d9ff75d496bdeb59d6b1c1daf5728fb7baf6a7128d",
+    "23173541074719c75f328504dc03f2f050156154afd292b740249bfdd0148782",
+    "aa04d3ae4243cda155f61932a41fc360c21983be0daf028ca014d4b52589d317"
+   ]
+  },
+  {
+   "unit": "trooper",
+   "property": "idle_frames",
+   "outputs": [
+    "assets/vector/trooper_lv1_idle_1.png",
+    "assets/vector/trooper_lv1_idle_2.png",
+    "assets/vector/trooper_lv1_idle_3.png",
+    "assets/vector/trooper_lv1_idle_4.png",
+    "assets/vector/trooper_lv1_idle_5.png",
+    "assets/vector/trooper_lv1_idle_6.png",
+    "assets/vector/trooper_lv1_idle_7.png",
+    "assets/vector/trooper_lv1_idle_8.png"
+   ],
+   "sha256": [
+    "13a25c258a8b68e74930653dea9058140dff687fa132cde923e1b4c05e817fff",
+    "26aaf3dadb6f057d00a3e0749ce0c6d52275811efee637e7c5f1de5ec8f13172",
+    "08da5afbbf9e9ffde90d3dbd4ec7f8108929e25b66d0a3dedc5accd3039e9a57",
+    "a41146991e627417bcf54f2ded6aeeb14945ff866377c9e535954fe7aa8add14",
+    "b73bdd722ee730707b1b1830edafd1b5c3fcbb4112e8b79cd6ec8d2a9322462c",
+    "a41146991e627417bcf54f2ded6aeeb14945ff866377c9e535954fe7aa8add14",
+    "08da5afbbf9e9ffde90d3dbd4ec7f8108929e25b66d0a3dedc5accd3039e9a57",
+    "26aaf3dadb6f057d00a3e0749ce0c6d52275811efee637e7c5f1de5ec8f13172"
+   ]
+  },
+  {
+   "unit": "trooper",
+   "property": "walk_frames",
+   "outputs": [
+    "assets/vector/trooper_lv1_walk_1.png",
+    "assets/vector/trooper_lv1_walk_2.png",
+    "assets/vector/trooper_lv1_walk_3.png",
+    "assets/vector/trooper_lv1_walk_4.png",
+    "assets/vector/trooper_lv1_walk_5.png",
+    "assets/vector/trooper_lv1_walk_6.png",
+    "assets/vector/trooper_lv1_walk_7.png",
+    "assets/vector/trooper_lv1_walk_8.png"
+   ],
+   "sha256": [
+    "2270c00c54f8cb8c33007dfe8e9325ad20bdcbfe955ca21232bedacbd4b57a94",
+    "55d01df532ad105d4ab904384773882584b4dba0740d88f6f35fd0cfdbae5c17",
+    "9d78f4823338daef47e607f0c1a9874c11576f4c4de77b91956f7e96d24d7a04",
+    "e39c73182f3ea8c61dd72eb3f32ce759510c99d34a074e025ccd6973b9b46b05",
+    "b805e5ab5bcdefaa35b2b1a1f2999c98d4756cdba86e42c2b4f67936b71ca29e",
+    "47a7dc5d865fc31b818d25132c30033b6585430f6f9dbd3870590b2227eb1982",
+    "20fbf157fa01f6454952f7213315a4ada13b28d4a745a6bb24f8a26740d06de6",
+    "302eb25d7dfc8d0d000ee546d4762367d3765fef3ae41ecf9cf842eaac4d9bea"
+   ]
+  },
+  {
+   "unit": "trooper",
+   "property": "attack_frames",
+   "outputs": [
+    "assets/vector/trooper_lv1_attack_1.png",
+    "assets/vector/trooper_lv1_attack_2.png",
+    "assets/vector/trooper_lv1_attack_3.png",
+    "assets/vector/trooper_lv1_attack_4.png",
+    "assets/vector/trooper_lv1_attack_5.png",
+    "assets/vector/trooper_lv1_attack_6.png",
+    "assets/vector/trooper_lv1_attack_7.png",
+    "assets/vector/trooper_lv1_attack_8.png"
+   ],
+   "sha256": [
+    "ca882156cf53c15718705564d63f5472bb26b3fdb8c8d69ea3924440facc2b04",
+    "3fbd1b66a9ca5d8ad6f9f1638dd8bf74da93d7114e18237edd8395708485fb05",
+    "0a521322e2f28cae5d4116cec50d2f04a2ffd99b953300e04310bbe5316d3eca",
+    "ac56e9463b6d7c59f4c455c0e1e19aa969ef07b921f0f1ac2b62e60794ab3e54",
+    "41ebec15b09476724efb1d6d225b31f0a3fa5af5b03cfa1fbfa58fc3dfdf636e",
+    "37a47b40ca29f6850bb420f1a2377db57edc5e0a47d2d062420ef4f89886f58b",
+    "f3558cc4699a254eb960dd10ca3276251c636a510e9406619bbaf18afb055abe",
+    "082a6c51a2299c210a8b4556bf6a5b3964da5dc64d688f02043f6c1cbab18dbe"
+   ]
+  },
+  {
+   "unit": "trooper",
+   "property": "retreat_frames",
+   "outputs": [
+    "assets/vector/trooper_lv1_retreat_1.png",
+    "assets/vector/trooper_lv1_retreat_2.png",
+    "assets/vector/trooper_lv1_retreat_3.png",
+    "assets/vector/trooper_lv1_retreat_4.png",
+    "assets/vector/trooper_lv1_retreat_5.png",
+    "assets/vector/trooper_lv1_retreat_6.png",
+    "assets/vector/trooper_lv1_retreat_7.png",
+    "assets/vector/trooper_lv1_retreat_8.png"
+   ],
+   "sha256": [
+    "8ac088aeab11c9e08a2d9ed170510e05a5f080cc6c4b386cf58f881220137838",
+    "cae0e333a1ca5b88440e381f1eafef3cdefe407cb2a5ef0351caba1e0d8d7fcd",
+    "b4cce9eebd648da3c745f2fec515c87f8780db19a9109f5c3acc99a05a74cd73",
+    "f8fa6b6de0d0b7a93ad764ac1b6aecb49c5da3ee07e758abdd2f7549da648faf",
+    "7f38dafe446125c6edc15a0ac040e0cb33f7933ef48e20adcc74dca85185314c",
+    "0cf3be2d8adc734ee6509cca5ed71dbba4c8360630410d67d0fcc5bc66e3af4d",
+    "525b50a19353fa32127bae1739459a700093935211904117354bafbbd1a202cc",
+    "073f332f4a61eb4740318e7e4c73673d66ae9f9693e03a6965402b03e2b689e9"
+   ]
+  },
+  {
+   "unit": "trooper",
+   "property": "lv2_idle_frames",
+   "outputs": [
+    "assets/vector/trooper_lv2_idle_1.png",
+    "assets/vector/trooper_lv2_idle_2.png",
+    "assets/vector/trooper_lv2_idle_3.png",
+    "assets/vector/trooper_lv2_idle_4.png",
+    "assets/vector/trooper_lv2_idle_5.png",
+    "assets/vector/trooper_lv2_idle_6.png",
+    "assets/vector/trooper_lv2_idle_7.png",
+    "assets/vector/trooper_lv2_idle_8.png"
+   ],
+   "sha256": [
+    "74a96959782f348191cd4f648234600b19a20dc9a671ae299454cf5a6e94a873",
+    "cf9ef746571c4caf45bc01105d21bc8a20828f47aec114d1e205aacb89b78f05",
+    "ae0686a9248323c3b61f0e8e38b6aa1cbe3f1a2d790752b834db37f10c3a3ca7",
+    "2b717672a39f3f337286726ce6ae114694dc1bd1537a3bd9ed6630e5eb7c0699",
+    "d70b02a378f5678c00090d7e5a076ecbcdd03544a7d7500298f1a32438c67990",
+    "2b717672a39f3f337286726ce6ae114694dc1bd1537a3bd9ed6630e5eb7c0699",
+    "ae0686a9248323c3b61f0e8e38b6aa1cbe3f1a2d790752b834db37f10c3a3ca7",
+    "cf9ef746571c4caf45bc01105d21bc8a20828f47aec114d1e205aacb89b78f05"
+   ]
+  },
+  {
+   "unit": "trooper",
+   "property": "lv2_walk_frames",
+   "outputs": [
+    "assets/vector/trooper_lv2_walk_1.png",
+    "assets/vector/trooper_lv2_walk_2.png",
+    "assets/vector/trooper_lv2_walk_3.png",
+    "assets/vector/trooper_lv2_walk_4.png",
+    "assets/vector/trooper_lv2_walk_5.png",
+    "assets/vector/trooper_lv2_walk_6.png",
+    "assets/vector/trooper_lv2_walk_7.png",
+    "assets/vector/trooper_lv2_walk_8.png"
+   ],
+   "sha256": [
+    "06bf406206f3db7e9e5df43b2aeabd1e52ea03e0c7ae34a1dbd8f9916da3c41e",
+    "928350337b1225d16e76ae7b5b820544bd9f3ac5e62caf296a9fdf9829efe3c1",
+    "ef0c87bd6c615143b15402b130237a9c19ebd4fef125f9dd3c9aabe08db24193",
+    "c1296720dc93f091d26efa52dee8a97d09e2a90eeacd0709f15eb1936406a8d5",
+    "218265816d126378081078293601e0a7973b089671449e4ff544789298074f42",
+    "b1f7f1dec79fd8e94582d5e43be4781cf7f205fdf83cfde7c66093b61493974e",
+    "88feaab71bd3b0639564b53529d9d1fe2ff6351f28fbe6d0f64d7aa8ef9698dd",
+    "7c943c1da252aeaccf83724b56a1b9499a880e4fcc764ae1ee2b301cf0123529"
+   ]
+  },
+  {
+   "unit": "trooper",
+   "property": "lv2_attack_frames",
+   "outputs": [
+    "assets/vector/trooper_lv2_attack_1.png",
+    "assets/vector/trooper_lv2_attack_2.png",
+    "assets/vector/trooper_lv2_attack_3.png",
+    "assets/vector/trooper_lv2_attack_4.png",
+    "assets/vector/trooper_lv2_attack_5.png",
+    "assets/vector/trooper_lv2_attack_6.png",
+    "assets/vector/trooper_lv2_attack_7.png",
+    "assets/vector/trooper_lv2_attack_8.png"
+   ],
+   "sha256": [
+    "afafcef50505b53dd255c89e00d1db876fb0248943629360d7150c3fc01d0139",
+    "dfb0274762d00c39a4f3ad51122e4cc7fd933f063864992dfe77c70a1f8ca28a",
+    "b7e04d3fc2bdd6ac9e6ea4199d13960540e82c56980d6e0157173cec2f374a17",
+    "be955430bccf56998396776bfd674c8cb259319dd881e1b475e392ee7f3efab9",
+    "7575b35c24dd16da6aba9092823cdd5d9746e99c901f9a1250b9a01924a521a0",
+    "790e43171d9464a6686600754889ece16b5d49634b7caeac1e9bc2855cbff49a",
+    "3571c12b3359b9c2e22b70709352c496b7e5dd2ca12419d3af9e5f2a6732a938",
+    "73b89e3102721c3fa2f43a5302021ba330bf7cc2079b40dd5f3ef2b3b39fa18d"
+   ]
+  },
+  {
+   "unit": "trooper",
+   "property": "lv2_retreat_frames",
+   "outputs": [
+    "assets/vector/trooper_lv2_retreat_1.png",
+    "assets/vector/trooper_lv2_retreat_2.png",
+    "assets/vector/trooper_lv2_retreat_3.png",
+    "assets/vector/trooper_lv2_retreat_4.png",
+    "assets/vector/trooper_lv2_retreat_5.png",
+    "assets/vector/trooper_lv2_retreat_6.png",
+    "assets/vector/trooper_lv2_retreat_7.png",
+    "assets/vector/trooper_lv2_retreat_8.png"
+   ],
+   "sha256": [
+    "7fd62ccdb115d7c6318839bac0a5daa66ea9fc1f2fa02e04822c1a2059f0c1cf",
+    "e6bfea1b54dd2b53da6f5985e257231cff17c0ee93eb7997d7e9fdddbe856e9d",
+    "7ecf9464b0bd851985f437871a4103b2e24f994b7fae8df91b44d2afc7277926",
+    "43dc5e91809b7410700a5c2988e85401fd580aad06edb695e921d89c909a49ed",
+    "851bba67c24a6a264f3b10663b0b77cb055e7c8f95aed87c0bedcf39be7eafc8",
+    "f81151b4b4b2e049c2ffddefe7de485c33c64406f61ea143a4a14b066cc1b141",
+    "e4654c159e62664434cfce25503862650367cf69b61d0a1b8e0c7e6cf112a8ea",
+    "27f6d5d8e68cd932eb6be5e8591f1d64505a3ccf60293248f63de5f7ddf7cfd0"
+   ]
+  },
+  {
+   "unit": "trooper",
+   "property": "lv3_idle_frames",
+   "outputs": [
+    "assets/vector/trooper_lv3_idle_1.png",
+    "assets/vector/trooper_lv3_idle_2.png",
+    "assets/vector/trooper_lv3_idle_3.png",
+    "assets/vector/trooper_lv3_idle_4.png",
+    "assets/vector/trooper_lv3_idle_5.png",
+    "assets/vector/trooper_lv3_idle_6.png",
+    "assets/vector/trooper_lv3_idle_7.png",
+    "assets/vector/trooper_lv3_idle_8.png"
+   ],
+   "sha256": [
+    "e0afce244da7e532568cf9d368e0d562aa6f2398bd2ecf769b3a5d69219f74db",
+    "797401e44dd22d37c7140340f48cbf042fef2400a7f28c416721e94eeaba64e5",
+    "b0e55ddcc97e5f2702012f4313b3da0346de2e6ad82fedcadca9471dbafe9636",
+    "2e85014ace457815d16e4d9d78f76fddb371c805b814a40807e132e95f96e4d5",
+    "ed15bffe8d2e830645c6b0c77996bef54a8fdb82de6e6af39292b323a1d8ec01",
+    "2e85014ace457815d16e4d9d78f76fddb371c805b814a40807e132e95f96e4d5",
+    "b0e55ddcc97e5f2702012f4313b3da0346de2e6ad82fedcadca9471dbafe9636",
+    "797401e44dd22d37c7140340f48cbf042fef2400a7f28c416721e94eeaba64e5"
+   ]
+  },
+  {
+   "unit": "trooper",
+   "property": "lv3_walk_frames",
+   "outputs": [
+    "assets/vector/trooper_lv3_walk_1.png",
+    "assets/vector/trooper_lv3_walk_2.png",
+    "assets/vector/trooper_lv3_walk_3.png",
+    "assets/vector/trooper_lv3_walk_4.png",
+    "assets/vector/trooper_lv3_walk_5.png",
+    "assets/vector/trooper_lv3_walk_6.png",
+    "assets/vector/trooper_lv3_walk_7.png",
+    "assets/vector/trooper_lv3_walk_8.png"
+   ],
+   "sha256": [
+    "69d86fbde4ff6f5c98ff5bfacb55dc2152a71a00fc09009b322f032a29b74ad7",
+    "52ef8479e732041e9fc3ae7dfbaec9b3d5fec7309c9b63db7e980f90d9d8ad0c",
+    "d9bd4dc19a681a945be4266cba2040234adad4cc4c508366bae3b438fd3f7b05",
+    "854996cb4778ae534fde07db1acfb5f9d24a233fa7c6f99f5c1e21cd9fb60b54",
+    "b66a31d071461d9e69444f53badeeaa55667fc6fee5d95b6b586760c1ac94ef6",
+    "01738838bf0f32de3b8bea3a001aa8c3194078e20724e0764659add7ceb92e77",
+    "44f110cca628bf489bbcee2094d0aef5ec7bb8aefaebb4c558f87dcc01569edb",
+    "3f98934446b40f20976ae15d3ed80f050b55b47e6400f515d1cdac881478523c"
+   ]
+  },
+  {
+   "unit": "trooper",
+   "property": "lv3_attack_frames",
+   "outputs": [
+    "assets/vector/trooper_lv3_attack_1.png",
+    "assets/vector/trooper_lv3_attack_2.png",
+    "assets/vector/trooper_lv3_attack_3.png",
+    "assets/vector/trooper_lv3_attack_4.png",
+    "assets/vector/trooper_lv3_attack_5.png",
+    "assets/vector/trooper_lv3_attack_6.png",
+    "assets/vector/trooper_lv3_attack_7.png",
+    "assets/vector/trooper_lv3_attack_8.png"
+   ],
+   "sha256": [
+    "4ea07002339197fae7ae8f10823d49d8c472878ddb3fa5fdf59eb2f7fcf81834",
+    "a8decb698b9dfda4dc43819fa49c65165ac212cf43361997ab215a8648859386",
+    "90a9a509e988acfec7d888e76d1cc926e8920e0786e88c6019ebd0e6ab12e7f2",
+    "2cb35d8407d975e54e955454bfb14079c179bf46f5d4ae42ea4abe7f8f34c187",
+    "58a8f336f1ab7fd8062ad0fa39282a497a927b8d9d849ad678ab3927e04b069a",
+    "99e3a9392bd76682fe4d1a85e4b1e8e97444ed0a8f4daf9bd301c87fc4fcc02a",
+    "499ce6a04c425a56496f06d62c396a96f4508c9d6e8232c9efdc738167fe252a",
+    "938f1f9d344490ebdafb0104c7c48554138600a1cece8dacb1e97afc685296ea"
+   ]
+  },
+  {
+   "unit": "trooper",
+   "property": "lv3_retreat_frames",
+   "outputs": [
+    "assets/vector/trooper_lv3_retreat_1.png",
+    "assets/vector/trooper_lv3_retreat_2.png",
+    "assets/vector/trooper_lv3_retreat_3.png",
+    "assets/vector/trooper_lv3_retreat_4.png",
+    "assets/vector/trooper_lv3_retreat_5.png",
+    "assets/vector/trooper_lv3_retreat_6.png",
+    "assets/vector/trooper_lv3_retreat_7.png",
+    "assets/vector/trooper_lv3_retreat_8.png"
+   ],
+   "sha256": [
+    "e63a2fc5cf291960bac5cec7e8110996b68a0203bfb1f1ee4418d13eb295d61e",
+    "b9ddba552f65e0214fee24b5abc3cf092f0caab4e3209f3132f6ba09d8c39f38",
+    "a7fcf41a590bcfa66e64cee863c39631052f99e82691fce6224824c6e1421941",
+    "4ea3617bfeb71544855ca7558f104e5da106c4069a78a0abf5b4e96ac49c41b9",
+    "2775dd22dd13028cb7d11ee51c6ec1eb1443468ba75e2ce3e056577a19116913",
+    "fb531da9b248ad9432688029f86f920ec83cbe699d0cd17879f1dec60a8c45ff",
+    "ab162c84209e7054dfda3ffd48b2912e259da3e7bc232057d222ed0f74f91488",
+    "84b41da5fa9962240349919a689fe9ea885d72f7c60db31bc9c54dab701f77a8"
+   ]
+  },
+  {
+   "unit": "marksman",
+   "property": "idle_frames",
+   "outputs": [
+    "assets/vector/marksman_lv1_idle_1.png",
+    "assets/vector/marksman_lv1_idle_2.png",
+    "assets/vector/marksman_lv1_idle_3.png",
+    "assets/vector/marksman_lv1_idle_4.png",
+    "assets/vector/marksman_lv1_idle_5.png",
+    "assets/vector/marksman_lv1_idle_6.png",
+    "assets/vector/marksman_lv1_idle_7.png",
+    "assets/vector/marksman_lv1_idle_8.png"
+   ],
+   "sha256": [
+    "7c842c6138710a0eb950a877318272f1ece19204d9ca3958478fd15ff7259cb0",
+    "712ff3902d2c2dd48bc1e27a8d71943bd07f66ba9e1e65d926117b4821876e71",
+    "dd2d01d831508634ab65cc44a639356ca2a23ae3f9ac57c78291043610b6f86f",
+    "38855bb275c5790cfe028d3c6d11427b47137faa6228b9e8e815efc918b7caa6",
+    "16b575eceebab1b1d43535ccb4794d334efa4d4a308c332cdf1621c0597df4c2",
+    "38855bb275c5790cfe028d3c6d11427b47137faa6228b9e8e815efc918b7caa6",
+    "dd2d01d831508634ab65cc44a639356ca2a23ae3f9ac57c78291043610b6f86f",
+    "712ff3902d2c2dd48bc1e27a8d71943bd07f66ba9e1e65d926117b4821876e71"
+   ]
+  },
+  {
+   "unit": "marksman",
+   "property": "walk_frames",
+   "outputs": [
+    "assets/vector/marksman_lv1_walk_1.png",
+    "assets/vector/marksman_lv1_walk_2.png",
+    "assets/vector/marksman_lv1_walk_3.png",
+    "assets/vector/marksman_lv1_walk_4.png",
+    "assets/vector/marksman_lv1_walk_5.png",
+    "assets/vector/marksman_lv1_walk_6.png",
+    "assets/vector/marksman_lv1_walk_7.png",
+    "assets/vector/marksman_lv1_walk_8.png"
+   ],
+   "sha256": [
+    "8310220f6c35b085fee063adc0f18244952716995dbd35d8fce8f126e439e8e8",
+    "fb540060e7abb5571fad1575e2fa8d849db206adb6bb0e54969d0a5143757b9f",
+    "44f8f9a53000aa409f611367ae31b938320c88f99cb944661d45b776f1dceaff",
+    "4fee30209b28fed260c3a48d61e31c59420f24fe3c5ab1ab57bebeb8867388b4",
+    "b857ba178eb0c0361947c68d4ebef9c20bc3cc1956f4854ba4b2066cc3f6a954",
+    "46631d43269f77edac63e65eeac5b9cad9fd6f668e83502c02dca960453c976f",
+    "0dda99f655b40642a3139138a14a6d2ae06151ed4b3d4f2dad93ecd75958d11d",
+    "03f7eaae034faa3a84b4a9f230730840110942230a58835847ed13c411d64ec4"
+   ]
+  },
+  {
+   "unit": "marksman",
+   "property": "attack_frames",
+   "outputs": [
+    "assets/vector/marksman_lv1_attack_1.png",
+    "assets/vector/marksman_lv1_attack_2.png",
+    "assets/vector/marksman_lv1_attack_3.png",
+    "assets/vector/marksman_lv1_attack_4.png",
+    "assets/vector/marksman_lv1_attack_5.png",
+    "assets/vector/marksman_lv1_attack_6.png",
+    "assets/vector/marksman_lv1_attack_7.png",
+    "assets/vector/marksman_lv1_attack_8.png"
+   ],
+   "sha256": [
+    "640d74ef138a122631125626f0f26f239bc7f906e162e0ce30110a17e6ff9302",
+    "e949ce1a0ea179c6122649804e1ce5b18e6c372b566b33288f35682d7085fe11",
+    "bdcdea5fcc0553ca964268664e16921e6f68795d8b587d821a6e99afc008413d",
+    "d9f9075daff8fe25506fd4aa93bb7f3c89ecb1bccd5a23135df5c93ff983581e",
+    "467e7c29ac721bbbcb1c8248762701cbe7b1e527a29fd3513246809b15a9cd91",
+    "2549087af0aaf43002c4bad2dd644b82edccba8b46f7573d43430aac88ba4c72",
+    "e714c0af2970c57a8f84a6df256f73ffb465bc09821c7e31549fcbef5dff2244",
+    "b268e9ec9758401fe3ff79e2c57b55998ba5da20970d5d35fe4a48b85f4436d6"
+   ]
+  },
+  {
+   "unit": "marksman",
+   "property": "retreat_frames",
+   "outputs": [
+    "assets/vector/marksman_lv1_retreat_1.png",
+    "assets/vector/marksman_lv1_retreat_2.png",
+    "assets/vector/marksman_lv1_retreat_3.png",
+    "assets/vector/marksman_lv1_retreat_4.png",
+    "assets/vector/marksman_lv1_retreat_5.png",
+    "assets/vector/marksman_lv1_retreat_6.png",
+    "assets/vector/marksman_lv1_retreat_7.png",
+    "assets/vector/marksman_lv1_retreat_8.png"
+   ],
+   "sha256": [
+    "caf10c06b7db4b09c67b49c0136177711d8363f0cf961e85f9cc71c57bd91d17",
+    "772a7d7e7eb7ecee8703b8bab33b489867e7bdabb820f76aa9d4f137ff0c29c5",
+    "4b32d54cfa292daafb597b513e28d1d952d824251431ae10d5f1ebdbf16f5474",
+    "7b0542da5ea53a9c01fa3e20383d4bcb68a22dd660081405a22c745adc7d2e7f",
+    "44919c4fe5c5459bdaf04a7b158adda1579e129237825662a9d3386c59d5cb37",
+    "ca0d51d9aa8ceb3b4fa2e1e14655071f5e5ef9718e4acdf1330f1afd099a8dbd",
+    "cc388264b16bdbfdd7b100b8e1880e4561e2c8ec8a7f703e63d45213130d79f1",
+    "c0a581dfa2836f19488d5a844c99b9a1445a7e7db0756757523fd749afa793bd"
+   ]
+  },
+  {
+   "unit": "marksman",
+   "property": "lv2_idle_frames",
+   "outputs": [
+    "assets/vector/marksman_lv2_idle_1.png",
+    "assets/vector/marksman_lv2_idle_2.png",
+    "assets/vector/marksman_lv2_idle_3.png",
+    "assets/vector/marksman_lv2_idle_4.png",
+    "assets/vector/marksman_lv2_idle_5.png",
+    "assets/vector/marksman_lv2_idle_6.png",
+    "assets/vector/marksman_lv2_idle_7.png",
+    "assets/vector/marksman_lv2_idle_8.png"
+   ],
+   "sha256": [
+    "0764e1f57e69f99b87c62f8c8aeae95944e28bd5e72a633c3aca8fc13a5b2484",
+    "82447b8e940f9bf2d303cc2869b08707cfe76bb21a10721159d6cf18abd42c21",
+    "13ffee4c0876276c3bd2f5524304453927b247af8ecdf1d6c11176499d76ce1c",
+    "1074f9f836bd6693f2ea92b168e756ddfeaba261c3655a1acc14d333725704d1",
+    "ef85a539eeaa702bcb312a909dca022eb02ee8a2f52e12f53d290c5602faea11",
+    "1074f9f836bd6693f2ea92b168e756ddfeaba261c3655a1acc14d333725704d1",
+    "13ffee4c0876276c3bd2f5524304453927b247af8ecdf1d6c11176499d76ce1c",
+    "82447b8e940f9bf2d303cc2869b08707cfe76bb21a10721159d6cf18abd42c21"
+   ]
+  },
+  {
+   "unit": "marksman",
+   "property": "lv2_walk_frames",
+   "outputs": [
+    "assets/vector/marksman_lv2_walk_1.png",
+    "assets/vector/marksman_lv2_walk_2.png",
+    "assets/vector/marksman_lv2_walk_3.png",
+    "assets/vector/marksman_lv2_walk_4.png",
+    "assets/vector/marksman_lv2_walk_5.png",
+    "assets/vector/marksman_lv2_walk_6.png",
+    "assets/vector/marksman_lv2_walk_7.png",
+    "assets/vector/marksman_lv2_walk_8.png"
+   ],
+   "sha256": [
+    "4cf147e451bf6bca6e5c9015d26fac49961f7042cef6884e5510a937ea18ecc8",
+    "183a5de847fa16bc6eff40c0de8af071a75e2222349411e00f90abddc0fae66a",
+    "4ac72d05e6f17dbcb628c0e5d2842aeda6eef5ce2e45ba6e535a80676d5d9e1e",
+    "eae5fb6d2801fa6eb6abb14fe46846d23d5c591850d86460de32661539c395be",
+    "2d5110a8baf821191a49b1b4a7a71bd8ea78430a5eedc8bf86918ee3f2a797dd",
+    "43c35b84a93dd92e159becabc0dab4bbb9fba889e3f8c4208d54c29ffa7efec8",
+    "12a0fb8e0edb52c9efa546864be8f171bd03ed687b725a9d4e8945f142ce7bbe",
+    "94a863220019e6b8e432ab15d3b989f58167fd3260b9367dbac2ff5284f8ad4d"
+   ]
+  },
+  {
+   "unit": "marksman",
+   "property": "lv2_attack_frames",
+   "outputs": [
+    "assets/vector/marksman_lv2_attack_1.png",
+    "assets/vector/marksman_lv2_attack_2.png",
+    "assets/vector/marksman_lv2_attack_3.png",
+    "assets/vector/marksman_lv2_attack_4.png",
+    "assets/vector/marksman_lv2_attack_5.png",
+    "assets/vector/marksman_lv2_attack_6.png",
+    "assets/vector/marksman_lv2_attack_7.png",
+    "assets/vector/marksman_lv2_attack_8.png"
+   ],
+   "sha256": [
+    "599a83c90c216d7aa550e235d0058fa028de5b3bd0e1d706ea02275a9419baa8",
+    "f0881c82fa784c186e80f71f92867f38a00951269f3eb38168c7e5963a0e3933",
+    "bd197371dc65a5e1aa8929ac0b3f56ced672ebaf5baf48035c5a4c70d86f30a6",
+    "c35747e5d04ec5d0a3910325f032e2ef196208150ff1aa68e999709840667be6",
+    "ed198f55c051d883c79c14abcc4316eef0a180b4258d850504d12af966b07d7a",
+    "dd5dbd676b6b1fb6919eba92fe4819c0ecad045b4bb92445f0a4efa42ba19502",
+    "1a4d455bbe743cce79e89740926f687de7274a50f53fb1a6c35109044fa7eb08",
+    "192b4709bfe6fa0aaded802ec1288a6a65bfb1f951c0add8d79d83d991154fcd"
+   ]
+  },
+  {
+   "unit": "marksman",
+   "property": "lv2_retreat_frames",
+   "outputs": [
+    "assets/vector/marksman_lv2_retreat_1.png",
+    "assets/vector/marksman_lv2_retreat_2.png",
+    "assets/vector/marksman_lv2_retreat_3.png",
+    "assets/vector/marksman_lv2_retreat_4.png",
+    "assets/vector/marksman_lv2_retreat_5.png",
+    "assets/vector/marksman_lv2_retreat_6.png",
+    "assets/vector/marksman_lv2_retreat_7.png",
+    "assets/vector/marksman_lv2_retreat_8.png"
+   ],
+   "sha256": [
+    "1ef023b0c6f058e79e2d0e93fd0f40bec4f40ace9302e4c760874bf3b0a859d8",
+    "e240150dd94e5a2351b3eb381b2f19c7d477a5cf6d494144308452a94e228ad6",
+    "1af7ae720379dcde42c084692b4e9c17761888be94c35a74d7e807d87292ad1a",
+    "6f100abfed9ef9c283cd9498e616177cfd0d7ef7648c744a6400d2eba048bf0d",
+    "b09739953aa1d35e8440daa1f902030e71f6c9b20dbafafda238ed4cba15b353",
+    "139098ae1d892cbb431555054dbfc4acf3f8609ea3556e1457a3afe218829edd",
+    "d50aeadfbac2d5c50b5f9746f7a63b5b2a8f3fac17431368eacd37fbe8d978ce",
+    "0b884a7ca3271088e45bda27506e4f9be4c9e7d9d941fa4f5f23c530e9b1f4c8"
+   ]
+  },
+  {
+   "unit": "marksman",
+   "property": "lv3_idle_frames",
+   "outputs": [
+    "assets/vector/marksman_lv3_idle_1.png",
+    "assets/vector/marksman_lv3_idle_2.png",
+    "assets/vector/marksman_lv3_idle_3.png",
+    "assets/vector/marksman_lv3_idle_4.png",
+    "assets/vector/marksman_lv3_idle_5.png",
+    "assets/vector/marksman_lv3_idle_6.png",
+    "assets/vector/marksman_lv3_idle_7.png",
+    "assets/vector/marksman_lv3_idle_8.png"
+   ],
+   "sha256": [
+    "7963928d48345a3cd11e7ac0b64958e251b49c3bb74ca112b70c83e3a1a212fc",
+    "ef8517c8fcf1cdb6b8055668854077464d19dfdd92850dddc9ac324fa7e08914",
+    "f77beb2d1e869a980551e419a7f9e800f4ff961e12d25654c6d6896faddc0603",
+    "ef7e1d91a67da1db134a93cdb57ca93a87ce92027aa9089ca9726cbcac5e136f",
+    "a31a6c8a38d18789577a481890ccb99b98715e4515e67bec34332965b2ef587b",
+    "ef7e1d91a67da1db134a93cdb57ca93a87ce92027aa9089ca9726cbcac5e136f",
+    "f77beb2d1e869a980551e419a7f9e800f4ff961e12d25654c6d6896faddc0603",
+    "ef8517c8fcf1cdb6b8055668854077464d19dfdd92850dddc9ac324fa7e08914"
+   ]
+  },
+  {
+   "unit": "marksman",
+   "property": "lv3_walk_frames",
+   "outputs": [
+    "assets/vector/marksman_lv3_walk_1.png",
+    "assets/vector/marksman_lv3_walk_2.png",
+    "assets/vector/marksman_lv3_walk_3.png",
+    "assets/vector/marksman_lv3_walk_4.png",
+    "assets/vector/marksman_lv3_walk_5.png",
+    "assets/vector/marksman_lv3_walk_6.png",
+    "assets/vector/marksman_lv3_walk_7.png",
+    "assets/vector/marksman_lv3_walk_8.png"
+   ],
+   "sha256": [
+    "fa7f75bf0d9821303c3b4479ca336d3236a497f4f278ea88ece8d845361a4980",
+    "1be9e39ec4c52242c919becaf0dd3841f09dcdd0b4315d0f60febb9272a20603",
+    "d17af43416debe96a9989f5820c90285f96cee8bd047c0cbed56e125ab9ed170",
+    "75a78c684fa5ec3b11b6593b142b53f31bce03c4ff0e9ab5f3e890feeff17b01",
+    "a36cad5cec6ff900fd77ae66d765c1992fd45f9725e6449990c22b4596227ffa",
+    "b58015b288a572be9b5e2c79ba6048e9c77778a458d459bbeee77b73623dc259",
+    "324dcb724f3977164e628457beeb8531eb20ef77ba17d659cd922bad737f4df0",
+    "d40eeb60d3695c82247e5d15bd9ce0d280f8e43bad2f5a7dd775379cd6f8b407"
+   ]
+  },
+  {
+   "unit": "marksman",
+   "property": "lv3_attack_frames",
+   "outputs": [
+    "assets/vector/marksman_lv3_attack_1.png",
+    "assets/vector/marksman_lv3_attack_2.png",
+    "assets/vector/marksman_lv3_attack_3.png",
+    "assets/vector/marksman_lv3_attack_4.png",
+    "assets/vector/marksman_lv3_attack_5.png",
+    "assets/vector/marksman_lv3_attack_6.png",
+    "assets/vector/marksman_lv3_attack_7.png",
+    "assets/vector/marksman_lv3_attack_8.png"
+   ],
+   "sha256": [
+    "8ceac8f11be145d431d55dd1f288041e23e821642f29b4b5eaae7dc58bed5225",
+    "7790606f2ca2aa38ca584b3aed857b985e32cbcb53c71347815f0ea279274e36",
+    "cea8d01d78f4fc964358c06da03cc288313c48a56d8f1fd56e85822d6e9a365d",
+    "fcaf2cc355e8f9df91bbed205203e79cc446a885539bdbeb39e56ebec97874fa",
+    "44da6e35bfd14e1d69ffb13759e2b79bcc0ca94bb835ab152b01ec986c06973b",
+    "4a600f1a1aebed19a327fbadb4968037d64bb6342f9db193ae7dd8cbece0b495",
+    "ebfd238b1f6d6fa07c7071c174f06abe4e1fb602fd61fa1d81f16b8b09a496e5",
+    "6774ce4b73b4eb7819ce03b50dfc6670849eaa80d7057b8dfc90c2a452953504"
+   ]
+  },
+  {
+   "unit": "marksman",
+   "property": "lv3_retreat_frames",
+   "outputs": [
+    "assets/vector/marksman_lv3_retreat_1.png",
+    "assets/vector/marksman_lv3_retreat_2.png",
+    "assets/vector/marksman_lv3_retreat_3.png",
+    "assets/vector/marksman_lv3_retreat_4.png",
+    "assets/vector/marksman_lv3_retreat_5.png",
+    "assets/vector/marksman_lv3_retreat_6.png",
+    "assets/vector/marksman_lv3_retreat_7.png",
+    "assets/vector/marksman_lv3_retreat_8.png"
+   ],
+   "sha256": [
+    "fd5109662d5deac741c5b78babb3ac56875b3d3a78cedce4d2b3085d2a966a18",
+    "9f61d0fd46fb4533c807ab238b38aa576d8365506ab23719ca7946f5830284c3",
+    "e0d8b331dd6e14703e4e03bf24bdea8859571c790f2d3cacae2a4e7b4e7c3db0",
+    "9d1afa8adbc753e08d403672b4211cdc745749d8a7aab91168a87eca4207435a",
+    "03a3a6f65e2d1baa477ea27e9d75f28478e2a9c280e0df64cabed75fc10a741c",
+    "094dbbf2469b1976b117cf1ce10fe9d77c550531c9da35c63941812479f7f0eb",
+    "943c0c4ab54e23806944fbed6b9e9bb637f23c48b83a6674d0b8f3600a4d5ab1",
+    "f0a319a2a18dbb9c1712eb8e6d3a1319d0e64e326163290436adb80096271b48"
+   ]
+  },
+  {
+   "unit": "demolitionist",
+   "property": "idle_frames",
+   "outputs": [
+    "assets/vector/demolitionist_lv1_idle_1.png",
+    "assets/vector/demolitionist_lv1_idle_2.png",
+    "assets/vector/demolitionist_lv1_idle_3.png",
+    "assets/vector/demolitionist_lv1_idle_4.png",
+    "assets/vector/demolitionist_lv1_idle_5.png",
+    "assets/vector/demolitionist_lv1_idle_6.png",
+    "assets/vector/demolitionist_lv1_idle_7.png",
+    "assets/vector/demolitionist_lv1_idle_8.png"
+   ],
+   "sha256": [
+    "94f6e0374c9d198c2752510f61dc713af3212524d51b6a6f1dd1061adc6f9267",
+    "c0cee9d25455cf217860a392f5720b5e63cf965721d3c21d747d56847e4de8d2",
+    "ba4cadcfb8c5a2f9e2435f867ebc60726783d15433cbac4ca0a00f32a7b477b8",
+    "7e1914f5f7f2dd73938ad303ee41e7e9a8c5dc1dbbe2007198c97ce411178607",
+    "c089f24d51c1af4e770fbf9bbd33bbaa0a91ac811ad340d53b402d0486e6d6e6",
+    "7e1914f5f7f2dd73938ad303ee41e7e9a8c5dc1dbbe2007198c97ce411178607",
+    "ba4cadcfb8c5a2f9e2435f867ebc60726783d15433cbac4ca0a00f32a7b477b8",
+    "c0cee9d25455cf217860a392f5720b5e63cf965721d3c21d747d56847e4de8d2"
+   ]
+  },
+  {
+   "unit": "demolitionist",
+   "property": "walk_frames",
+   "outputs": [
+    "assets/vector/demolitionist_lv1_walk_1.png",
+    "assets/vector/demolitionist_lv1_walk_2.png",
+    "assets/vector/demolitionist_lv1_walk_3.png",
+    "assets/vector/demolitionist_lv1_walk_4.png",
+    "assets/vector/demolitionist_lv1_walk_5.png",
+    "assets/vector/demolitionist_lv1_walk_6.png",
+    "assets/vector/demolitionist_lv1_walk_7.png",
+    "assets/vector/demolitionist_lv1_walk_8.png"
+   ],
+   "sha256": [
+    "9838520c57832e89ff4f10625c0733fda2521384b780f717ef741e680609d010",
+    "6d5f3e97246a357931f92c4e114558ea009ff220ea6046bbcd958ac59ae7d813",
+    "5aa4ce5205100cd36e680d4223ca6ae81598f942e525681795a1290626ba8efd",
+    "83337af841fa4b0ccbffab50fa67530a7e9569d9aed1a7fa96609b33fb59e8f5",
+    "f447ce44aaac7c8bcaedbb0e607b60dfa8f037c269f55ff37d8ae112e0454845",
+    "ab7df63d487ef7616da839580cf5993b96b1160a5d2b5262817137dcbd50c21d",
+    "13a58d794ace1cb86ae1470f9317c6fdd19b56a72cc7e79cf7de0ae7b49befa5",
+    "6168d575e5f42dde2d73efb56e93e91bdd6e83691669b0df40bfec25e68cb1f2"
+   ]
+  },
+  {
+   "unit": "demolitionist",
+   "property": "attack_frames",
+   "outputs": [
+    "assets/vector/demolitionist_lv1_attack_1.png",
+    "assets/vector/demolitionist_lv1_attack_2.png",
+    "assets/vector/demolitionist_lv1_attack_3.png",
+    "assets/vector/demolitionist_lv1_attack_4.png",
+    "assets/vector/demolitionist_lv1_attack_5.png",
+    "assets/vector/demolitionist_lv1_attack_6.png",
+    "assets/vector/demolitionist_lv1_attack_7.png",
+    "assets/vector/demolitionist_lv1_attack_8.png"
+   ],
+   "sha256": [
+    "5db91ecde234b0ed815491cf70285d2b9e65017575f0eb9f80b3e152e5643348",
+    "490ae92101d1bbce74809a1d5174efa3c90a9192a4b131adb1f4a50609432d2a",
+    "4a4b60cda152d158dd8905afb318641d064475237c215d3e53e5f45c56282585",
+    "c2f7673d762a06f12c432cd6c0be967abbd1d16cdc315421a1add2c8aa41566a",
+    "4a6b688fcd02f9e49c930c530b2d64b91c4ff385ea7e787f3b6bf0e3d6c7ef17",
+    "62e59c964acfa3531a3209d483ff781909b6398d712df65e0e3c63733e0c6995",
+    "4bc02116c8199bb19ffd3417f1ed7c3c4fc94dfed189777509433ed5f81f3e79",
+    "d96603daf2d7541cf0e443d8b3cd17ce12f1dc9ba3a14c029b6645537dfc4a35"
+   ]
+  },
+  {
+   "unit": "demolitionist",
+   "property": "retreat_frames",
+   "outputs": [
+    "assets/vector/demolitionist_lv1_retreat_1.png",
+    "assets/vector/demolitionist_lv1_retreat_2.png",
+    "assets/vector/demolitionist_lv1_retreat_3.png",
+    "assets/vector/demolitionist_lv1_retreat_4.png",
+    "assets/vector/demolitionist_lv1_retreat_5.png",
+    "assets/vector/demolitionist_lv1_retreat_6.png",
+    "assets/vector/demolitionist_lv1_retreat_7.png",
+    "assets/vector/demolitionist_lv1_retreat_8.png"
+   ],
+   "sha256": [
+    "156f3d27af175644d889047d8840544e73cdc01ea5368b99e4222fcaa2b945e5",
+    "634544b737201a7e158bdbfa77e25cff57dc0f20bb08b710462aa94498c841f6",
+    "b858c45652283fcf2e12e61687b721e516712850a24ed04e89b46008ddfbea6e",
+    "81e5c7270a7c9d20cc0f2646e9313d444e675bf7ba23a40bb5dff4c3905bfbb9",
+    "db66cceebe42812fb9d51b6c36846ac5ede668faed6d39674673f5f858c34600",
+    "275f5b2e44262c68faee69c999f37c4026e275aa88114ac4cf1e04216c3b6aed",
+    "bc641e8a13bb01db78348380d45fc3abaed9b6ad1bbde820ea3d62c5cc74ecef",
+    "b1a944c305d5b2acbc9136d0a2fcc8710593920b4586f78dbe982389a2436b0c"
+   ]
+  },
+  {
+   "unit": "demolitionist",
+   "property": "lv2_idle_frames",
+   "outputs": [
+    "assets/vector/demolitionist_lv2_idle_1.png",
+    "assets/vector/demolitionist_lv2_idle_2.png",
+    "assets/vector/demolitionist_lv2_idle_3.png",
+    "assets/vector/demolitionist_lv2_idle_4.png",
+    "assets/vector/demolitionist_lv2_idle_5.png",
+    "assets/vector/demolitionist_lv2_idle_6.png",
+    "assets/vector/demolitionist_lv2_idle_7.png",
+    "assets/vector/demolitionist_lv2_idle_8.png"
+   ],
+   "sha256": [
+    "9ff9dec09e123d632db15a02d4bbefabc7bfc7e58a41f3c5836b1252aebfa48c",
+    "91641308dd1c64b41c67366ca647e758d1aeba2ff4167ae31aa75e883233046d",
+    "18973402c0cf6c885198bfc33986a0f17e74462613a0e40858fe760359cec9b0",
+    "a6e39465e2323e7064c4dc825a8e3d912bd7690970bd81c9a4681327f3ac6c41",
+    "ac182fd7876ec071ec837e9f6caf3ed33df8629b01e5018a72ecc1a368365d1d",
+    "a6e39465e2323e7064c4dc825a8e3d912bd7690970bd81c9a4681327f3ac6c41",
+    "18973402c0cf6c885198bfc33986a0f17e74462613a0e40858fe760359cec9b0",
+    "91641308dd1c64b41c67366ca647e758d1aeba2ff4167ae31aa75e883233046d"
+   ]
+  },
+  {
+   "unit": "demolitionist",
+   "property": "lv2_walk_frames",
+   "outputs": [
+    "assets/vector/demolitionist_lv2_walk_1.png",
+    "assets/vector/demolitionist_lv2_walk_2.png",
+    "assets/vector/demolitionist_lv2_walk_3.png",
+    "assets/vector/demolitionist_lv2_walk_4.png",
+    "assets/vector/demolitionist_lv2_walk_5.png",
+    "assets/vector/demolitionist_lv2_walk_6.png",
+    "assets/vector/demolitionist_lv2_walk_7.png",
+    "assets/vector/demolitionist_lv2_walk_8.png"
+   ],
+   "sha256": [
+    "d23aca6d5014b11361973035039dbd300b7b0bc1e98623a4f769fbcfbf24bb8e",
+    "66c50e61f74c36c9f3a7e0192418962694551540de8c7a349b9e060cb218ac0c",
+    "5acd53f254ee6bc523951e358f43820b0c0d335f1415ef6fc93365875ace50b7",
+    "83889868661e017881ed165af690c836902f7e53f3c518b04e81b1d3e595af92",
+    "7c2ff6d2710319f7885910b8737c7d2dd06a6ca9a269e3915867c64b004f2737",
+    "2c07705c07a9be430712532b82a2e1dcf5fb7a1d74fdbc108f8c950ffe92b7c2",
+    "d590450174c40e65f55dfb6e086a5bae81670bec788c8708ce6a4d8105e3135e",
+    "a72daede439b5e3383a2ae566443b2f50263385293139c10bae1d3f9390d8d4b"
+   ]
+  },
+  {
+   "unit": "demolitionist",
+   "property": "lv2_attack_frames",
+   "outputs": [
+    "assets/vector/demolitionist_lv2_attack_1.png",
+    "assets/vector/demolitionist_lv2_attack_2.png",
+    "assets/vector/demolitionist_lv2_attack_3.png",
+    "assets/vector/demolitionist_lv2_attack_4.png",
+    "assets/vector/demolitionist_lv2_attack_5.png",
+    "assets/vector/demolitionist_lv2_attack_6.png",
+    "assets/vector/demolitionist_lv2_attack_7.png",
+    "assets/vector/demolitionist_lv2_attack_8.png"
+   ],
+   "sha256": [
+    "6a59e98433804a70fd8915bf309e82ca2bbe04dd235a2000e954074e4aa0b04e",
+    "89d752a78926960e916a57d339875008589dedcf14d87dd1c3588ba9b8754d28",
+    "ac6c7bfcbe04e5d9fc80443f93bf8f3818401b1ff9d60546cf29786c97c0df37",
+    "6a1fc4039db2ce8c356f54f34c43ffd127889eaf6812f327c2a0227fcc775aa3",
+    "38dae17cecd7aeeed158af4d43ed184a499e1df6e7ac816a28b3d3c6a7344d67",
+    "6fea7ec47edfe162dea0baeaf9d38ec299c20e7530e2ae34c60ab9450d6d3a8e",
+    "9a7c1d01a656770429d68969ed2153c142c219584ca248ecce36412ab322e3e9",
+    "5180507c5ddae1e22002648dbd2dda124a102129f9d2951c74221f13715a6da2"
+   ]
+  },
+  {
+   "unit": "demolitionist",
+   "property": "lv2_retreat_frames",
+   "outputs": [
+    "assets/vector/demolitionist_lv2_retreat_1.png",
+    "assets/vector/demolitionist_lv2_retreat_2.png",
+    "assets/vector/demolitionist_lv2_retreat_3.png",
+    "assets/vector/demolitionist_lv2_retreat_4.png",
+    "assets/vector/demolitionist_lv2_retreat_5.png",
+    "assets/vector/demolitionist_lv2_retreat_6.png",
+    "assets/vector/demolitionist_lv2_retreat_7.png",
+    "assets/vector/demolitionist_lv2_retreat_8.png"
+   ],
+   "sha256": [
+    "a7be43586fa42c78a3a4a5d2585ed36a4e602f283bcd6465d09a388601df7b95",
+    "4803de402a5cff9e0cce6ad6e56e798fc6a26397e67aa2fdd5cf5705a1b9a13a",
+    "a37e3fe3929548761f2856e63337b078cb1144ad85cb9c4b5207ecfa21921462",
+    "bb39a6f2b29a01dcd3b82c2ae3cd73f97220175460572691b5e480b9a3ec09a7",
+    "1f4daa0a272441e801b87ac9e89270485f1d820cada10df6e0f40c0cac31197c",
+    "ddff77b1297e577d35bca7f3d0ca95d7e10b3e594cecb9082c1a783d9fb4f21e",
+    "b4885fd43953af0590f1a2e23a08883910d44fe8bf6da1905a2c644233975b00",
+    "33781719a0fe7aa4db0d160ce5651245fff591481c1bfcec996c9c7280a57e45"
+   ]
+  },
+  {
+   "unit": "demolitionist",
+   "property": "lv3_idle_frames",
+   "outputs": [
+    "assets/vector/demolitionist_lv3_idle_1.png",
+    "assets/vector/demolitionist_lv3_idle_2.png",
+    "assets/vector/demolitionist_lv3_idle_3.png",
+    "assets/vector/demolitionist_lv3_idle_4.png",
+    "assets/vector/demolitionist_lv3_idle_5.png",
+    "assets/vector/demolitionist_lv3_idle_6.png",
+    "assets/vector/demolitionist_lv3_idle_7.png",
+    "assets/vector/demolitionist_lv3_idle_8.png"
+   ],
+   "sha256": [
+    "c9be6c9326c738bed1efe83df9c3aaaba40ff59f8aac36fe928268be899194a3",
+    "d8594f1866f07c94fdb9548ab905b7197f5c97aad7ef8885e4a3c3efebc20c83",
+    "29c246fc7fcf81453ef8a3154f66067dcd6f7c11f6e48b2d9e2c2264b74ca4af",
+    "5a80cc73f395d2c949f85381cb1bdbd34a246faccf49e9e5e18aa8383e28fd42",
+    "2b0192bca2c96e20b3dd262725afd1f171fa9f0923e50873015bafc9645051ee",
+    "5a80cc73f395d2c949f85381cb1bdbd34a246faccf49e9e5e18aa8383e28fd42",
+    "29c246fc7fcf81453ef8a3154f66067dcd6f7c11f6e48b2d9e2c2264b74ca4af",
+    "d8594f1866f07c94fdb9548ab905b7197f5c97aad7ef8885e4a3c3efebc20c83"
+   ]
+  },
+  {
+   "unit": "demolitionist",
+   "property": "lv3_walk_frames",
+   "outputs": [
+    "assets/vector/demolitionist_lv3_walk_1.png",
+    "assets/vector/demolitionist_lv3_walk_2.png",
+    "assets/vector/demolitionist_lv3_walk_3.png",
+    "assets/vector/demolitionist_lv3_walk_4.png",
+    "assets/vector/demolitionist_lv3_walk_5.png",
+    "assets/vector/demolitionist_lv3_walk_6.png",
+    "assets/vector/demolitionist_lv3_walk_7.png",
+    "assets/vector/demolitionist_lv3_walk_8.png"
+   ],
+   "sha256": [
+    "0c11199a4dcc3ec3da27c804efa8e1e8ec5b0df757e373eafb0ae5e7c88322a3",
+    "4a01140780e691e576fdab4730b80e008531e641b9e0c66a7ff4e5d348703a74",
+    "8c14512dd9fa918975624a2403974d0df51e434e21cabace72d55c3781a8cacf",
+    "5451835a5275747c415fd835bc9c564cccef3fda60c91319b350652cf3733f4e",
+    "a438b0f4d5b24167ce76280198dbdd240a86703811504e10fa8d1780374e294d",
+    "82a79f9176a493c7aceba1c845dadc1aeb1bee6220a67e77f37f5e3538e67caa",
+    "5fb1c013707f5a9b99896fd395ae19eec650915f56aa6cd8be44c189f1670484",
+    "b700463a0d1eb3d247643ed154d4ebe1db95be3ea9df502381c60ec2c23523a7"
+   ]
+  },
+  {
+   "unit": "demolitionist",
+   "property": "lv3_attack_frames",
+   "outputs": [
+    "assets/vector/demolitionist_lv3_attack_1.png",
+    "assets/vector/demolitionist_lv3_attack_2.png",
+    "assets/vector/demolitionist_lv3_attack_3.png",
+    "assets/vector/demolitionist_lv3_attack_4.png",
+    "assets/vector/demolitionist_lv3_attack_5.png",
+    "assets/vector/demolitionist_lv3_attack_6.png",
+    "assets/vector/demolitionist_lv3_attack_7.png",
+    "assets/vector/demolitionist_lv3_attack_8.png"
+   ],
+   "sha256": [
+    "cb87ec16c5c1d1eff20dff44275b33e67530a4db0e878739189cd194ae957a11",
+    "15884506afe09fda30845a087c54c0bd201b876cd0fe9a16b315d008e90f73b0",
+    "a795a38e70930fbcfc19ac65d0ac2667705fb8d103140d5fea2ec40e5eff1843",
+    "1eadab5f7e637cbe0da48e3aaf86d89c611f21d26233f57053b78c30801e3147",
+    "e2ed9ccd21421ea8ea20e6b96723712030e02a5ebaef52fbd483df763deb96f8",
+    "8354b145be536526828a2d315108a182958f04a2558b93d51241b0f87377995e",
+    "4bdeb5898bdac7490142a38773474dcc81bcfde6115fe0e445462f066f2f643a",
+    "cfbc3ea4a3090cf8229f11d9f758509c06892eef304551a553fe66673893b0da"
+   ]
+  },
+  {
+   "unit": "demolitionist",
+   "property": "lv3_retreat_frames",
+   "outputs": [
+    "assets/vector/demolitionist_lv3_retreat_1.png",
+    "assets/vector/demolitionist_lv3_retreat_2.png",
+    "assets/vector/demolitionist_lv3_retreat_3.png",
+    "assets/vector/demolitionist_lv3_retreat_4.png",
+    "assets/vector/demolitionist_lv3_retreat_5.png",
+    "assets/vector/demolitionist_lv3_retreat_6.png",
+    "assets/vector/demolitionist_lv3_retreat_7.png",
+    "assets/vector/demolitionist_lv3_retreat_8.png"
+   ],
+   "sha256": [
+    "d11d05f1ac43bd2add26565216655a036b2c351668dcaeae310710457cd75762",
+    "c379163ce850fe0521f90deb02f60f73b22265bebb1daf7965d624668e9bd013",
+    "d662ff6f49357df204607f5315456a12648f8f5e68146abf11be12cc731d252f",
+    "ff443e2da73181cc09c8577cc3c7493bd8ffd344df4c89f7297a95a462f0bd52",
+    "683d3611392e37522825bc8e6c7fe15b0d7ffad99f7fb699246f42dee3e37a6c",
+    "8c95b8ae6a7f75e4a6523594f3aee19ada0e84100d2bb47900c4d87545cacd6d",
+    "041d2230a4c4fd4a13f8acfd36d4c406491d2358a0486ef289f56784964c334f",
+    "46b114863068d3a1de5bac8c250a4610be2206a0fb96feead39cb91039b29adf"
+   ]
+  },
+  {
+   "unit": "field_medic",
+   "property": "idle_frames",
+   "outputs": [
+    "assets/vector/field_medic_lv1_idle_1.png",
+    "assets/vector/field_medic_lv1_idle_2.png",
+    "assets/vector/field_medic_lv1_idle_3.png",
+    "assets/vector/field_medic_lv1_idle_4.png",
+    "assets/vector/field_medic_lv1_idle_5.png",
+    "assets/vector/field_medic_lv1_idle_6.png",
+    "assets/vector/field_medic_lv1_idle_7.png",
+    "assets/vector/field_medic_lv1_idle_8.png"
+   ],
+   "sha256": [
+    "6c9ab3da59b3eb0756c797aa07349df4868df3e8fc7984919e5c51d4c6f09d6b",
+    "594ee54b7df0a2207ebfc305b30e532e5aa3b952dcfdcdeaebfefd36e83e8009",
+    "a318949ca26bddec799039ccac45be21d8d6d4253dc70401d84e399b176820aa",
+    "f5cb2f93503c9abf9c3765135940880266a967354da814cc30132e3267d55033",
+    "b644c035c0d9065fa0dfa8d23ca19ac54fd3e7505bc0decbdb569a84c9643a98",
+    "f5cb2f93503c9abf9c3765135940880266a967354da814cc30132e3267d55033",
+    "a318949ca26bddec799039ccac45be21d8d6d4253dc70401d84e399b176820aa",
+    "594ee54b7df0a2207ebfc305b30e532e5aa3b952dcfdcdeaebfefd36e83e8009"
+   ]
+  },
+  {
+   "unit": "field_medic",
+   "property": "walk_frames",
+   "outputs": [
+    "assets/vector/field_medic_lv1_walk_1.png",
+    "assets/vector/field_medic_lv1_walk_2.png",
+    "assets/vector/field_medic_lv1_walk_3.png",
+    "assets/vector/field_medic_lv1_walk_4.png",
+    "assets/vector/field_medic_lv1_walk_5.png",
+    "assets/vector/field_medic_lv1_walk_6.png",
+    "assets/vector/field_medic_lv1_walk_7.png",
+    "assets/vector/field_medic_lv1_walk_8.png"
+   ],
+   "sha256": [
+    "70cf728f1af02676af4b25b899e09d959a746ff470d460579c2c32238c27ab20",
+    "5223a25c15fc24b1c4b46d60bcf6e950b83b62cc2c6aea74741d869ef8c6386b",
+    "870325819cd5339a2d9faa6ee86ff077f4401edf427d12d12d8ea535580cbb35",
+    "03e55eb1b9493aa8efdb4b7ab749f1b473000ba6696c014c50f36646262885eb",
+    "a98d66a0c1d6ae0cc3b0a71ac44950ee4fda349626cd6ecf096a0c3ce6cfc4be",
+    "e64e077f727be79749b207962ca62727d50c97ae33aa72bd72a6565910220988",
+    "da99efe9c0edea2e85c7caa0b1ba547204a9d4ed3b5aa2f1d9c9039cf1259666",
+    "a0652292853a31c5515cd9438573f1456a7dc35b4e6facf77481bedfe1898ba6"
+   ]
+  },
+  {
+   "unit": "field_medic",
+   "property": "attack_frames",
+   "outputs": [
+    "assets/vector/field_medic_lv1_attack_1.png",
+    "assets/vector/field_medic_lv1_attack_2.png",
+    "assets/vector/field_medic_lv1_attack_3.png",
+    "assets/vector/field_medic_lv1_attack_4.png",
+    "assets/vector/field_medic_lv1_attack_5.png",
+    "assets/vector/field_medic_lv1_attack_6.png",
+    "assets/vector/field_medic_lv1_attack_7.png",
+    "assets/vector/field_medic_lv1_attack_8.png"
+   ],
+   "sha256": [
+    "df205019ef2ac49e70f22f3e50edc02273f96c8ba77d6b4a071a6075b0c8bb00",
+    "03738eaaa20beb3a792945cfbdc380d9ac44d65ec6240d577260b26fb6a752c3",
+    "0fd7f21ccf5fecdbcc4ee22427a9b749c156a16f6a7b391247180570abd41bc2",
+    "ac22ee9f65c378badde6f272daea45e5dc7a4cf9b4ba8503c2903eccb18eb8f1",
+    "b2ddc1add3bb1fa795f44d4f9d90d3093099feed4867d3ca7c9a8ce027647912",
+    "0812df756f254b418e3d149885e3b95a974aff6b4ef63225974039f1eff17093",
+    "3c433c4d70cc56188ca2d28c1dc8db42fff0c9aec383d33aba27bc5bfa86cd0c",
+    "d562d8fa76736ec8de9c6c81cc47b57835986791fb4f64fe16dd9a7232ee25ad"
+   ]
+  },
+  {
+   "unit": "field_medic",
+   "property": "retreat_frames",
+   "outputs": [
+    "assets/vector/field_medic_lv1_retreat_1.png",
+    "assets/vector/field_medic_lv1_retreat_2.png",
+    "assets/vector/field_medic_lv1_retreat_3.png",
+    "assets/vector/field_medic_lv1_retreat_4.png",
+    "assets/vector/field_medic_lv1_retreat_5.png",
+    "assets/vector/field_medic_lv1_retreat_6.png",
+    "assets/vector/field_medic_lv1_retreat_7.png",
+    "assets/vector/field_medic_lv1_retreat_8.png"
+   ],
+   "sha256": [
+    "9f82ccc5b0d755aecb4a2ab7fef6c1e0d469a3dc242aaa3127c63c5b8cb9f67f",
+    "8566310b0bb22d62766d0730760a2705f0901d778579687dce1bed86830e86ef",
+    "e6815000b28cc01d2f537f9be2180c6b3a7aed373852fd22075f4239a75e1c32",
+    "25c6d2b9a5c79a238c9f0d929f37b6a815c1fafebf492b364f846b77221808ab",
+    "f7f69e4fabcb59ce104c174def231ad019045fcd5cdb3ee229a41b55478e34f1",
+    "e2a9240c5eee2a04895e1ee160a89b635d7ca722cf20fdf1681eb5eea9dc45ac",
+    "9b3ae94d146e283a9d128fe436000cc6ba69087ff792f792919ad27398b534eb",
+    "20d04022bd497149eff77480fe73ad604bb0686c29cdbf967d037f790ff60682"
+   ]
+  },
+  {
+   "unit": "field_medic",
+   "property": "lv2_idle_frames",
+   "outputs": [
+    "assets/vector/field_medic_lv2_idle_1.png",
+    "assets/vector/field_medic_lv2_idle_2.png",
+    "assets/vector/field_medic_lv2_idle_3.png",
+    "assets/vector/field_medic_lv2_idle_4.png",
+    "assets/vector/field_medic_lv2_idle_5.png",
+    "assets/vector/field_medic_lv2_idle_6.png",
+    "assets/vector/field_medic_lv2_idle_7.png",
+    "assets/vector/field_medic_lv2_idle_8.png"
+   ],
+   "sha256": [
+    "2d98ef1ebc53ba7840cb87e367490a5eac1d2893ba49eb47a048fcd3833efc04",
+    "d15c262f9f6fe0f7580f8a636f86a75c7d4d50f4dae55ba03e539efac948c629",
+    "98ce19190af48047e2fed06fff07400ec7c9d01dcc2b0d407d78f449523aae10",
+    "dab75115201247980f8527a43e1451f605847cd0117dd95c679e1e6000ef24ab",
+    "c161a0e88508f7f10cb9649cd9440ac9139f3f384f03c728e5a83e15a418e609",
+    "dab75115201247980f8527a43e1451f605847cd0117dd95c679e1e6000ef24ab",
+    "98ce19190af48047e2fed06fff07400ec7c9d01dcc2b0d407d78f449523aae10",
+    "d15c262f9f6fe0f7580f8a636f86a75c7d4d50f4dae55ba03e539efac948c629"
+   ]
+  },
+  {
+   "unit": "field_medic",
+   "property": "lv2_walk_frames",
+   "outputs": [
+    "assets/vector/field_medic_lv2_walk_1.png",
+    "assets/vector/field_medic_lv2_walk_2.png",
+    "assets/vector/field_medic_lv2_walk_3.png",
+    "assets/vector/field_medic_lv2_walk_4.png",
+    "assets/vector/field_medic_lv2_walk_5.png",
+    "assets/vector/field_medic_lv2_walk_6.png",
+    "assets/vector/field_medic_lv2_walk_7.png",
+    "assets/vector/field_medic_lv2_walk_8.png"
+   ],
+   "sha256": [
+    "0d8ed6111aa99590a26f04dfde9910bc9d1a5d1b4e92e668dfe4861fa0e028c4",
+    "98aa3785d9e7f627e0b0beb86cba3f677686dd4f28a228a5d26baacbd78ead2d",
+    "71951f5ac28b8cc09ca6f7df6fb6b48d2fa02203a2885af7684250738d170b31",
+    "7c0b2edb547f58d5f6875cbadd57123477bc6995030ae1da635a5dfe58dfb6e4",
+    "2d3346a878cd303a2955dd12fc3b00818318e74ba1825e32ac5f564c9a92777a",
+    "fddd6081136949eb2b592b0ef5cc4f7b5dba7ad390600bfbc409453e09f1a3bd",
+    "f988f8a60b890fb4a94ff71cdf25492db83e13dd53750a06ec8ccc486eb78d44",
+    "af651a55ed3e855bad9be8c4e2b6024220346d5027276fd22cf476adc1539f61"
+   ]
+  },
+  {
+   "unit": "field_medic",
+   "property": "lv2_attack_frames",
+   "outputs": [
+    "assets/vector/field_medic_lv2_attack_1.png",
+    "assets/vector/field_medic_lv2_attack_2.png",
+    "assets/vector/field_medic_lv2_attack_3.png",
+    "assets/vector/field_medic_lv2_attack_4.png",
+    "assets/vector/field_medic_lv2_attack_5.png",
+    "assets/vector/field_medic_lv2_attack_6.png",
+    "assets/vector/field_medic_lv2_attack_7.png",
+    "assets/vector/field_medic_lv2_attack_8.png"
+   ],
+   "sha256": [
+    "15bea57b3d84506cd8b2bf1458e0d017f267c44bb33b36c0aba2fc5abaead523",
+    "c9ff455a46c9507a1d3e1ccd79629a56412a0484a0cbb63f17b1f638389d2edd",
+    "daa59798a7d7e308fa575435e900f8452c8a1f4ed97ebe95c4796d0ccb4ca4ae",
+    "3f09f8f89e76be35b20ff88d7be2aaba43ae337c10b816ed65e114bb114d1dfd",
+    "830e3d63f86fda6a90128b795d4374910ff455432fbda299fb6f91e4881fcea2",
+    "a397b3fdd085b7ae2909cbb277d90d72ea33fde418954aef638bee2f771a6b31",
+    "1a8346a10b3bdf608848c56468050f20f7de6da754aa6ace3afc580fcc495937",
+    "9b4f75a2717ee83bb167cb9f4f0b7c86bc0991978fd7baab5dfba383dbbbd0e5"
+   ]
+  },
+  {
+   "unit": "field_medic",
+   "property": "lv2_retreat_frames",
+   "outputs": [
+    "assets/vector/field_medic_lv2_retreat_1.png",
+    "assets/vector/field_medic_lv2_retreat_2.png",
+    "assets/vector/field_medic_lv2_retreat_3.png",
+    "assets/vector/field_medic_lv2_retreat_4.png",
+    "assets/vector/field_medic_lv2_retreat_5.png",
+    "assets/vector/field_medic_lv2_retreat_6.png",
+    "assets/vector/field_medic_lv2_retreat_7.png",
+    "assets/vector/field_medic_lv2_retreat_8.png"
+   ],
+   "sha256": [
+    "536c26e0d13ae046348a629d480b36870f101caf499938d3639eaa4aa8d02023",
+    "a013bfb544b28ca2f28a38b5fc9648574994a3e8a0f7b738e50db6c5e8978897",
+    "f4a0c5e41bfa509fa9c39ccb035dd61fd7a9b7429dfcbccb73b8b723bdc7d0b3",
+    "09e968552d14d47983f67459de44ae355d7091239d4f10d4072903ded259ef8d",
+    "6c449c970ba490b762b4ac0e336a84518da6ed3f7a72583eadb544d96f8a232c",
+    "c4990bf808860b3c41a96c80f3ef1e1a839356a0f61a8bbf0bcd58fb871829ed",
+    "bef5cbab52776ead8e234b3acffed01812df3ba1a579b7410eae325c62c8f28e",
+    "bb405fe073c27e7be118f1451b4c90768b28b3917294b8479b152a917c9b1392"
+   ]
+  },
+  {
+   "unit": "field_medic",
+   "property": "lv3_idle_frames",
+   "outputs": [
+    "assets/vector/field_medic_lv3_idle_1.png",
+    "assets/vector/field_medic_lv3_idle_2.png",
+    "assets/vector/field_medic_lv3_idle_3.png",
+    "assets/vector/field_medic_lv3_idle_4.png",
+    "assets/vector/field_medic_lv3_idle_5.png",
+    "assets/vector/field_medic_lv3_idle_6.png",
+    "assets/vector/field_medic_lv3_idle_7.png",
+    "assets/vector/field_medic_lv3_idle_8.png"
+   ],
+   "sha256": [
+    "724f872ff941c031bf2259ee2b0f0e3f040830f0bb62e1d95b60581e7fca7bf7",
+    "9d92c9e66d7e935eb828cd488a7412c4f6391ed4fd288467fcbdd1a98d6d9515",
+    "bb1b17155d1c34fe524f97eb812869b95c5124fcd333d7c6e21b85143d84de89",
+    "864228dbeeba1c43407cdf6a46e1eff96f458ff209ee8bf055beb183e1f5b62b",
+    "6d9e77489ec2456a9889b78f9361a4854de8314bfed4d7f666338b532d9c6239",
+    "864228dbeeba1c43407cdf6a46e1eff96f458ff209ee8bf055beb183e1f5b62b",
+    "bb1b17155d1c34fe524f97eb812869b95c5124fcd333d7c6e21b85143d84de89",
+    "9d92c9e66d7e935eb828cd488a7412c4f6391ed4fd288467fcbdd1a98d6d9515"
+   ]
+  },
+  {
+   "unit": "field_medic",
+   "property": "lv3_walk_frames",
+   "outputs": [
+    "assets/vector/field_medic_lv3_walk_1.png",
+    "assets/vector/field_medic_lv3_walk_2.png",
+    "assets/vector/field_medic_lv3_walk_3.png",
+    "assets/vector/field_medic_lv3_walk_4.png",
+    "assets/vector/field_medic_lv3_walk_5.png",
+    "assets/vector/field_medic_lv3_walk_6.png",
+    "assets/vector/field_medic_lv3_walk_7.png",
+    "assets/vector/field_medic_lv3_walk_8.png"
+   ],
+   "sha256": [
+    "c73d47d953707f3d83e42806dcde5a6fb22e4292102ad0a0808edfb790ca74b7",
+    "1cf75633a3be3a6f29b9837bfd348616cc265afd941770fbe352011bb8f31062",
+    "8b30ed09d7aeca0be0dbf9f3f527ef961a5eebb0d02d6bb95de083d761cd5875",
+    "5fad804c2d5a337f13432be006205c59ca9d1d73e0980d3b58439290d10b704d",
+    "aa7179682673a4f58f86a0f4b8dda92f35ac81a95d96b7aa42ebe70f27da6623",
+    "723d9f735f7fcbec86a0aeeb28349abf8f95672df7dc3f35d43c6f757cef52f2",
+    "e8c4cb129d2c81c549b981fd9b178cc9ddcaa876e52e72ee964ef3bfdc972d5a",
+    "8d1f5e2f056ff43d124b8540ee03b69ff3ec0c4af69fb678294acc065a27a060"
+   ]
+  },
+  {
+   "unit": "field_medic",
+   "property": "lv3_attack_frames",
+   "outputs": [
+    "assets/vector/field_medic_lv3_attack_1.png",
+    "assets/vector/field_medic_lv3_attack_2.png",
+    "assets/vector/field_medic_lv3_attack_3.png",
+    "assets/vector/field_medic_lv3_attack_4.png",
+    "assets/vector/field_medic_lv3_attack_5.png",
+    "assets/vector/field_medic_lv3_attack_6.png",
+    "assets/vector/field_medic_lv3_attack_7.png",
+    "assets/vector/field_medic_lv3_attack_8.png"
+   ],
+   "sha256": [
+    "0b8b4ff0d5094d9d89f6a35e6b4c186c517225b52c408ffce2b28b843dc52de4",
+    "21006d3a3e72d0336bf40cfeecfa3f557ae77791fc6847966347206308c1483c",
+    "df3fec4c3ab1a408c5eaf8aed1f9d8a2884dcba4d21643860b69862cf05d6e6f",
+    "8506f1f261fd6c97299f8a3c6e00671fd4fd7c40f0be4dbf81af05efb5d13e6b",
+    "96daea5e7e65eeb8c7ba58dc4e407ad378117dfd26319fce1d12394f1aecdff8",
+    "c9cb9c1a5abd7b6508a05f7fb666cc4eb7a62f3261a5591d22717cb64a48e37f",
+    "80aabb67f311096e86b15322a0d078e13146ba71458f9182383afec462a5ea52",
+    "6de6894b1e4a6fde7a45ab461cecaeba7e06ae82520d17aaa2ea7b912201384c"
+   ]
+  },
+  {
+   "unit": "field_medic",
+   "property": "lv3_retreat_frames",
+   "outputs": [
+    "assets/vector/field_medic_lv3_retreat_1.png",
+    "assets/vector/field_medic_lv3_retreat_2.png",
+    "assets/vector/field_medic_lv3_retreat_3.png",
+    "assets/vector/field_medic_lv3_retreat_4.png",
+    "assets/vector/field_medic_lv3_retreat_5.png",
+    "assets/vector/field_medic_lv3_retreat_6.png",
+    "assets/vector/field_medic_lv3_retreat_7.png",
+    "assets/vector/field_medic_lv3_retreat_8.png"
+   ],
+   "sha256": [
+    "dbe6e350ab7cb7b51ba8b2ade2e0cc50851ae0699ed5e39ab2ca186c0aa7348f",
+    "655452131b82485ce1359aae2789c87c8111d6f9111213941da1558f7bd95b8f",
+    "9c5d39c9807203888db291fc1df6b605134d4831ed5813b02f8ea80a13b7c4df",
+    "c658673d64a1345d16497db7504febbca405902d784291ea8f7a604aab78a1ea",
+    "5d99523bd0a3496b483e61b8934df2e5271f4293279efd5c0dcc62bbf62083f5",
+    "e41c6deb480fd443a102424413f20642b1ba1f891a705f8fd1a0b2995c94b22e",
+    "f98eaf16da77d171cc031e9457f71f80bea293e6ae7f8abe235ea22dd83bdd94",
+    "b5f1bbf4096ee10498d739a83016909fbf42e7e13cf23fcb518414207bea743b"
+   ]
+  },
+  {
+   "unit": "bulwark",
+   "property": "idle_frames",
+   "outputs": [
+    "assets/vector/bulwark_lv1_idle_1.png",
+    "assets/vector/bulwark_lv1_idle_2.png",
+    "assets/vector/bulwark_lv1_idle_3.png",
+    "assets/vector/bulwark_lv1_idle_4.png",
+    "assets/vector/bulwark_lv1_idle_5.png",
+    "assets/vector/bulwark_lv1_idle_6.png",
+    "assets/vector/bulwark_lv1_idle_7.png",
+    "assets/vector/bulwark_lv1_idle_8.png"
+   ],
+   "sha256": [
+    "caa302faf99ded155fca9aebe541b4b822c4ecb19a2bcb16c070f89a3a412843",
+    "0bf88b98fb25c835c3e22a1c5ba7239cbe1ebe2d6ddf9e23097d656dd6688333",
+    "d718989d8324c272f11c0509ee4015146af5cceb98b5705ae6a8c8d6e1b52e33",
+    "a46d0246c67cdcffb72f66307107bc21b78f656b7f3a1055d80e45561c145469",
+    "749dcfcc0f42867bbf501f7eac7f8484fe2918a678a7f552c1657e4868a2292b",
+    "a46d0246c67cdcffb72f66307107bc21b78f656b7f3a1055d80e45561c145469",
+    "d718989d8324c272f11c0509ee4015146af5cceb98b5705ae6a8c8d6e1b52e33",
+    "0bf88b98fb25c835c3e22a1c5ba7239cbe1ebe2d6ddf9e23097d656dd6688333"
+   ]
+  },
+  {
+   "unit": "bulwark",
+   "property": "walk_frames",
+   "outputs": [
+    "assets/vector/bulwark_lv1_walk_1.png",
+    "assets/vector/bulwark_lv1_walk_2.png",
+    "assets/vector/bulwark_lv1_walk_3.png",
+    "assets/vector/bulwark_lv1_walk_4.png",
+    "assets/vector/bulwark_lv1_walk_5.png",
+    "assets/vector/bulwark_lv1_walk_6.png",
+    "assets/vector/bulwark_lv1_walk_7.png",
+    "assets/vector/bulwark_lv1_walk_8.png"
+   ],
+   "sha256": [
+    "0e03948a896611adfa9e68d43c0496e13259fdc81c69c14f13ef239140cea752",
+    "f0bb61c0c8362f7145546278ac5f1bcd4e0d37a0700a090d530f1d7b561ab125",
+    "7d426df321627a8b1e4c146ffd868f9c9a9af5d5356f0cc7cc73c3226a75333a",
+    "acfcb9f6b2fe2c64fca3bd2b6322d894c66c28224b41aa43d8a81ed8b379eb4e",
+    "3966ec738ad937dd5680a11e3efe2b45c8b7004f505f0d779e488a74b295cf23",
+    "4380df5848433bd5458398f7e0588e2843c7fe9941739da9e12193909a930d12",
+    "7d91bd72de3c6cd74b755be9e70fc2ed583cab9e90ac593934818ed1cc19ab2e",
+    "8bf7cf4d83aabcc9bafbe57b0f27786c7e80cce4daab3f02a24dddc7e4c06d90"
+   ]
+  },
+  {
+   "unit": "bulwark",
+   "property": "attack_frames",
+   "outputs": [
+    "assets/vector/bulwark_lv1_attack_1.png",
+    "assets/vector/bulwark_lv1_attack_2.png",
+    "assets/vector/bulwark_lv1_attack_3.png",
+    "assets/vector/bulwark_lv1_attack_4.png",
+    "assets/vector/bulwark_lv1_attack_5.png",
+    "assets/vector/bulwark_lv1_attack_6.png",
+    "assets/vector/bulwark_lv1_attack_7.png",
+    "assets/vector/bulwark_lv1_attack_8.png"
+   ],
+   "sha256": [
+    "abdc4f014826f6d059785c53d2c34e0a8cb33d4f32ec5efb204c2c5d9a2abad8",
+    "199e99baaf6bd66ca4e0c89a73bdf3cce7a01a25bb66006a1c100235a02f72c2",
+    "d9b3b84628dad6ecdbda45275c2ea29fcd6feb531b8223fd15b5247b142e86ae",
+    "b22c0664e70637cdfc81ec88966c90f237cd899bee02f64884aa7fa0305b0b28",
+    "cf1a7d516e51e527ae200166ad98dd27b8e59bd69029dd91b4e99b5064860c65",
+    "dfdcdc864b2c3ec1ec4b4d1f3b9e3c861e0f1b6585550db493ccc49948cd748d",
+    "69906997390d7cc8ef9d53a1b494aeff9f499df9dbc28fa57c4b153fc324d093",
+    "1905d0b274590ad03fc50814bc8db84caf6200d503bdea6eee75363104e09f09"
+   ]
+  },
+  {
+   "unit": "bulwark",
+   "property": "retreat_frames",
+   "outputs": [
+    "assets/vector/bulwark_lv1_retreat_1.png",
+    "assets/vector/bulwark_lv1_retreat_2.png",
+    "assets/vector/bulwark_lv1_retreat_3.png",
+    "assets/vector/bulwark_lv1_retreat_4.png",
+    "assets/vector/bulwark_lv1_retreat_5.png",
+    "assets/vector/bulwark_lv1_retreat_6.png",
+    "assets/vector/bulwark_lv1_retreat_7.png",
+    "assets/vector/bulwark_lv1_retreat_8.png"
+   ],
+   "sha256": [
+    "d901a2592c0d30a9862b4fd886b1e872a1154fabeecfd13ce57a4d31c20b424b",
+    "ead317965747cd6a212f269b83a24c877d4899b384e127593b8ad051345420df",
+    "58b7972d06696ad5f9b256f5be3c13b151f600d5240ffaec3cbec69932ca770f",
+    "2680528f25873e6d2945f9af623331a31d352ab3c38641f10a9efd64d701fd73",
+    "33ce3830cdbdc8a7ea95812c49b4763e1e7a664a688c8bbbc6826e8c7f81b698",
+    "e6bc87a1b7fe4e0014e3aebff8382fda0e4c5bfab0a16fe1f5698093c2e66f63",
+    "7b1938d47a595532e627d221a32cab70eb8cbedb7943c84df24d5d08f7b47096",
+    "1ea51207b2b2e335b188decc0c6e25b556cd37713c87543fcf4c6b213194a00e"
+   ]
+  },
+  {
+   "unit": "bulwark",
+   "property": "lv2_idle_frames",
+   "outputs": [
+    "assets/vector/bulwark_lv2_idle_1.png",
+    "assets/vector/bulwark_lv2_idle_2.png",
+    "assets/vector/bulwark_lv2_idle_3.png",
+    "assets/vector/bulwark_lv2_idle_4.png",
+    "assets/vector/bulwark_lv2_idle_5.png",
+    "assets/vector/bulwark_lv2_idle_6.png",
+    "assets/vector/bulwark_lv2_idle_7.png",
+    "assets/vector/bulwark_lv2_idle_8.png"
+   ],
+   "sha256": [
+    "0b2b97ac1629b40d2eb01416884528165bae24941b9dbb013129ed44033ac24c",
+    "bd460d228bd8b2c92118a963144d72103f67e19a307369392fa9808dd2fc5c33",
+    "0993afcc2185c4162030791b900a9356f09faf57bad595196d879e622c64a4b6",
+    "1b2d254f8f9c639959ee435f61ed13f4e1edabbbec69b831fdee6e6d423bc8f6",
+    "f5ad3900d07dd02416d0632f8d172cff3d35df9b7429e651a8270d88fd446382",
+    "1b2d254f8f9c639959ee435f61ed13f4e1edabbbec69b831fdee6e6d423bc8f6",
+    "0993afcc2185c4162030791b900a9356f09faf57bad595196d879e622c64a4b6",
+    "bd460d228bd8b2c92118a963144d72103f67e19a307369392fa9808dd2fc5c33"
+   ]
+  },
+  {
+   "unit": "bulwark",
+   "property": "lv2_walk_frames",
+   "outputs": [
+    "assets/vector/bulwark_lv2_walk_1.png",
+    "assets/vector/bulwark_lv2_walk_2.png",
+    "assets/vector/bulwark_lv2_walk_3.png",
+    "assets/vector/bulwark_lv2_walk_4.png",
+    "assets/vector/bulwark_lv2_walk_5.png",
+    "assets/vector/bulwark_lv2_walk_6.png",
+    "assets/vector/bulwark_lv2_walk_7.png",
+    "assets/vector/bulwark_lv2_walk_8.png"
+   ],
+   "sha256": [
+    "f1bad4afc258f96a66a2fb2033fc834c433831ad62bab4e3948d8bafd3cf7bf2",
+    "8b3edacdb1f09a3a4f5d3c758f59a864f33d6ae469278aa17baf899e45fc7773",
+    "9e2a2dc520fe65afcd6ac6679d263c17e7f21daeda9ee2c5bf61fef87fd185c9",
+    "ed6fe13cab8c95767c1521912ea0744e872a47c0c349ef8be23994538d1d0c55",
+    "3301289e7aad61d7b3667c94da7ba253fed8a057e54baa838375802f6f5c3358",
+    "c4bb6d039e16f16a0c5aeeb700491fcf4e19550594ea2ed500157d6771205910",
+    "42088bef94b8b0f199994edb651aab5d6992b0ffabaaf6929fa31713020bf7ae",
+    "9c4b640ac0c57263779853555ba37cb4036ee10c102c1a5153c57b7b9ac98208"
+   ]
+  },
+  {
+   "unit": "bulwark",
+   "property": "lv2_attack_frames",
+   "outputs": [
+    "assets/vector/bulwark_lv2_attack_1.png",
+    "assets/vector/bulwark_lv2_attack_2.png",
+    "assets/vector/bulwark_lv2_attack_3.png",
+    "assets/vector/bulwark_lv2_attack_4.png",
+    "assets/vector/bulwark_lv2_attack_5.png",
+    "assets/vector/bulwark_lv2_attack_6.png",
+    "assets/vector/bulwark_lv2_attack_7.png",
+    "assets/vector/bulwark_lv2_attack_8.png"
+   ],
+   "sha256": [
+    "2640a810563dbdbf7dc1a3f5ff5f7bd4e538f9c27d0434197a51ca4f53a36819",
+    "6ec22cc0752fbcb019babab75bd5633625b9e8802557c37d42b8afdb05e5da2a",
+    "ff3a60053818021a718694b59c4389f2ecddcdfc4fce7182f9249b8b4282783a",
+    "19eed6a8657452f478e4ec1a015b221e2021688c3e3d37c11f3da7960ccfa3c6",
+    "653660999f7ea53fa051ae5b5dd7a481ae5f8de6ed701b580aa2827be96a7db5",
+    "c99aceb970cbf924c354560b3a21e1021db5391b92ba99ea6446c85fe2d7d0b2",
+    "72346bd8c4e94f0d72460600ccb6dae47c6c4b68f07f3a6a80fc9d4fd6ffe411",
+    "817d8f1528e84cd1060982bb2a10b4864b025da6feec65ce646b1de844e142e7"
+   ]
+  },
+  {
+   "unit": "bulwark",
+   "property": "lv2_retreat_frames",
+   "outputs": [
+    "assets/vector/bulwark_lv2_retreat_1.png",
+    "assets/vector/bulwark_lv2_retreat_2.png",
+    "assets/vector/bulwark_lv2_retreat_3.png",
+    "assets/vector/bulwark_lv2_retreat_4.png",
+    "assets/vector/bulwark_lv2_retreat_5.png",
+    "assets/vector/bulwark_lv2_retreat_6.png",
+    "assets/vector/bulwark_lv2_retreat_7.png",
+    "assets/vector/bulwark_lv2_retreat_8.png"
+   ],
+   "sha256": [
+    "46f337d1b4a250feb75c1ef700eb664341b952dcdd564253e5966b5811ed91e5",
+    "16c2bd7eede8762722ead2011700f0695d13cec3880393b3fc26bfa74d3caf5c",
+    "09f531935120dc86e37b39fbc4fde5fedf8edcfbf83f90e8f5e4a7f9870dc6a9",
+    "3e8a80759997ef38d8281f457ed3554997d8691ce305a9212b5db27ebbf194e6",
+    "a13396829009c6692888c06bd6ea26785c40ecedb161d59c054b26f4b40a36f8",
+    "99953f22ede5840fc4d4ac9ba7d50da4825031fb01e27077be386e362683623e",
+    "69a8991357404f835b2859a4a73ccf0362d6c7bc25a874a462f5afce2578a4da",
+    "979093a617f3eaa627c7233ac84463784526002bc45e86c2a9105eba728a09c2"
+   ]
+  },
+  {
+   "unit": "bulwark",
+   "property": "lv3_idle_frames",
+   "outputs": [
+    "assets/vector/bulwark_lv3_idle_1.png",
+    "assets/vector/bulwark_lv3_idle_2.png",
+    "assets/vector/bulwark_lv3_idle_3.png",
+    "assets/vector/bulwark_lv3_idle_4.png",
+    "assets/vector/bulwark_lv3_idle_5.png",
+    "assets/vector/bulwark_lv3_idle_6.png",
+    "assets/vector/bulwark_lv3_idle_7.png",
+    "assets/vector/bulwark_lv3_idle_8.png"
+   ],
+   "sha256": [
+    "c6477bd74f46418abf7477ba2e6f492be34e3986361de1e7df8ad85d3be0c7e6",
+    "db322ea37c2fdba02e3c3984f7d660e6c077203d0088ce70f7fd8000909a84f9",
+    "b660f32b2f5e925dcbdae1bed6aeb63f0d2098942fba166bfdfafb041aa0f232",
+    "8bb263ad8bc9df7afa5708cab91c498e8a35bb66d8aff0dae1d8482645e91eeb",
+    "29637377571829bd51ff11cc3b4cb8917fb18aa929b52723a37b19015ed41bfc",
+    "8bb263ad8bc9df7afa5708cab91c498e8a35bb66d8aff0dae1d8482645e91eeb",
+    "b660f32b2f5e925dcbdae1bed6aeb63f0d2098942fba166bfdfafb041aa0f232",
+    "db322ea37c2fdba02e3c3984f7d660e6c077203d0088ce70f7fd8000909a84f9"
+   ]
+  },
+  {
+   "unit": "bulwark",
+   "property": "lv3_walk_frames",
+   "outputs": [
+    "assets/vector/bulwark_lv3_walk_1.png",
+    "assets/vector/bulwark_lv3_walk_2.png",
+    "assets/vector/bulwark_lv3_walk_3.png",
+    "assets/vector/bulwark_lv3_walk_4.png",
+    "assets/vector/bulwark_lv3_walk_5.png",
+    "assets/vector/bulwark_lv3_walk_6.png",
+    "assets/vector/bulwark_lv3_walk_7.png",
+    "assets/vector/bulwark_lv3_walk_8.png"
+   ],
+   "sha256": [
+    "74d2f40cbc32688f46db7fad20af914d3dbb95c83601e0bec3561763341c95ff",
+    "351dc0e184ae0b2b9e2ad8d5a720b1868508f911b76fe70492755f77ba97feb0",
+    "bd0499d1dc9860773e0e332109578917636d30c11778615d7614b227ab7926c0",
+    "8b8b17ce3a9b35f769777dda540ad9a20cf2a393651fc5cbc72071ad8604a2fd",
+    "d1d475303f9fca77c9438ac02dc9183188ce9fa21e7b82f853a93b381dd82cf1",
+    "0414a8de3f5bbbe9165ab6e18557f60fe210983d0248de537bbb9827bd256fe7",
+    "256c743177ccac434b0ac61ec14d924ac6de32ef4f7ec6138e94c5c097b320bc",
+    "35fddebdd83ee0c4e0bea0626d3b6e1d255b54ad2195582a5699541c10c80867"
+   ]
+  },
+  {
+   "unit": "bulwark",
+   "property": "lv3_attack_frames",
+   "outputs": [
+    "assets/vector/bulwark_lv3_attack_1.png",
+    "assets/vector/bulwark_lv3_attack_2.png",
+    "assets/vector/bulwark_lv3_attack_3.png",
+    "assets/vector/bulwark_lv3_attack_4.png",
+    "assets/vector/bulwark_lv3_attack_5.png",
+    "assets/vector/bulwark_lv3_attack_6.png",
+    "assets/vector/bulwark_lv3_attack_7.png",
+    "assets/vector/bulwark_lv3_attack_8.png"
+   ],
+   "sha256": [
+    "0d68a8b84d60d0cd9f057e8e9500651eb80e82d8a8bb4004aa1f37d657e63e52",
+    "8bf1a0e220cafe21fcb33c05baa2c383ad7cf40eb2f6ce5ad393dc42eb05480d",
+    "cd07e0fbbdacdcf0eec4fb816575ebfdfb7bfab790a0bd3b4d8a5792ee504fcd",
+    "df91cba6fa97aa6c78b59e5e777ee80668164e466a4adb854f4b11b2648ae038",
+    "3a822e87fa4f258d2c280e9dadaadf1d6c240daec3d6258cfa1e972252b1b6cd",
+    "7991cebc5bf87f673825529996d4448c880b0c6b1e2447348df53c37f916c8c8",
+    "fb9517114919caccc4397f815be753db6203c7497c953496a5e155a6198662e0",
+    "3e4c05ac9ffbbd6ce5d19c0323a710715d540b7e01bfa2cf39f4023a8d0cf550"
+   ]
+  },
+  {
+   "unit": "bulwark",
+   "property": "lv3_retreat_frames",
+   "outputs": [
+    "assets/vector/bulwark_lv3_retreat_1.png",
+    "assets/vector/bulwark_lv3_retreat_2.png",
+    "assets/vector/bulwark_lv3_retreat_3.png",
+    "assets/vector/bulwark_lv3_retreat_4.png",
+    "assets/vector/bulwark_lv3_retreat_5.png",
+    "assets/vector/bulwark_lv3_retreat_6.png",
+    "assets/vector/bulwark_lv3_retreat_7.png",
+    "assets/vector/bulwark_lv3_retreat_8.png"
+   ],
+   "sha256": [
+    "1f20aa30883cea462e4cb2ac89dffee11320725668a4116d0b18a63aa9ca2088",
+    "974dcad32ae08bedd999ad322297fff1f87f8713d7224b02ac66d60691023797",
+    "728400e5da5b346ed724eb79f96c2257ee97ed45b4cc940bd88c64c3b4fe2b1c",
+    "bcda7e633cc0bf86a9b1fc8595c4f3944c8b67b6c659ee32a00dea55dbf9f2e9",
+    "718b793a3bb08c8f12815b89b456a0f33d97c3812e97247839bf7ff3a03bc7ff",
+    "6e8f387b57c6613ef848e122d8c4a640f2688690d70255f6c6be9b8fe71ffe94",
+    "48d7074a96db238b29521de1bff4f45d18a8954ffb6ae223946f56d6ec952c4e",
+    "f44e3921ab3f43eedec6fe89be04f44ab91996ef7e07d54562dd00f0f6bb2d38"
+   ]
+  },
+  {
+   "unit": "phaseblade",
+   "property": "idle_frames",
+   "outputs": [
+    "assets/vector/phaseblade_lv1_idle_1.png",
+    "assets/vector/phaseblade_lv1_idle_2.png",
+    "assets/vector/phaseblade_lv1_idle_3.png",
+    "assets/vector/phaseblade_lv1_idle_4.png",
+    "assets/vector/phaseblade_lv1_idle_5.png",
+    "assets/vector/phaseblade_lv1_idle_6.png",
+    "assets/vector/phaseblade_lv1_idle_7.png",
+    "assets/vector/phaseblade_lv1_idle_8.png"
+   ],
+   "sha256": [
+    "1fb6d59d6a4d45f97e486d7d205e098da5c3ccf591740c1045cee7bb83e50163",
+    "41f3f3befedd6751e5365d840aa23b78f27aa69a2e4956f1d4b9a90959b35eb6",
+    "af9953bea295068cb1b51a8900f00a69f1ce0a1cdf43191a60d96d27ffbd3028",
+    "a973390c2c913b5a34e11f069311f62ee5e290c434616854fe95a3dce755ea42",
+    "536ecf4692bf657894963e0cd8e368f86a2163c0698c144508f3035a1f667d6c",
+    "a973390c2c913b5a34e11f069311f62ee5e290c434616854fe95a3dce755ea42",
+    "af9953bea295068cb1b51a8900f00a69f1ce0a1cdf43191a60d96d27ffbd3028",
+    "41f3f3befedd6751e5365d840aa23b78f27aa69a2e4956f1d4b9a90959b35eb6"
+   ]
+  },
+  {
+   "unit": "phaseblade",
+   "property": "walk_frames",
+   "outputs": [
+    "assets/vector/phaseblade_lv1_walk_1.png",
+    "assets/vector/phaseblade_lv1_walk_2.png",
+    "assets/vector/phaseblade_lv1_walk_3.png",
+    "assets/vector/phaseblade_lv1_walk_4.png",
+    "assets/vector/phaseblade_lv1_walk_5.png",
+    "assets/vector/phaseblade_lv1_walk_6.png",
+    "assets/vector/phaseblade_lv1_walk_7.png",
+    "assets/vector/phaseblade_lv1_walk_8.png"
+   ],
+   "sha256": [
+    "6f5f475a7c0d83d5898cbba1181b0c93f920738293148afcd3e07a0640a00ea8",
+    "ccc6d2eaf3eba7d3ec6e5e928ba75ed4d2d83557cab632a69ee24a0f81410848",
+    "848058e4ccf2a6931ce7cff3a4ace0979f078832edaf0123249046cd412f6c25",
+    "d40db3c95d50e940b58ddf970259238cc6e18df90d02354ae7f81a40d3d438ce",
+    "5029ef4a8b0506ea1b34704a135d3b16026754f560a5aa220d51c1ae18cd9155",
+    "61f6500271e34f2416f682b205d67624947749e0733ea7fe41f5c8635a34afab",
+    "8e8adcec29c5ef4719c84d0b9077b4f079a1c5c512ca708490a9db0d13c5a670",
+    "829944323cc70f06412180bbee921037ac09fe77370bcfa30758e1dcade53962"
+   ]
+  },
+  {
+   "unit": "phaseblade",
+   "property": "attack_frames",
+   "outputs": [
+    "assets/vector/phaseblade_lv1_attack_1.png",
+    "assets/vector/phaseblade_lv1_attack_2.png",
+    "assets/vector/phaseblade_lv1_attack_3.png",
+    "assets/vector/phaseblade_lv1_attack_4.png",
+    "assets/vector/phaseblade_lv1_attack_5.png",
+    "assets/vector/phaseblade_lv1_attack_6.png",
+    "assets/vector/phaseblade_lv1_attack_7.png",
+    "assets/vector/phaseblade_lv1_attack_8.png"
+   ],
+   "sha256": [
+    "03ea8cf4a181a8180ffd12f07b60caaa6b9e0dab009863838c1edeced0c7f349",
+    "e24ad96cdf4130aac7920bb0014fa27c622fd493483d31b012256a1e2190d43d",
+    "f23606e23d0d137d6f1414f7edee6af57866fd60ea5dc57d0df6c87751e4bc70",
+    "47f6c7824a35630f1bdb07fa4b48f7c3853c101e9d45f18e7efabfb2b89e6c0a",
+    "8d2738daf30e48e41ab54b6331211830c92d02fe65600aee8dd6c0df5f61da4d",
+    "ef88ccfa5a0ed2040e2ed76f689658e9f49e9c14b27c48d4d5210ac64104156c",
+    "078e435bafd3986aff508909fcd2872f6f11e71ce73435d82e2c2fbf179a3105",
+    "8417a8928a33289e0cdbd14c61d074c1c9acb1dd1be417b453becf3b22c7f944"
+   ]
+  },
+  {
+   "unit": "phaseblade",
+   "property": "retreat_frames",
+   "outputs": [
+    "assets/vector/phaseblade_lv1_retreat_1.png",
+    "assets/vector/phaseblade_lv1_retreat_2.png",
+    "assets/vector/phaseblade_lv1_retreat_3.png",
+    "assets/vector/phaseblade_lv1_retreat_4.png",
+    "assets/vector/phaseblade_lv1_retreat_5.png",
+    "assets/vector/phaseblade_lv1_retreat_6.png",
+    "assets/vector/phaseblade_lv1_retreat_7.png",
+    "assets/vector/phaseblade_lv1_retreat_8.png"
+   ],
+   "sha256": [
+    "b58708b90ce662b03a507b0c18e0f5bd56151ba0e004bcd804759cc440b80695",
+    "68e1a33d592e3f56d9f2b65c8fb7073638510c6b40c81af0c89dbbcde1c5f2d3",
+    "6800a99ca872d9504359fa226b7946a605d51de039c0d5af6c7361d3380097eb",
+    "e51d0dd91eefb905c312734270ce58486e090dda775a614bae4e5ae952f67d42",
+    "f6f1b4982fb148eecd46618d0be9bbf1cdfd3b8b840f7629844f26f9688b0cdf",
+    "adfcd1aed83529e6eedd05742d1ab1c134dbdb7f1236dde978e266ece5d3d8c1",
+    "6f480e5fa19e1f37f4ff5ff9203139defb7916cc6b66cdbcd1d16b946e713ee8",
+    "b2a5575d119bec8b3a475a14a288a8d6d0ea696cec2eecd9c5e041da058516b2"
+   ]
+  },
+  {
+   "unit": "phaseblade",
+   "property": "lv2_idle_frames",
+   "outputs": [
+    "assets/vector/phaseblade_lv2_idle_1.png",
+    "assets/vector/phaseblade_lv2_idle_2.png",
+    "assets/vector/phaseblade_lv2_idle_3.png",
+    "assets/vector/phaseblade_lv2_idle_4.png",
+    "assets/vector/phaseblade_lv2_idle_5.png",
+    "assets/vector/phaseblade_lv2_idle_6.png",
+    "assets/vector/phaseblade_lv2_idle_7.png",
+    "assets/vector/phaseblade_lv2_idle_8.png"
+   ],
+   "sha256": [
+    "ef994d4c2962c2c7367ffafb3196d1c4533f5a173577bcb394d72fc9b14aff1d",
+    "b63e8bf0e744058210a89caa60b101b2177122c169bc4034b06f062b5416e668",
+    "f2fe2be5a44a0f3ebd3ffe4be18f9dc6313a8fdf7219048f3eb82915e44374f4",
+    "d496d0a85408081f4c4060d7610e580dc8cfbf1d100f2bca78edac1f1d7da15b",
+    "57d9f77bb0156b519a718602fc7da235543b3725cd11bae1324fadda3c1545e5",
+    "d496d0a85408081f4c4060d7610e580dc8cfbf1d100f2bca78edac1f1d7da15b",
+    "f2fe2be5a44a0f3ebd3ffe4be18f9dc6313a8fdf7219048f3eb82915e44374f4",
+    "b63e8bf0e744058210a89caa60b101b2177122c169bc4034b06f062b5416e668"
+   ]
+  },
+  {
+   "unit": "phaseblade",
+   "property": "lv2_walk_frames",
+   "outputs": [
+    "assets/vector/phaseblade_lv2_walk_1.png",
+    "assets/vector/phaseblade_lv2_walk_2.png",
+    "assets/vector/phaseblade_lv2_walk_3.png",
+    "assets/vector/phaseblade_lv2_walk_4.png",
+    "assets/vector/phaseblade_lv2_walk_5.png",
+    "assets/vector/phaseblade_lv2_walk_6.png",
+    "assets/vector/phaseblade_lv2_walk_7.png",
+    "assets/vector/phaseblade_lv2_walk_8.png"
+   ],
+   "sha256": [
+    "e285ba4ffef4f03083e908c4f81a919ab725a940988ec1b98d72c82636c60982",
+    "a4ed5aa8748e292c98bd26785fd88203beb9b0ae30e1b6dd82ca553e73473388",
+    "34ffd8c6f12939ba90f0f25122f87a0ab93fe3d97876668baa6a3d66ca5d2efa",
+    "4aa852ca2caf9ca4ef182cb7be8dd6756ee86b72bbd57d45fb6748bfc750e261",
+    "54845ef3ac5079d3ed4bab1583cccd18edab24a339f4366923e1b0a7934e05fb",
+    "3b11ec2f526a1214907b0655784a04f12e2ebc4496aa159a30fe45c068174809",
+    "f8e06726be8e93898f403fe428825d0c1d08ab5b805d69f54f9af159977f4a01",
+    "67dcf99a9d0e9b26bc8bab1b1a020985e6aae725ccb952d878aeefce6cf85c16"
+   ]
+  },
+  {
+   "unit": "phaseblade",
+   "property": "lv2_attack_frames",
+   "outputs": [
+    "assets/vector/phaseblade_lv2_attack_1.png",
+    "assets/vector/phaseblade_lv2_attack_2.png",
+    "assets/vector/phaseblade_lv2_attack_3.png",
+    "assets/vector/phaseblade_lv2_attack_4.png",
+    "assets/vector/phaseblade_lv2_attack_5.png",
+    "assets/vector/phaseblade_lv2_attack_6.png",
+    "assets/vector/phaseblade_lv2_attack_7.png",
+    "assets/vector/phaseblade_lv2_attack_8.png"
+   ],
+   "sha256": [
+    "8a3d0f81b6cedc3a1463d400e788b887a090f8c1b36297e5272d76549645efaf",
+    "28e82e9f3ed00e135dd6b7f8c9eabd80f1331f08502f1df310f0ec2f10991800",
+    "abccdbbdfc900dbbd25afe1f221f4f6f0d696d296ec9d3a765efe19954c5105f",
+    "fe9068e870c2198bc4274c3da9ecf3df3be1111a36bb820949e4caea2a385fc5",
+    "13ecc0dc493fcac5ef3cae68aadec2487ba8d76338a03ff2e5632362fe3287e2",
+    "00019d12dbcef95d746af24ff4de565ce5516f8adfc4d9fa29a8d96e9b746056",
+    "08b9e7b31ca6bddf75ea8fd694f2d32a7fd6d5283f6bc3b2947d240a9d734a25",
+    "ae58512131d298f4718059ddfc45165e01065e93c60bdcdf4e25346707da8ab2"
+   ]
+  },
+  {
+   "unit": "phaseblade",
+   "property": "lv2_retreat_frames",
+   "outputs": [
+    "assets/vector/phaseblade_lv2_retreat_1.png",
+    "assets/vector/phaseblade_lv2_retreat_2.png",
+    "assets/vector/phaseblade_lv2_retreat_3.png",
+    "assets/vector/phaseblade_lv2_retreat_4.png",
+    "assets/vector/phaseblade_lv2_retreat_5.png",
+    "assets/vector/phaseblade_lv2_retreat_6.png",
+    "assets/vector/phaseblade_lv2_retreat_7.png",
+    "assets/vector/phaseblade_lv2_retreat_8.png"
+   ],
+   "sha256": [
+    "35d781edda79b668d9f122ee70d2ed1ebee8314df8b2884457158c0cda614b5f",
+    "75ea236579e02dffe8901635ac0eff2bca4ade3d48dc8eba3e5d602dda1692bf",
+    "eb3d77a1c5304c257b4c353b3fa0058ff56045ea1ffa1af61881c4aebb060973",
+    "4f8b01e50ec54695722277a33df5cfa2db808d9e6a6b7e50e434061cd146dbae",
+    "87f17cb3246290d3d1a4b016473570ca966a8fcda264bd2128a8211726fc3759",
+    "3a5244165c4aff0dccac5cc569b73b3920b1f5d370585c31bcaa98decf6d2e98",
+    "e907dd1725b9b690930041b4f2da05d3dac02a18e7714245089f76f84204676c",
+    "385ca188a13e5d5827f24cee86d343070f8c6292f8aff300c2143da35655b5c0"
+   ]
+  },
+  {
+   "unit": "phaseblade",
+   "property": "lv3_idle_frames",
+   "outputs": [
+    "assets/vector/phaseblade_lv3_idle_1.png",
+    "assets/vector/phaseblade_lv3_idle_2.png",
+    "assets/vector/phaseblade_lv3_idle_3.png",
+    "assets/vector/phaseblade_lv3_idle_4.png",
+    "assets/vector/phaseblade_lv3_idle_5.png",
+    "assets/vector/phaseblade_lv3_idle_6.png",
+    "assets/vector/phaseblade_lv3_idle_7.png",
+    "assets/vector/phaseblade_lv3_idle_8.png"
+   ],
+   "sha256": [
+    "4756a1d2c53032d1e32f8ac83630e6e37e8bd2516243764a0713167b42181470",
+    "f87cae97ffab7304a43d4f702caa946d472ccd980be8ef775a65cd751765ce92",
+    "3fb6e831647f2a97619777bb9de709b19a514291348dceb232dec2301da710ca",
+    "7e24866519e3d97580bea3ea95f4a6e06dacf8d64961f46c98b088ea1408b969",
+    "c989056d01c699eb5a869164f6e9c83ef70393756155ae7798adba7b9bd1f89b",
+    "7e24866519e3d97580bea3ea95f4a6e06dacf8d64961f46c98b088ea1408b969",
+    "3fb6e831647f2a97619777bb9de709b19a514291348dceb232dec2301da710ca",
+    "f87cae97ffab7304a43d4f702caa946d472ccd980be8ef775a65cd751765ce92"
+   ]
+  },
+  {
+   "unit": "phaseblade",
+   "property": "lv3_walk_frames",
+   "outputs": [
+    "assets/vector/phaseblade_lv3_walk_1.png",
+    "assets/vector/phaseblade_lv3_walk_2.png",
+    "assets/vector/phaseblade_lv3_walk_3.png",
+    "assets/vector/phaseblade_lv3_walk_4.png",
+    "assets/vector/phaseblade_lv3_walk_5.png",
+    "assets/vector/phaseblade_lv3_walk_6.png",
+    "assets/vector/phaseblade_lv3_walk_7.png",
+    "assets/vector/phaseblade_lv3_walk_8.png"
+   ],
+   "sha256": [
+    "874bdd14f3c250483308d2223b0441de1e3fc3d55420027f9a43310e09aac019",
+    "dd694786f6973cb1ccb50fef654b03151b04d7aeb56ef0aaea3ac50708d2405c",
+    "ba85e1bc63eb304daaf4672353904765b8d4ec755e0dccf99623343ad76a21f8",
+    "2e3648b9993d71dffc9c35f75cd40a86140f437997d810e260f5eb089fdc8e9a",
+    "ed17616ac9199937a9d602595338e1f1dc548e5294f672ba1f0751ee9c7b3dd3",
+    "b74a6b51516d03ef61447971cfabcf11722e64862e37f6c648bcd559cab5e756",
+    "db825e392c2eafc4519f7404c9a5125b4623cab870175d2d5880a3d54a69091a",
+    "db402fd268d20e10d29a8702354e5c37908661f63e0651b319c0f3f9e9cc5755"
+   ]
+  },
+  {
+   "unit": "phaseblade",
+   "property": "lv3_attack_frames",
+   "outputs": [
+    "assets/vector/phaseblade_lv3_attack_1.png",
+    "assets/vector/phaseblade_lv3_attack_2.png",
+    "assets/vector/phaseblade_lv3_attack_3.png",
+    "assets/vector/phaseblade_lv3_attack_4.png",
+    "assets/vector/phaseblade_lv3_attack_5.png",
+    "assets/vector/phaseblade_lv3_attack_6.png",
+    "assets/vector/phaseblade_lv3_attack_7.png",
+    "assets/vector/phaseblade_lv3_attack_8.png"
+   ],
+   "sha256": [
+    "865b9a9c774afb24935dd3bd2dacad3d0301a0fa82455af04d441d55d7f9d49a",
+    "604b12991b418588e82a3d82e595b0de6a878d3e5128b91f628824b4689f0fb9",
+    "84e27cb2623a4a9f32016f9b0a9bbba899176f466eb134f74be552d6028dcdca",
+    "57a055b7d7ce2773fc369db565b3ccd8d553c65bc1cbd9bce8a3b451ecd1ad5a",
+    "08bd15d6665619cfd80e7fd063b16db9814409b6e3b6a0e006e92027fd036ba8",
+    "e0297285e51becdbfe7070a9a78985f03e275b0ac097cb5a502637e678febcb9",
+    "f611e43d012ce9197adaf2e9d11c7339af34cbd747d97f9e2094791634942b31",
+    "9bb146296d7e1fefa62d76e94bb909e1fb61a4ab455049692bb356d31b70b7fb"
+   ]
+  },
+  {
+   "unit": "phaseblade",
+   "property": "lv3_retreat_frames",
+   "outputs": [
+    "assets/vector/phaseblade_lv3_retreat_1.png",
+    "assets/vector/phaseblade_lv3_retreat_2.png",
+    "assets/vector/phaseblade_lv3_retreat_3.png",
+    "assets/vector/phaseblade_lv3_retreat_4.png",
+    "assets/vector/phaseblade_lv3_retreat_5.png",
+    "assets/vector/phaseblade_lv3_retreat_6.png",
+    "assets/vector/phaseblade_lv3_retreat_7.png",
+    "assets/vector/phaseblade_lv3_retreat_8.png"
+   ],
+   "sha256": [
+    "80566ea419957e9c725b8f69c2ceffeb2fd2a0a7174b08c9061902b1f1bf0c50",
+    "d19d1c13d53621b355566d87b31c22ecd56e1053e1f26cffb10b3a00773c584e",
+    "8d29f7c3b42dcc47354a30976a83a84d6843b6794ebebec480de09dae7cdcfdb",
+    "0ad3b02c332d3528aa3ec716f6d8675b21c7246483f6c900d68ea8664fd0c766",
+    "d5f665a208dabdb2ab00b8981fd39e46bed0c0f8e448e56adcd2f5bb8d52ceef",
+    "cc9cedf9f9a0ea9452d35bbfe2f6b48ca02db60f59d66277f646d6384f14590a",
+    "93f8d2dba6b48d637371b13f642713cd92becde9ba14d54a0915fa914b2fb077",
+    "24c1ae285cfdef3b3c108cbd15f791d00f53f723da8a0dbfd4bb74402440a65f"
+   ]
+  },
+  {
+   "unit": "cryotek",
+   "property": "idle_frames",
+   "outputs": [
+    "assets/vector/cryotek_lv1_idle_1.png",
+    "assets/vector/cryotek_lv1_idle_2.png",
+    "assets/vector/cryotek_lv1_idle_3.png",
+    "assets/vector/cryotek_lv1_idle_4.png",
+    "assets/vector/cryotek_lv1_idle_5.png",
+    "assets/vector/cryotek_lv1_idle_6.png",
+    "assets/vector/cryotek_lv1_idle_7.png",
+    "assets/vector/cryotek_lv1_idle_8.png"
+   ],
+   "sha256": [
+    "ad841de70aa9e04d00d2a90acece7747ed41194cb8cb073fff11a46dda3b43c5",
+    "e8f919f788102d933cf78617484d29481202769089622f6decd55f8ef45a0c1d",
+    "edceaac3f1ddb3e9ab547ef977e59a8256d6b5f8521acd1e1899935b4327c8d4",
+    "d75cbc60cfcbbe0fb244e306df0188b1da5213210268782c4633d3d0d1e23887",
+    "509f1e85aacbc84eef80a7083741f22412c670f504464c393127ea9745244cf9",
+    "d75cbc60cfcbbe0fb244e306df0188b1da5213210268782c4633d3d0d1e23887",
+    "edceaac3f1ddb3e9ab547ef977e59a8256d6b5f8521acd1e1899935b4327c8d4",
+    "e8f919f788102d933cf78617484d29481202769089622f6decd55f8ef45a0c1d"
+   ]
+  },
+  {
+   "unit": "cryotek",
+   "property": "walk_frames",
+   "outputs": [
+    "assets/vector/cryotek_lv1_walk_1.png",
+    "assets/vector/cryotek_lv1_walk_2.png",
+    "assets/vector/cryotek_lv1_walk_3.png",
+    "assets/vector/cryotek_lv1_walk_4.png",
+    "assets/vector/cryotek_lv1_walk_5.png",
+    "assets/vector/cryotek_lv1_walk_6.png",
+    "assets/vector/cryotek_lv1_walk_7.png",
+    "assets/vector/cryotek_lv1_walk_8.png"
+   ],
+   "sha256": [
+    "faf1b03206f28267bf91d75879e576c9501f5b3ea17047e6110e1ce1bfce954d",
+    "86564ac70eb28454023e228c724879c12d8da1c2d748771f08404cbff5e3099f",
+    "d14ea87a5534e0d3c254f48fa4aeb2d6b206e3a3bec4261c4260c6ce66c60abf",
+    "244fd344f5540e04b65c1d2b0e8921afb41b2ce2f198396fabca1e8da8f2a740",
+    "4a87ce4c3064cab51830c77cedfab41080091c35a03a35d6b365fb96f0ad2748",
+    "2681016bb7fc55ba5bc4aa2d0a5cf127530ece2473e79b6d839b7255dc1ffb4b",
+    "b32574230179f12a2a5fde3560c7b07da996e784939833c68dfb0577010f5f9e",
+    "889d41ae6700e16ebbb12193efdc7f5f81981542b9bd06e5a96617e2f31c2d61"
+   ]
+  },
+  {
+   "unit": "cryotek",
+   "property": "attack_frames",
+   "outputs": [
+    "assets/vector/cryotek_lv1_attack_1.png",
+    "assets/vector/cryotek_lv1_attack_2.png",
+    "assets/vector/cryotek_lv1_attack_3.png",
+    "assets/vector/cryotek_lv1_attack_4.png",
+    "assets/vector/cryotek_lv1_attack_5.png",
+    "assets/vector/cryotek_lv1_attack_6.png",
+    "assets/vector/cryotek_lv1_attack_7.png",
+    "assets/vector/cryotek_lv1_attack_8.png"
+   ],
+   "sha256": [
+    "7d1c1dcb2557358bc76b3786360b405bdeca51921bf4ffd0b476e2e035e7287a",
+    "aeaf62cb2b90db865ca6c431df674f355998f00b57e2841957a0f72971d0a576",
+    "01b7fa6452888287aaa3f6420528b3f9f1a7a30ab47b21c6266721275394f97a",
+    "8d48f8b39067e5db8eb8aabfba55b2d047a1e3f9e2b0698aaef1387ce459ed73",
+    "fee1e7f4ea7171ddb60b6f62e02c63789bfb2ccc39404ed53861270d0a06a246",
+    "b1c212f156a56711cfa29f044df7d7cf5a023b264d683d86039210ea66b99c05",
+    "6e00367b62b0ad3952a2dab2f6d380c8e9633a80af48d4855d8807c10ef46805",
+    "5657857e2ff797535bfbddd690cb6acfd9fe6caf4e8cd3c21e1e40a0f672edd3"
+   ]
+  },
+  {
+   "unit": "cryotek",
+   "property": "retreat_frames",
+   "outputs": [
+    "assets/vector/cryotek_lv1_retreat_1.png",
+    "assets/vector/cryotek_lv1_retreat_2.png",
+    "assets/vector/cryotek_lv1_retreat_3.png",
+    "assets/vector/cryotek_lv1_retreat_4.png",
+    "assets/vector/cryotek_lv1_retreat_5.png",
+    "assets/vector/cryotek_lv1_retreat_6.png",
+    "assets/vector/cryotek_lv1_retreat_7.png",
+    "assets/vector/cryotek_lv1_retreat_8.png"
+   ],
+   "sha256": [
+    "24974ae67532052f8d24418c67a28ea7acffab6ff53867e837ab96950183d7cb",
+    "bae31039477a831dfe1e87d77f655a62302f6f9ad452e1af851c279e097998e2",
+    "2ae5228194c74a273fe89dd3a2c01a19291159798c01362a618a1c311466a596",
+    "23c32f1e28c5abff474fb95600b707a646ef308c8434d11df93f43db86ee0a34",
+    "93b1f03b59046cd3d761090a65a89e58e612011753d3e497ce7e035cd16635d8",
+    "e281d87d93472ce82aa0a182c00cafad2b29e0ea415f0a9315031d2afc5ab36e",
+    "5a4c57ed707315ca5b719e2f49ff29884d0839b8567bd579ebd3fb9b3fb877e2",
+    "b688dd2722b47d49d858b79f039061aa069daa5a42954fbc8e037ab61dba7a87"
+   ]
+  },
+  {
+   "unit": "cryotek",
+   "property": "lv2_idle_frames",
+   "outputs": [
+    "assets/vector/cryotek_lv2_idle_1.png",
+    "assets/vector/cryotek_lv2_idle_2.png",
+    "assets/vector/cryotek_lv2_idle_3.png",
+    "assets/vector/cryotek_lv2_idle_4.png",
+    "assets/vector/cryotek_lv2_idle_5.png",
+    "assets/vector/cryotek_lv2_idle_6.png",
+    "assets/vector/cryotek_lv2_idle_7.png",
+    "assets/vector/cryotek_lv2_idle_8.png"
+   ],
+   "sha256": [
+    "37e39f0ded69bdcc79a81fdacf6a3596f977753b48bd2a049d8fdc5e089df2ae",
+    "0f7ea21f5474216d2946399711719daa2d831831cd2581f99ed45627ebd6c990",
+    "b4cc15c9b784ffa9af6ddfde9e30d1579811eeb0128f3233ab640a1404aa234e",
+    "a4d0489b4a544a2a47fe8f371baacbf4e1912301c438ee5dac4a6780c3f4d77d",
+    "93232ce670a47809781c51f26996b6611f3785a7028aa68e28e35f9d019cdf5c",
+    "a4d0489b4a544a2a47fe8f371baacbf4e1912301c438ee5dac4a6780c3f4d77d",
+    "b4cc15c9b784ffa9af6ddfde9e30d1579811eeb0128f3233ab640a1404aa234e",
+    "0f7ea21f5474216d2946399711719daa2d831831cd2581f99ed45627ebd6c990"
+   ]
+  },
+  {
+   "unit": "cryotek",
+   "property": "lv2_walk_frames",
+   "outputs": [
+    "assets/vector/cryotek_lv2_walk_1.png",
+    "assets/vector/cryotek_lv2_walk_2.png",
+    "assets/vector/cryotek_lv2_walk_3.png",
+    "assets/vector/cryotek_lv2_walk_4.png",
+    "assets/vector/cryotek_lv2_walk_5.png",
+    "assets/vector/cryotek_lv2_walk_6.png",
+    "assets/vector/cryotek_lv2_walk_7.png",
+    "assets/vector/cryotek_lv2_walk_8.png"
+   ],
+   "sha256": [
+    "80daf236a697ef030abe839fa1a91ac2dc38b84806389721a75ea2dc8b023f73",
+    "5ae2b97d13a053fd3174412f7a9fadf14eaeee5e8b02a07ec433025b1a9419b4",
+    "7b2bc2037b2fe0614d3f846d00bc9cd62231b6fffd2add3282f312c3a0b72149",
+    "ad90f2f61a53a72116e138d61120d0135f4d754dfac476fa443a751d3c05d672",
+    "173d9a464bbb114bf0931971241f39ea3655003f4f08f54208cf0d87acb38874",
+    "bef50e9ff9b00a21204a60df2ef3d23bde516dd4dca1f7fb88432a85a53d363a",
+    "54df4eec7bbcbccc16a2da36c9e2d4322a1739a3a0120c2bb1f57d422970b9d3",
+    "2b49e39337c41771babbac8b8b26ed26aa3296d05df72b90efe65dc590f94097"
+   ]
+  },
+  {
+   "unit": "cryotek",
+   "property": "lv2_attack_frames",
+   "outputs": [
+    "assets/vector/cryotek_lv2_attack_1.png",
+    "assets/vector/cryotek_lv2_attack_2.png",
+    "assets/vector/cryotek_lv2_attack_3.png",
+    "assets/vector/cryotek_lv2_attack_4.png",
+    "assets/vector/cryotek_lv2_attack_5.png",
+    "assets/vector/cryotek_lv2_attack_6.png",
+    "assets/vector/cryotek_lv2_attack_7.png",
+    "assets/vector/cryotek_lv2_attack_8.png"
+   ],
+   "sha256": [
+    "ccb81ecdba14ede0f0d27be0492fb59a0ffa262f227c062516588a331671ceeb",
+    "87eaa01d45463c5198cdc6bbc3361aac9242276552dbcff726c0a6214193b4f4",
+    "78709be2fc25be1ceeebfa7f90f763756e4571711a460c1e4b0dae94be6a4033",
+    "d66a6a976fca141b7fcb4f338e5fe117ecc7aea36ccb7a50f63b2ef56d3552f9",
+    "db2241f3d9e62c673f12c9188c293280d5e0327028b6d004c1d15b5c1d9573ce",
+    "e87e008128c5f4eb0b1a909d15153a0ff3fbd04236c4298b6727644debd93d38",
+    "6f3459d361b3ef564262e1102fef010e614a7afa39e4e6423cf3bd7caa78757e",
+    "24de1a2a3787552a57400f6e90d68524ed047befd71b0b402e7067b5b3a5e379"
+   ]
+  },
+  {
+   "unit": "cryotek",
+   "property": "lv2_retreat_frames",
+   "outputs": [
+    "assets/vector/cryotek_lv2_retreat_1.png",
+    "assets/vector/cryotek_lv2_retreat_2.png",
+    "assets/vector/cryotek_lv2_retreat_3.png",
+    "assets/vector/cryotek_lv2_retreat_4.png",
+    "assets/vector/cryotek_lv2_retreat_5.png",
+    "assets/vector/cryotek_lv2_retreat_6.png",
+    "assets/vector/cryotek_lv2_retreat_7.png",
+    "assets/vector/cryotek_lv2_retreat_8.png"
+   ],
+   "sha256": [
+    "2ecc6db94bba481346e20ec84964b9548659c1f3c167844c16da6f1f4b4359cf",
+    "a8b2e12db1f6e385eacd0b19f355fa4972ca0410a401a3296bf22e1ba41fee2c",
+    "6489b7cac73c84cd6fd607fe965b6ade0038bfc614cf1a83b2fbdd80a84863e0",
+    "2f341a7e451fb2c55c38cbdd8e0c7a9e85d64ec96252d49947af32c01bf5c30d",
+    "a53febfe6270f46a688248a29bc1f044842f273e5bf1452573ed7f125b88dbfb",
+    "02700412c5eadb87bed95dcd4967ee2873541298e7083929ba42bbf9223c099f",
+    "b92f82c125af9453bf67bf0cd64dcba2211dbda834f564e2a71f24cae9093d68",
+    "51aa74db0310cf8b76953a4c4780883bcffc9cb044f9b4fd4d17fe988ad51347"
+   ]
+  },
+  {
+   "unit": "cryotek",
+   "property": "lv3_idle_frames",
+   "outputs": [
+    "assets/vector/cryotek_lv3_idle_1.png",
+    "assets/vector/cryotek_lv3_idle_2.png",
+    "assets/vector/cryotek_lv3_idle_3.png",
+    "assets/vector/cryotek_lv3_idle_4.png",
+    "assets/vector/cryotek_lv3_idle_5.png",
+    "assets/vector/cryotek_lv3_idle_6.png",
+    "assets/vector/cryotek_lv3_idle_7.png",
+    "assets/vector/cryotek_lv3_idle_8.png"
+   ],
+   "sha256": [
+    "25cf1740b42dc102f96add002f48b20102863afbebf2a31bf5a526b12050bc88",
+    "9d9e1e1692b77e5ccca28b55c5b2732e5f9a5d61e22abd95d43a03ddae9f7c0a",
+    "5ca50b3b11373af9869fe95ab950b2a5301b09265de01df24c72be4db1a436cc",
+    "08ad9a9e9b8db49a21282d84873cd93c2a3d71ca7b9d111d96542945564d38c8",
+    "7b74327c84a6660a36a32e37a676cab65f55c8ed76339de39e37a447d99b6623",
+    "08ad9a9e9b8db49a21282d84873cd93c2a3d71ca7b9d111d96542945564d38c8",
+    "5ca50b3b11373af9869fe95ab950b2a5301b09265de01df24c72be4db1a436cc",
+    "9d9e1e1692b77e5ccca28b55c5b2732e5f9a5d61e22abd95d43a03ddae9f7c0a"
+   ]
+  },
+  {
+   "unit": "cryotek",
+   "property": "lv3_walk_frames",
+   "outputs": [
+    "assets/vector/cryotek_lv3_walk_1.png",
+    "assets/vector/cryotek_lv3_walk_2.png",
+    "assets/vector/cryotek_lv3_walk_3.png",
+    "assets/vector/cryotek_lv3_walk_4.png",
+    "assets/vector/cryotek_lv3_walk_5.png",
+    "assets/vector/cryotek_lv3_walk_6.png",
+    "assets/vector/cryotek_lv3_walk_7.png",
+    "assets/vector/cryotek_lv3_walk_8.png"
+   ],
+   "sha256": [
+    "1fe3260cdc88e2249bfcc9090534cadad9e0554a355f6b3a8e67c87b0a6052ec",
+    "7f57c9ba7883d3535d45e4d758e37e74da3d6a0b91af54db395f39fce3a88b63",
+    "cd26fe985dbb00a208b854408993292f1110025bc16c5736b1ece519b82f1f36",
+    "282a8343a09f155617913ec1d7fdc1f903da83d4deaa5e2b74396bf16bfaf30d",
+    "3a10e3bb1a1e77e81c2f28e6867d7fd5bd235d6e8012fcf915b1da5a5086c06d",
+    "90f480d4e946fd300049350d2ce6975eff56c4c64b59300739f296520a5617f6",
+    "4c8f3202f086f2caf90711785a7679a859862d1fd9b8e5e34b137195e71e5bcf",
+    "1b9df70e3d1a937669cb442606b82d9fe4612a806ab5d2b6a1d5271b901f8346"
+   ]
+  },
+  {
+   "unit": "cryotek",
+   "property": "lv3_attack_frames",
+   "outputs": [
+    "assets/vector/cryotek_lv3_attack_1.png",
+    "assets/vector/cryotek_lv3_attack_2.png",
+    "assets/vector/cryotek_lv3_attack_3.png",
+    "assets/vector/cryotek_lv3_attack_4.png",
+    "assets/vector/cryotek_lv3_attack_5.png",
+    "assets/vector/cryotek_lv3_attack_6.png",
+    "assets/vector/cryotek_lv3_attack_7.png",
+    "assets/vector/cryotek_lv3_attack_8.png"
+   ],
+   "sha256": [
+    "6ebfae0dc7679b98746acf38f790c54c7bafa22116fa8dd555e500275f019ac8",
+    "39a6d06b8b6a70acc99c069c3b422d5f69fa9f72bb275126263be413e884f588",
+    "452d461ae48348ccea81710925d4ca687456935a53e57d5ed8bc05a1fb075996",
+    "23be614d91bb5e2af770bb7bc62ae7ffe352b90cccfd9554b052fda290cb8657",
+    "d90be41a9a3b17bd9968ad0a4904644b176abff8fbdd79b213653d5ed0ce8c57",
+    "778b71ac72448b7eb489601bf31bdcaf5932c1e5736259d41dfca8150e738ca5",
+    "8673dad93e7d9f67ca120066e7f08dc878f00b62299b35e94cb92643e0922335",
+    "611ea7fffd1381c76f6cb8395d0fac8ed4019fcb78a8de510e5a055051239bf7"
+   ]
+  },
+  {
+   "unit": "cryotek",
+   "property": "lv3_retreat_frames",
+   "outputs": [
+    "assets/vector/cryotek_lv3_retreat_1.png",
+    "assets/vector/cryotek_lv3_retreat_2.png",
+    "assets/vector/cryotek_lv3_retreat_3.png",
+    "assets/vector/cryotek_lv3_retreat_4.png",
+    "assets/vector/cryotek_lv3_retreat_5.png",
+    "assets/vector/cryotek_lv3_retreat_6.png",
+    "assets/vector/cryotek_lv3_retreat_7.png",
+    "assets/vector/cryotek_lv3_retreat_8.png"
+   ],
+   "sha256": [
+    "98f9a53fe4bf102019376292f699024f23806142ad55a66180f1144ea8205136",
+    "218f5d554b7d4b35a6956b7dfe580160bb5a203311c719db9071af25d96cf735",
+    "bc57a3035ff164247b886908be4cc4dbe2cfd05498e81792c25ad05a7d71c9c9",
+    "7d921bfd44e390e467d8ee5d0869d22f4d0a16635666c0fbfd5a60a3b22fac2f",
+    "c0d749681dbf723815247b1362f20099c5f191966cf1d024517fb57bd4de5ca2",
+    "0189ebe663713af682aab744efdd0b904d23591e9bdfddc8f57c4359c9aef00f",
+    "24a32bf65f1422c402580b135b8c2cf97438e323f44c62cdecb563d281717475",
+    "e387cfd82e14830cd315d9291c2fcf1f6d945ce72356fbb8d69015a9a2d88e6c"
+   ]
+  },
+  {
+   "unit": "arcrelay",
+   "property": "idle_frames",
+   "outputs": [
+    "assets/vector/arcrelay_lv1_idle_1.png",
+    "assets/vector/arcrelay_lv1_idle_2.png",
+    "assets/vector/arcrelay_lv1_idle_3.png",
+    "assets/vector/arcrelay_lv1_idle_4.png",
+    "assets/vector/arcrelay_lv1_idle_5.png",
+    "assets/vector/arcrelay_lv1_idle_6.png",
+    "assets/vector/arcrelay_lv1_idle_7.png",
+    "assets/vector/arcrelay_lv1_idle_8.png"
+   ],
+   "sha256": [
+    "5f8380241d4e161621358f46d35814fd542f471199c5d847937081a164cb4325",
+    "0fb6777d31fc88c1e18fc2534ae8f60b91a207744882ddf8731b116d3e7f95cf",
+    "1ae7b2e7f3ed13b81c77b00f07c257b98dcb95039f20725c3a1724df865c69cd",
+    "14859e8359dff547b526533c69a453592c1c5b37e837044a84e891bf45dcaeb3",
+    "25975c97e4e0b871a53bc730fdf2ea0040fff613d29378fd3bde946bf8d7d2a1",
+    "14859e8359dff547b526533c69a453592c1c5b37e837044a84e891bf45dcaeb3",
+    "1ae7b2e7f3ed13b81c77b00f07c257b98dcb95039f20725c3a1724df865c69cd",
+    "0fb6777d31fc88c1e18fc2534ae8f60b91a207744882ddf8731b116d3e7f95cf"
+   ]
+  },
+  {
+   "unit": "arcrelay",
+   "property": "walk_frames",
+   "outputs": [
+    "assets/vector/arcrelay_lv1_walk_1.png",
+    "assets/vector/arcrelay_lv1_walk_2.png",
+    "assets/vector/arcrelay_lv1_walk_3.png",
+    "assets/vector/arcrelay_lv1_walk_4.png",
+    "assets/vector/arcrelay_lv1_walk_5.png",
+    "assets/vector/arcrelay_lv1_walk_6.png",
+    "assets/vector/arcrelay_lv1_walk_7.png",
+    "assets/vector/arcrelay_lv1_walk_8.png"
+   ],
+   "sha256": [
+    "cac5c0c7253a2715a8c7d38fbc506a6f0f3e574e75cb90b13f2394550e5e47b3",
+    "bb520d50a35636ec34ca5cd3b3b2618c717b0c7595fc0e7965963f7d936acbd8",
+    "42ccaf9f0296133610286c1f6e93c74f88308eb4fc13dd54dcfb06e4f18d2ed4",
+    "a35b7dacb30f2c0d65725f80f8ea6d47cb2ab4854122d8564d88a0d628282dd6",
+    "64fa4b19a0019fe3e221b85849d738a827c963edf81ece1560cdb8a231efb49c",
+    "96972728874dc0d7898de5c825cade9327e6a317247dfd3f0c889b689dab2749",
+    "f86a36677e31dd1e26df239486ddf086718caabef4f76852dac694bb6b742983",
+    "a15fbd0c26e9fef277809f0cbe55f8106f908031176ab19b692f1bdf167663ea"
+   ]
+  },
+  {
+   "unit": "arcrelay",
+   "property": "attack_frames",
+   "outputs": [
+    "assets/vector/arcrelay_lv1_attack_1.png",
+    "assets/vector/arcrelay_lv1_attack_2.png",
+    "assets/vector/arcrelay_lv1_attack_3.png",
+    "assets/vector/arcrelay_lv1_attack_4.png",
+    "assets/vector/arcrelay_lv1_attack_5.png",
+    "assets/vector/arcrelay_lv1_attack_6.png",
+    "assets/vector/arcrelay_lv1_attack_7.png",
+    "assets/vector/arcrelay_lv1_attack_8.png"
+   ],
+   "sha256": [
+    "11c518069597fb4ea01a21c9f3b468c499a7cc89ba885f8ac53f16c62e57b5cb",
+    "d6e05be19d0c6a42b714ee3ade0a723b4906400dcbac9a27064076fb0efa0fa8",
+    "495ccbd6d9a2933a7e7d5e7bce851f89e15c4e4b5795c3039d530dc44f88a065",
+    "faa00689262c353f1ba01e07e2f2abd7c583ba5baeb64fa86f7bbad2adb79bd1",
+    "d3e57ef6c754616672e90f0ccb7fe3ad53c06efb781151cf235a9642388e1df6",
+    "7e088afc5fe0b284df6346c9499f248740b8f56d6d23a985aa5a0910fcce974d",
+    "a709782579696c6289e40b409788b1c8e952ef9b96f5287c4dd81b2033d16351",
+    "fa07c265bb704ba08f6614b887a148cfa06178527a39fbc64179ca14a4a88efd"
+   ]
+  },
+  {
+   "unit": "arcrelay",
+   "property": "retreat_frames",
+   "outputs": [
+    "assets/vector/arcrelay_lv1_retreat_1.png",
+    "assets/vector/arcrelay_lv1_retreat_2.png",
+    "assets/vector/arcrelay_lv1_retreat_3.png",
+    "assets/vector/arcrelay_lv1_retreat_4.png",
+    "assets/vector/arcrelay_lv1_retreat_5.png",
+    "assets/vector/arcrelay_lv1_retreat_6.png",
+    "assets/vector/arcrelay_lv1_retreat_7.png",
+    "assets/vector/arcrelay_lv1_retreat_8.png"
+   ],
+   "sha256": [
+    "7e7012b5c95a009c8e95ae5ab27c70268d672cab768b36c7027c40b177995efa",
+    "bf5ac2b5adbb45809a6fe26510acd59d445b53a668e5fa0017b769e46d15dedb",
+    "d9370ab3d91537820f7f91282cb96c28bdc17e8ed44e1726f3c818091eceabd0",
+    "f4597c8bea0df94e75b39efd2ccf52ec699353336c75d3a6d9f55e9fbcb5f01e",
+    "66307a69336e9771dc53de0eb5e5da4f15970f89c6d6aab5cb28abd7f65d11ab",
+    "fdccbdd84c96ff820bbfe1d7fbbeba3d0d54b9a1ae7043811cf8ed5366c9e7bc",
+    "5ca5d0052e83acd3b4c88b27d162f2a0473a402bac2af429519df0d39bedc62d",
+    "f221ca74d36c4a5a2f9ff15babc9fc0264e429e71d201f8f7d0762ccf6d783c4"
+   ]
+  },
+  {
+   "unit": "arcrelay",
+   "property": "lv2_idle_frames",
+   "outputs": [
+    "assets/vector/arcrelay_lv2_idle_1.png",
+    "assets/vector/arcrelay_lv2_idle_2.png",
+    "assets/vector/arcrelay_lv2_idle_3.png",
+    "assets/vector/arcrelay_lv2_idle_4.png",
+    "assets/vector/arcrelay_lv2_idle_5.png",
+    "assets/vector/arcrelay_lv2_idle_6.png",
+    "assets/vector/arcrelay_lv2_idle_7.png",
+    "assets/vector/arcrelay_lv2_idle_8.png"
+   ],
+   "sha256": [
+    "b098042949837a568a33f38ad7f108079c7e64d05adc2c421b6f3b3fc90dadc3",
+    "ebb35cb7728ffbb62376e69989328214be281b27714824651ab5621792a7ac4c",
+    "a10e6974330545303be991dcaa55a7c5cea76efaf7de33a5cc65d7c263fb05e5",
+    "14b972953440f1f9c9d6e1a32f933ee4f3638e5601b31d0d4a3ed0968d581f8a",
+    "ef11a433596cd30309a3bbac5c654bb35d730d426232db033a479a73dd079ca0",
+    "14b972953440f1f9c9d6e1a32f933ee4f3638e5601b31d0d4a3ed0968d581f8a",
+    "a10e6974330545303be991dcaa55a7c5cea76efaf7de33a5cc65d7c263fb05e5",
+    "ebb35cb7728ffbb62376e69989328214be281b27714824651ab5621792a7ac4c"
+   ]
+  },
+  {
+   "unit": "arcrelay",
+   "property": "lv2_walk_frames",
+   "outputs": [
+    "assets/vector/arcrelay_lv2_walk_1.png",
+    "assets/vector/arcrelay_lv2_walk_2.png",
+    "assets/vector/arcrelay_lv2_walk_3.png",
+    "assets/vector/arcrelay_lv2_walk_4.png",
+    "assets/vector/arcrelay_lv2_walk_5.png",
+    "assets/vector/arcrelay_lv2_walk_6.png",
+    "assets/vector/arcrelay_lv2_walk_7.png",
+    "assets/vector/arcrelay_lv2_walk_8.png"
+   ],
+   "sha256": [
+    "fb1f1247f88da3ee5680beae67f07f21daf60936bb5efa5223a6236fdca8d8f2",
+    "4135a8df9bae05c1253aa21da9940b6ace914e07c2ddcc472c2fd881c744c582",
+    "63a5fa225e4ea4aaabdfb4174d025199f534737b7f9036bb71555ead0e7495cd",
+    "d917db2b80b2f27342d897eac9692c1e2fe12520e80767119c828cb1c8d09d92",
+    "c2b93150b3846f7e2038e584713259c8a08c89e0390cd482e52d3cd4d3ea3f84",
+    "b5f66b89b70d8b7fa6d239f109c57087018d66b92f3db8146e844ff9099275b2",
+    "ab3c7c0d2865cbfc18ddff58a72afa7cf328bc5a5489e1e30d6dbb6e685fe8ee",
+    "9f07df797ffc986248c13e2f8f7a929eb58aa108cd1d05d934c710351bdb4bff"
+   ]
+  },
+  {
+   "unit": "arcrelay",
+   "property": "lv2_attack_frames",
+   "outputs": [
+    "assets/vector/arcrelay_lv2_attack_1.png",
+    "assets/vector/arcrelay_lv2_attack_2.png",
+    "assets/vector/arcrelay_lv2_attack_3.png",
+    "assets/vector/arcrelay_lv2_attack_4.png",
+    "assets/vector/arcrelay_lv2_attack_5.png",
+    "assets/vector/arcrelay_lv2_attack_6.png",
+    "assets/vector/arcrelay_lv2_attack_7.png",
+    "assets/vector/arcrelay_lv2_attack_8.png"
+   ],
+   "sha256": [
+    "e199761ec13f71e4437a06cc25b9e0d419b3a31992978f69c1d2df009c679e3b",
+    "8218e35623b4510278cffe95b328627bc3fb9cf5e177a3841a313697c61e54b3",
+    "3f13eac926f9036a44a16cb9fab07e6e96978bf416b4109bf701cd918d736c73",
+    "7973b57c04e20ffeb234da0a7f7e86fbb9849306a42fa1bc1d010497069524f4",
+    "50a284d7ae19ba18d7c3f0109216b5aedd703447fa5c9140302448488e531de1",
+    "438b41c508e498059254a976f43cb51bffad42c10611557f6a973f8bd3090f94",
+    "f7d430327bc8d9701c75fcebe2a3917874a19c10b3cecd0be2377c9d7c283762",
+    "1b05b7682894225ebb9380b22308e979761f62963b13f05b536c29712dc6d662"
+   ]
+  },
+  {
+   "unit": "arcrelay",
+   "property": "lv2_retreat_frames",
+   "outputs": [
+    "assets/vector/arcrelay_lv2_retreat_1.png",
+    "assets/vector/arcrelay_lv2_retreat_2.png",
+    "assets/vector/arcrelay_lv2_retreat_3.png",
+    "assets/vector/arcrelay_lv2_retreat_4.png",
+    "assets/vector/arcrelay_lv2_retreat_5.png",
+    "assets/vector/arcrelay_lv2_retreat_6.png",
+    "assets/vector/arcrelay_lv2_retreat_7.png",
+    "assets/vector/arcrelay_lv2_retreat_8.png"
+   ],
+   "sha256": [
+    "ae538584e0db72ce2b32ba2058961b1af04a5c4251dd3a80b668732b5df3fc39",
+    "7a4db865b7d742d2b227f053c16c07d1551a49d1d1bc02678c1a86e90e76de44",
+    "a6ee88936ceace988885a423120dfea01441e20303067bb761c444dc2954b0f5",
+    "cea858556f20a7f1e7dea63eae94eed6ec85aba0c8cf8067eba716c3891a1e46",
+    "e13f47f59ad278d63fa9d5c6a19b24732a448b8e29c47fe4868e856dafd1be3d",
+    "e887a3b3e45f410bf6efc49857f88fddc7c2c69544705be8b9f07552b1273521",
+    "23be2c1d863e2c3574543ef20d20651b8242d8805e5454f27751bff470da3332",
+    "bc74c6314e388a68aa5770cb8a30cae332a63165081956c7438e1db32359f500"
+   ]
+  },
+  {
+   "unit": "arcrelay",
+   "property": "lv3_idle_frames",
+   "outputs": [
+    "assets/vector/arcrelay_lv3_idle_1.png",
+    "assets/vector/arcrelay_lv3_idle_2.png",
+    "assets/vector/arcrelay_lv3_idle_3.png",
+    "assets/vector/arcrelay_lv3_idle_4.png",
+    "assets/vector/arcrelay_lv3_idle_5.png",
+    "assets/vector/arcrelay_lv3_idle_6.png",
+    "assets/vector/arcrelay_lv3_idle_7.png",
+    "assets/vector/arcrelay_lv3_idle_8.png"
+   ],
+   "sha256": [
+    "4df650ab611b2e8a5576b1ad8934c96e5c99d644eb2e6d65346257eae925edea",
+    "d780aaa584c31dd30b68d7a29e6470c2a90ed0d32983abd10bb6dad3f2be4c92",
+    "8721c5b7b44104357d16788aa50cf5abfee4edf42dcdedb7f37298f48fe78886",
+    "917975b39fc279e10624bdd3e8d3d66feac46d0d727d44f556e89ad00d6aabe4",
+    "87889c28cfd0e077281e3dc4c19c4f27d01378f5645d5d9630a7c065ca23d502",
+    "917975b39fc279e10624bdd3e8d3d66feac46d0d727d44f556e89ad00d6aabe4",
+    "8721c5b7b44104357d16788aa50cf5abfee4edf42dcdedb7f37298f48fe78886",
+    "d780aaa584c31dd30b68d7a29e6470c2a90ed0d32983abd10bb6dad3f2be4c92"
+   ]
+  },
+  {
+   "unit": "arcrelay",
+   "property": "lv3_walk_frames",
+   "outputs": [
+    "assets/vector/arcrelay_lv3_walk_1.png",
+    "assets/vector/arcrelay_lv3_walk_2.png",
+    "assets/vector/arcrelay_lv3_walk_3.png",
+    "assets/vector/arcrelay_lv3_walk_4.png",
+    "assets/vector/arcrelay_lv3_walk_5.png",
+    "assets/vector/arcrelay_lv3_walk_6.png",
+    "assets/vector/arcrelay_lv3_walk_7.png",
+    "assets/vector/arcrelay_lv3_walk_8.png"
+   ],
+   "sha256": [
+    "df381baf446076a6919d44739c912d27b894f16919a45f9d83cea05121e430d4",
+    "20bff432277cbba49d428e6dfed69412dd3c3e8b16ef86453fe06f5f052c7556",
+    "0c3e4360f4de75c89cef04df332897bc57413c701b78d5c90f68c5027e98b01a",
+    "1e990b5234c187e0596d3a515bb4f7b0dffd3cbda4b9464071d4cb3cbab20c9a",
+    "dc89466fa9e63c434068ce2a547806f617609a67e884cf2fcaaad524667a1612",
+    "843fe2dc53738a7d3111cc9acedd508b9675a919c669c136bc0453af9cac69b8",
+    "5302bd8281cc0e483bac2a52d1e9ed8a217e2649f7e762d5b59e6c82336cdf28",
+    "885361e912c9544ada15146682be90d864d4ad17070bacb87150ee8e4e9a4920"
+   ]
+  },
+  {
+   "unit": "arcrelay",
+   "property": "lv3_attack_frames",
+   "outputs": [
+    "assets/vector/arcrelay_lv3_attack_1.png",
+    "assets/vector/arcrelay_lv3_attack_2.png",
+    "assets/vector/arcrelay_lv3_attack_3.png",
+    "assets/vector/arcrelay_lv3_attack_4.png",
+    "assets/vector/arcrelay_lv3_attack_5.png",
+    "assets/vector/arcrelay_lv3_attack_6.png",
+    "assets/vector/arcrelay_lv3_attack_7.png",
+    "assets/vector/arcrelay_lv3_attack_8.png"
+   ],
+   "sha256": [
+    "b34ba00c99849bd04553be0a30a22a6c5829ad548226249d5ff5282a8b60c63c",
+    "1f1cd00dba7017b3a34e5786c0049ef389e444c3759187f3ff468f2cb414496d",
+    "fd4051529c382413c182e90d46a78782a8a80a8e21e243db3179338c1071629f",
+    "8e23740beec1111454a274ffba909f971381109e40b972f4206ecebcda2ff093",
+    "fe6c47be321866924c49022dac2b4f5f139ffb22119e5f56151387a987b3f4db",
+    "65c7f03b9d2e18f1ef21d47b79a11bfedf9455fee0eb99caccec9d907c1fa87c",
+    "3ad361be823d5de76b8d6563295ecc2586752610cb99e88d668da904fcaa6c15",
+    "94436a30c15dda40a2eede8c2a97664e8a872d77a49bb193f5c3af4989df63d4"
+   ]
+  },
+  {
+   "unit": "arcrelay",
+   "property": "lv3_retreat_frames",
+   "outputs": [
+    "assets/vector/arcrelay_lv3_retreat_1.png",
+    "assets/vector/arcrelay_lv3_retreat_2.png",
+    "assets/vector/arcrelay_lv3_retreat_3.png",
+    "assets/vector/arcrelay_lv3_retreat_4.png",
+    "assets/vector/arcrelay_lv3_retreat_5.png",
+    "assets/vector/arcrelay_lv3_retreat_6.png",
+    "assets/vector/arcrelay_lv3_retreat_7.png",
+    "assets/vector/arcrelay_lv3_retreat_8.png"
+   ],
+   "sha256": [
+    "f1502c84ee82c71572fc4d48df36dffa384647c94545f8fe1657851655c0851a",
+    "e716ec8cb170a17e6c5b4623ef139fe6b1451dd25e46efee3f9b8cf05b5582ba",
+    "25ed8d0c7f0747f68c174a4e287fc7f8f90d0f384ce2b7575282bdc088b1ce05",
+    "37f465ae18618c7cbe0af1d6e9415c9c7c80a15673e6192d8b71c2009ab837cb",
+    "9a23bee4daa454d76d7f1c70100561e113de19aa5f9f79662e1289adcab0021d",
+    "ce6d000927101818660aba2a58213b4d44a052f07b640d7d4730a25c99aadbe3",
+    "e6a588e8cf746e0c0e6f114aa505bbfdaf0d77bcb60d9687d24b82b224f7e641",
+    "de7dca8c653138c782db79e3c61b6e5e2a1da8dd4f4421aba2fb73653887b541"
+   ]
+  },
+  {
+   "unit": "nullbreaker",
+   "property": "idle_frames",
+   "outputs": [
+    "assets/vector/nullbreaker_lv1_idle_1.png",
+    "assets/vector/nullbreaker_lv1_idle_2.png",
+    "assets/vector/nullbreaker_lv1_idle_3.png",
+    "assets/vector/nullbreaker_lv1_idle_4.png",
+    "assets/vector/nullbreaker_lv1_idle_5.png",
+    "assets/vector/nullbreaker_lv1_idle_6.png",
+    "assets/vector/nullbreaker_lv1_idle_7.png",
+    "assets/vector/nullbreaker_lv1_idle_8.png"
+   ],
+   "sha256": [
+    "f316948787e943601f2646e924ba1541b754b7d2d988c198a5b5382d205adf8d",
+    "704aa952ff49f45a62fda829c24f03ffe794c69970f5ecc035fa6b1bc1d418ea",
+    "ac5829685391d1b3d3f23dc8ebca90264828f323a27db2b921a4a28406621d98",
+    "7548b225f854f319fe69d7dfd8bfff194361b5cfca6615bc67be3b40fd0c7e82",
+    "2aeb12a9e20defa9e9e2614602ac5ed10b87dce079c01b0b18d4e65ac9b8ad32",
+    "7548b225f854f319fe69d7dfd8bfff194361b5cfca6615bc67be3b40fd0c7e82",
+    "ac5829685391d1b3d3f23dc8ebca90264828f323a27db2b921a4a28406621d98",
+    "704aa952ff49f45a62fda829c24f03ffe794c69970f5ecc035fa6b1bc1d418ea"
+   ]
+  },
+  {
+   "unit": "nullbreaker",
+   "property": "walk_frames",
+   "outputs": [
+    "assets/vector/nullbreaker_lv1_walk_1.png",
+    "assets/vector/nullbreaker_lv1_walk_2.png",
+    "assets/vector/nullbreaker_lv1_walk_3.png",
+    "assets/vector/nullbreaker_lv1_walk_4.png",
+    "assets/vector/nullbreaker_lv1_walk_5.png",
+    "assets/vector/nullbreaker_lv1_walk_6.png",
+    "assets/vector/nullbreaker_lv1_walk_7.png",
+    "assets/vector/nullbreaker_lv1_walk_8.png"
+   ],
+   "sha256": [
+    "88f7b699473fb9301fa7056754a537c197ea7e58402a9d57d463a84aee8f557b",
+    "c60835d08542aeea2c6b13a2ba6fa8bc2cd0bec9e9159de00ff8b6720339bac0",
+    "9590a7f66437065be7f56f49b219e4fb12f6279bc746dc04ca299d0e71c459ec",
+    "28acf71c6be7ff8cc88c27e9894f42520a4f17b21b1357f2101c118e743d3c8b",
+    "33c5e43bbcffe712b1691d529abc18e119fa57037515c739927d2e4e8bebf5cd",
+    "511d028755af1b8676c2746d485b6d2feecebc6f2ad6a0f575e19e456c6dd6d2",
+    "8240c80c743e4cb59a4a34caf15c4349c28c91fdec3956e04a38ab8fa05d0367",
+    "43760aed2ed209cc896574465fc61c2aa243e193f2b5cb6f0224beac4544ba1e"
+   ]
+  },
+  {
+   "unit": "nullbreaker",
+   "property": "attack_frames",
+   "outputs": [
+    "assets/vector/nullbreaker_lv1_attack_1.png",
+    "assets/vector/nullbreaker_lv1_attack_2.png",
+    "assets/vector/nullbreaker_lv1_attack_3.png",
+    "assets/vector/nullbreaker_lv1_attack_4.png",
+    "assets/vector/nullbreaker_lv1_attack_5.png",
+    "assets/vector/nullbreaker_lv1_attack_6.png",
+    "assets/vector/nullbreaker_lv1_attack_7.png",
+    "assets/vector/nullbreaker_lv1_attack_8.png"
+   ],
+   "sha256": [
+    "bca07cb2e9b386b10907df29eb3245a15cae18ba663ab0b4e7f942e791be0a18",
+    "226e59609add496b39a4d6976b73cce5270091d609859b76e69de9ca6ca80eb4",
+    "98b76a1d9e03fce93b689867fc7dbb61aa8262ff3e5b343d2ba160dbfacf9fb2",
+    "c6d5424354dfb564c005c84eda8063dd480004c660ec6033fc0595f85e3168c9",
+    "8e66c8e79fb5c71061a28859ebd534a03f229e498511ce359e6d8df0c56c0a92",
+    "23e7aa4df57dc8cb036491ea66a13f2cb20d1018e6a9e51201443e16798e3f2d",
+    "84e5b8bac3dd9d14916452d9856513817fb1d52cb9e2cfe39ee4e9da29db5fd4",
+    "0ff7518f03c667cd286a6fe3caf7029abd2eba5c86cfd71e8fbd40365b33f23c"
+   ]
+  },
+  {
+   "unit": "nullbreaker",
+   "property": "retreat_frames",
+   "outputs": [
+    "assets/vector/nullbreaker_lv1_retreat_1.png",
+    "assets/vector/nullbreaker_lv1_retreat_2.png",
+    "assets/vector/nullbreaker_lv1_retreat_3.png",
+    "assets/vector/nullbreaker_lv1_retreat_4.png",
+    "assets/vector/nullbreaker_lv1_retreat_5.png",
+    "assets/vector/nullbreaker_lv1_retreat_6.png",
+    "assets/vector/nullbreaker_lv1_retreat_7.png",
+    "assets/vector/nullbreaker_lv1_retreat_8.png"
+   ],
+   "sha256": [
+    "1ac4cdc6f7ba45cdc781e743d434d0a25d46b4181c760d4698769959b74e9620",
+    "5e60fe9e899f9fa9c594a5fbc9518bfde8666013c6e2bcdc36bde07a77f5195d",
+    "4d2729785fd0935f4b1d9ed1b778d2681adab7cc453cc7ebbe8483b789379462",
+    "0d6d645d9b76637e4f167d42a219fee9ddca14753f69b57c64fcef63a9dbd999",
+    "8032e6b8fc446239b95953670abbec72b65414afb4458e186dbca9d107a00e7a",
+    "907439503ebc53faa09f9be2f1c5060cf487705c7b72629c08a8b7d3b873ea64",
+    "890f07b4d8f0a9c1b9a54ded6d2726b1c5d2f626fba6a2ed76f7719bce363b5e",
+    "82894bb04470b24777152ae8c84a0835419da6bf5680b34b98d7d66d40c306d7"
+   ]
+  },
+  {
+   "unit": "nullbreaker",
+   "property": "lv2_idle_frames",
+   "outputs": [
+    "assets/vector/nullbreaker_lv2_idle_1.png",
+    "assets/vector/nullbreaker_lv2_idle_2.png",
+    "assets/vector/nullbreaker_lv2_idle_3.png",
+    "assets/vector/nullbreaker_lv2_idle_4.png",
+    "assets/vector/nullbreaker_lv2_idle_5.png",
+    "assets/vector/nullbreaker_lv2_idle_6.png",
+    "assets/vector/nullbreaker_lv2_idle_7.png",
+    "assets/vector/nullbreaker_lv2_idle_8.png"
+   ],
+   "sha256": [
+    "90b6d4ef380efcb0fd111018fdaff418eb79aac640a56848c590ecfd44dcb844",
+    "622c6b9b11f2db35444fc304c82c8b3581da29a6cafd5e8d722820b1310ec7ac",
+    "51685e161f563405a0307040b29866a756e09c0b7fdebbe1de1f486cc19447e0",
+    "6b2b3c0f3b9f10ae27ee9f17dd4d7b8fee1aae9d6046779a28bc45ded40a1d2d",
+    "5465457a94e30d9c96558c06bac7b1f054204f4001ef96428388568f4bfcb82f",
+    "6b2b3c0f3b9f10ae27ee9f17dd4d7b8fee1aae9d6046779a28bc45ded40a1d2d",
+    "51685e161f563405a0307040b29866a756e09c0b7fdebbe1de1f486cc19447e0",
+    "622c6b9b11f2db35444fc304c82c8b3581da29a6cafd5e8d722820b1310ec7ac"
+   ]
+  },
+  {
+   "unit": "nullbreaker",
+   "property": "lv2_walk_frames",
+   "outputs": [
+    "assets/vector/nullbreaker_lv2_walk_1.png",
+    "assets/vector/nullbreaker_lv2_walk_2.png",
+    "assets/vector/nullbreaker_lv2_walk_3.png",
+    "assets/vector/nullbreaker_lv2_walk_4.png",
+    "assets/vector/nullbreaker_lv2_walk_5.png",
+    "assets/vector/nullbreaker_lv2_walk_6.png",
+    "assets/vector/nullbreaker_lv2_walk_7.png",
+    "assets/vector/nullbreaker_lv2_walk_8.png"
+   ],
+   "sha256": [
+    "4c20b73fa3ef73bb6c1eff43a5e68a2fb4824baaabf8df3427424c2596268e99",
+    "3d39ce1dc0b4ce8c411744df3413ba09ef906de40e82d38600139f6f09d1d11e",
+    "eeaf5be8a8fa836b1b058599175f53b53b0908e276a74b732c22ad56deb971c4",
+    "45c3b8234d344f66cb3c71ffb29ad051a868407422318802499cc909f65d20ba",
+    "aa6a9038f88c50a838ae81a3b7af858f1b3ecbecbe4864efb6402fb7330c0b8e",
+    "8b0510e3fdd3595b03b706acb44665925784ef6a146c92bf7d210b7132e328fa",
+    "1a1635aa2798a9126073306453d37fd59778bc0a447fc5916df90f3821ad7497",
+    "9b3d6e37921a22b4e5b2aa70ca16fb099d6b495280e0c044673d68749bd76832"
+   ]
+  },
+  {
+   "unit": "nullbreaker",
+   "property": "lv2_attack_frames",
+   "outputs": [
+    "assets/vector/nullbreaker_lv2_attack_1.png",
+    "assets/vector/nullbreaker_lv2_attack_2.png",
+    "assets/vector/nullbreaker_lv2_attack_3.png",
+    "assets/vector/nullbreaker_lv2_attack_4.png",
+    "assets/vector/nullbreaker_lv2_attack_5.png",
+    "assets/vector/nullbreaker_lv2_attack_6.png",
+    "assets/vector/nullbreaker_lv2_attack_7.png",
+    "assets/vector/nullbreaker_lv2_attack_8.png"
+   ],
+   "sha256": [
+    "7b320d1d734e399de08c59731e31f0468dbc8ad719d4779f975d5e6f897c5e96",
+    "8af8b8c63aa783203ce3e6c4050bb3064d77843f5bac1339bff9ccf903d890a2",
+    "2bab6780e06e304b17483ac8cf8199328b79dd4fbd23454ae7baaef8f39e9dac",
+    "51538b22aace2d4215dada5b57f3c9291eaefa09809a07c84a73c27e114d3d95",
+    "85dc664eb23a25cdcab16efa80230a39339cae713c15b400015bc61c9d6ec14b",
+    "cf24ba127ffc71bad4e46846a11eabf06ddfb8b02e14c61b81a9b9a8ce6f5313",
+    "f94a37685801e03e7ffa5b32e6ea300a7500b2baa5d47979c849027c4c4f11c0",
+    "7ccf34c6f6fa652e43ba9993c0849d81c001a57352b817135c1a7876a804aa9b"
+   ]
+  },
+  {
+   "unit": "nullbreaker",
+   "property": "lv2_retreat_frames",
+   "outputs": [
+    "assets/vector/nullbreaker_lv2_retreat_1.png",
+    "assets/vector/nullbreaker_lv2_retreat_2.png",
+    "assets/vector/nullbreaker_lv2_retreat_3.png",
+    "assets/vector/nullbreaker_lv2_retreat_4.png",
+    "assets/vector/nullbreaker_lv2_retreat_5.png",
+    "assets/vector/nullbreaker_lv2_retreat_6.png",
+    "assets/vector/nullbreaker_lv2_retreat_7.png",
+    "assets/vector/nullbreaker_lv2_retreat_8.png"
+   ],
+   "sha256": [
+    "3a269747638c732437a8e2cdbb6bd71ac9d317ed163a393428accc42dd1a6331",
+    "c1fd70b0a0fc3eeb6cb57814c2e3385e7a47826ef0be882dda4e3a206953f613",
+    "1a726202433e56c09b2740ecc32ff04872f3a208e536526b0f475d4514c3c99c",
+    "9deb7bf5bd1bd2bb2e55b69769d5d075cdc38d1e247ec54ce93ad6e768297a70",
+    "5c048e5c4750fa583574fc7714fe7d2ff32e3a87407dadd7582375424d4eab62",
+    "228d63b14b5065814c2ffa9b0aa6dc935219de223f1265d9010528f756690b6a",
+    "d5bc9ce8f67bb702913e2a5128b5b2aad656339a0b9a06e01737a225fac9c5d7",
+    "172a9996b08eb37cab4a1acc9db101e720b7e610c6ee464d53a7e72587f284f1"
+   ]
+  },
+  {
+   "unit": "nullbreaker",
+   "property": "lv3_idle_frames",
+   "outputs": [
+    "assets/vector/nullbreaker_lv3_idle_1.png",
+    "assets/vector/nullbreaker_lv3_idle_2.png",
+    "assets/vector/nullbreaker_lv3_idle_3.png",
+    "assets/vector/nullbreaker_lv3_idle_4.png",
+    "assets/vector/nullbreaker_lv3_idle_5.png",
+    "assets/vector/nullbreaker_lv3_idle_6.png",
+    "assets/vector/nullbreaker_lv3_idle_7.png",
+    "assets/vector/nullbreaker_lv3_idle_8.png"
+   ],
+   "sha256": [
+    "096a16437bc5743ee650f6fbcb8d19d2dc4d6f300adfd2c9e78e1fc5665dc63b",
+    "e2ea24a1e7c7f33cf358aae4e7e2eea3f29aba97bd6bc1cc61b086b49556a445",
+    "5235281044812e7d99e593bd88578930ea942e7df0f91bdfc60aa29fdc0472f6",
+    "d9e03746387548296fc39b42762bcd58f185ec436bf71869b22bf0bfde044826",
+    "0f601eea5b229b7e2027228713e5fcfe566b4a9c1a1a5a47cd70fc91f247c083",
+    "d9e03746387548296fc39b42762bcd58f185ec436bf71869b22bf0bfde044826",
+    "5235281044812e7d99e593bd88578930ea942e7df0f91bdfc60aa29fdc0472f6",
+    "e2ea24a1e7c7f33cf358aae4e7e2eea3f29aba97bd6bc1cc61b086b49556a445"
+   ]
+  },
+  {
+   "unit": "nullbreaker",
+   "property": "lv3_walk_frames",
+   "outputs": [
+    "assets/vector/nullbreaker_lv3_walk_1.png",
+    "assets/vector/nullbreaker_lv3_walk_2.png",
+    "assets/vector/nullbreaker_lv3_walk_3.png",
+    "assets/vector/nullbreaker_lv3_walk_4.png",
+    "assets/vector/nullbreaker_lv3_walk_5.png",
+    "assets/vector/nullbreaker_lv3_walk_6.png",
+    "assets/vector/nullbreaker_lv3_walk_7.png",
+    "assets/vector/nullbreaker_lv3_walk_8.png"
+   ],
+   "sha256": [
+    "7fc040cb586c5952512d8c0ab56b46e067e8946810a861ce067ab42c559b82d6",
+    "45b5d482fbd9630f83a0dec8ab34622a6bf50c749a608d3abd026a1689117213",
+    "22936cbc4bffe92a93139accaff25e866e6c7742d5e2fbfdfacef4635f50b3da",
+    "99eb04a571bcc34bdd146d1f665f4d1b0ab53866e299a3d68d44c0b70e421672",
+    "6aca7b51baaadba0b2049b4bbf519100f364c80a2ffa82ddac1672d985f4d70a",
+    "4e7a324252f84c885cfd03e8f5a2ad42d228950db3b16ec70196ae5cbfc44d60",
+    "cada7b7a3f84b1e45e2954b1ee7a645dbae2cd51d6a1889fc2c08a8f549bd13a",
+    "ba09fd4dd1c5d1905bf5c4bb63ea0c3ef542a643c0486d137c323a87a55294f1"
+   ]
+  },
+  {
+   "unit": "nullbreaker",
+   "property": "lv3_attack_frames",
+   "outputs": [
+    "assets/vector/nullbreaker_lv3_attack_1.png",
+    "assets/vector/nullbreaker_lv3_attack_2.png",
+    "assets/vector/nullbreaker_lv3_attack_3.png",
+    "assets/vector/nullbreaker_lv3_attack_4.png",
+    "assets/vector/nullbreaker_lv3_attack_5.png",
+    "assets/vector/nullbreaker_lv3_attack_6.png",
+    "assets/vector/nullbreaker_lv3_attack_7.png",
+    "assets/vector/nullbreaker_lv3_attack_8.png"
+   ],
+   "sha256": [
+    "4b690edcc25ff1f041b70fe857f096f59085cf4dc77ed8d6b2da6f5cd91e272b",
+    "db484766a0ab4dc6bc720f2dd6d0ebaa6b597ae06c3ee4d719184cb6fe334f06",
+    "df388d5a887e211c78f2c41d8262af4f39a43d806ed4caf0d7f71daff33e0fc2",
+    "f0dc46aef53c891d54119767d7c7d907245994b2168f145c2e3fc783ce349c1f",
+    "15b18ac55acfd73a50f09ae4de6fb9ecb62a309f928949758c3fc2c3ca567b84",
+    "ca7a79432b64885cf6be67811f25ed7d98762abc482be9c6935e94d12bf30923",
+    "39aa0797b7b84604cef17afdbdb449f95fdd30762b8f5e62370d50a52458289a",
+    "be7fdbe233a75d14ad42a8c281f7358aeab84d2253da07b5d5daceb1c06ad808"
+   ]
+  },
+  {
+   "unit": "nullbreaker",
+   "property": "lv3_retreat_frames",
+   "outputs": [
+    "assets/vector/nullbreaker_lv3_retreat_1.png",
+    "assets/vector/nullbreaker_lv3_retreat_2.png",
+    "assets/vector/nullbreaker_lv3_retreat_3.png",
+    "assets/vector/nullbreaker_lv3_retreat_4.png",
+    "assets/vector/nullbreaker_lv3_retreat_5.png",
+    "assets/vector/nullbreaker_lv3_retreat_6.png",
+    "assets/vector/nullbreaker_lv3_retreat_7.png",
+    "assets/vector/nullbreaker_lv3_retreat_8.png"
+   ],
+   "sha256": [
+    "637fe52ad7eb49947a164ec0e7417ed31efc6ed1820d50c4348eec40d1d4e4ae",
+    "4ec6197452655236b59b9d8f7de2ccaee4acd416e9232230744086004e99c6b1",
+    "061fcda0c944b3eb9246f0ecb10e2beb1fcbcb398b5fac2cd512615d04295385",
+    "b64fc3459db6e34e9d471e1b7f0749dda96e2fa2376a9fc85750dc7a44f36303",
+    "ef10a02088dafa780eaa8d6c9eace03fcf4288ca96ab9978621550db7c129143",
+    "ab77433828312e07a1de958673ffaaccfca9f67d2b6b17d95b94559d98685147",
+    "22c8a28442be617a3bbc8a022ea456aacf4ce02d5afb622e64abbd860ed33f2d",
+    "8c510109d74baf6141ba6eab75dee47fb4067df5a49c243d743cd88eb917a33f"
+   ]
+  }
+ ]
+}

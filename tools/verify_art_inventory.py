@@ -98,6 +98,21 @@ def roster_resources() -> list[Path]:
     return [resource_path(declarations[name]) for name in names]
 
 
+def _vector_outputs() -> set:
+    """Runtime frames rendered by the vector rig whose bytes still match the
+    hashes in art_sources/vector-2026-10-14/record.json."""
+    record = PROJECT_ROOT / "art_sources" / "vector-2026-10-14" / "record.json"
+    if not record.exists():
+        return set()
+    live = set()
+    for item in json.loads(record.read_text(encoding="utf-8"))["sets"]:
+        for out, digest in zip(item["outputs"], item["sha256"]):
+            path = PROJECT_ROOT / out
+            if path.exists() and hashlib.sha256(path.read_bytes()).hexdigest() == digest:
+                live.add(out)
+    return live
+
+
 def audit() -> dict:
     warnings, errors = [], []
     resources = roster_resources()
@@ -108,18 +123,21 @@ def audit() -> dict:
         warnings.extend(resource_warnings)
         arrays_by_resource[resource] = arrays
         for prop, frames in arrays.items():
-            if len(frames) != 4 or len(set(frames)) != 4:
-                errors.append(f"{relative(resource)}:{prop} needs four unique frame paths")
+            if len(frames) not in (4, 8) or len(set(frames)) != len(frames):
+                errors.append(f"{relative(resource)}:{prop} needs four or eight unique frame paths")
             for frame in frames:
                 if frame not in frame_metadata:
                     frame_metadata[frame] = inspect_frame(frame)
             if len({frame_metadata[p]["sha256"] for p in frames}) < len(frames):
-                errors.append(f"{relative(resource)}:{prop} has pixel-identical frames")
+                # An 8-frame breathing loop eases out and back, so mirrored
+                # frames can match exactly; that is a warning, not broken art.
+                (warnings if len(frames) == 8 else errors).append(f"{relative(resource)}:{prop} has pixel-identical frames")
 
     manifest_paths = sorted(checked_path("art_sources").rglob("*_manifest.json"))
     if not manifest_paths:
         raise ValueError("No art manifests found")
     entry_count, seen_entries, source_paths, output_owners = 0, set(), set(), {}
+    vector_frames, superseded = _vector_outputs(), 0
     sets_with_manifests = {}
     normalized = {}
     for manifest_path in manifest_paths:
@@ -135,6 +153,12 @@ def audit() -> dict:
                 raise ValueError(f"Manifest owner is outside the playable animation roster: {entry}")
             outputs = entry_outputs(entry)
             owner = (resource, prop)
+            # Painted sheets whose property is now wired to the vector rig
+            # renders are superseded history, not runtime art.
+            if arrays_by_resource[resource].get(prop) and all(
+                    relative(f) in vector_frames for f in arrays_by_resource[resource][prop]):
+                superseded += 1
+                continue
             signature = (source, owner, tuple(outputs))
             source_paths.add(source)
             seen_entries.add(signature)
@@ -169,7 +193,8 @@ def audit() -> dict:
             frames = arrays_by_resource[resource].get(prop, [])
             manifests = sorted(sets_with_manifests.get((resource, prop), []))
             sets.append({"unit": resource.stem, "property": prop,
-                         "status": ("placeholder" if frames and all(relative(f) in stand_ins for f in frames)
+                         "status": ("vector" if frames and all(relative(f) in vector_frames for f in frames)
+                                    else "placeholder" if frames and all(relative(f) in stand_ins for f in frames)
                                     else "manifest_wired" if manifests else "legacy_wired" if frames else "missing"),
                          "frames": [relative(path) for path in frames], "manifests": manifests})
     counts = dict(Counter(item["status"] for item in sets))
@@ -198,7 +223,7 @@ def main() -> int:
     placeholders = counts.get("placeholder", 0)
     print(f"{'FAIL' if report['errors'] else 'PASS'}: art file/wiring integrity; "
           f"{report['target_sets'] - missing - placeholders}/{report['target_sets']} sets with real art "
-          f"({counts.get('manifest_wired', 0)} manifest, {counts.get('legacy_wired', 0)} legacy), "
+          f"({counts.get('vector', 0)} vector, {counts.get('manifest_wired', 0)} manifest, {counts.get('legacy_wired', 0)} legacy), "
           f"{placeholders} code-derived placeholders, {missing} missing")
     print(f"{report['manifest_files']} manifests, {report['manifest_entries']} entries, "
           f"{report['unique_source_sheets']} unique source sheets, "

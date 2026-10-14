@@ -1480,7 +1480,9 @@ func _update_view(v: Dictionary) -> void:
 		if frames.is_empty():
 			frames = u.def.walk_frames_for_level(u.level)
 		if not frames.is_empty():
-			const WALK_FRAME_DISTANCE := 0.4
+			# One full cycle per 1.6 world units whatever the frame count
+			# (4 painted frames or 8 vector frames).
+			var walk_frame_distance := 1.6 / float(frames.size())
 			# Real spritesheet frames carry the motion themselves -- no
 			# procedural squash/bounce on top, same "don't double-animate"
 			# rule as attack_frames vs the procedural punch.
@@ -1491,7 +1493,7 @@ func _update_view(v: Dictionary) -> void:
 			# makes the animation visibly skip frames instead of just briefly
 			# lagging behind, which reads as choppy/tweaky regardless of how
 			# correct the underlying distance math is.
-			var target_idx := int(v.walk_phase / WALK_FRAME_DISTANCE) % frames.size()
+			var target_idx := int(v.walk_phase / walk_frame_distance) % frames.size()
 			if v.walk_frame_display != target_idx:
 				v.walk_frame_display = (v.walk_frame_display + 1) % frames.size()
 			sprite.texture = frames[v.walk_frame_display]
@@ -1663,7 +1665,9 @@ func _play_attack_frames(v: Dictionary) -> void:
 	var frames: Array = v.unit.def.attack_frames_for_level(v.unit.level)
 	var sprite: Sprite2D = v.sprite
 	var base_tex: Texture2D = v.unit.def.idle_sprite_for_level(v.unit.level)
-	var frame_time := 0.08
+	# Whole swing fits the unit's own attack rhythm (4-frame sets used to run
+	# a flat 0.32 s; 8-frame vector sets would double that otherwise).
+	var frame_time := clampf(def.attack_interval() * 0.8, 0.28, 0.48) / float(maxi(frames.size(), 1))
 	if def.berserk_min_level > 0 and v.unit.level >= def.berserk_min_level:
 		frame_time *= lerpf(def.berserk_max_speed_mult, 1.0, v.unit.hp_fraction())
 

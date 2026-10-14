@@ -63,8 +63,9 @@ def wired_text(text, frame_sets):
         properties[key] = value
         body_lines.append(line)
     for prop, paths in frame_sets.items():
-        if not PROP.fullmatch(prop) or len(paths) != 4 or len(set(paths)) != 4:
-            raise ValueError(f"Invalid four-frame animation property: {prop}")
+        # Painted sheets give 4 frames; vector rigs render 8 (2026-10-14).
+        if not PROP.fullmatch(prop) or len(paths) not in (4, 8) or len(set(paths)) != len(paths):
+            raise ValueError(f"Invalid 4- or 8-frame animation property: {prop}")
         ids = []
         for index, path in enumerate(paths, 1):
             if not path.startswith("res://assets/") or '"' in path or "\n" in path:

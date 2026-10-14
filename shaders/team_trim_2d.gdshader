@@ -27,8 +27,11 @@ uniform float flash_amount : hint_range(0.0, 1.0) = 0.0;
 // (gamma_lift). Verified against Enforcer/Trooper/Field Medic/Marksman via
 // a real before/after render (not just eyeballing the formula) before these
 // defaults were picked; 1.0/1.0 is a no-op if a unit ever needs to opt out.
-uniform float saturation_boost : hint_range(0.5, 3.0) = 2.2;
-uniform float gamma_lift : hint_range(0.4, 1.0) = 0.72;
+// 2026-10-14: the roster is now vector-rendered with deliberate, already
+// vivid colours, so the old 2.2 / 0.72 boost (tuned for muted painted art)
+// turned it neon. Kept as a gentle lift.
+uniform float saturation_boost : hint_range(0.5, 3.0) = 1.15;
+uniform float gamma_lift : hint_range(0.4, 1.0) = 0.92;
 
 vec3 boost_vibrance(vec3 color) {
 	float luma = dot(color, vec3(0.299, 0.587, 0.114));
