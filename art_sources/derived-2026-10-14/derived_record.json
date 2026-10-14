@@ -15,6 +15,12 @@
         "assets/cryotek_attack_windup.png",
         "assets/cryotek_attack_strike.png",
         "assets/cryotek_attack_recover.png"
+      ],
+      "sha256": [
+        "49d8c59a57514a082db038670b67d8b4034d07b35e88349cd06a5d189ff5ee0c",
+        "25565f4895b9631861cdf40d59200e73b5cf30e140fd5c4570afe3cedefbcd7b",
+        "f19c0a2d090eda21f3e1b271e0883258be488555c71324a6cfc59038c8326686",
+        "49b1ecf3b65524bb067fd062e16f9925b5357536c63b26ac236e682e24a30bd9"
       ]
     },
     {
@@ -30,6 +36,12 @@
         "assets/cryotek_lv2_attack_windup.png",
         "assets/cryotek_lv2_attack_strike.png",
         "assets/cryotek_lv2_attack_recover.png"
+      ],
+      "sha256": [
+        "7b27cd4cb19eb28bc78be26164b21cbc4f29fef67fdc0de3e96f588a7ee63fdf",
+        "7e1dd101bb058de89e651c7e0fbfb31855872d05d948b4644e140250d3a0e022",
+        "fdb91ca4648e5f462f1e3ba8585a1b1b56db845901e82fd1cdd202f21d0d8b4e",
+        "d4eb4390ab4920404faca96306e1919a4d0cb52cdb7cf5fc081407f927eddc4f"
       ]
     },
     {
@@ -45,24 +57,12 @@
         "assets/cryotek_lv3_attack_windup.png",
         "assets/cryotek_lv3_attack_strike.png",
         "assets/cryotek_lv3_attack_recover.png"
-      ]
-    },
-    {
-      "unit": "cryotek",
-      "tier": 1,
-      "property": "walk_frames",
-      "method": "walk_from_idle",
-      "sources": [
-        "assets/cryotek_idle_breathe1.png",
-        "assets/cryotek_idle_breathe2.png",
-        "assets/cryotek_idle_breathe3.png",
-        "assets/cryotek_idle_breathe4.png"
       ],
-      "outputs": [
-        "assets/cryotek_walk_walk1.png",
-        "assets/cryotek_walk_walk2.png",
-        "assets/cryotek_walk_walk3.png",
-        "assets/cryotek_walk_walk4.png"
+      "sha256": [
+        "51ffe6885664e897e7ff52d7735666886de0c377bac1876a56aa19a01495bede",
+        "54fa365eff1c2f0aabe9db73213acc1d33eac880062e0f74f0ad1611a8b4c505",
+        "d6837c1ffde9f3b84b6384da0a79460cc65fc41dc94c123e47f9d49a3c83f7dd",
+        "2b9311c71b718aeb8536e4ac3bd2720f0fcf7881b954c6708a833da65d907dac"
       ]
     },
     {
@@ -81,6 +81,12 @@
         "assets/cryotek_lv2_walk_walk2.png",
         "assets/cryotek_lv2_walk_walk3.png",
         "assets/cryotek_lv2_walk_walk4.png"
+      ],
+      "sha256": [
+        "36e0f0e77d1e463723deead33547498d4855d634944e86e0cb1f2ff048a88839",
+        "f39162c22e7b8d9e7a357616e2086a5de9bf6e683d75a4f1b5e844310fa009c0",
+        "e4605d49680fc51984ff1412a2cc7ea17b0f31ca7336241cb7d1f7e3b72d4346",
+        "8e10b656c42733ff402a9a194cdb1700a718d19b1233abba02ec772073ed1a9e"
       ]
     },
     {
@@ -99,6 +105,12 @@
         "assets/cryotek_lv3_walk_walk2.png",
         "assets/cryotek_lv3_walk_walk3.png",
         "assets/cryotek_lv3_walk_walk4.png"
+      ],
+      "sha256": [
+        "9225f0883f2b69b9b8cf36911583154e5133efc4de5f60803413e2772d37d811",
+        "57a94d92122534b93f3cf7170d9651ef06fa1f3de87f9a3caa06787108571bc3",
+        "c0e77c5cd11aa5027624c9f1cedf684b54753e104c58d064707d459f32b6923c",
+        "02210920a357dca812bfd2ee9dc2d32edf8001ae2a3f31d35628f4969469ba57"
       ]
     },
     {
@@ -117,6 +129,12 @@
         "assets/cryotek_retreat_retreat2.png",
         "assets/cryotek_retreat_retreat3.png",
         "assets/cryotek_retreat_retreat4.png"
+      ],
+      "sha256": [
+        "49c756709301d685ba3b0ff6687585708b081c4b6c5e2bfed7bdf9f5bba33afe",
+        "ff5e2620a4c010af44e6bd578ce1bec1642db37f609f39267238abad1c9021f9",
+        "9de7d7671d7207f3015dee1decd8909b5e5c9d248fc4148f57eda80c65cf5c9a",
+        "d82b6472834babae89fdf29fe7d4a3a57f9d168a1c0597bd299c23cd0b8a3206"
       ]
     },
     {
@@ -135,6 +153,12 @@
         "assets/cryotek_lv2_retreat_retreat2.png",
         "assets/cryotek_lv2_retreat_retreat3.png",
         "assets/cryotek_lv2_retreat_retreat4.png"
+      ],
+      "sha256": [
+        "e78bfe8a65f897c499da0389f85745a2cd25b87195fee19aba545788275c075a",
+        "cc6e237757677fc0a56bee370d6dbaa421ea71532c06557c7183d53f0d4f39c3",
+        "dd311fd6e2c2a9c0ecefc337d5c481cc80a4c7c9eefd10c18f8ddbb36cbee0dc",
+        "2fdfb698a8cc3cfc7274372c5f88f16c8442c0d3f39ab87b4cdc2cded92651e5"
       ]
     },
     {
@@ -153,6 +177,12 @@
         "assets/cryotek_lv3_retreat_retreat2.png",
         "assets/cryotek_lv3_retreat_retreat3.png",
         "assets/cryotek_lv3_retreat_retreat4.png"
+      ],
+      "sha256": [
+        "bdd2214824f3687aa208141d267b3b66541ad5c48969d532d26e0d3814179b95",
+        "626bc3d12d053d0f79a61e20924a54bfb9f7ef3d9e42f0871e2de504ee296c36",
+        "3e90b10d477d8fb3f90f1a2e512c4698b648cabf64c837dcebd7aec04c7e9dab",
+        "77fd287307aa9b95f8c5103942f6c7bd2af6693f643ef892e7be3c342ebc3cf8"
       ]
     },
     {
@@ -171,6 +201,12 @@
         "assets/arcrelay_walk_walk2.png",
         "assets/arcrelay_walk_walk3.png",
         "assets/arcrelay_walk_walk4.png"
+      ],
+      "sha256": [
+        "bf95aa246671b5dc19fabe12bb74cbcd1a157661e21d261d5005a116f717b360",
+        "7157fb484a7cb0add3fed2b1454a809203c4757ad0ef507e22ddf6df02f351e4",
+        "d25a96c69fbf63c308ad200e1a65bbeaa9d2b1368d9385d3d384b5f8b936e185",
+        "1509c25c74edf5dbe5e4e0996d48734bf3ecf22dde84e0031437c1ad50d14608"
       ]
     },
     {
@@ -189,6 +225,12 @@
         "assets/arcrelay_lv2_walk_walk2.png",
         "assets/arcrelay_lv2_walk_walk3.png",
         "assets/arcrelay_lv2_walk_walk4.png"
+      ],
+      "sha256": [
+        "2c2d931dc8c8eae1939d42115241f91bb60570571568f397c3d82535293c7a51",
+        "d56696f7c6783963e2fd461368c489f2510a7194f2a92496a2f840af52c81a0b",
+        "b3e5264af47fd463256767a07a86139d916d6444085f7d6430086f5749e4b411",
+        "28257d70c61b546400d0dabf711e8f1bea80e1794bb06a42233b51ef5a8c83b1"
       ]
     },
     {
@@ -207,6 +249,12 @@
         "assets/arcrelay_lv3_walk_walk2.png",
         "assets/arcrelay_lv3_walk_walk3.png",
         "assets/arcrelay_lv3_walk_walk4.png"
+      ],
+      "sha256": [
+        "e4ef9b55860da1ed1a295db08d3e82b2a1731d6bdc8cd9b5b8cb6832dd36891a",
+        "78ac7a608e38ad1ec4d06dd8823e11b67d043676831e1038ad7438e87886b279",
+        "ff4e83f7a73dd84ee1889e3e4e77bea31bf629f2d5458d1aa4d5b01347eb7099",
+        "766df10d6f2abe0cb213111b673a02bc1d18c19662c1d7ebb4073952721af2fc"
       ]
     },
     {
@@ -225,6 +273,12 @@
         "assets/phaseblade_walk_walk2.png",
         "assets/phaseblade_walk_walk3.png",
         "assets/phaseblade_walk_walk4.png"
+      ],
+      "sha256": [
+        "cee191627ce1ed5ed74c9e0f3f28e10c4a4f2fa06f6ed1bf1aced4cc85b23ea2",
+        "121db93f49d2a02b29416ba65b3d0bc5a0b1f54cd189f9409f5b07e48b97301e",
+        "99af778bcd598fc026a5b7c808cef11506b9739f443e302c13ce0c3d0d695ef5",
+        "008043a2d03103f5765bb7243a9ab33a937ba0938aac188f51fdad4025222334"
       ]
     },
     {
@@ -243,6 +297,12 @@
         "assets/phaseblade_lv2_walk_walk2.png",
         "assets/phaseblade_lv2_walk_walk3.png",
         "assets/phaseblade_lv2_walk_walk4.png"
+      ],
+      "sha256": [
+        "4bc4b48589499bb4c677a1c49eae4f2bee45163dc2677a15285578ae0ac6193f",
+        "462082ec509b3c836b6bc20205ec6fab483448e6b9bddd2ba6b6654893ba3b17",
+        "daa34d3db0682b1ea29261d13e82d18c1521f26eec7000489d8e0f254ea279a2",
+        "585a19b4326c07f66769ec4fa994828fb285cda8344e9ff9f38721909a5c6b3d"
       ]
     },
     {
@@ -261,6 +321,12 @@
         "assets/phaseblade_lv3_walk_walk2.png",
         "assets/phaseblade_lv3_walk_walk3.png",
         "assets/phaseblade_lv3_walk_walk4.png"
+      ],
+      "sha256": [
+        "8f71367bdd5f8e53dc9448ebce94e1f12bd712e16ff5ec6de4798e9dc32042c6",
+        "9a7dec09ea7ce7744e859f53b07978a71ad581da30ba24b82d2e589e9b1568c6",
+        "14332ce89cb2dd65e3d4ed9aa48fe5e9ca2b46abb5772287f4bbd32bc002ac40",
+        "548e557e0fe35467624b925467126c5baaabdfe3e35556249d5da6c82d6122d0"
       ]
     },
     {
@@ -279,6 +345,12 @@
         "assets/arcrelay_retreat_retreat2.png",
         "assets/arcrelay_retreat_retreat3.png",
         "assets/arcrelay_retreat_retreat4.png"
+      ],
+      "sha256": [
+        "531961d38fd3bc76a983f999db7333414f684deab41b1063f3dc78f36807d386",
+        "db3b9359e9eeee18dc48ba5ea4f6b06e22b393d20a84f5d09b98c7d18c5ce8e6",
+        "caf9a5976062942959e262e1e7080c6ff378fd5ead86e8cec092c8718b0fdcc4",
+        "935813760c12257fe40e92cd85358777fc4d933b4786fae3f67dbe75f0c29340"
       ]
     },
     {
@@ -297,6 +369,12 @@
         "assets/arcrelay_lv2_retreat_retreat2.png",
         "assets/arcrelay_lv2_retreat_retreat3.png",
         "assets/arcrelay_lv2_retreat_retreat4.png"
+      ],
+      "sha256": [
+        "1713c9520b54cde10f4ecc7b4f7a96d8e24adb1f3200be54170f816b78eb4db9",
+        "86b1a6a461faedc39c6914777e70dbca487593242a7dedecae10b9778b6c9107",
+        "5ff9948a1b281201e02d5ac28e81644b2f50ef63bc1a845184d28970b16b099e",
+        "0c8f763f238377ead05111154f00f15d66e5c4a0b6df38eac262de4c206bf519"
       ]
     },
     {
@@ -315,6 +393,12 @@
         "assets/arcrelay_lv3_retreat_retreat2.png",
         "assets/arcrelay_lv3_retreat_retreat3.png",
         "assets/arcrelay_lv3_retreat_retreat4.png"
+      ],
+      "sha256": [
+        "949f40e340e03126c971bee83ddc2777ec159e825329770fc99607c0c300f20e",
+        "d02b9cdffcae45b7b403c96289e4978ce85b0651d964b1a03d06bd26a3265e75",
+        "cff861eb88efdc0c547b5bf8d7e7267bf9d941a8fa362409e90e6e52052dc800",
+        "4e7f66be8970ebe485dd1077e2103f3065f40ff8a2becbf88b8785d97e765595"
       ]
     },
     {
@@ -333,6 +417,12 @@
         "assets/phaseblade_retreat_retreat2.png",
         "assets/phaseblade_retreat_retreat3.png",
         "assets/phaseblade_retreat_retreat4.png"
+      ],
+      "sha256": [
+        "e2d5e523d0861cac702bdacd817873b29090539d60167bfcf0090e79b2e4da76",
+        "551cd3f518d3078b907d861a78ad189772b1da04e261b124d129bd6073840c6c",
+        "6a895a4ffb440a56d97d8e55ae52c1f3fbf6c5853aa168848c832d548f29ca8d",
+        "e963c5ca1cff5cdd0271bd9258740522b706b08c9a4a903e00b898984723d510"
       ]
     },
     {
@@ -351,6 +441,12 @@
         "assets/phaseblade_lv2_retreat_retreat2.png",
         "assets/phaseblade_lv2_retreat_retreat3.png",
         "assets/phaseblade_lv2_retreat_retreat4.png"
+      ],
+      "sha256": [
+        "1fc5ca1bf03400b5d61d2bf1c7cf74a3e35b86415ca7f7c14f58e578d6f17e4f",
+        "5281316d3837106fb528bdb762f4db2ae61a05d80560145ab78f716c8a1ca73a",
+        "d6c13e59f26e755cef7dd5037433cf37936a51c00edeae630e5c787fa6ac83b9",
+        "01fb7ccd63db23d8487a92914d74021919d8061596924217cbb955d2f0be9aba"
       ]
     },
     {
@@ -369,6 +465,12 @@
         "assets/phaseblade_lv3_retreat_retreat2.png",
         "assets/phaseblade_lv3_retreat_retreat3.png",
         "assets/phaseblade_lv3_retreat_retreat4.png"
+      ],
+      "sha256": [
+        "1ebd97fc815107c8abb503c947bab999a6657d0a71c42c1522f7a6696a0aa394",
+        "0b026d05926f05c269ed089be06fe2d2fa3382b1d965454fd98871f0c7df3bbd",
+        "2d8c3d7ceb27d5a9f9ea87f0c940519a6cecbf38b371287bcea07aac055b987a",
+        "112446d4acb9b08cc6273cd2b3accc1a65c3e2a6d6d6c9ae473d0838b36b0ad7"
       ]
     },
     {
@@ -387,6 +489,12 @@
         "assets/nullbreaker_retreat_retreat2.png",
         "assets/nullbreaker_retreat_retreat3.png",
         "assets/nullbreaker_retreat_retreat4.png"
+      ],
+      "sha256": [
+        "81b801df095f783fea5483a31dab320d8b1317e20737049b54ad2c951ba2374a",
+        "1bfaf9e58a624a8dfad93318d6fd21327e8a695a2c2afc0dce19b20cd3676423",
+        "4969f2ca1686be22acaa70c7e3d6ffb2dc5343240179df9e0aadcbe3f3c3cddc",
+        "e6a4b96a1a8a63c3af113edbb9160bc215ff078584576af31e17b8aec9fbb08e"
       ]
     },
     {
@@ -405,6 +513,12 @@
         "assets/nullbreaker_lv2_retreat_retreat2.png",
         "assets/nullbreaker_lv2_retreat_retreat3.png",
         "assets/nullbreaker_lv2_retreat_retreat4.png"
+      ],
+      "sha256": [
+        "ee1c46fb7bd20c42f8125bc7e08189acc30ae0dd3f60233393836da55eacf87d",
+        "ce5ad6d927bf8dbd867aa98c124413005e684cf15b898dfb452e14e016c266d2",
+        "27a7a8243c245eb803ce5ac288dd3bf0661de1998cf5b03667121b4ae62f1754",
+        "2eaa6dcc4e5c189833d706dbda67ccdfdf82cbed7f9f4cfc46403daf08ad2f77"
       ]
     },
     {
@@ -423,6 +537,12 @@
         "assets/nullbreaker_lv3_retreat_retreat2.png",
         "assets/nullbreaker_lv3_retreat_retreat3.png",
         "assets/nullbreaker_lv3_retreat_retreat4.png"
+      ],
+      "sha256": [
+        "b674e8f8aac777ffd624f5d2d5d6a3bc8bc7d4a77ad2c5083deb9fbee69054d7",
+        "7b45ab2c4184a6bd3cd285515300a26a2b94588392500548a781a323327126b8",
+        "93c176d95eadedded9ca09e31ee14f68d53eb0b8fac2b7e8ab174e55a4572113",
+        "60e47b9f6817262beaa3d644895321f7c7140c90cfc7df922b89fe0c1fd4ceb4"
       ]
     },
     {
@@ -441,6 +561,36 @@
         "assets/nullbreaker_lv3_attack_fire.png",
         "assets/nullbreaker_lv3_attack_recoil.png",
         "assets/nullbreaker_lv3_attack_settle.png"
+      ],
+      "sha256": [
+        "d247ed2e94b4e62e1b46136a90d17060891eea94e10b65188d222654186bf634",
+        "ec0d6b9907ef98f40a25eccd8b01173fe71660260ce7c044fb0700f9b6770008",
+        "ae0c8981a1948cfe55d073cab929a4927ffaece85b7aee890917e56444e19f68",
+        "cf78f20b0045bd14dc9d7d6cbd6c91fab2630f160fbac6ed3ad798da00271e2a"
+      ]
+    },
+    {
+      "unit": "cryotek",
+      "tier": 1,
+      "property": "walk_frames",
+      "method": "walk_from_idle",
+      "sources": [
+        "assets/cryotek_idle_breathe1.png",
+        "assets/cryotek_idle_breathe2.png",
+        "assets/cryotek_idle_breathe3.png",
+        "assets/cryotek_idle_breathe4.png"
+      ],
+      "outputs": [
+        "assets/cryotek_walk_walk1.png",
+        "assets/cryotek_walk_walk2.png",
+        "assets/cryotek_walk_walk3.png",
+        "assets/cryotek_walk_walk4.png"
+      ],
+      "sha256": [
+        "a4f19af0cec9cba4dc2f3e0001259dcff5696e4a218999fd359dffc489e49449",
+        "362ac4eb088aee65b9cdfab54f306acd11b6f035c0ab43465accf855450b3a73",
+        "60a185631a7094f97aa362cba92c60dffc8c4c1c638cad36f9c98344244fbec8",
+        "22006d161c866f6386c1413c577fcd7e847efb31cf2f91de266bb12795f71773"
       ]
     }
   ]

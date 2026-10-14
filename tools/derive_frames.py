@@ -23,6 +23,7 @@ slicing real art through slice_sheets.py, which overwrites the same paths
 """
 import argparse
 import colorsys
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -50,12 +51,33 @@ PLAN = (
     [("cryotek", t, "attack", "attack_from_idle", ATTACK_NAMES, {"flash": (150, 235, 255)}) for t in (1, 2, 3)]
     + [("cryotek", t, "walk", "walk_from_idle", WALK_NAMES, {}) for t in (1, 2, 3)]
     + [("cryotek", t, "retreat", "walk_from_idle", RETREAT_NAMES, {"backward": True}) for t in (1, 2, 3)]
-    + [(u, t, "walk", "walk_from_idle", WALK_NAMES, {}) for u in ("arcrelay", "phaseblade") for t in (1, 2, 3)]
-    + [(u, t, "retreat", "walk_from_idle", RETREAT_NAMES, {"backward": True})
+    # Phaseblade's blade and ArcRelay's staff hang through the leg region, so
+    # the leg scissor tore/doubled them: those two get bob, lean and sway only.
+    + [(u, t, "walk", "walk_from_idle", WALK_NAMES, {"scissor": False}) for u in ("arcrelay", "phaseblade") for t in (1, 2, 3)]
+    + [(u, t, "retreat", "walk_from_idle", RETREAT_NAMES, {"backward": True, "scissor": False})
        for u in ("arcrelay", "phaseblade") for t in (1, 2, 3)]
     + [("nullbreaker", t, "retreat", "retreat_from_walk", RETREAT_NAMES, {}) for t in (1, 2, 3)]
     + [("nullbreaker", 3, "attack", "tier_recolor", ["ready", "fire", "recoil", "settle"], {"from_tier": 2})]
 )
+
+
+def file_hash(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def stand_in_outputs():
+    """Runtime paths still holding this tool's stand-ins (bytes unchanged since
+    it wrote them). Used by the art audit to report placeholders."""
+    record_path = PROJECT_ROOT / RECORD
+    if not record_path.exists():
+        return set()
+    live = set()
+    for item in json.loads(record_path.read_text(encoding="utf-8"))["sets"]:
+        for out, digest in zip(item["outputs"], item.get("sha256", [])):
+            path = PROJECT_ROOT / out
+            if path.exists() and file_hash(path) == digest:
+                live.add(out)
+    return live
 
 
 def load(path):
@@ -117,10 +139,19 @@ def walk_from_idle(unit, tier, names, extra):
     if backward:
         poses = poses[::-1]
     frames = []
+    use_scissor = extra.get("scissor", True)
     for i, (scissor, lift) in enumerate(poses):
-        base = scissor_legs(idle[i], scissor) if scissor else idle[i]
-        squash = 0.985 if scissor else 1.0
-        frames.append(transform_about_feet(base, lean_deg=lean, sx=1 / squash, sy=squash, dy=lift))
+        if use_scissor:
+            base = scissor_legs(idle[i], scissor) if scissor else idle[i]
+            squash = 0.985 if scissor else 1.0
+            frames.append(transform_about_feet(base, lean_deg=lean, sx=1 / squash, sy=squash, dy=lift))
+        else:
+            # Whole-figure step: stronger bob, a rocking lean and a small sway
+            # stand in for leg motion without cutting through the weapon.
+            rock = 2.5 if scissor > 0 else (-2.5 if scissor < 0 else 0.0)
+            squash = 0.97 if scissor else 1.0
+            frames.append(transform_about_feet(idle[i], lean_deg=lean + rock, sx=1 / squash, sy=squash,
+                                               dx=(scissor * 0.15), dy=lift * 1.6))
     return frames, [f"assets/{unit}{TIER_PREFIX[tier]}_idle_{n}.png" for n in IDLE]
 
 
@@ -163,6 +194,9 @@ def attack_from_idle(unit, tier, names, extra):
     ready = idle
     windup = transform_about_feet(idle, lean_deg=-5.0, sx=1.02, sy=0.97, dx=-h * 0.02)
     strike = transform_about_feet(idle, lean_deg=8.0, sx=0.97, sy=1.04, dx=h * 0.06)
+    overflow = bbox(strike)[2] - (TARGET - 8)
+    if overflow > 0:
+        strike = transform_about_feet(idle, lean_deg=8.0, sx=0.97, sy=1.04, dx=h * 0.06 - overflow)
     tip_x, tip_y = muzzle(strike)
     color = extra.get("flash") if tier < 3 else ENERGY[3]
     # Keep the whole glow (radius ~42 px with blur) inside the 512 frame.
@@ -194,19 +228,13 @@ def color_stats(image):
 
 
 def tier_recolor(unit, tier, names, extra):
-    """Lower-tier attack -> this tier: cyan energy becomes orange, then the
-    overall colour shift between the two tiers' idle art (per-channel mean/std
-    of opaque pixels) is applied so the armour tint matches this tier's idle."""
+    """Lower-tier attack -> this tier: cyan energy becomes the Lv3 orange.
+    (A whole-figure colour transfer from the idle pair turned the armour
+    bronze, unlike the dark Lv3 idle, so only the energy is recoloured.)"""
     from_tier = extra["from_tier"]
     sources = [ASSETS / f"{unit}{TIER_PREFIX[from_tier]}_attack_{n}.png" for n in names]
-    src_mean, src_std = color_stats(load(ASSETS / f"{unit}{TIER_PREFIX[from_tier]}_idle_breathe1.png"))
-    dst_mean, dst_std = color_stats(load(ASSETS / f"{unit}{TIER_PREFIX[tier]}_idle_breathe1.png"))
-    frames = []
-    for path in sources:
-        arr = np.array(recolor_to_orange(load(path))).astype(np.float32)
-        arr[..., :3] = np.clip((arr[..., :3] - src_mean) / src_std * dst_std + dst_mean, 0, 255)
-        frames.append(Image.fromarray(arr.round().astype(np.uint8)))
-    return frames, [str(p.relative_to(PROJECT_ROOT)).replace("\\", "/") for p in sources]
+    return ([recolor_to_orange(load(p)) for p in sources],
+            [str(p.relative_to(PROJECT_ROOT)).replace("\\", "/") for p in sources])
 
 
 METHODS = {"walk_from_idle": walk_from_idle, "retreat_from_walk": retreat_from_walk,
@@ -229,11 +257,13 @@ def main():
     parser.add_argument("--preview", action="store_true")
     parser.add_argument("--only", default="", help="unit_lvN_state, e.g. nullbreaker_lv3_attack")
     args = parser.parse_args()
-    # Frames this tool derived earlier may be regenerated; anything else
-    # (generated art, legacy frames) is never overwritten.
+    # A frame may be regenerated only while its bytes still match the hash this
+    # tool recorded when it wrote it. Once real art is imported over a
+    # stand-in (tools/import_incoming.py, slice_sheets.py) the hash differs and
+    # the whole set is skipped, so a rerun can never overwrite imported art.
     record_path = checked_path(RECORD)
     previous = json.loads(record_path.read_text(encoding="utf-8")) if record_path.exists() else {"sets": []}
-    own_outputs = {o for item in previous["sets"] for o in item["outputs"]}
+    own_hashes = {o: h for item in previous["sets"] for o, h in zip(item["outputs"], item.get("sha256", []))}
     record, rewrites = {"version": 1, "note": "Code-derived stand-ins, not generated art.", "sets": []}, {}
     preview_dir = checked_path("builds/art-preview/derived-20261014")
     for unit, tier, state, method, names, extra in PLAN:
@@ -244,13 +274,19 @@ def main():
         prop = f"{TIER_PROP[tier]}{state}_frames"
         contact(frames, f"{unit} Lv{tier} {state} ({method})").save(
             prepare_output(preview_dir / f"{unit}_lv{tier}_{state}.png"))
-        record["sets"].append({"unit": unit, "tier": tier, "property": prop, "method": method,
-                               "sources": sources, "outputs": [str(p.relative_to(PROJECT_ROOT)).replace("\\", "/") for p in outputs]})
+        rel = [str(p.relative_to(PROJECT_ROOT)).replace("\\", "/") for p in outputs]
         if args.apply:
+            replaced = [r for r, path in zip(rel, outputs)
+                        if path.exists() and own_hashes.get(r) != file_hash(path)]
+            if replaced:
+                print(f"skip {unit} Lv{tier} {state}: {len(replaced)} frame(s) are not this tool's output (real art?)")
+                continue
             for frame, path in zip(frames, outputs):
-                if path.exists() and str(path.relative_to(PROJECT_ROOT)).replace("\\", "/") not in own_outputs:
-                    raise ValueError(f"Refusing to overwrite existing frame: {path}")
                 frame.save(prepare_output(path))
+        record["sets"].append({"unit": unit, "tier": tier, "property": prop, "method": method,
+                               "sources": sources, "outputs": rel,
+                               "sha256": [file_hash(path) for path in outputs] if args.apply else []})
+        if args.apply:
             resource = PROJECT_ROOT / "resources" / f"{unit}.tres"
             rewrites.setdefault(resource, {})[prop] = ["res://" + p.relative_to(PROJECT_ROOT).as_posix() for p in outputs]
     if args.apply:

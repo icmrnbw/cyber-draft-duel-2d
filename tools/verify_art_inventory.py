@@ -1,7 +1,7 @@
 """Audit explicit animation coverage and manifest provenance without deleting files.
 
 Default success means file/wiring integrity, NOT art approval or 120-set completion.
-Use --require-complete to fail on absent animation arrays. Optional JSON output is
+Use --require-complete to fail on absent arrays or code-derived placeholders. Optional JSON output is
 guarded to the project. Visual identity and motion still require human/image QA.
 """
 from __future__ import annotations
@@ -159,13 +159,18 @@ def audit() -> dict:
                 if frame_metadata[output]["sha256"] != expected_hash:
                     errors.append(f"Runtime pixels differ from manifest source/normalization: {relative(output)}")
 
+    # Code-derived stand-ins (tools/derive_frames.py) whose bytes are unchanged
+    # are placeholders, not finished art; importing real art clears this.
+    from derive_frames import stand_in_outputs
+    stand_ins = stand_in_outputs()
     sets = []
     for resource in resources:
         for prop in PROPERTIES:
             frames = arrays_by_resource[resource].get(prop, [])
             manifests = sorted(sets_with_manifests.get((resource, prop), []))
             sets.append({"unit": resource.stem, "property": prop,
-                         "status": "manifest_wired" if manifests else "legacy_wired" if frames else "missing",
+                         "status": ("placeholder" if frames and all(relative(f) in stand_ins for f in frames)
+                                    else "manifest_wired" if manifests else "legacy_wired" if frames else "missing"),
                          "frames": [relative(path) for path in frames], "manifests": manifests})
     counts = dict(Counter(item["status"] for item in sets))
     return {"scope": "File, alpha, explicit wiring and source-pixel integrity only; not visual or Godot approval.",
@@ -190,9 +195,11 @@ def main() -> int:
         return 1
     counts = report["counts"]
     missing = counts.get("missing", 0)
+    placeholders = counts.get("placeholder", 0)
     print(f"{'FAIL' if report['errors'] else 'PASS'}: art file/wiring integrity; "
-          f"{report['target_sets'] - missing}/{report['target_sets']} explicit sets "
-          f"({counts.get('manifest_wired', 0)} manifest, {counts.get('legacy_wired', 0)} legacy, {missing} missing)")
+          f"{report['target_sets'] - missing - placeholders}/{report['target_sets']} sets with real art "
+          f"({counts.get('manifest_wired', 0)} manifest, {counts.get('legacy_wired', 0)} legacy), "
+          f"{placeholders} code-derived placeholders, {missing} missing")
     print(f"{report['manifest_files']} manifests, {report['manifest_entries']} entries, "
           f"{report['unique_source_sheets']} unique source sheets, "
           f"{report['manifest_runtime_frames']} manifest runtime frames; visual approval is separate")
@@ -200,7 +207,7 @@ def main() -> int:
         print(f"ERROR: {error}")
     if report["warnings"]:
         print(f"{len(report['warnings'])} warnings (use --json for details)")
-    return 1 if report["errors"] or (args.require_complete and missing) else 0
+    return 1 if report["errors"] or (args.require_complete and (missing or placeholders)) else 0
 
 
 if __name__ == "__main__":
