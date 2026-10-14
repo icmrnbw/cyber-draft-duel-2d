@@ -77,6 +77,10 @@ def parts_for(tier):
               E("weapon", 118, -6, 10, 10, ORANGE, 33, glow=True)]
     if tier >= 2:   # medic halo antenna and shoulder caps
         p += [E("uarm_f", 0, -4, 24, 22, WHITE, 38), P("head", ((-10, -78), (0, -110), (10, -78)), WHITE, 44)]
+    if tier >= 2:   # larger medic wings
+        for k in (0, 1):
+            p.append(S("pack", ((-10, -50 + k * 34), (-120, -120 + k * 40), (-100, -70 + k * 40), (-12, -30 + k * 34)),
+                       WHITE if tier == 2 else (255, 200, 140, 200), -34, gloss=0.3))
     return p
 
 

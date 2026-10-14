@@ -11,7 +11,7 @@ from common import CYAN, ORANGE, C, E, G, P, S, accent, bones, build, standard_l
 
 NAME = "marksman"
 HEIGHT = 430
-GAIT = {"stride": 0.9, "bounce": 5, "lean": 3, "swing": 6, "knee": 50}
+GAIT = {"stride": 0.8, "bounce": 2, "lean": 12, "swing": 4, "knee": 44, "crouch": 14}
 STYLE = "snipe"
 BONES = bones(torso_h=150)
 MUZZLE = {1: (176, -6), 2: (184, -6), 3: (196, -6)}
@@ -80,6 +80,10 @@ def parts_for(tier):
     if tier == 3:   # shoulder spikes and a second, longer coat layer
         p += [P("uarm_f", ((-10, -20), (6, -54), (18, -18)), GUN, 38), P("uarm_b", ((-10, -20), (6, -54), (18, -18)), GUN, -10),
               P("torso", ((-20, -60), (-80, 90), (-40, 70), (-10, 100), (10, -40)), VIOLET_D, -45, tint=0.85)]
+    if tier >= 2:   # cloak tails flaring back and a larger rangefinder drone
+        p += [P("torso", ((-30, -40), (-130, 40), (-90, 30), (-120, 80), (-20, 20)), VIOLET, -46, tint=0.85),
+              S("pack", ((60, -180), (110, -186), (124, -166), (100, -150), (64, -156)), GUN, 30),
+              E("pack", 108, -170, 8, 8, a, 31, glow=True)]
     return p
 
 

@@ -74,6 +74,8 @@ def parts_for(tier):
               C("shield", -8, 0, 10, 0, 5, DARK, -10),
               P("uarm_f", ((-12, -14), (40, -40), (20, 4)), SILVER, 38, tint=1.1),
               P("uarm_b", ((-12, -14), (40, -40), (20, 4)), SILVER, -10, tint=0.9)]
+    if tier >= 2:   # long trailing scarf
+        p += [S("head", ((-30, 30), (-130, 10), (-200, 40), (-150, 54), (-90, 50), (-20, 50)), PURPLE_D, 38, gloss=0.3)]
     return p
 
 

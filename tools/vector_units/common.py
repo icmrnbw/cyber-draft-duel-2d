@@ -122,7 +122,7 @@ def idle_poses(base):
 # Per-unit gait (mod.GAIT overrides): stride scales leg swing, bounce is the
 # hip lift on passing frames, lean is the forward tilt, swing the back-arm
 # swing, stomp adds a contact squash (heavy units), sway rocks the torso.
-GAIT = {"stride": 1.0, "bounce": 8, "lean": 5, "swing": 10, "stomp": 0, "sway": 0.0, "knee": 60}
+GAIT = {"stride": 1.0, "bounce": 8, "lean": 5, "swing": 10, "stomp": 0, "sway": 0.0, "knee": 60, "crouch": 0}
 
 
 def walk_poses(base, gait=None, backward=False):
@@ -138,6 +138,13 @@ def walk_poses(base, gait=None, backward=False):
                "thigh_b": -26 * k, "shin_b": 12, "uarm_b": base["uarm_b"] + g["swing"], "head": (g["sway"] * 0.5, 0, 0)}),
         (0.75, {**base, "torso": lean, "hip": (0, 0, up), "thigh_f": -14 * k, "shin_f": g["knee"], "thigh_b": -4, "shin_b": 6}),
     ]
+    if g["crouch"]:   # low stalking walk: knees stay bent the whole cycle
+        for _, q in keys:
+            ang, dx, dy = q["hip"]
+            q["hip"] = (ang, dx, dy + g["crouch"])
+            for leg in "fb":
+                q[f"thigh_{leg}"] = q[f"thigh_{leg}"] - g["crouch"] * 0.9
+                q[f"shin_{leg}"] = q[f"shin_{leg}"] + g["crouch"] * 1.6
     if backward:
         keys = [(t, p) for t, p in zip([0.0, 0.25, 0.5, 0.75], [k_[1] for k_ in keys[::-1]])]
     poses = keyframes(keys, 8)

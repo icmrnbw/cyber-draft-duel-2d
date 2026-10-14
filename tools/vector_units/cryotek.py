@@ -11,7 +11,7 @@ from common import ORANGE, C, E, G, P, S, accent, bones, build, standard_limbs  
 
 NAME = "cryotek"
 HEIGHT = 450
-GAIT = {"stride": 0.9, "bounce": 6, "stomp": 3, "lean": 4, "knee": 54}
+GAIT = {"stride": 0.75, "bounce": 3, "stomp": 6, "sway": 4, "lean": 0, "knee": 46}
 STYLE = "spray"
 BONES = bones(torso_h=150)
 MUZZLE = {1: (132, -2), 2: (136, -2), 3: (176, 0)}
@@ -79,6 +79,13 @@ def parts_for(tier):
     if tier == 3:   # crystal crown and frost mantle
         p += [shard("head", 10, -80, 46, 8, 44), shard("torso", 30, -130, 40, 20, 6),
               S("torso", ((-60, -140), (50, -146), (62, -110), (-66, -108)), ICE, 4, gloss=0.9)]
+    if tier >= 2:   # ice spires growing out of the tanks, big shoulder crystals
+        s_ = 1.0 if tier == 2 else 1.4
+        DEEP = (110, 196, 246, 255)
+        p += [shard("pack", -36, -60, 130 * s_, -28, -26, DEEP), shard("pack", -14, -70, 110 * s_, -14, -26, DEEP),
+              shard("pack", 8, -76, 90 * s_, -4, -26, DEEP),
+              shard("uarm_f", 0, -18, 64 * s_, 6, 39, DEEP), shard("uarm_f", 22, -14, 44 * s_, 30, 39, DEEP),
+              shard("uarm_b", -10, -18, 56 * s_, -20, -10, DEEP)]
     return p
 
 

@@ -67,6 +67,11 @@ def parts_for(tier):
         import math
         p += [E("head", -20 + 78 * math.cos(math.radians(a_)), -10 + 78 * math.sin(math.radians(a_)), 6, 6, ORANGE, 30, glow=True)
               for a_ in range(0, 360, 30)]
+    if tier >= 2:   # taller relay pylons with an arc strung between them
+        s_ = 1.0 if tier == 2 else 1.3
+        p += [C("pack", -24, 16, -60, -200 * s_, 4, COPPER, -36), C("pack", 20, 16, 40, -210 * s_, 4, COPPER, -36),
+              G("pack", ((-60, -200 * s_), (-30, -230 * s_), (0, -200 * s_), (20, -232 * s_), (40, -210 * s_),
+                         (18, -224 * s_), (0, -194 * s_), (-30, -222 * s_)), a, -35)]
     return p
 
 

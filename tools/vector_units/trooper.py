@@ -9,7 +9,7 @@ from common import CYAN, ORANGE, C, E, G, P, S, accent, bones, build, standard_l
 
 NAME = "trooper"
 HEIGHT = 445
-GAIT = {"stride": 1.0, "bounce": 8, "lean": 6, "swing": 12}
+GAIT = {"stride": 1.0, "bounce": 6, "lean": 8, "swing": 4, "knee": 78}
 STYLE = "burst"
 BONES = bones()
 MUZZLE = {1: (128, -6), 2: (140, -6), 3: (156, -4)}
@@ -86,6 +86,12 @@ def parts_for(tier):
     if tier == 3:   # heavy back plate and helmet crest
         p += [P("torso", ((-56, -140), (-30, -150), (-26, -40), (-58, -30)), STEEL, -33),
               P("head", ((-30, -70), (-10, -100), (20, -96), (0, -66)), STEEL, 44)]
+    if tier >= 2:   # sensor mast with a comms dish, a big drum magazine, shoulder plate
+        p += [C("pack", 10, -40, 10, -170, 4, STEEL, -34),
+              S("pack", ((-20, -170), (30, -190), (44, -160), (20, -150), (-14, -150)), STEEL, -33),
+              E("pack", 14, -168, 6, 6, a, -32, glow=True),
+              E("weapon", 34, 34, 30, 26, GUN, 28), E("weapon", 34, 34, 14, 12, STEEL, 29),
+              P("uarm_f", ((-30, -18), (28, -22), (38, 20), (-26, 22)), STEEL, 39, tint=1.05)]
     return p
 
 

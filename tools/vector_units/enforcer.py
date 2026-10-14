@@ -109,6 +109,13 @@ def parts_for(tier):
     if tier >= 2:   # riot slab on the back and a raised collar
         p += [P("torso", ((-70, -170), (-40, -196), (-30, -60), (-66, -40)), RED_D, -35, tint=0.9),
               P("torso", ((-30, -200), (40, -206), (34, -180), (-26, -176)), RED, 6, tint=1.1)]
+    if tier >= 2:   # shock pylons rising behind the shoulders (silhouette)
+        s_ = 1.0 if tier == 2 else 1.3
+        for x in (-50, 0):
+            p += [P("pack", ((x - 14, -40), (x + 14, -40), (x + 10, -40 - 120 * s_), (x - 10, -40 - 120 * s_)), METAL_D, -36),
+                  P("pack", ((x - 22, -40 - 60 * s_), (x + 22, -40 - 60 * s_), (x + 22, -28 - 60 * s_), (x - 22, -28 - 60 * s_)), METAL, -35),
+                  E("pack", x, -44 - 120 * s_, 12, 12, METAL, -35), E("pack", x, -44 - 120 * s_, 6, 6, a, -34, glow=True),
+                  G("pack", ((x - 3, -50), (x + 3, -50), (x + 3, -30 - 110 * s_), (x - 3, -30 - 110 * s_)), a, -35)]
     return p
 
 

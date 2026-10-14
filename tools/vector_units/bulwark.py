@@ -14,7 +14,7 @@ GAIT = {"stride": 0.7, "bounce": 3, "stomp": 8, "sway": 2.5, "lean": 2, "knee": 
 STYLE = "ram"
 BONES = bones(torso_h=170, shoulder=(34, -122), back_shoulder=(-4, -126))
 MUZZLE = {1: (0, 0)}
-HOLD = {"uarm_f": 18, "farm_f": -30, "uarm_b": -40, "farm_b": -40}
+HOLD = {"uarm_f": 24, "farm_f": -20, "uarm_b": -40, "farm_b": -40, "weapon_tilt": -105}
 STRIDE = 0.75
 STEEL = (178, 188, 202, 255)
 STEEL_D = (96, 104, 120, 255)
@@ -24,7 +24,7 @@ DARK = (54, 60, 74, 255)
 def parts_for(tier):
     a = accent(tier)
     big = {1: 1.25, 2: 1.3, 3: 1.38}[tier]
-    p = standard_limbs(STEEL, DARK, STEEL_D, bulk=big, z_arm_b=36, z_arm_f=-14)
+    p = standard_limbs(STEEL, DARK, STEEL_D, bulk=big, z_arm_b=36, z_arm_f=30)
     p += [
         E("torso", 0, -4, 44, 28, DARK, 0),
         P("torso", ((-60 * big, -20), (60 * big, -20), (66 * big, -110), (40, -150), (-40, -150), (-64 * big, -110)), STEEL, 1,
@@ -58,20 +58,23 @@ def parts_for(tier):
         p += [P("shield", ((w * 0.7, -h * 0.5), (w + 20, -h * 0.9), (w + 30, -h * 0.4), (w, -h * 0.2)), (255, 170, 90, 120), 47, glow=True),
               P("shield", ((w * 0.4, h * 0.55), (w + 20, h * 0.95), (w + 30, h * 0.45), (w, h * 0.35)), (255, 170, 90, 120), 47, glow=True)]
     # Hammer in the front hand, behind the shield.
-    p += [C("weapon", -20, -4, 70, -4, 6, DARK, -12),
-          P("weapon", ((60, -30), (100, -30), (104, 24), (60, 24)), STEEL, -11, tint=1.05),
-          G("weapon", ((66, -4), (98, -4), (98, 2), (66, 2)), a, -10)]
+    p += [C("weapon", -20, -4, 70, -4, 6, DARK, 41),
+          P("weapon", ((60, -30), (100, -30), (104, 24), (60, 24)), DARK, 42, tint=1.15),
+          G("weapon", ((66, -4), (98, -4), (98, 2), (66, 2)), a, 43)]
     if tier >= 2:
-        p += [C("weapon", 30, -14, 60, -14, 5, STEEL_D, -11)]
+        p += [C("weapon", 30, -14, 60, -14, 5, STEEL_D, 42)]
     if tier >= 2:   # ram-head tower shield and a piston-driven hammer
         p += [P("shield", ((w, -60), (w + 46, -40), (w + 54, 0), (w + 46, 40), (w, 60)), STEEL_D, 46, tint=1.05,
                 lines=(((w + 10, -30), (w + 40, 0)), ((w + 10, 30), (w + 40, 0)))),
               E("shield", w + 30, 0, 9, 9, a, 47, glow=True),
-              P("weapon", ((54, -40), (110, -40), (116, 34), (54, 34)), STEEL, -10, tint=1.05),
-              C("weapon", 20, -26, 60, -26, 8, STEEL_D, -9), C("weapon", 20, 18, 60, 18, 8, STEEL_D, -9),
-              G("weapon", ((24, -28), (56, -28), (56, -24), (24, -24)), a, -8)]
+              P("weapon", ((54, -40), (110, -40), (116, 34), (54, 34)), DARK, 43, tint=1.15),
+              C("weapon", 20, -26, 60, -26, 8, STEEL_D, 44), C("weapon", 20, 18, 60, 18, 8, STEEL_D, 44),
+              G("weapon", ((24, -28), (56, -28), (56, -24), (24, -24)), a, 45)]
     if tier == 3:   # heavier helm crest
         p += [P("head", ((-40, -70), (-10, -110), (30, -104), (10, -66)), STEEL_D, 44)]
+    if tier >= 2:   # shoulder bastion on the lead shoulder
+        p += [P("torso", ((-60, -150), (-20, -156), (-24, -210), (-56, -206)), STEEL_D, -6),
+              P("torso", ((-66, -206), (-14, -212), (-18, -224), (-62, -220)), STEEL, -5)]
     return p
 
 

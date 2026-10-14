@@ -82,6 +82,11 @@ def parts_for(tier):
         p += [P("torso", ((-14, -120), (34, -120), (34, -80), (-14, -80)), MASK, 8),
               *[G("torso", ((-10, y), (30, y), (30, y + 4), (-10, y + 4)), ORANGE, 9) for y in (-114, -104, -94)],
               P("uarm_f", ((-26, -16), (24, -20), (30, 14), (-22, 16)), OLIVE, 38, tint=1.1)]
+    if tier >= 2:   # tall napalm stack, hose to the launcher, launcher blast shield
+        p += [C("pack", 4, -60, 4, -180, 18, (200, 90, 50, 255) if tier == 2 else (90, 60, 50, 255), -34, bevel=0.8),
+              E("pack", 4, -184, 16, 8, MASK, -33),
+              C("pack", 30, -20, 120, 60, 5, (40, 40, 40, 255), -31),
+              P("weapon", ((40, -50), (60, -50), (64, 40), (40, 40)), (110, 112, 104, 255), 33, tint=1.05)]
     return p
 
 

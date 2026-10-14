@@ -11,7 +11,7 @@ from common import ORANGE, C, E, G, P, S, accent, bones, build, standard_limbs  
 
 NAME = "nullbreaker"
 HEIGHT = 455
-GAIT = {"stride": 0.85, "bounce": 5, "stomp": 2, "lean": 4, "knee": 52}
+GAIT = {"stride": 1.2, "bounce": 4, "lean": -2, "sway": 1.5, "knee": 58}
 STYLE = "rail"
 BONES = bones(torso_h=150)
 MUZZLE = {1: (190, -4), 2: (210, -4), 3: (214, -4)}
@@ -66,6 +66,10 @@ def parts_for(tier):
         p += [P("head", ((-60, -20), (-90, -90), (-40, -60), (-20, -100), (0, -70)), BLACK, 39),
               P("torso", ((-30, -100), (-120, 120), (-70, 90), (-60, 140), (-20, 60)), CRIMSON, -46, tint=0.8),
               P("uarm_f", ((-10, -20), (6, -60), (20, -18)), METAL, 39), P("uarm_b", ((-10, -20), (6, -60), (20, -18)), METAL, -10)]
+    if tier >= 2:   # capacitor towers above the shoulders
+        s_ = 1.0 if tier == 2 else 1.3
+        p += [C("pack", -10, -90, -10, -180 * s_, 12, METAL, -34), C("pack", 26, -96, 26, -190 * s_, 12, METAL, -35),
+              E("pack", -10, -184 * s_, 9, 9, a, -33, glow=True), E("pack", 26, -194 * s_, 9, 9, a, -33, glow=True)]
     return p
 
 
